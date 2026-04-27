@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Playbook Intelligence — Ecosistema Deportivo MX 2026</title>
+<meta name="description" content="Playbook Intelligence — Mapa interactivo del ecosistema deportivo mexicano 2026. Red de actores, verticales, deal flow y briefings de inteligencia.">
+<meta property="og:title" content="Playbook Intelligence — Ecosistema Deportivo MX 2026">
+<meta property="og:description" content="Mapa interactivo del ecosistema deportivo mexicano 2026. Red de actores, verticales y briefings de inteligencia.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Playbook Intelligence — Ecosistema Deportivo MX 2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
@@ -13,12 +19,11 @@
   --bg:#050505;--surface:#0d0d0d;--surface2:#131313;--surface3:#191919;
   --border:rgba(255,255,255,0.055);--border2:rgba(255,255,255,0.1);
   --bgreen:rgba(69,216,2,0.32);
-  --text:#eaeaea;--text-muted:#585858;--text-dim:#2c2c2c;--text-mid:#888;
+  --text:#eaeaea;--text-muted:#585858;--text-dim:#2c2c2c;
   --mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;--display:'Syne',sans-serif;
   --v1:#45d802;--v2:#00b4d8;--v3:#ff6b35;--v4:#c77dff;--v5:#ffd60a;
   --v6:#ff4d6d;--v7:#4cc9f0;--v8:#06d6a0;--v9:#f8961e;
   --sidebar:232px;
-  --bgreen:rgba(69,216,2,0.32);
 }
 html,body{width:100%;height:100%;background:#050505;color:var(--text);font-family:var(--sans);overflow:hidden}
 body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.02) 3px,rgba(0,0,0,0.02) 4px);pointer-events:none}
@@ -287,6 +292,104 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 .df-date{font-family:var(--mono);font-size:7px;letter-spacing:0.1em;color:var(--text-dim);text-transform:uppercase;margin-top:2px}
 .df-event{font-family:var(--sans);font-size:9px;color:var(--text-muted);text-align:center;line-height:1.4;max-width:90px;font-weight:300}
 </style>
+
+<!-- MOBILE / RESPONSIVE STYLES -->
+<style>
+/* Hamburger button — hidden on desktop */
+.menu-toggle{display:none;width:36px;height:36px;background:transparent;border:1px solid rgba(255,255,255,0.07);color:var(--text-muted);font-size:16px;cursor:pointer;align-items:center;justify-content:center;flex-shrink:0;margin-right:4px;padding:0;line-height:1}
+
+/* Sidebar overlay backdrop */
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:49;cursor:pointer}
+.sb-overlay.on{display:block}
+
+/* Sidebar close button — hidden on desktop */
+.sb-close{display:none;position:absolute;top:14px;right:14px;width:26px;height:26px;background:#131313;border:1px solid rgba(255,255,255,0.07);align-items:center;justify-content:center;cursor:pointer;font-family:var(--mono);font-size:10px;color:var(--text-muted);padding:0;line-height:1}
+.sb-close:hover{border-color:var(--bgreen);color:var(--green)}
+
+/* ─── TABLET (≤ 768px) ─── */
+@media (max-width:768px){
+  /* Sidebar becomes off-canvas drawer */
+  .sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;width:260px!important;min-width:260px!important;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1)}
+  .sidebar.open{transform:translateX(0)}
+  .sb-head{position:relative}
+  .sb-close{display:flex}
+
+  /* Main area full-width */
+  .main-area{width:100%}
+
+  /* Show hamburger */
+  .menu-toggle{display:flex}
+
+  /* Ticker flush to left edge */
+  .ticker{left:0}
+
+  /* Actor panel as bottom sheet */
+  .actor-panel{position:fixed!important;right:0;left:0;top:auto!important;bottom:0;width:100%!important;height:80vh;transform:translateY(100%)!important;border-left:none!important;border-top:1px solid rgba(255,255,255,0.07);z-index:60;transition:transform 0.45s cubic-bezier(0.16,1,0.3,1)}
+  .actor-panel.open{transform:translateY(0)!important}
+
+  /* Brief title */
+  .bv-title{font-size:28px}
+  .brief-body{padding:20px 18px;max-width:100%}
+
+  /* Network controls larger for touch */
+  .net-cb{width:40px;height:40px;font-size:16px}
+
+  /* Hide minimap — too small to be useful */
+  #minimap,#zoom-badge{display:none}
+
+  /* Table horizontal scroll */
+  #view-index{overflow-x:auto}
+  .idx-tbl{min-width:580px}
+
+  /* Hide date in topbar */
+  .tb-date{display:none}
+  .topbar{padding:0 12px;gap:6px}
+
+  /* Flexible search */
+  .tb-search{flex:1;min-width:0;max-width:200px}
+}
+
+/* ─── PHONE (≤ 480px) ─── */
+@media (max-width:480px){
+  /* Brief */
+  .bv-title{font-size:20px}
+  .bv-stat-n{font-size:20px}
+  .brief-body{padding:14px 12px}
+  .b-grid{grid-template-columns:1fr}
+
+  /* Actor panel full height */
+  .actor-panel{height:90vh}
+  .ap-name{font-size:18px}
+
+  /* Password screen */
+  .pw-logo{width:200px;max-width:200px}
+  .pw-vline,.pw-hline{display:none}
+  .pw-tick,.pw-meta{display:none}
+  .pw-field input{font-size:14px;letter-spacing:0.28em}
+
+  /* Touch targets */
+  .sb-item{padding:10px 18px}
+  .net-cb{width:44px;height:44px}
+
+  /* Topbar */
+  .tb-badge{display:none}
+  .tb-search{max-width:140px}
+
+  /* Table */
+  .idx-tbl{min-width:420px}
+}
+
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion:reduce){
+  .pw-center{animation:none;opacity:1;transform:none}
+  .ticker-track{animation:none}
+  .actor-panel,.sidebar{transition:none}
+  .ul-chk,.ul-chk-dot{transition:none}
+  .pw-field-accent{transition:none}
+  .pw-field-inner{transition:none}
+}
+</style>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 </head>
 <body>
@@ -304,7 +407,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
   <div class="pw-meta br">v5.0.0 // BUILD 2604<br>111 ACTORES · 9 VERTICALES</div>
   <div class="pw-center">
     <div class="pw-logo-wrap">
-      <img id="pw-logo" class="pw-logo" alt="Playbook">
+      <img id="pw-logo" class="pw-logo" alt="Playbook Intelligence">
       <div class="pw-logo-sub">Sports Intelligence · Ecosistema Deportivo MX · 2026</div>
     </div>
     <div class="pw-sep">
@@ -321,7 +424,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
       </div>
       <div class="pw-field">
         <div class="pw-field-inner">
-          <input type="password" id="pw-in" maxlength="24" autocomplete="off" spellcheck="false" placeholder="· · · · · · · · · ·" autofocus>
+          <input type="password" id="pw-in" maxlength="24" autocomplete="off" spellcheck="false" placeholder="· · · · · · · · · ·" aria-label="Clave de acceso" autofocus>
           <div class="pw-field-accent"></div>
         </div>
       </div>
@@ -341,7 +444,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 
 <!-- UNLOCK -->
 <div id="screen-unlock">
-  <img id="ul-logo" class="ul-logo" alt="Playbook">
+  <img id="ul-logo" class="ul-logo" alt="Playbook Intelligence">
   <div class="ul-wrap">
     <div class="ul-lbl" id="ul-lbl">Iniciando sesion</div>
     <div class="ul-track"><div class="ul-fill" id="ul-fill"></div></div>
@@ -361,8 +464,9 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 <div id="screen-main">
   <nav class="sidebar">
     <div class="sb-head">
-      <img id="sb-logo" class="sb-logo" alt="Playbook">
+      <img id="sb-logo" class="sb-logo" alt="Playbook Intelligence">
       <div class="sb-tagline">Ecosistema Deportivo · MX · 2026</div>
+      <button class="sb-close" onclick="closeSidebar()" aria-label="Cerrar menú">✕</button>
     </div>
     <div class="sb-scroll">
       <div class="sb-sec">Vistas</div>
@@ -380,10 +484,11 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
     </div>
     <div class="sb-foot"><div class="sb-foot-txt">CORTE: ABR 2026<br>88 ACTORES · V4<br>9 VERTICALES MAPEADAS</div></div>
   </nav>
-  <div class="main-area">
+  <div class="main-area" role="main">
     <div class="topbar">
+      <button class="menu-toggle" id="menu-toggle" onclick="toggleSidebar()" aria-label="Abrir menú">☰</button>
       <div class="tb-crumb" id="tb-crumb">Red <em>/ Ecosistema completo</em></div>
-      <div class="tb-search"><span class="tb-si">⌕</span><input type="text" placeholder="Buscar actor..." id="srch" oninput="onSearch(this.value)"></div>
+      <div class="tb-search"><span class="tb-si">⌕</span><input type="text" placeholder="Buscar actor..." id="srch" aria-label="Buscar actor" oninput="onSearch(this.value)"></div>
       <div class="tb-right"><div class="tb-badge">Restringido</div><div class="tb-date" id="tb-date"></div></div>
     </div>
     <div class="view-tabs">
@@ -456,6 +561,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
     </div>
   </div>
 </div>
+<div id="sb-overlay" class="sb-overlay" onclick="closeSidebar()"></div>
 <div class="ticker" id="ticker"><div class="ticker-lbl">Senales</div><div class="ticker-scroll"><div class="ticker-track" id="tk-track"></div></div></div>
 
 <script>
@@ -659,6 +765,8 @@ const EDGES=[
 ['I07','A02'],['I07','G03'],
 ['I08','A04'],
 ];
+const actorMap = new Map(ACTORS.map(a => [a.id, a]));
+
 const TICKER_DATA=[
   {v:'V9',aid:'I01',t:'General Atlantic · 49% Grupo Aguilas · USD 490M EV · Dic 2025'},
   {v:'V9',aid:'I03',t:'Apollo Sports Capital · Atletico de Madrid → Atletico San Luis · Nov 2025'},
@@ -697,6 +805,7 @@ function doLogin(){
   if(v==='playbook2026'){
     err.classList.remove('on');
     if(st)st.textContent='Verificando...';
+    if(_particleRaf){cancelAnimationFrame(_particleRaf);_particleRaf=null;}
     document.getElementById('screen-pw').classList.add('out');
     setTimeout(startUnlock,900);
   } else {
@@ -713,6 +822,7 @@ function doLogin(){
 }
 
 // PARTICLES
+let _particleRaf;
 (()=>{
   const c=document.getElementById('pw-canvas');
   const ctx=c.getContext('2d');
@@ -733,7 +843,7 @@ function doLogin(){
       const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
       if(d<130){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(69,216,2,${.07*(1-d/130)})`;ctx.lineWidth=.5;ctx.stroke()}
     }
-    requestAnimationFrame(draw);
+    _particleRaf=requestAnimationFrame(draw);
   };
   draw();
 })();
@@ -1176,8 +1286,8 @@ function initMinimap(){
   mc.style.width = minimapW + 'px'; mc.style.height = minimapH + 'px';
   minimapCtx = mc.getContext('2d');
 
-  // redraw minimap every 800ms while simulation is warm, then on zoom
-  setInterval(drawMinimap, 1200);
+  // redraw on every simulation tick (stops naturally when simulation cools)
+  simulation.on('tick.minimap', drawMinimap);
 }
 
 function drawMinimap(){
@@ -1366,7 +1476,7 @@ function buildIdx(){
   renderIdx();
   document.getElementById('idx-body').addEventListener('click',e=>{
     const row=e.target.closest('tr[data-id]');
-    if(row){const a=ACTORS.find(x=>x.id===row.dataset.id);if(a)openPanel(a,'idx-panel')}
+    if(row){const a=actorMap.get(row.dataset.id);if(a)openPanel(a,'idx-panel')}
   });
 }
 // SORT STATE
@@ -1428,7 +1538,7 @@ function buildBrief(){
   renderBrief('V1');
   document.getElementById('brief-body').addEventListener('click',e=>{
     const card=e.target.closest('[data-aid]');
-    if(card){const a=ACTORS.find(x=>x.id===card.dataset.aid);if(a)openPanel(a,'br-panel')}
+    if(card){const a=actorMap.get(card.dataset.aid);if(a)openPanel(a,'br-panel')}
   });
 }
 
@@ -1542,11 +1652,60 @@ function initTicker(){
     <span class="ticker-sep">//</span>`).join('');
 }
 function openTickerActor(aid){
-  const actor=ACTORS.find(a=>a.id===aid);
+  const actor=actorMap.get(aid);
   if(!actor)return;
   // open in whichever view is active
   const panelId=curView==='index'?'idx-panel':curView==='brief'?'br-panel':'net-panel';
   openPanel(actor,panelId);
+}
+
+// ─── MOBILE SIDEBAR TOGGLE ───
+function toggleSidebar(){
+  const sb=document.querySelector('.sidebar');
+  const ov=document.getElementById('sb-overlay');
+  const opening=!sb.classList.contains('open');
+  sb.classList.toggle('open',opening);
+  ov.classList.toggle('on',opening);
+}
+function closeSidebar(){
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sb-overlay').classList.remove('on');
+}
+
+// Close sidebar when a nav item is tapped on mobile
+document.querySelector('.sidebar').addEventListener('click',e=>{
+  const item=e.target.closest('.sb-item');
+  if(item&&window.matchMedia('(max-width:768px)').matches)closeSidebar();
+});
+
+// ─── TOUCH TOOLTIPS — tap-to-reveal on touch devices ───
+if(window.matchMedia('(pointer:coarse)').matches){
+  // On touch devices, node clicks show tooltip briefly then open panel
+  document.addEventListener('click',e=>{
+    const tt=document.getElementById('net-tt');
+    if(tt&&!e.target.closest('#net-tt')&&!e.target.closest('.node-g'))tt.classList.remove('on');
+  });
+}
+
+// ─── D3 TOUCH DRAG (reuse mouse drag handlers via d3 built-in) ───
+// d3-drag already handles touch events via pointer events — no extra code needed.
+
+// ─── RESIZE OBSERVER — re-fit SVG on orientation change ───
+if(typeof ResizeObserver!=='undefined'){
+  const netWrap=document.getElementById('net-svg-wrap');
+  if(netWrap){
+    const ro=new ResizeObserver(()=>{
+      if(!svgSel||!simulation)return;
+      const W=netWrap.clientWidth,H=netWrap.clientHeight;
+      svgSel.attr('viewBox',[0,0,W,H]);
+      // re-center simulation
+      simulation.force('center',d3.forceCenter(W/2,H/2).strength(0.04));
+      simulation.force('x',d3.forceX(W/2).strength(0.015));
+      simulation.force('y',d3.forceY(H/2).strength(0.015));
+      simulation.alpha(0.3).restart();
+    });
+    ro.observe(netWrap);
+  }
 }
 </script>
 </body>
