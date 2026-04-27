@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playbook Intelligence — Ecosistema Deportivo MX 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#45d802;--green-dim:rgba(69,216,2,0.1);--green-glow:rgba(69,216,2,0.28);
+  --bg:#050505;--surface:#0d0d0d;--surface2:#131313;--surface3:#191919;
+  --border:rgba(255,255,255,0.055);--border2:rgba(255,255,255,0.1);
+  --bgreen:rgba(69,216,2,0.32);
+  --text:#eaeaea;--text-muted:#585858;--text-dim:#2c2c2c;
+  --mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;--display:'Syne',sans-serif;
+  --v1:#45d802;--v2:#00b4d8;--v3:#ff6b35;--v4:#c77dff;--v5:#ffd60a;
+  --v6:#ff4d6d;--v7:#4cc9f0;--v8:#06d6a0;--v9:#f8961e;
+  --sidebar:232px;
+}
+html,body{width:100%;height:100%;background:#050505;color:var(--text);font-family:var(--sans);overflow:hidden}
+body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.02) 3px,rgba(0,0,0,0.02) 4px);pointer-events:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+#screen-pw{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#030303;z-index:100;transition:opacity 1.2s ease}
+#screen-pw.out{opacity:0;pointer-events:none}
+#pw-canvas{position:absolute;inset:0;opacity:0.55}
+#screen-pw::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,transparent 30%,rgba(0,0,0,0.7) 100%);pointer-events:none;z-index:0}
+.pw-meta{position:absolute;font-family:var(--mono);font-size:8px;letter-spacing:0.16em;color:rgba(255,255,255,0.18);line-height:2.1;text-transform:uppercase;z-index:1}
+.pw-meta.tl{top:28px;left:32px}.pw-meta.tr{top:28px;right:32px;text-align:right}
+.pw-meta.bl{bottom:28px;left:32px}.pw-meta.br{bottom:28px;right:32px;text-align:right}
+.pw-hline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(69,216,2,0.12) 20%,rgba(69,216,2,0.18) 50%,rgba(69,216,2,0.12) 80%,transparent);z-index:1}
+.pw-hline.t{top:64px}.pw-hline.b{bottom:64px}
+.pw-vline{position:absolute;top:64px;bottom:64px;width:1px;background:linear-gradient(to bottom,transparent,rgba(69,216,2,0.1) 20%,rgba(69,216,2,0.16) 50%,rgba(69,216,2,0.1) 80%,transparent);z-index:1}
+.pw-vline.l{left:160px}.pw-vline.r{right:160px}
+.pw-tick{position:absolute;z-index:1}
+.pw-tick::before,.pw-tick::after{content:'';position:absolute;background:rgba(69,216,2,0.4)}
+.pw-tick::before{width:12px;height:1px}.pw-tick::after{width:1px;height:12px}
+.pw-tick.tl{top:64px;left:160px}.pw-tick.tr{top:64px;right:160px}.pw-tick.tr::before{right:0}.pw-tick.tr::after{right:0}
+.pw-tick.bl{bottom:64px;left:160px}.pw-tick.bl::after{bottom:0}.pw-tick.br{bottom:64px;right:160px}.pw-tick.br::before{right:0}.pw-tick.br::after{right:0;bottom:0}
+.pw-center{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:48px;animation:fadeup 1.6s cubic-bezier(0.16,1,0.3,1) both}
+@keyframes fadeup{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+.pw-logo-wrap{display:flex;flex-direction:column;align-items:center;gap:16px}
+.pw-logo{width:280px;opacity:0.96;filter:drop-shadow(0 0 40px rgba(69,216,2,0.2)) drop-shadow(0 0 80px rgba(69,216,2,0.08))}
+.pw-logo-sub{font-family:var(--mono);font-size:7px;letter-spacing:0.35em;color:rgba(255,255,255,0.2);text-transform:uppercase}
+.pw-sep{display:flex;align-items:center;gap:16px;width:360px}
+.pw-sep-line{flex:1;height:1px}
+.pw-sep-line.l{background:linear-gradient(to right,transparent,rgba(69,216,2,0.25))}
+.pw-sep-line.r{background:linear-gradient(to left,transparent,rgba(69,216,2,0.25))}
+.pw-sep-dot{width:4px;height:4px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green-glow);flex-shrink:0}
+.pw-sep-txt{font-family:var(--mono);font-size:7px;letter-spacing:0.24em;color:rgba(255,255,255,0.18);text-transform:uppercase;white-space:nowrap}
+.pw-form{display:flex;flex-direction:column;align-items:center;width:320px}
+.pw-lbl-row{display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:14px}
+.pw-lbl{font-family:var(--mono);font-size:7px;letter-spacing:0.24em;color:rgba(255,255,255,0.3);text-transform:uppercase}
+.pw-lbl-status{font-family:var(--mono);font-size:7px;letter-spacing:0.14em;color:rgba(69,216,2,0.4);text-transform:uppercase}
+.pw-field{position:relative;width:100%;margin-bottom:8px}
+.pw-field-inner{position:relative;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);padding:0;transition:border-color 0.3s,background 0.3s}
+.pw-field-inner:focus-within{border-color:rgba(69,216,2,0.35);background:rgba(69,216,2,0.03)}
+.pw-field input{width:100%;background:transparent;border:none;padding:16px 20px;font-family:var(--mono);font-size:18px;letter-spacing:0.42em;color:var(--green);outline:none;text-align:center;caret-color:var(--green)}
+.pw-field input::placeholder{color:rgba(255,255,255,0.08);font-size:13px;letter-spacing:0.25em}
+.pw-field-accent{position:absolute;bottom:-1px;left:50%;width:0;height:1px;background:var(--green);box-shadow:0 0 16px var(--green-glow);transform:translateX(-50%);transition:width 0.5s cubic-bezier(0.16,1,0.3,1)}
+.pw-field-inner:focus-within .pw-field-accent{width:100%}
+.pw-err{font-family:var(--mono);font-size:7px;letter-spacing:0.18em;color:#ff4d6d;height:13px;margin:6px 0 18px;opacity:0;transition:opacity 0.25s;text-transform:uppercase;text-align:center}
+.pw-err.on{opacity:1}
+.pw-btn{width:100%;padding:15px;background:transparent;border:1px solid rgba(69,216,2,0.28);font-family:var(--mono);font-size:8px;letter-spacing:0.32em;color:var(--green);text-transform:uppercase;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
+.pw-btn-fill{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(69,216,2,0.08),transparent);transform:translateX(-100%);transition:transform 0.6s ease}
+.pw-btn:hover .pw-btn-fill{transform:translateX(100%)}
+.pw-btn:hover{border-color:rgba(69,216,2,0.55);box-shadow:0 0 32px rgba(69,216,2,0.12),inset 0 0 20px rgba(69,216,2,0.04)}
+.pw-btn-text{position:relative;z-index:1}
+.pw-foot{font-family:var(--mono);font-size:6.5px;letter-spacing:0.16em;color:rgba(255,255,255,0.1);margin-top:20px;text-align:center;line-height:2.4;text-transform:uppercase}
+.pw-foot em{color:rgba(69,216,2,0.3);font-style:normal}
+#screen-unlock{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050505;z-index:99;opacity:0;pointer-events:none;transition:opacity 0.5s;gap:36px}
+#screen-unlock.on{opacity:1;pointer-events:auto}
+.ul-logo{width:160px;opacity:0.7}
+.ul-wrap{width:280px;display:flex;flex-direction:column;gap:12px;align-items:center}
+.ul-lbl{font-family:var(--mono);font-size:9px;letter-spacing:0.22em;color:var(--green);text-transform:uppercase}
+.ul-track{width:100%;height:1px;background:rgba(255,255,255,0.07);position:relative}
+.ul-fill{position:absolute;left:0;top:0;height:100%;background:var(--green);box-shadow:0 0 12px var(--green-glow);width:0}
+.ul-pct{font-family:var(--mono);font-size:52px;font-weight:700;color:var(--green);letter-spacing:-0.02em;line-height:1}
+.ul-status{font-family:var(--mono);font-size:8px;letter-spacing:0.18em;color:var(--text-muted);text-transform:uppercase;height:11px}
+.ul-checks{display:flex;flex-direction:column;gap:7px;width:280px}
+.ul-chk{font-family:var(--mono);font-size:8px;letter-spacing:0.1em;color:var(--text-dim);display:flex;align-items:center;gap:10px;text-transform:uppercase;transition:color 0.35s}
+.ul-chk.done{color:var(--text-muted)}.ul-chk-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.1);flex-shrink:0;transition:background 0.35s,box-shadow 0.35s}
+.ul-chk.done .ul-chk-dot{background:var(--green);box-shadow:0 0 6px var(--green-glow)}
+#screen-main{position:fixed;inset:0;display:flex;flex-direction:row;opacity:0;pointer-events:none;transition:opacity 0.9s ease}
+#screen-main.on{opacity:1;pointer-events:auto}
+.sidebar{width:var(--sidebar);min-width:var(--sidebar);background:#0d0d0d;border-right:1px solid rgba(255,255,255,0.055);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
+.sb-head{padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,0.055);flex-shrink:0;position:relative}
+.sb-logo{width:108px;opacity:0.92}
+.sb-tagline{font-family:var(--mono);font-size:7px;letter-spacing:0.18em;color:var(--text-muted);text-transform:uppercase;margin-top:7px}
+.sb-scroll{flex:1;overflow-y:auto;padding:6px 0}
+.sb-sec{font-family:var(--mono);font-size:7px;letter-spacing:0.22em;color:var(--text-dim);text-transform:uppercase;padding:14px 18px 5px}
+.sb-item{display:flex;align-items:center;gap:8px;padding:7px 18px;cursor:pointer;transition:background 0.12s;border-left:2px solid transparent}
+.sb-item:hover{background:#131313}.sb-item.active{background:#131313;border-left-color:var(--green)}
+.sb-item.active .sb-lbl{color:var(--text)}
+.sb-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;opacity:0.55;transition:opacity 0.15s}
+.sb-item.active .sb-dot,.sb-item:hover .sb-dot{opacity:1}
+.sb-lbl{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;transition:color 0.15s;flex:1}
+.sb-cnt{font-family:var(--mono);font-size:8px;color:var(--text-dim)}
+.sb-foot{padding:12px 18px;border-top:1px solid rgba(255,255,255,0.055);flex-shrink:0}
+.sb-foot-txt{font-family:var(--mono);font-size:7px;letter-spacing:0.12em;color:var(--text-dim);line-height:2;text-transform:uppercase}
+.main-area{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.topbar{height:46px;border-bottom:1px solid rgba(255,255,255,0.055);display:flex;align-items:center;padding:0 22px;gap:10px;flex-shrink:0}
+.tb-crumb{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase}
+.tb-crumb em{color:var(--green);font-style:normal}
+.tb-search{display:flex;align-items:center;gap:7px;background:#131313;border:1px solid rgba(255,255,255,0.07);padding:4px 11px;flex:0 0 210px;margin-left:14px}
+.tb-search input{background:transparent;border:none;outline:none;font-family:var(--mono);font-size:9px;letter-spacing:0.1em;color:var(--text);width:100%}
+.tb-search input::placeholder{color:var(--text-dim)}
+.tb-si{font-family:var(--mono);font-size:10px;color:var(--text-dim)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.tb-badge{font-family:var(--mono);font-size:7px;letter-spacing:0.18em;padding:3px 8px;border:1px solid var(--bgreen);color:var(--green);text-transform:uppercase}
+.tb-date{font-family:var(--mono);font-size:8px;color:var(--text-dim);letter-spacing:0.1em}
+.view-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.055);flex-shrink:0}
+.vt{padding:9px 18px;font-family:var(--mono);font-size:8px;letter-spacing:0.18em;color:var(--text-muted);cursor:pointer;text-transform:uppercase;border-bottom:2px solid transparent;transition:color 0.2s,border-color 0.2s;margin-bottom:-1px}
+.vt:hover{color:var(--text)}.vt.active{color:var(--green);border-bottom-color:var(--green)}
+.view-wrap{flex:1;position:relative;overflow:hidden;display:flex;flex-direction:column}
+#view-network{position:absolute;inset:0;display:block}
+#net-canvas{display:block;width:100%;height:100%}
+.net-ctrl-grp{position:absolute;top:16px;right:16px;display:flex;flex-direction:column;gap:4px;z-index:10}
+.net-cb{width:30px;height:30px;background:#0d0d0d;border:1px solid rgba(255,255,255,0.07);font-family:var(--mono);font-size:13px;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s,color 0.2s}
+.net-cb:hover{border-color:var(--bgreen);color:var(--green)}
+.net-legend{position:absolute;bottom:42px;left:18px;background:rgba(5,5,5,0.88);padding:10px 13px;border:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:7px}
+.leg-t{font-family:var(--mono);font-size:7px;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;margin-bottom:2px}
+.leg-i{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:8px;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase}
+.leg-d{border-radius:50%;flex-shrink:0}
+.net-tt{position:absolute;background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);padding:11px 14px;pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:50;min-width:180px;max-width:240px}
+.net-tt.on{opacity:1}
+.net-tt-name{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text);margin-bottom:2px}
+.net-tt-v{font-family:var(--mono);font-size:8px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px}
+.net-tt-role{font-family:var(--sans);font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:7px}
+.net-tt-hint{font-family:var(--mono);font-size:7px;letter-spacing:0.12em;color:var(--text-dim);text-transform:uppercase}
+.actor-panel{position:absolute;right:0;top:0;bottom:0;width:370px;background:#0d0d0d;border-left:1px solid rgba(255,255,255,0.07);transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.16,1,0.3,1);z-index:40;display:flex;flex-direction:column}
+.actor-panel.open{transform:translateX(0)}
+.ap-top{padding:18px 20px 14px;border-bottom:1px solid rgba(255,255,255,0.055);flex-shrink:0;position:relative}
+.ap-x{position:absolute;top:14px;right:14px;width:26px;height:26px;background:#131313;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:var(--mono);font-size:10px;color:var(--text-muted);transition:border-color 0.2s,color 0.2s}
+.ap-x:hover{border-color:var(--bgreen);color:var(--green)}
+.ap-vtag{font-family:var(--mono);font-size:8px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:7px}
+.ap-name{font-family:var(--display);font-size:24px;font-weight:800;color:var(--text);line-height:1.1;margin-bottom:5px}
+.ap-role{font-family:var(--sans);font-size:11px;color:var(--text-muted);line-height:1.5;padding-right:32px;font-weight:300}
+.ap-body{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:16px}
+.ap-bt{font-family:var(--mono);font-size:7px;letter-spacing:0.22em;color:var(--text-dim);text-transform:uppercase;margin-bottom:9px;padding-bottom:5px;border-bottom:1px solid rgba(255,255,255,0.055)}
+.ap-kv{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.ap-kvi{background:#131313;padding:9px 11px}
+.ap-kv-l{font-family:var(--mono);font-size:7px;letter-spacing:0.15em;color:var(--text-dim);text-transform:uppercase;margin-bottom:3px}
+.ap-kv-v{font-family:var(--mono);font-size:10px;color:var(--text);line-height:1.3}
+.ap-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:7px;letter-spacing:0.14em;text-transform:uppercase;padding:3px 7px;border:1px solid}
+.bv{border-color:var(--green);color:var(--green)}.bs{border-color:var(--v9);color:var(--v9)}.bi{border-color:var(--text-muted);color:var(--text-muted)}
+.ap-tier{display:flex;gap:3px;margin-top:7px}
+.ap-tier-seg{height:3px;flex:1;background:rgba(255,255,255,0.07);border-radius:1px;transition:background 0.3s}
+.ap-sig{padding:11px 13px;border-left:2px solid var(--green);background:#131313;font-family:var(--sans);font-size:11px;color:var(--text-muted);line-height:1.65;font-weight:300}
+.ap-conns{display:flex;flex-wrap:wrap;gap:5px}
+.ap-conn{font-family:var(--mono);font-size:7px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border:1px solid rgba(255,255,255,0.07);color:var(--text-muted);cursor:pointer;transition:all 0.2s}
+.ap-conn:hover{color:var(--green);border-color:var(--bgreen)}
+#view-index{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;display:none;-webkit-overflow-scrolling:touch}
+.idx-bar{position:sticky;top:0;background:#0d0d0d;border-bottom:1px solid rgba(255,255,255,0.055);padding:9px 22px;display:flex;align-items:center;gap:10px;z-index:10;flex-wrap:wrap}
+.idx-bl{font-family:var(--mono);font-size:8px;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;white-space:nowrap}
+.idx-chips{display:flex;gap:4px;flex-wrap:wrap}
+.idx-chip{font-family:var(--mono);font-size:7px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(255,255,255,0.07);color:var(--text-dim);cursor:pointer;transition:all 0.2s}
+.idx-chip:hover{border-color:rgba(255,255,255,0.1);color:var(--text-muted)}.idx-chip.on{border-color:var(--bgreen);color:var(--green)}
+.idx-cnt{margin-left:auto;font-family:var(--mono);font-size:8px;color:var(--text-dim);white-space:nowrap}
+.idx-tbl{width:100%;border-collapse:collapse;min-width:680px}
+.idx-tbl th{font-family:var(--mono);font-size:7px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-dim);padding:9px 14px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.055);position:sticky;top:46px;background:#0d0d0d;font-weight:400;cursor:pointer;user-select:none}
+.idx-tbl th:hover{color:var(--text-muted)}
+.idx-tbl th.sort-asc::after{content:' ↑';color:var(--green)}.idx-tbl th.sort-desc::after{content:' ↓';color:var(--green)}
+.idx-tbl td{font-family:var(--mono);font-size:9px;letter-spacing:0.05em;color:var(--text-muted);padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle;cursor:pointer;transition:background 0.1s}
+.idx-tbl tr:hover td{background:#131313}.idx-tbl tr:hover .td-n{color:var(--green)}
+.td-n{color:var(--text);font-size:10px}
+.td-vp{display:inline-block;padding:2px 6px;border:1px solid;font-size:7px;letter-spacing:0.1em}
+.td-dots{display:flex;gap:2px;align-items:center}
+.td-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.1)}
+.td-dot.on{background:var(--green)}
+.td-bdg{font-size:7px;letter-spacing:0.08em;padding:2px 5px;border:1px solid}
+#view-brief{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;display:none;-webkit-overflow-scrolling:touch}
+.brief-nav{position:sticky;top:0;background:#0d0d0d;border-bottom:1px solid rgba(255,255,255,0.055);padding:0 22px;display:flex;gap:0;z-index:10;overflow-x:auto}
+.bn-item{font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;padding:9px 12px;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color 0.2s,border-color 0.2s;margin-bottom:-1px}
+.bn-item:hover{color:var(--text-muted)}.bn-item.on{border-bottom-color:var(--green);color:var(--green)}
+.brief-body{padding:28px 32px;max-width:840px}
+.bv-hero{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.055)}
+.bv-eye{font-family:var(--mono);font-size:8px;letter-spacing:0.24em;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px}
+.bv-title{font-family:var(--display);font-size:50px;font-weight:800;color:var(--text);line-height:1;margin-bottom:7px}
+.bv-q{font-family:var(--sans);font-size:14px;color:var(--text-muted);line-height:1.55;margin-bottom:18px;max-width:580px;font-weight:300}
+.bv-note{font-family:var(--mono);font-size:8px;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px}
+.bv-stats{display:flex;gap:22px;flex-wrap:wrap}
+.bv-stat-n{font-family:var(--display);font-size:26px;font-weight:700;line-height:1}
+.bv-stat-l{font-family:var(--mono);font-size:7px;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase}
+.brief-sec{font-family:var(--mono);font-size:7px;letter-spacing:0.22em;color:var(--text-dim);text-transform:uppercase;margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,0.055)}
+.b-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+.bac{background:#0d0d0d;border:1px solid rgba(255,255,255,0.055);padding:14px 16px;cursor:pointer;transition:border-color 0.2s,background 0.2s;position:relative;overflow:hidden}
+.bac::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.bac:hover{background:#131313;border-color:rgba(255,255,255,0.1)}
+.bac-n{font-family:var(--display);font-size:17px;font-weight:700;color:var(--text);margin-bottom:3px}
+.bac-r{font-family:var(--sans);font-size:11px;color:var(--text-muted);line-height:1.4;margin-bottom:10px;font-weight:300}
+.bac-v{font-family:var(--mono);font-size:10px;color:var(--green);margin-bottom:3px}
+.bac-b{font-family:var(--mono);font-size:7px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 6px;border:1px solid var(--bgreen);color:var(--green)}
+.bac-sig{margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,0.055);font-family:var(--sans);font-size:10px;color:var(--text-dim);line-height:1.55;font-weight:300}
+.bac-sig em{color:var(--text-muted);font-style:normal}
+.ticker{position:fixed;bottom:0;left:var(--sidebar);right:0;height:25px;background:#0d0d0d;border-top:1px solid rgba(255,255,255,0.055);display:none;align-items:center;overflow:hidden;z-index:30}
+.ticker.on{display:flex}
+.ticker-lbl{font-family:var(--mono);font-size:7px;letter-spacing:0.22em;color:var(--green);padding:0 11px;border-right:1px solid rgba(255,255,255,0.055);white-space:nowrap;text-transform:uppercase;flex-shrink:0}
+.ticker-scroll{flex:1;overflow:hidden}
+.ticker-track{display:flex;gap:52px;animation:tickmove 60s linear infinite;white-space:nowrap}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes tickmove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{font-family:var(--mono);font-size:8px;letter-spacing:0.07em;color:var(--text-dim);white-space:nowrap;flex-shrink:0}
+.ticker-sep{color:var(--text-dim);margin:0 6px}
+@keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-8px)}30%{transform:translateX(7px)}45%{transform:translateX(-6px)}60%{transform:translateX(5px)}75%{transform:translateX(-3px)}90%{transform:translateX(2px)}}
+.shake{animation:shake 0.45s ease}
+#minimap{position:absolute;bottom:42px;right:16px;width:120px;height:80px;background:rgba(13,13,13,0.92);border:1px solid rgba(255,255,255,0.08);z-index:20;overflow:hidden}
+#minimap-canvas{width:100%;height:100%;display:block}
+#minimap-viewport{position:absolute;border:1px solid rgba(69,216,2,0.5);pointer-events:none;background:rgba(69,216,2,0.04)}
+.minimap-label{position:absolute;top:4px;left:5px;font-family:'Space Mono',monospace;font-size:6px;letter-spacing:0.15em;color:rgba(255,255,255,0.2);text-transform:uppercase}
+#zoom-badge{position:absolute;bottom:42px;left:18px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--text-dim);background:rgba(13,13,13,0.85);padding:3px 7px;border:1px solid rgba(255,255,255,0.06)}
+.df-wrap{margin:0 0 28px;overflow-x:auto;padding-bottom:8px}
+.df-track{display:flex;gap:0;position:relative;min-width:500px}
+.df-track::before{content:'';position:absolute;top:18px;left:0;right:0;height:1px;background:rgba(255,255,255,0.07)}
+.df-item{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative;cursor:pointer}
+.df-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;border:1px solid;position:relative;z-index:1;transition:transform 0.2s}
+.df-item:hover .df-dot{transform:scale(1.5)}
+.df-date{font-family:var(--mono);font-size:7px;letter-spacing:0.1em;color:var(--text-dim);text-transform:uppercase;margin-top:2px}
+.df-event{font-family:var(--sans);font-size:9px;color:var(--text-muted);text-align:center;line-height:1.4;max-width:90px;font-weight:300}
+.menu-toggle{display:none;width:36px;height:36px;background:transparent;border:1px solid rgba(255,255,255,0.07);color:var(--text-muted);font-size:16px;cursor:pointer;align-items:center;justify-content:center;flex-shrink:0;margin-right:4px;padding:0;line-height:1}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:49;cursor:pointer}
+.sb-overlay.on{display:block}
+.sb-close{display:none;position:absolute;top:14px;right:14px;width:26px;height:26px;background:#131313;border:1px solid rgba(255,255,255,0.07);align-items:center;justify-content:center;cursor:pointer;font-family:var(--mono);font-size:10px;color:var(--text-muted);padding:0;line-height:1}
+@media(max-width:768px){
+  .sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;width:260px!important;min-width:260px!important;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1)}
+  .sidebar.open{transform:translateX(0)}.sb-head{position:relative}.sb-close{display:flex}
+  .main-area{width:100%}.menu-toggle{display:flex}.ticker{left:0}
+  .actor-panel{position:fixed!important;right:0;left:0;top:auto!important;bottom:0;width:100%!important;height:80vh;transform:translateY(100%)!important;border-left:none!important;border-top:1px solid rgba(255,255,255,0.07);z-index:60;transition:transform 0.45s cubic-bezier(0.16,1,0.3,1)}
+  .actor-panel.open{transform:translateY(0)!important}
+  .bv-title{font-size:28px}.brief-body{padding:20px 18px;max-width:100%}
+  .net-cb{width:40px;height:40px;font-size:16px}
+  #minimap,#zoom-badge{display:none}
+  .tb-date{display:none}.topbar{padding:0 12px;gap:6px}
+  .tb-search{flex:1;min-width:0;max-width:200px}
+}
+@media(max-width:480px){
+  .bv-title{font-size:20px}.bv-stat-n{font-size:20px}.brief-body{padding:14px 12px}.b-grid{grid-template-columns:1fr}
+  .actor-panel{height:90vh}.ap-name{font-size:18px}
+  .pw-logo{width:200px;max-width:200px}.pw-vline,.pw-hline{display:none}.pw-tick,.pw-meta{display:none}
+  .pw-field input{font-size:14px;letter-spacing:0.28em}
+  .sb-item{padding:10px 18px}.net-cb{width:44px;height:44px}
+  .tb-badge{display:none}.tb-search{max-width:140px}
+}
+@media(prefers-reduced-motion:reduce){
+  .pw-center{animation:none;opacity:1;transform:none}.ticker-track{animation:none}
+  .actor-panel,.sidebar{transition:none}.ul-chk,.ul-chk-dot{transition:none}
+  .pw-field-accent{transition:none}.pw-field-inner{transition:none}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+</head>
+<body>
+
+<div id="screen-pw">
+  <canvas id="pw-canvas"></canvas>
+  <div class="pw-hline t"></div><div class="pw-hline b"></div>
+  <div class="pw-vline l"></div><div class="pw-vline r"></div>
+  <div class="pw-tick tl"></div><div class="pw-tick tr"></div>
+  <div class="pw-tick bl"></div><div class="pw-tick br"></div>
+  <div class="pw-meta tl">PB-INTEL // MX-ECO-2026<br>CLASIFICACION: RESTRINGIDO<br>PROTOCOLO DE ACCESO ACTIVO</div>
+  <div class="pw-meta tr">CORTE: 26.ABR.2026<br>SESION NO INICIADA<br>NODE: MX-PROD-01</div>
+  <div class="pw-meta bl">© 2026 PLAYBOOK SPORTS INTELLIGENCE<br>DISTRIBUCION RESTRINGIDA · USO INTERNO</div>
+  <div class="pw-meta br">v7.0.0 // BUILD 2604<br>191 ACTORES · 9 VERTICALES</div>
+  <div class="pw-center">
+    <div class="pw-logo-wrap">
+      <img id="pw-logo" class="pw-logo" alt="Playbook Intelligence">
+      <div class="pw-logo-sub">Sports Intelligence · Ecosistema Deportivo MX · 2026</div>
+    </div>
+    <div class="pw-sep">
+      <div class="pw-sep-line l"></div><div class="pw-sep-dot"></div>
+      <div class="pw-sep-txt">Acceso restringido</div>
+      <div class="pw-sep-dot"></div><div class="pw-sep-line r"></div>
+    </div>
+    <div class="pw-form">
+      <div class="pw-lbl-row">
+        <div class="pw-lbl">Clave de acceso</div>
+        <div class="pw-lbl-status" id="pw-status">Esperando autenticacion</div>
+      </div>
+      <div class="pw-field">
+        <div class="pw-field-inner">
+          <input type="password" id="pw-in" maxlength="24" autocomplete="off" spellcheck="false" placeholder="· · · · · · · · · ·" aria-label="Clave de acceso" autofocus>
+          <div class="pw-field-accent"></div>
+        </div>
+      </div>
+      <div class="pw-err" id="pw-err">CLAVE INCORRECTA — ACCESO DENEGADO</div>
+      <button class="pw-btn" onclick="doLogin()">
+        <div class="pw-btn-fill"></div>
+        <span class="pw-btn-text">Verificar acceso →</span>
+      </button>
+      <div class="pw-foot">Uso exclusivo de usuarios autorizados<br>Playbook Sports Intelligence · Mexico · 2026<br><em>Sesion encriptada · Acceso auditado</em></div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-unlock">
+  <img id="ul-logo" class="ul-logo" alt="Playbook Intelligence">
+  <div class="ul-wrap">
+    <div class="ul-lbl" id="ul-lbl">Iniciando sesion</div>
+    <div class="ul-track"><div class="ul-fill" id="ul-fill"></div></div>
+    <div class="ul-pct" id="ul-pct">0%</div>
+    <div class="ul-status" id="ul-status"></div>
+  </div>
+  <div class="ul-checks" id="ul-checks">
+    <div class="ul-chk" data-s="0"><div class="ul-chk-dot"></div>Credenciales verificadas</div>
+    <div class="ul-chk" data-s="1"><div class="ul-chk-dot"></div>Acceso al ecosistema concedido</div>
+    <div class="ul-chk" data-s="2"><div class="ul-chk-dot"></div>191 actores indexados</div>
+    <div class="ul-chk" data-s="3"><div class="ul-chk-dot"></div>Red de relaciones construida</div>
+    <div class="ul-chk" data-s="4"><div class="ul-chk-dot"></div>Interfaz lista</div>
+  </div>
+</div>
+
+<div id="screen-main">
+  <nav class="sidebar">
+    <div class="sb-head">
+      <img id="sb-logo" class="sb-logo" alt="Playbook Intelligence">
+      <div class="sb-tagline">Ecosistema Deportivo · MX · 2026</div>
+      <button class="sb-close" onclick="closeSidebar()" aria-label="Cerrar menu">✕</button>
+    </div>
+    <div class="sb-scroll">
+      <div class="sb-sec">Vistas</div>
+      <div class="sb-item active" data-view="network" onclick="switchView('network',this)"><div class="sb-dot" style="background:var(--green)"></div><span class="sb-lbl">Red de actores</span></div>
+      <div class="sb-item" data-view="index" onclick="switchView('index',this)"><div class="sb-dot" style="background:var(--v2)"></div><span class="sb-lbl">Indice</span></div>
+      <div class="sb-item" data-view="brief" onclick="switchView('brief',this)"><div class="sb-dot" style="background:var(--v4)"></div><span class="sb-lbl">Briefings</span></div>
+      <div class="sb-sec" style="margin-top:4px">Verticales</div>
+      <div class="sb-item" onclick="filterV('V1')" id="sv-V1"><div class="sb-dot" style="background:var(--v1)"></div><span class="sb-lbl">V1 Propiedades</span><span class="sb-cnt" id="sc-V1"></span></div>
+      <div class="sb-item" onclick="filterV('V2')" id="sv-V2"><div class="sb-dot" style="background:var(--v2)"></div><span class="sb-lbl">V2 Media</span><span class="sb-cnt" id="sc-V2"></span></div>
+      <div class="sb-item" onclick="filterV('V3')" id="sv-V3"><div class="sb-dot" style="background:var(--v3)"></div><span class="sb-lbl">V3 Sponsors</span><span class="sb-cnt" id="sc-V3"></span></div>
+      <div class="sb-item" onclick="filterV('V4')" id="sv-V4"><div class="sb-dot" style="background:var(--v4)"></div><span class="sb-lbl">V4 Activacion</span><span class="sb-cnt" id="sc-V4"></span></div>
+      <div class="sb-item" onclick="filterV('V5')" id="sv-V5"><div class="sb-dot" style="background:var(--v5)"></div><span class="sb-lbl">V5 Experiencias</span><span class="sb-cnt" id="sc-V5"></span></div>
+      <div class="sb-item" onclick="filterV('V6')" id="sv-V6"><div class="sb-dot" style="background:var(--v6)"></div><span class="sb-lbl">V6 Ticketing</span><span class="sb-cnt" id="sc-V6"></span></div>
+      <div class="sb-item" onclick="filterV('V7')" id="sv-V7"><div class="sb-dot" style="background:var(--v7)"></div><span class="sb-lbl">V7 Venues</span><span class="sb-cnt" id="sc-V7"></span></div>
+      <div class="sb-item" onclick="filterV('V8')" id="sv-V8"><div class="sb-dot" style="background:var(--v8)"></div><span class="sb-lbl">V8 Tecnologia</span><span class="sb-cnt" id="sc-V8"></span></div>
+      <div class="sb-item" onclick="filterV('V9')" id="sv-V9"><div class="sb-dot" style="background:var(--v9)"></div><span class="sb-lbl">V9 Capital</span><span class="sb-cnt" id="sc-V9"></span></div>
+    </div>
+    <div class="sb-foot"><div class="sb-foot-txt">CORTE: ABR 2026<br>191 ACTORES · V7<br>9 VERTICALES MAPEADAS</div></div>
+  </nav>
+  <div class="main-area" role="main">
+    <div class="topbar">
+      <button class="menu-toggle" id="menu-toggle" onclick="toggleSidebar()" aria-label="Abrir menu">☰</button>
+      <div class="tb-crumb" id="tb-crumb">Red <em>/ Ecosistema completo</em></div>
+      <div class="tb-search"><span class="tb-si">⌕</span><input type="text" placeholder="Buscar actor..." id="srch" aria-label="Buscar actor" oninput="onSearch(this.value)"></div>
+      <div class="tb-right"><div class="tb-badge">Restringido</div><div class="tb-date" id="tb-date"></div></div>
+    </div>
+    <div class="view-tabs">
+      <div class="vt active" data-view="network" onclick="switchView('network',null,this)">Red de actores</div>
+      <div class="vt" data-view="index" onclick="switchView('index',null,this)">Indice</div>
+      <div class="vt" data-view="brief" onclick="switchView('brief',null,this)">Briefings verticales</div>
+    </div>
+    <div class="view-wrap">
+      <div id="view-network">
+        <div id="net-svg-wrap" style="width:100%;height:100%;position:relative;overflow:hidden">
+          <svg id="net-svg" style="width:100%;height:100%;display:block"></svg>
+        </div>
+        <div class="net-ctrl-grp">
+          <button class="net-cb" onclick="netZoom(1.25)" title="Acercar">+</button>
+          <button class="net-cb" onclick="netZoom(0.8)" title="Alejar">−</button>
+          <button class="net-cb" onclick="netReset()" style="font-size:9px;letter-spacing:0" title="Reset">⌖</button>
+        </div>
+        <div id="minimap"><canvas id="minimap-canvas"></canvas><div id="minimap-viewport"></div><div class="minimap-label">Vista general</div></div>
+        <div id="zoom-badge">100%</div>
+        <div class="net-legend">
+          <div class="leg-t">Leyenda</div>
+          <div class="leg-i"><div class="leg-d" style="width:11px;height:11px;background:var(--green);box-shadow:0 0 7px var(--green-glow)"></div>Tier 1</div>
+          <div class="leg-i"><div class="leg-d" style="width:7px;height:7px;background:#4a4a4a"></div>Tier 2</div>
+          <div class="leg-i"><div class="leg-d" style="width:4px;height:4px;background:#2a2a2a"></div>Tier 3</div>
+          <div class="leg-i" style="margin-top:5px"><div style="width:16px;height:1px;background:rgba(69,216,2,0.55)"></div>Relacion directa</div>
+          <div class="leg-i"><div style="width:16px;height:1px;background:rgba(255,255,255,0.12)"></div>Conexion V-V</div>
+        </div>
+        <div class="net-tt" id="net-tt">
+          <div class="net-tt-name" id="tt-n"></div>
+          <div class="net-tt-v" id="tt-v"></div>
+          <div class="net-tt-role" id="tt-r"></div>
+          <div class="net-tt-hint">Click para ficha completa</div>
+        </div>
+        <div class="actor-panel" id="net-panel">
+          <div class="ap-top"><div class="ap-x" onclick="closeP('net-panel')">✕</div><div class="ap-vtag" id="np-vt"></div><div class="ap-name" id="np-n"></div><div class="ap-role" id="np-r"></div></div>
+          <div class="ap-body" id="np-b"></div>
+        </div>
+      </div>
+      <div id="view-index">
+        <div class="idx-bar">
+          <span class="idx-bl">Filtrar:</span>
+          <div class="idx-chips" id="idx-chips"></div>
+          <div class="idx-cnt" id="idx-cnt"></div>
+        </div>
+        <table class="idx-tbl" id="idx-tbl">
+          <thead><tr>
+            <th onclick="sortIdx('label')">Actor</th>
+            <th onclick="sortIdx('vertical')">Vertical</th>
+            <th onclick="sortIdx('tier')">Tier</th>
+            <th onclick="sortIdx('ciudad')">Ciudad</th>
+            <th onclick="sortIdx('valoracion')">Valoracion</th>
+            <th onclick="sortIdx('certeza')">Certeza</th>
+            <th>Senal clave</th>
+          </tr></thead>
+          <tbody id="idx-body"></tbody>
+        </table>
+        <div class="actor-panel" id="idx-panel">
+          <div class="ap-top"><div class="ap-x" onclick="closeP('idx-panel')">✕</div><div class="ap-vtag" id="ip-vt"></div><div class="ap-name" id="ip-n"></div><div class="ap-role" id="ip-r"></div></div>
+          <div class="ap-body" id="ip-b"></div>
+        </div>
+      </div>
+      <div id="view-brief">
+        <div class="brief-nav" id="brief-nav"></div>
+        <div class="brief-body" id="brief-body"></div>
+        <div class="actor-panel" id="br-panel">
+          <div class="ap-top"><div class="ap-x" onclick="closeP('br-panel')">✕</div><div class="ap-vtag" id="bp-vt"></div><div class="ap-name" id="bp-n"></div><div class="ap-role" id="bp-r"></div></div>
+          <div class="ap-body" id="bp-b"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="sb-overlay" class="sb-overlay" onclick="closeSidebar()"></div>
+<div class="ticker" id="ticker"><div class="ticker-lbl">Senales</div><div class="ticker-scroll"><div class="ticker-track" id="tk-track"></div></div></div>
+
+<script>
+// LOGO
+const LOGO='data:image/webp;base64,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';
+['pw-logo','ul-logo','sb-logo'].forEach(id=>{const el=document.getElementById(id);if(el)el.src=LOGO});
+
+document.getElementById('tb-date').textContent=new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
+
+// VERTICAL CONFIG
+const VX={
+  V1:{label:'Propiedades',color:'#45d802',q:'Que activos generan el contenido, la atencion y el inventario comercial base?',note:'Clubes · Ligas · Federaciones · Selecciones · Eventos con Derechos Propios'},
+  V2:{label:'Media',color:'#00b4d8',q:'Quien distribuye y monetiza los derechos audiovisuales?',note:'Broadcasters · Streamers · Productoras · Medios Nativos Digitales'},
+  V3:{label:'Sponsors',color:'#ff6b35',q:'Quien financia el inventario comercial del ecosistema?',note:'Marcas · Patrocinadores · Naming Rights · Capital Comercial'},
+  V4:{label:'Activacion',color:'#c77dff',q:'Quien gestiona, activa y convierte los derechos en negocio?',note:'Agencias · Intermediarios · Rights Managers · Activadores'},
+  V5:{label:'Experiencias',color:'#ffd60a',q:'Quien convierte el deporte en experiencia vendible?',note:'Promotores · Hospitality · Fan Experience · Travel Premium'},
+  V6:{label:'Ticketing',color:'#ff4d6d',q:'Quien controla la transaccion de entrada y el acceso del fan?',note:'Boleteras · Plataformas de Acceso · Biometria · Reventa'},
+  V7:{label:'Venues',color:'#4cc9f0',q:'Donde ocurre el deporte y quien controla la infraestructura?',note:'Estadios · Arenas · Recintos · Concesionarios'},
+  V8:{label:'Tecnologia',color:'#06d6a0',q:'Que habilita inteligencia, operacion y rendimiento?',note:'Data · Analytics · Performance · Fan Tech · VAR'},
+  V9:{label:'Capital',color:'#f8961e',q:'Quien financia, adquiere y estructura el ecosistema?',note:'PE · Fondos · Propietarios · Holdings · Deal Architecture'},
+};
+
+// ============================================================
+// COMPLETE ACTOR DATABASE — 134 ACTORS
+// ============================================================
+const ACTORS=[
+// ── V1 PROPIEDADES (25) ──
+{id:'A01',label:'Club America',vertical:'V1',tier:1,role:'Club Liga MX — activo mas valioso del futbol mexicano',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'USD 490M EV',conexiones:['V9','V7','V2','V3','V8'],signal:'General Atlantic 49% a USD 490M EV (dic 2025). Tricampeon 2023-24. Adidas reemplaza Nike (jul 2025).'},
+{id:'A02',label:'Chivas',vertical:'V1',tier:1,role:'Club Liga MX — mayor fandom del futbol mexicano',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'USD 700-800M est.',conexiones:['V2','V7','V3','V9'],signal:'Amazon Prime Video exclusivo en casa. USD 20M / 4 anos. Primer deal de su tipo en Liga MX.'},
+{id:'A03',label:'Rayados',vertical:'V1',tier:1,role:'Club Liga MX — nomina mas alta, respaldo FEMSA',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'USD 305M',conexiones:['V9','V7','V3'],signal:'Sergio Ramos fichado feb 2025. Subcampeon Apertura 2024. Premio WC Clubes USD 21.05M.'},
+{id:'A04',label:'Tigres UANL',vertical:'V1',tier:1,role:'Club Liga MX — segunda nomina, respaldo CEMEX',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'—',conexiones:['V9','V7'],signal:'CEMEX / Sinergia Deportiva propietaria. Nuevo Estadio Volcan USD 320M en construccion.'},
+{id:'A05',label:'Toluca',vertical:'V1',tier:2,role:'Club Liga MX — campeon Clausura 2025',certeza:'VERIFICADO',ciudad:'Toluca',valoracion:'—',conexiones:['V3','V7'],signal:'Campeon Clausura 2025 vs America (2-0). New Balance kit deal desde 2023.'},
+{id:'A06',label:'Pachuca',vertical:'V1',tier:2,role:'Club Liga MX — multiclub Grupo Pachuca',certeza:'VERIFICADO',ciudad:'Pachuca',valoracion:'—',conexiones:['V9'],signal:'Grupo Pachuca opera 8 clubes globales. Hub de formacion y transferencias. Alianza Monterey Bay FC ene 2026.'},
+{id:'A07',label:'Cruz Azul',vertical:'V1',tier:2,role:'Club Liga MX — cooperativa historica',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V7','V3'],signal:'Campeon Liga MX 2021. Juega en Estadio Olimpico Universitario (inquilino) tras salir de Banorte.'},
+{id:'A08',label:'Pumas UNAM',vertical:'V1',tier:2,role:'Club Liga MX — propiedad universidad publica',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V7'],signal:'Unico club universitario de primer nivel en Mexico. Estadio Olimpico Universitario.'},
+{id:'A09',label:'Santos Laguna',vertical:'V1',tier:2,role:'Club Liga MX — Orlegi Sports',certeza:'VERIFICADO',ciudad:'Torreon',valoracion:'—',conexiones:['V9'],signal:'Alejandro Irarragorri y Orlegi Sports. Modelo de sustentabilidad financiera en Liga MX.'},
+{id:'A10',label:'Atlas FC',vertical:'V1',tier:2,role:'Club Liga MX — Grupo PRODI',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'~USD 220M',conexiones:['V9','V7'],signal:'Grupo PRODI compro Atlas a Orlegi por ~USD 220M (abr 2026). Bicampeon 2021-22.'},
+{id:'A11',label:'Necaxa',vertical:'V1',tier:2,role:'Club Liga MX — modelo co-propiedad celebrities',certeza:'VERIFICADO',ciudad:'Aguascalientes',valoracion:'—',conexiones:['V8'],signal:'First club en LatAm con Second Spectrum tracking (Genius Sports). Co-propiedad con celebrities.'},
+{id:'A12',label:'FC Juarez',vertical:'V1',tier:2,role:'Club Liga MX — frontera norte estrategica',certeza:'VERIFICADO',ciudad:'Ciudad Juarez',valoracion:'—',conexiones:['V4'],signal:'Mercado fronterizo estrategico para expansion hacia EE.UU. Nuevo estadio planeado.'},
+{id:'A13',label:'Xolos Tijuana',vertical:'V1',tier:2,role:'Club Liga MX — Grupo Caliente / Jorge Hank Rhon',certeza:'VERIFICADO',ciudad:'Tijuana',valoracion:'—',conexiones:['V3','V6','V9'],signal:'Unico club Liga MX con partnership oficial StubHub (reventa). Mercado binacional.'},
+{id:'A14',label:'Atletico San Luis',vertical:'V1',tier:2,role:'Club Liga MX — filial Atletico de Madrid / Apollo',certeza:'VERIFICADO',ciudad:'San Luis Potosi',valoracion:'—',conexiones:['V9'],signal:'Apollo Sports Capital controla via Atletico de Madrid (nov 2025). Estadio Libertad Financiera.'},
+{id:'A15',label:'Queretaro FC',vertical:'V1',tier:2,role:'Club Liga MX — Innovatio Capital',certeza:'VERIFICADO',ciudad:'Queretaro',valoracion:'USD 120M',conexiones:['V9','V7'],signal:'Innovatio Capital adquirio por USD 120M (jul 2025). Proyecto nuevo estadio en desarrollo.'},
+{id:'A16',label:'Puebla FC',vertical:'V1',tier:3,role:'Club Liga MX — tier regional',certeza:'VERIFICADO',ciudad:'Puebla',valoracion:'—',conexiones:[],signal:'Club de perfil regional. Estadio Cuauhtemoc con historia en Liga MX.'},
+{id:'A17',label:'Atlante FC',vertical:'V1',tier:3,role:'Club ascendido — compro certificado Mazatlan',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'~USD 65M',conexiones:['V9'],signal:'Emilio Escalante compro Mazatlan FC (Grupo Salinas) por ~USD 65M para ascender (abr 2026).'},
+{id:'A18',label:'Liga MX',vertical:'V1',tier:1,role:'Liga profesional — nueva Asociacion Civil autonoma',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'USD 2,747M ecosistema',conexiones:['V2','V8','V6','V9','V4'],signal:'Separacion historica de FMF: 23 abr 2026. Mayor liga del continente por audiencia.'},
+{id:'A19',label:'FMF',vertical:'V1',tier:1,role:'Federacion Mexicana de Futbol — ente rector',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V8','V6','V4'],signal:'Rights holder Seleccion Mexicana. Separo Liga MX como AC autonoma abr 2026.'},
+{id:'A20',label:'Seleccion Mexicana',vertical:'V1',tier:1,role:'El Tri — activo de mayor audiencia transversal de Mexico',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V2','V3','V4'],signal:'Mayor audiencia de Mexico y diaspora en EE.UU. WC26 sede local como catalizador historico.'},
+{id:'A21',label:'Copa Mundial 2026',vertical:'V1',tier:1,role:'FIFA WC26 — evento de mayor impacto economico en historia MX',certeza:'VERIFICADO',ciudad:'CDMX/GDL/MTY',valoracion:'Derrama multibillonaria',conexiones:['V7','V5','V6','V8'],signal:'3 sedes mexicanas. Partido inaugural Estadio Banorte 11 jun 2026. Mexico vs Sudafrica.'},
+{id:'A22',label:'F1 CDMX',vertical:'V1',tier:1,role:'Gran Premio Mexico — Formula One Group / OCESA',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'Derrama MXN 20,892M',conexiones:['V5','V7','V3','V4'],signal:'Renovado hasta 2028. Checo Perez regresa con Cadillac 2026. Derrama record 2025.'},
+{id:'A23',label:'NFL Mexico',vertical:'V1',tier:1,role:'NFL Mexico City Games — acuerdo Estadio Banorte 2026-2028',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V5','V7'],signal:'49ers como equipo anfitrion 2026. Acuerdo trianual con Ollamani.'},
+{id:'A24',label:'LGCT Mexico',vertical:'V1',tier:2,role:'Global Champions Tour — circuito ecuestre premium',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V3','V5'],signal:'Extendido hasta 2033. Jan Tops vs Premier Jumping League. GNP Seguros como venue.'},
+{id:'A25',label:'Abierto Mexicano Tenis',vertical:'V1',tier:2,role:'ATP 500 Acapulco — amenaza renegociacion ATP',certeza:'VERIFICADO',ciudad:'Acapulco',valoracion:'USD 35-45M franquicia',conexiones:['V5','V3','V4'],signal:'Riesgo de reubicacion de licencia. Mextenis operador. Muerte de Burillo (abr 2026) abre vacante.'},
+// ── V2 MEDIA (10) ──
+{id:'B01',label:'TelevisaUnivision',vertical:'V2',tier:1,role:'TUDN / ViX — broadcaster dominante, rights holder WC26 MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V3','V8'],signal:'TV Azteca en concurso mercantil abre gap estrategico. Casa exclusiva WC26 en Mexico.'},
+{id:'B02',label:'TV Azteca',vertical:'V2',tier:1,role:'Azteca Deportes — en concurso mercantil, riesgo critico',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V5'],signal:'Concurso mercantil activo. Caliente TV vendida a Fox Corp jun 2025. Riesgo perdida contratos.'},
+{id:'B03',label:'Fox / Tubi Mexico',vertical:'V2',tier:1,role:'Fox One / Tubi — model partner-first emergente',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V9'],signal:'Mayor expansion de derechos Liga MX en el periodo. Adquirio Caliente TV (jun 2025).'},
+{id:'B04',label:'Amazon Prime Video',vertical:'V2',tier:2,role:'Streaming exclusivo Chivas — primer deal de su tipo MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'USD 20M / 4 anos',conexiones:['V1'],signal:'Benchmark que presiona al alza el mercado de derechos club-por-club en Liga MX.'},
+{id:'B05',label:'ESPN / Disney+',vertical:'V2',tier:2,role:'Deportes internacionales premium — NFL, NBA, tenis',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Despidos oct 2025. Control migro a Buenos Aires. Debilitamiento operacion local.'},
+{id:'B06',label:'DAZN',vertical:'V2',tier:2,role:'Streaming — lider boxeo premium Mexico',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:[],signal:'Posicion solida en boxeo. Sin Liga MX ni futbol europeo top. Mexico no es mercado prioritario.'},
+{id:'B07',label:'Claro Sports',vertical:'V2',tier:2,role:'Claro Sports / America Movil — olimpiadas LatAm',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V3'],signal:'Dominante en Olimpiadas LatAm. Herramienta anti-churn de America Movil.'},
+{id:'B08',label:'Apple TV / Netflix',vertical:'V2',tier:2,role:'Apple: Leagues Cup. Netflix: Concacaf desde 2027',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Netflix deal Concacaf: Seleccion Mexicana detras de paywall por primera vez desde 2027.'},
+{id:'B09',label:'Mediotiempo',vertical:'V2',tier:2,role:'Media digital deportiva — #1 nativo digital MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:[],signal:'12M visitas/mes. Grupo Multimedios + Milenio. Sin derechos de transmision.'},
+{id:'B10',label:'Record',vertical:'V2',tier:2,role:'Media digital deportiva — periodico 100% digital desde 2023',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:[],signal:'17.1M visitas/mes. Cerro edicion impresa oct-2023. 57.55% trafico directo.'},
+// ── V3 SPONSORS (13) ──
+{id:'C01',label:'BBVA Mexico',vertical:'V3',tier:1,role:'Title Liga BBVA MX + naming Estadio BBVA + jersey Rayados',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V7'],signal:'Deal mas largo del ecosistema (2016-2028 liga / 2015-2030 estadio). Doble renovacion jul 2025.'},
+{id:'C02',label:'Banorte',vertical:'V3',tier:1,role:'Naming Estadio Banorte + deuda estructurada MXN 2,568M',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'—',conexiones:['V1','V7','V9'],signal:'Acreedor + patrocinador. MXN 2,100M credito + MXN 468M IVA obra. Sin precedente en MX.'},
+{id:'C03',label:'Caliente.mx',vertical:'V3',tier:1,role:'Jersey principal America y Chivas — mayor presencia Liga MX',certeza:'VERIFICADO',ciudad:'Tijuana',valoracion:'—',conexiones:['V1','V9'],signal:'Unico sponsor con jersey principal en dos clubes T1 simultaneos. Riesgo OFAC/regulatorio.'},
+{id:'C04',label:'Telcel',vertical:'V3',tier:1,role:'Title ATP 500 Acapulco (20 anos) + fideicomiso GP Mexico F1',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V5'],signal:'20 aniversario Telcel como title AMT 2026. Clave del fideicomiso que mantiene F1 en CDMX.'},
+{id:'C05',label:'GNP Seguros',vertical:'V3',tier:1,role:'Naming venues entretenimiento — portfolio diversificado',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V7','V1'],signal:'Estadio GNP #1 concert stadium mundial 2025 (Pollstar). Extension LGCT hasta 2033. Grupo BAL.'},
+{id:'C06',label:'Adidas',vertical:'V3',tier:1,role:'Kit FMF/El Tri hasta 2034 + Club America — hegemonia visual WC26',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V4'],signal:'Controla look El Tri + America en mismo ciclo. Mega-deal Liga MX USD 900M no concretado.'},
+{id:'C07',label:'Corona / Modelo',vertical:'V3',tier:2,role:'Patrocinador historico Liga MX y WC26',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Centenario Grupo Modelo 2025. Constellation Brands USD 50M College Football Playoff.'},
+{id:'C08',label:'Heineken',vertical:'V3',tier:2,role:'Patrocinador F1 GP Mexico — campana Checo Perez',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V5'],signal:'10 aniversario GP con Heineken 0.0. Regreso Checo Perez con Cadillac GP Mexico 2026.'},
+{id:'C09',label:'Coca-Cola',vertical:'V3',tier:2,role:'Socio FIFA Tier 1 global — 30 anos Seleccion Mexicana',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Promo 1,002 boletos WC26. 60,000 jerseys Adidas con logo Coca-Cola para WC26.'},
+{id:'C10',label:'Puma',vertical:'V3',tier:2,role:'Kit Chivas, Rayados, Tigres — segundo mayor kit deal MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Chivas con Puma hasta jul-2026 cuando Nike regresa. Rayados renovacion activa.'},
+{id:'C11',label:'Bimbo',vertical:'V3',tier:2,role:'Patrocinador transversal Liga MX + El Tri',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Primer jersey Adidas+Bimbo+America visto en jul 2025. Presencia en 14 jerseys Liga MX.'},
+{id:'C12',label:'Electrolit',vertical:'V3',tier:2,role:'Hidratacion oficial — disputa vs Powerade en clubes Liga MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Grupo PiSA. Disputa mercado hidratacion con Powerade/Coca-Cola en clubes Liga MX.'},
+{id:'C13',label:'Codere Online',vertical:'V3',tier:2,role:'Sleeve sponsor Rayados hasta 2029',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Record 100K jugadores activos dic-2025. Concentracion MX y Espana.'},
+// ── V4 ACTIVACION (12) ──
+{id:'D01',label:'Neta Agencia',vertical:'V4',tier:3,role:'Boutique PR deportivo — representacion olimpicos',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V3'],signal:'Unica agencia MX con congreso deportivo consolidado (Deportium, 6 ediciones).'},
+{id:'D02',label:'Jump SMS',vertical:'V4',tier:3,role:'Consultoria patrocinios — valuacion ROI/ROO con IA',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V3'],signal:'Asesora a Chivas, Rayados, FC Juarez, Queretaro. Unico actor ROI+IA en MX.'},
+{id:'D03',label:'Soccer Media Solutions',vertical:'V4',tier:2,role:'Publicidad virtual — broker inventario LED en estadios',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V2'],signal:'Opera con Supponor (TGI Sport) para publicidad virtual en transmisiones Liga MX.'},
+{id:'D04',label:'TEAM Marketing AG',vertical:'V4',tier:2,role:'Gestora derechos comerciales FMF — desde oct 2025',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V3'],signal:'Relevancia emergente en MX desde oct 2025. Socio comercial FMF a nivel de derechos.'},
+{id:'D05',label:'Wasserman / THE TEAM',vertical:'V4',tier:2,role:'Agencia hibrida — golf y eventos (rebrand mar 2026)',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V5'],signal:'Rebrand a THE-TEAM en marzo 2026. Licencia PGA Tour activa en Mexico.'},
+{id:'D06',label:'Pitz Group',vertical:'V4',tier:1,role:'Representacion futbolistas mexicanos — Top 3 agencia MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Representacion de futbolistas nacionales clave. Pipeline directo con clubes Liga MX.'},
+{id:'D07',label:'Promofut',vertical:'V4',tier:1,role:'Top 3 agencias representacion jugadores MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Portafolio top jugadores Liga MX. Poder en negociaciones de transferencias y patrocinios.'},
+{id:'D08',label:'Relevent Sports',vertical:'V4',tier:1,role:'Organizer Serie A MX — juegos oficiales Liga MX en EE.UU.',certeza:'VERIFICADO',ciudad:'Nueva York',valoracion:'—',conexiones:['V1','V5','V7'],signal:'Mandato Liga MX para juegos en EE.UU. Acceso directo a mercado latino en EE.UU.'},
+{id:'D09',label:'OCESA / CIE',vertical:'V4',tier:1,role:'Promotor dominante — F1, live events, venues',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V5','V7','V3'],signal:'Promotor GP F1 Mexico. Operador Estadio GNP. Live Nation 75% OCESA (ago 2025). JV OVG F&B.'},
+{id:'D10',label:'Mikel Arriola',vertical:'V4',tier:1,role:'Presidente Liga MX — gatekeeper institucional #1',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V8'],signal:'Figura de mayor poder institucional en el ecosistema futbol MX post-separacion FMF.'},
+{id:'D11',label:'SUM',vertical:'V4',tier:1,role:'Soccer United Marketing — derechos comerciales Concacaf y Seleccion',certeza:'VERIFICADO',ciudad:'Chicago',valoracion:'—',conexiones:['V1','V3'],signal:'Gestiona derechos comerciales Liga MX en EE.UU. Partner clave para expansion al norte.'},
+{id:'D12',label:'Octagon',vertical:'V4',tier:2,role:'Agencia global — presencia estructural en tenis Mexico',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V5'],signal:'Presencia en tenis (AMT Acapulco). Portafolio global con footprint MX.'},
+// ── V5 EXPERIENCIAS (14) ──
+{id:'E01',label:'On Location Events',vertical:'V5',tier:1,role:'Monopolio global hospitality mega-eventos — WC26 Mexico',certeza:'VERIFICADO',ciudad:'Nueva York',valoracion:'—',conexiones:['V7','V1','V6'],signal:'Monopolio oficial WC26 2026-2028 en venues mexicanos. TKO/Endeavor. Sin equivalente local.'},
+{id:'E02',label:'Elevate Sports Ventures',vertical:'V5',tier:2,role:'Operador premium Estadio Banorte — Tunnel Club / Suites',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V7','V9'],signal:'Contrato 10 anos Estadio Banorte firmado jul 2025. Opera Tunnel Club, Suites, Corner Club.'},
+{id:'E03',label:'F1 Experiences',vertical:'V5',tier:2,role:'Hospitality oficial GP Mexico — mayor margen por cliente',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V7'],signal:'Operador oficial hospitality GP Mexico. Dependiente de OCESA como promotor local.'},
+{id:'E04',label:'Mextenis',vertical:'V5',tier:2,role:'Licenciatario ATP 500 Acapulco — Grupo Pegaso',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'USD 35-45M franquicia',conexiones:['V1','V4','V7'],signal:'Licenciatario ATP 500 y 250. Muerte de Burillo (abr 2026) abre vacante estructural.'},
+{id:'E05',label:'LIV Golf Mexico',vertical:'V5',tier:2,role:'LIV Golf League CDMX — capital soberano saudita PIF',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Capital PIF saudita. Presencia multi-anual en Mexico. Circuito en construccion vs PGA Tour.'},
+{id:'E06',label:'UFC / TKO Group',vertical:'V5',tier:2,role:'Rights holder global — UFC PI CDMX estructura permanente',certeza:'VERIFICADO',ciudad:'Las Vegas',valoracion:'—',conexiones:['V4','V7'],signal:'UFC PI CDMX operativo. Arena CDMX: Moreno vs Erceg mar 2025 (gate USD 2.53M). Paramount+.'},
+{id:'E07',label:'Grupo Mundomex',vertical:'V5',tier:2,role:'Agente oficial FIFA hospitality Mexico — WC26',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V6'],signal:'Once Mundiales consecutivos como agente. Mandato On Location/FIFA abr 2026. Monopolio territorial.'},
+{id:'E08',label:'Fuse Mexico',vertical:'V5',tier:2,role:'Agencia experiencias — Omnicom Media Group',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V3'],signal:'Lanzamiento feb 2026. Timing optimo con WC26. Potencial Tier 1 post-Mundial.'},
+{id:'E09',label:'GS Sports Management',vertical:'V5',tier:2,role:'Promotor tenis femenil — WTA Mexico',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Tier 1 en tenis femenil MX. Fragilidad financiera declarada pero licencias sin sustituto.'},
+{id:'E10',label:'Konnecta Travel',vertical:'V5',tier:3,role:'Agencia de viajes deportivos mexicana',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:[],signal:'Portafolio verificado pero sin mandato oficial de ningun rights holder.'},
+{id:'E11',label:'Federico Gonzalez Compean',vertical:'V5',tier:2,role:'DG GP F1 Mexico / CIE — gatekeeper subterraneo F1',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V4','V7','V3'],signal:'Arquitecto del fideicomiso privado ~100 empresas que paga fee F1 sin licitacion publica.'},
+{id:'E12',label:'Jurgen Mainka',vertical:'V5',tier:2,role:'DG FIFA Mexico — autoridad maxima hospitality WC26',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V6','V7'],signal:'Aprueba o rechaza cualquier proveedor de hospitality en territorio nacional may-jul 2026.'},
+{id:'E13',label:'VidantaWorld Mexico Open',vertical:'V5',tier:2,role:'PGA Tour Mexico — ecosistema integrado venue-hospitality',certeza:'VERIFICADO',ciudad:'Puerto Vallarta',valoracion:'—',conexiones:['V1','V7'],signal:'Unico venue PGA Tour regular en Mexico. Bolsa USD 6M 2026. Daniel Chavez Moran / Grupo Vidanta.'},
+{id:'E14',label:'Ledec Technology',vertical:'V5',tier:3,role:'AV gran formato — proveedor infraestructura Fan Zones WC26',certeza:'FUENTE UNICA',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Mandato WC26 Fan Zones verificado. Unico proveedor AV mexicano en estructura del torneo.'},
+// ── V6 TICKETING (9) ──
+{id:'F01',label:'Fanki / Bitsports',vertical:'V6',tier:1,role:'Boletera oficial Estadio Banorte — exclusiva WC26',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V7','V1','V9'],signal:'Exclusividad Estadio Banorte y 5 partidos Copa Mundial 2026. Partido inaugural 11 jun.'},
+{id:'F02',label:'Boletomovil',vertical:'V6',tier:1,role:'Boletera exclusiva Chivas (Akron), Tigres y Pachuca',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'—',conexiones:['V1','V7'],signal:'Exclusiva Estadio Akron (sede mundialista) y Tigres. Plataforma 100% mexicana. Redwood Ventures.'},
+{id:'F03',label:'Superboletos',vertical:'V6',tier:1,role:'Grupo Avalanz / Zignia — mas de 12M boletos/ano',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V7','V5'],signal:'Integracion vertical y volumen >12M boletos/ano. Opera Zignia Live y arenas del grupo.'},
+{id:'F04',label:'Ticketmaster Mexico',vertical:'V6',tier:1,role:'Dominio estructural por volumen — bajo erosion competitiva',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V5','V7'],signal:'Lider historico por volumen. Erosion acelerada por boleteras exclusivas de clubes. OCESA/Live Nation.'},
+{id:'F05',label:'Incode Technologies',vertical:'V6',tier:1,role:'Fan ID biometrico — mandato unico Liga MX/FMF',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'USD 1,250M valuacion',conexiones:['V1','V8'],signal:'Mandato Fan ID en 30+ estadios. Condicion necesaria del acceso fisico en Liga MX. Unicornio MX.'},
+{id:'F06',label:'FIFA Ticketing WC26',vertical:'V6',tier:1,role:'Control total ticketing Copa Mundial 2026 en Mexico',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V5','V7'],signal:'Dominio temporal del torneo. Todos los canales de venta WC26 bajo estructura FIFA.'},
+{id:'F07',label:'StubHub Mexico',vertical:'V6',tier:2,role:'Reventa oficial — partnership Xolos',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Unico operador reventa con partnership oficial Liga MX. Escalada post-WC26 posible.'},
+{id:'F08',label:'Palco4 / FunTicket',vertical:'V6',tier:3,role:'Ticketing B2B — infraestructura backend SaaS',certeza:'FUENTE UNICA',ciudad:'CDMX',valoracion:'—',conexiones:[],signal:'Habilitador tecnologico backend. Subdominios ft-mx y tm-mx verificados. Palco Ticketing S.L. Espana.'},
+{id:'F09',label:'Viagogo / HelloTicket',vertical:'V6',tier:3,role:'Reventa gris — bajo procedimientos Profeco feb 2026',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:[],signal:'Exhortos formales Profeco feb 2026. Posibles PIL para HelloTicket (direccion mexicana).'},
+// ── V7 VENUES (18) ──
+{id:'G01',label:'Estadio Banorte',vertical:'V7',tier:1,role:'Ex-Azteca · 87,523 cap · Sede inaugural WC26',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'USD 490M EV',conexiones:['V1','V9','V3','V6','V5'],signal:'Reinaugurado mar 2026. LEED Platinum. Deuda MXN 2,568M. Conflicto palcohabientes activo.'},
+{id:'G02',label:'Estadio BBVA',vertical:'V7',tier:1,role:'Sede Rayados · 53,500 cap · Sede WC26 Monterrey',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'USD 200M construccion',conexiones:['V1','V3','V9'],signal:'Arena mas moderna MX. LEED Silver. Inversion remodelacion WC26: USD 7.2M.'},
+{id:'G03',label:'Estadio Akron',vertical:'V7',tier:1,role:'Sede Chivas · 49,813 cap · Sede WC26 Guadalajara',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'~USD 250M est.',conexiones:['V1','V9'],signal:'MXN 250M inversion WC26. Cancha hibrida. 4 partidos mundialistas.'},
+{id:'G04',label:'Estadio GNP Seguros',vertical:'V7',tier:1,role:'Ex Foro Sol · 65,000 cap · #1 concert stadium mundial 2025',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V3','V5','V4'],signal:'Pollstar #1 concert stadium del mundo 2025. Propiedad Gobierno CDMX + concesion OCESA.'},
+{id:'G05',label:'Estadio Olimpico Universitario',vertical:'V7',tier:2,role:'Sede Pumas/Cruz Azul · 72,000 cap · Patrimonio UNESCO',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Patrimonio cultural UNAM. Cruz Azul inquilino desde ene 2025. Sin uso mundialista.'},
+{id:'G06',label:'Estadio Volcan',vertical:'V7',tier:2,role:'Nuevo estadio Tigres — USD 320M en construccion',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'USD 320M',conexiones:['V1','V9'],signal:'Populous + Juego de Pelota Mexico. 65,000 asientos. Inauguracion estimada post-2027.'},
+{id:'G07',label:'Estadio Nemesio Diez',vertical:'V7',tier:2,role:'Sede Toluca — venue historico Liga MX',certeza:'VERIFICADO',ciudad:'Toluca',valoracion:'—',conexiones:['V1'],signal:'Sede de Los Diablos Rojos campeon Clausura 2025. Capacidad ~33,000.'},
+{id:'G08',label:'Autodromo Hermanos Rodriguez',vertical:'V7',tier:1,role:'Sede GP F1 Mexico — cluster CIE-OCESA',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V5','V3','V4'],signal:'Propiedad Gobierno CDMX. Concesion OCESA. Renovado hasta 2028 como sede F1.'},
+{id:'G09',label:'Arena CDMX',vertical:'V7',tier:1,role:'Arena indoor principal CDMX — Grupo Avalanz / Zignia',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'USD 330M',conexiones:['V5','V9'],signal:'Grupo Avalanz (Guillermo Salinas Pliego). 22,300 cap. Hub eventos boxeo y deportes indoor.'},
+{id:'G10',label:'Arena Monterrey',vertical:'V7',tier:2,role:'Arena indoor Monterrey — Grupo Avalanz / Zignia',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'—',conexiones:['V5','V9'],signal:'Grupo Avalanz. 17,599 cap. Parte del triangulo CDMX-MTY-GDL de Salinas Pliego.'},
+{id:'G11',label:'Arena Guadalajara',vertical:'V7',tier:2,role:'Arena indoor Guadalajara — Grupo Avalanz (oct 2025)',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'—',conexiones:['V5','V9'],signal:'Apertura oct 2025. 20,128 cap. Completa el triángulo de arenas nacionales Avalanz.'},
+{id:'G12',label:'Parque Alfredo Harp Helu',vertical:'V7',tier:2,role:'Estadio Diablos Rojos MLB · 20,062 cap',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'MXN 3,000M',conexiones:['V9'],signal:'Propiedad Alfredo Harp Helu. Estadio beisbol mas moderno de Mexico. Inaugurado 2019.'},
+{id:'G13',label:'Estadio Jalisco',vertical:'V7',tier:2,role:'Venue historico Guadalajara — Clubes Unidos',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'—',conexiones:['V1'],signal:'Sede Atlas y partidos Seleccion historicos. MXN 14M inversion 2025.'},
+{id:'G14',label:'Estadio Corregidora',vertical:'V7',tier:2,role:'Sede Queretaro FC — Innovatio Capital',certeza:'VERIFICADO',ciudad:'Queretaro',valoracion:'USD 120M',conexiones:['V9','V1'],signal:'Vendido junto al club a Innovatio Capital (jul 2025). Marc Spiegel / Adrián Madero.'},
+{id:'G15',label:'Estadio Ciudad de los Deportes',vertical:'V7',tier:2,role:'Sede Cruz Azul (interino) — Familia Cossio',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Familia Cossio. 34,253 cap. Cruz Azul uso interino. Nuevo estadio CDMX Azcapotzalco USD 300M aprobado.'},
+{id:'G16',label:'Palacio de los Deportes',vertical:'V7',tier:2,role:'Arena CDMX historica — Gobierno CDMX / CIE',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V4','V5'],signal:'Gobierno CDMX propietario. OCESA concesionario. 17,800 cap. Desplome parcial gradas abr 2025.'},
+{id:'G17',label:'Hard Rock Stadium Miami',vertical:'V7',tier:2,role:'Venue extendido MX — 7 partidos WC26 incl 3er lugar',certeza:'VERIFICADO',ciudad:'Miami',valoracion:'USD 500M remodel',conexiones:['V1','V4','V5'],signal:'Stephen Ross (Miami Dolphins). Residencia Seleccion MX en gira US. De facto venue mexicano.'},
+{id:'G18',label:'Vidanta Vallarta',vertical:'V7',tier:2,role:'Venue PGA Tour Mexico Open — Grupo Vidanta',certeza:'VERIFICADO',ciudad:'Puerto Vallarta',valoracion:'—',conexiones:['V5','V9'],signal:'Daniel Chavez Moran / Grupo Vidanta. Unico venue PGA Tour regular en Mexico.'},
+// ── V8 TECNOLOGIA (18) ──
+{id:'H01',label:'Genius Sports',vertical:'V8',tier:1,role:'Socio exclusivo datos e integridad Liga MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'USD 1.43M/temporada',conexiones:['V1','V6','V2'],signal:'SAOT desplegado en 18 estadios Liga MX desde ene 2026. Monopolio datos+integridad+streaming.'},
+{id:'H02',label:'Hawk-Eye / Sony',vertical:'V8',tier:1,role:'VAR / SAOT proveedor FIFA WC26 en venues mexicanos',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V7'],signal:'Desplaza temporalmente a Genius Sports para WC26 en los 3 venues mexicanos.'},
+{id:'H03',label:'Mediapro',vertical:'V8',tier:1,role:'Operador VAR Liga MX desde 2018',certeza:'VERIFICADO',ciudad:'Barcelona',valoracion:'—',conexiones:['V1'],signal:'8 anos operando VAR en Liga MX. Infraestructura de video analisis en todos los estadios.'},
+{id:'H04',label:'Hudl / WIMU / Wyscout',vertical:'V8',tier:1,role:'Stack performance — mandato CITEC FMF',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V4'],signal:'Gatekeeper tecnologico del futbol mexicano via CITEC (Centro Innovacion Tecnologica FMF).'},
+{id:'H05',label:'GolStats',vertical:'V8',tier:1,role:'Startup mexicana — socia oficial CITEC / datos Liga MX',certeza:'VERIFICADO',ciudad:'Zapopan',valoracion:'—',conexiones:['V1'],signal:'Unica startup mexicana en el stack oficial del CITEC. Datos Liga MX en tiempo real. +100 empleados.'},
+{id:'H06',label:'seeUplay',vertical:'V8',tier:1,role:'Camaras tacticas — cobertura sistematica Liga MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'110 sistemas de camaras en clubes Liga MX. Alianza Pixellot+Spiideo. Startup mexicana.'},
+{id:'H07',label:'KAGR',vertical:'V8',tier:1,role:'Fan analytics Club America / Estadio Banorte',certeza:'VERIFICADO',ciudad:'Boston',valoracion:'—',conexiones:['V1','V9'],signal:'Kraft Analytics Group. Entra en MX via deal General Atlantic / America (dic 2025). 45M fans objetivo.'},
+{id:'H08',label:'Salesforce',vertical:'V8',tier:1,role:'CRM Club America y FMF',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Salesforce Marketing Cloud: Club America (caso de exito oficial) y app Mi Seleccion MX (FMF).'},
+{id:'H09',label:'Akta Cloud Video',vertical:'V8',tier:1,role:'Stack video ViX / TelevisaUnivision',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V2'],signal:'Plataforma cloud video que potencia toda la infraestructura de streaming de ViX.'},
+{id:'H10',label:'Signify / Philips',vertical:'V8',tier:1,role:'Iluminacion LED Estadio Banorte',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V7'],signal:'LED conectado con control granular. Primer estadio MX en lograr sincronizacion espectaculo.'},
+{id:'H11',label:'Musco Lighting',vertical:'V8',tier:1,role:'Iluminacion Estadio BBVA y 4 estadios Liga MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V7'],signal:'VERIFICADO para BBVA. INFERIDO POR PATRON para Akron. Estandar de iluminacion Liga MX.'},
+{id:'H12',label:'Lenovo',vertical:'V8',tier:1,role:'Official Technology Partner FIFA WC26',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'OTP FIFA para WC26. Infraestructura tecnologica oficial en las 3 sedes mexicanas.'},
+{id:'H13',label:'SAP Sports One',vertical:'V8',tier:2,role:'ERP deportivo — area deportiva en clubes Liga MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Usado en area deportiva de America, Xolos y Atlas para gestion de plantillas y analisis.'},
+{id:'H14',label:'Supponor / TGI Sport',vertical:'V8',tier:1,role:'Publicidad virtual — LED broadcasts Liga MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V2','V4'],signal:'Tecnologia de publicidad virtual en transmisiones Liga MX. Referencia cruzada V4.'},
+{id:'H15',label:'ChyronHego / TRACAB',vertical:'V8',tier:2,role:'Player tracking broadcast — TUDN / Liga MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V2','V1'],signal:'Alianza TUDN/Univision 2021. 16 camaras Estadio Banorte. 4 estadios MX en 10 semanas.'},
+{id:'H16',label:'Hisense / Verizon',vertical:'V8',tier:2,role:'Sponsors tecnologicos FIFA WC26 — pantallas VAR / telecom',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Hisense: VAR Review TVs MiniLED oficiales WC26. Verizon: telecom sponsor FIFA sin red en MX.'},
+{id:'H17',label:'Panduit / CommScope',vertical:'V8',tier:2,role:'Infraestructura red Estadio Banorte y BBVA',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V7'],signal:'Panduit: red estructurada Banorte WC26. CommScope: red BBVA para retransmision mundial.'},
+{id:'H18',label:'Draftea',vertical:'V8',tier:3,role:'Fantasy deportes — mayor plataforma DFS en Mexico',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Mayor plataforma DFS de Mexico. Seed: USD 5M. Usuarios activos Liga MX y NFL.'},
+// ── V9 CAPITAL (15) ──
+{id:'I01',label:'General Atlantic',vertical:'V9',tier:1,role:'PE global — 49% Grupo Aguilas (America + Banorte)',certeza:'VERIFICADO',ciudad:'Nueva York',valoracion:'USD 490M EV',conexiones:['V1','V7','V8'],signal:'Primer PE global en Liga MX. Deal dic 2025. Cervantes (CDMX) + Escobari (Co-President).'},
+{id:'I02',label:'FEMSA',vertical:'V9',tier:1,role:'Propietario Rayados desde 1999 — NYSE: FMX',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'MXN 782,000M ingresos',conexiones:['V1','V7','V3'],signal:'Balance mas solido de Liga MX. Nomina mas alta: USD 27.31M. Premio WC Clubes: USD 21.05M.'},
+{id:'I03',label:'Apollo Sports Capital',vertical:'V9',tier:1,role:'PE deportivo — controla Atletico San Luis via Atl. Madrid',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Compro Atletico de Madrid (nov 2025). Primer entry a Liga MX via multiclub internacional.'},
+{id:'I04',label:'Ollamani / Azcarraga',vertical:'V9',tier:1,role:'Holding Club America + Estadio Banorte — BMV: AGUILAS',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V7','V6'],signal:'Emilio Azcarraga Jean como Executive Chairman. Control 51% post-deal General Atlantic.'},
+{id:'I05',label:'Grupo Pachuca',vertical:'V9',tier:1,role:'Multiclub global — 8 clubes en 5 paises',certeza:'VERIFICADO',ciudad:'Pachuca',valoracion:'—',conexiones:['V1'],signal:'Hub de formacion y transferencias. Alianza Monterey Bay FC (ene 2026). Modelo multiclub MX.'},
+{id:'I06',label:'Grupo Orlegi',vertical:'V9',tier:2,role:'Propietario Santos Laguna — Alejandro Irarragorri',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Santos Laguna + Real Sporting de Gijón. Tension de liquidez reportada (El Gol Digital).'},
+{id:'I07',label:'Grupo Omnilife / Vergara',vertical:'V9',tier:1,role:'Propietario Chivas — ha rechazado PE externo',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'USD 700-800M est.',conexiones:['V1','V7'],signal:'Amaury Vergara. Control total. Unica politica jugadores 100% mexicanos desde 1943.'},
+{id:'I08',label:'CEMEX / Sinergia Deportiva',vertical:'V9',tier:1,role:'Propietario Tigres UANL — fuera del perimetro contable',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'—',conexiones:['V1','V7'],signal:'Sinergia Deportiva no aparece en filings 20-F de CEMEX. Opacidad estructural deliberada.'},
+{id:'I09',label:'Innovatio Capital',vertical:'V9',tier:2,role:'Propietario Club Queretaro — USD 120M',certeza:'VERIFICADO',ciudad:'Atlanta',valoracion:'USD 120M',conexiones:['V1','V7'],signal:'Marc Spiegel (Rubicon Global). Primera inversion deportiva. Co-inversores no divulgados.'},
+{id:'I10',label:'Grupo PRODI',vertical:'V9',tier:2,role:'Propietario Atlas FC — compro a Orlegi por ~USD 220M',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'~USD 220M',conexiones:['V1','V7'],signal:'Transaccion abr 2026. Atlas bicampeon 2021-22. Nueva etapa de ownership.'},
+{id:'I11',label:'Grupo Avalanz / Zignia',vertical:'V9',tier:2,role:'Propietario Arena CDMX, MTY, GDL — Guillermo Salinas Pliego',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V7','V5','V6'],signal:'Triángulo arenas CDMX-MTY-GDL. Superboletos como boletera. Contrapeso mid-cap a OCESA.'},
+{id:'I12',label:'TKO / Endeavor',vertical:'V9',tier:2,role:'Parent UFC + On Location — Silver Lake 2025',certeza:'VERIFICADO',ciudad:'Nueva York',valoracion:'USD 25Bn EV combo',conexiones:['V5','V1'],signal:'Privatizacion Silver Lake mar 2025. On Location = hospitality oficial WC26 + NFL + F1.'},
+{id:'I13',label:'Grupo Vidanta',vertical:'V9',tier:2,role:'Ecosistema resort + PGA Tour Mexico — Daniel Chavez Moran',certeza:'VERIFICADO',ciudad:'Puerto Vallarta',valoracion:'—',conexiones:['V5','V7'],signal:'Grupo hotelero. PGA Tour Mexico Open. Co-promotoría con Grupo Salinas (TV Azteca).'},
+{id:'I14',label:'Grupo BAL / Bailleres',vertical:'V9',tier:2,role:'GNP Seguros — naming rights GNP Seguros (ex Foro Sol)',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V3','V7'],signal:'Alejandro Bailleres Gual. GNP Seguros: naming rights Estadio GNP + LGCT. Sin clubs.'},
+{id:'I15',label:'Grupo Caliente',vertical:'V9',tier:1,role:'Casinos + apuestas + Xolos — Jorge Hank Rhon',certeza:'VERIFICADO',ciudad:'Tijuana',valoracion:'USD 900M-1,200M Caliente Interactive',conexiones:['V1','V3','V6'],signal:'JV Playtech renegociado sep 2024. Caliente TV vendida a Fox Corp jun 2025. ~50% mercado apuestas MX.'},
+// ── V9 ADICIONALES (4) ──
+{id:'I16',label:'Alfredo Harp Helu',vertical:'V9',tier:1,role:'Diablos Rojos + San Diego Padres minority — beisbol premium MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'~USD 1,100M patrimonio',conexiones:['V1','V7'],signal:'100% Diablos Rojos. Estadio Alfredo Harp Helu MXN 3,000M. Nuevo Estadio Yu\'Va inaugurado abr 2026. ~18% San Diego Padres.'},
+{id:'I17',label:'Grupo Slim / Carso',vertical:'V9',tier:2,role:'Fideicomiso GP F1 + Telmex Telcel sponsorship platform',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V3','V5'],signal:'Participa en fideicomiso privado GP Mexico ~100 empresas. No posee clubs ni estadios actualmente. Telmex Telcel: programa de patrocinios deportivos.'},
+{id:'I18',label:'Grupo Salinas',vertical:'V9',tier:2,role:'Propietario TV Azteca (concurso mercantil) + co-promotor golf',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V2','V5','V1'],signal:'Ricardo Salinas Pliego. TV Azteca en concurso mercantil. Vendio Mazatlan FC (abr 2026). Co-promotor VidantaWorld Mexico Open (PGA Tour) via Grupo Salinas.'},
+{id:'I19',label:'Club Leon / Jesus Martinez',vertical:'V9',tier:2,role:'Club en venta — asking USD 500M, estimado mercado USD 200M',certeza:'VERIFICADO',ciudad:'Leon',valoracion:'USD 200M-500M',conexiones:['V1'],signal:'Orden de aprehension contra Martinez Patino (oct 2025) por disputa derechos Fox Sports. Leon excluido Mundial Clubes 2025 por multipropiedad TAS/FIFA.'},
+// ── V1 ADICIONALES (8) ──
+{id:'A26',label:'Liga MX Femenil',vertical:'V1',tier:1,role:'Liga profesional femenil — derechos de transmision en disputa',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V2','V3','V4'],signal:'Clausula Nike con Liga MX Femenil bloqueo mega-deal Adidas USD 900M. Crecimiento audiencia sostenido. ESPN principal broadcaster.'},
+{id:'A27',label:'LMB / Diablos Rojos',vertical:'V1',tier:2,role:'Liga Mexicana de Beisbol — Banorte naming rights desde 2026',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V3','V7','V9'],signal:'Liga Mexicana de Beisbol Banorte desde 2026. Alfredo Harp Helu como propietario historico de los Diablos. Estadio Yu\'Va inaugurado abr 2026.'},
+{id:'A28',label:'LNBP Basquetbol',vertical:'V1',tier:2,role:'Liga Nacional de Baloncesto Profesional — crecimiento post-NBA Mexico',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V2','V7'],signal:'NBA Mexico City Games catalizan interes en liga local. Arenas Zignia como venues naturales. Audiencia digital creciente.'},
+{id:'A29',label:'Concacaf / Champions Cup',vertical:'V1',tier:1,role:'Confederacion + Leagues Cup — derechos Netflix desde 2027',certeza:'VERIFICADO',ciudad:'Miami',valoracion:'—',conexiones:['V2','V4','V1'],signal:'Netflix deal Concacaf desde 2027: Seleccion MX detras de paywall. SPORTFIVE mandato digital marketing desde mar 2023. Leagues Cup JV 50/50 MLS-Liga MX.'},
+{id:'A30',label:'Canelo Alvarez',vertical:'V1',tier:1,role:'Activo deportivo individual mas valioso de Mexico — Matchroom/DAZN',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'—',conexiones:['V4','V2','V3'],signal:'Gate unico activacion con atleta mas valioso MX. Hennessy, Michelob Ultra, Tecate como sponsors. Eddy Reynoso manager. Promoter: Matchroom/DAZN.'},
+{id:'A31',label:'Club Leon',vertical:'V1',tier:2,role:'Club Liga MX — excluido Mundial Clubes, en venta',certeza:'VERIFICADO',ciudad:'Leon',valoracion:'USD 200M mercado',conexiones:['V9'],signal:'Exclusion Mundial Clubes 2025 por multipropiedad (TAS). Asking price USD 500M de Martinez Patino (prófugo desde oct 2025). LAFC ocupo su plaza.'},
+{id:'A32',label:'NBA Mexico',vertical:'V1',tier:2,role:'NBA Mexico City Games — NBA como propiedad en expansion MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V5','V7','V2'],signal:'Games en Arenas Zignia. TelevisaUnivision/ESPN broadcasters. Crecimiento de fanaticos MX como tercer mercado global NBA.'},
+{id:'A33',label:'Seleccion Mexico Femenil',vertical:'V1',tier:2,role:'El Tri Femenil — activo creciente en patrocinios y audiencia',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V2','V3','V4'],signal:'Derechos ESPN. Clausula Nike Liga MX Femenil bloqueo mega-deal Adidas. SUM con derechos US-market crecientes.'},
+// ── V3 ADICIONALES (5) ──
+{id:'C14',label:'Nike',vertical:'V3',tier:2,role:'Kit Chivas (desde jul 2026) + Liga MX Femenil — contrapartida Adidas',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Recupera Chivas desde jul-2026. Clausula Liga MX Femenil bloqueo mega-deal Adidas USD 900M. Disputa hegemonia visual WC26 vs Adidas.'},
+{id:'C15',label:'AT&T Mexico',vertical:'V3',tier:2,role:'Partner Seleccion Mexicana en EE.UU. via SUM — telco MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V4'],signal:'Patrocinio Seleccion Mexicana en EE.UU. via SUM/MexTour. Telco anchor en el mercado hispano. Competencia con Telcel en activaciones deportivas.'},
+{id:'C16',label:'Scotiabank',vertical:'V3',tier:2,role:'Sponsor Concacaf Champions Cup + mercado canadiense WC26',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1'],signal:'Anchor sponsor Champions Cup Concacaf. Presencia estrategica en WC26 Canada + MX. Banco de referencia en mercados hispanohablantes de Norteamerica.'},
+{id:'C17',label:'Heineken Mexico',vertical:'V3',tier:2,role:'Tecate boxeo + Dos Equis Liga MX + Amstel tenis',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V4','V5'],signal:'Tecate: anchor sponsor Box Azteca (Zanfer). Dos Equis: presencia Liga MX. Amstel Ultra: tenis WTA MTY. Post-salida FEMSA de Heineken en 2023.'},
+{id:'C18',label:'Powerade / Gatorade',vertical:'V3',tier:3,role:'Hidratacion oficial — competencia con Electrolit en clubes',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Coca-Cola (Powerade) y PepsiCo (Gatorade) compiten con Electrolit/Grupo PiSA por contratos de hidratacion oficial en clubes Liga MX.'},
+// ── V4 ADICIONALES (10) ──
+{id:'D13',label:'StayPro Group',vertical:'V4',tier:2,role:'Agencia representacion 360° — corredor MX-UK',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V3'],signal:'Unica agencia MX con oficina en Londres (2025). Representa Edson Alvarez, Hector Herrera. +2,500 campanas. Partner certificado Meta y TikTok. Fundadores: Rafa Coronel y Pati Giemza.'},
+{id:'D14',label:'SPORTFIVE',vertical:'V4',tier:3,role:'Agencia global — deal Chiefs-ESPN MX + CONCACAF digital',certeza:'VERIFICADO',ciudad:'Hamburgo',valoracion:'—',conexiones:['V1','V2'],signal:'H.I.G. Capital. Deal ESPN Mexico-Kansas City Chiefs oct 2025. Mandato digital marketing CONCACAF desde mar 2023. Sin oficina en Mexico.'},
+{id:'D15',label:'Publicidad Virtual',vertical:'V4',tier:2,role:'Broker publicidad virtual — vendor real Supponor/Liga MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V2','V8'],signal:'Vendor operativo real con Supponor para publicidad virtual en transmisiones Liga MX y FMF. Diferente de Jump SMS (consultora ROI, no vendor tech).'},
+{id:'D16',label:'IMG / TKO',vertical:'V4',tier:3,role:'Ex-gestor derechos Liga MX — mandato dormido post-2023',certeza:'FUENTE UNICA',ciudad:'Miami',valoracion:'—',conexiones:['V1'],signal:'Sin anuncio de renovacion ni terminacion del mandato Liga MX post-2023. Vacío post-IMG no cubierto por agencia sino por negociacion Apollo.'},
+{id:'D17',label:'Fernando Beltran / Zanfer',vertical:'V4',tier:2,role:'Promotor boxeo mexicano — gatekeeper Box Azteca / Tecate',certeza:'VERIFICADO',ciudad:'Tijuana',valoracion:'—',conexiones:['V1','V2','V3'],signal:'Zanfer Promotions (1993). Box semanal TV Azteca con Tecate como anchor. 38+ campeones mundiales. Alianza Top Rank / Bob Arum. Propietario BJRR.'},
+{id:'D18',label:'Eddy Reynoso / Canelo Team',vertical:'V4',tier:1,role:'Manager Canelo — gatekeeper sponsorship atleta mas valioso MX',certeza:'VERIFICADO',ciudad:'San Diego',valoracion:'—',conexiones:['V1','V3','V2'],signal:'Manager Canelo desde 2006. Reparto 33/67. Controla contratos con Hennessy, Michelob Ultra, Tecate. BWAA Trainer of Year 2019 y 2021.'},
+{id:'D19',label:'Yon de Luisa',vertical:'V4',tier:2,role:'Ex presidente FMF — gatekeeper WC26 (rol FIFA/Concacaf residual)',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V5'],signal:'Retiene roles FIFA y CONCACAF ligados al Mundial 2026 post-presidencia FMF (2018-may 2023). Arquitecto historico de deals SUM y derechos US.'},
+{id:'D20',label:'Cesar Morales Galan',vertical:'V4',tier:3,role:'Abogado estructurador — co-socio Pitz Group (Creel / LSE)',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V4'],signal:'Co-socio Pitz Group. LL.M. LSE. Background Creel Garcia-Cuéllar, Morrison & Foerster, Deloitte. Arquitecto legal del amparo Lopez Martinez vs FIFA (2025).'},
+{id:'D21',label:'Apollo / La Comercializadora',vertical:'V4',tier:2,role:'Renegociacion comercial Liga MX — SPV pendiente 2028',certeza:'FUENTE UNICA',ciudad:'Nueva York',valoracion:'USD 1.25Bn (deal fallido)',conexiones:['V1','V9'],signal:'Negociacion Apollo Global Management por ~USD 1.25B judicializada por clubes Expansion ante TAS. La Comercializadora: potencial SPV post-2028 con Apollo/NFL/Liga MX.'},
+{id:'D22',label:'Roadtrips Inc.',vertical:'V4',tier:3,role:'Paquetes hospitality NFL Mexico — agente verificado',certeza:'VERIFICADO',ciudad:'Kansas City',valoracion:'—',conexiones:['V5','V1'],signal:'Agente hospitalidad oficial NFL Mexico City Game 2026 en Estadio Banorte. Linea especifica verificada para 49ers vs rival 2026.'},
+// ── V5 ADICIONALES (4) ──
+{id:'E15',label:'HG Promotores',vertical:'V5',tier:3,role:'Licenciatario WTA 500 Monterrey — Abierto GNP Seguros',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'—',conexiones:['V1','V7','V3'],signal:'WTA 500 desde 2024 (antes WTA 250 desde 2009). Operacion familiar desde 1976 (Hernan Garza Echavarria). Derrama 2025 MXN 220M. Independiente de Mextenis y GS.'},
+{id:'E16',label:'Matchroom Mexico',vertical:'V5',tier:2,role:'Promotor boxeo premium — DAZN anchor en Mexico',certeza:'VERIFICADO',ciudad:'Londres/CDMX',valoracion:'—',conexiones:['V2','V1'],signal:'Matchroom Boxing (Eddie Hearn) con presencia activa en Mexico via DAZN. Compite con Zanfer y Canelo Promotions por peleas clave en venues premium.'},
+{id:'E17',label:'Deportium',vertical:'V5',tier:3,role:'Congreso industria deportiva Mexico — Neta Agencia',certeza:'VERIFICADO',ciudad:'Puebla/CDMX',valoracion:'—',conexiones:['V4'],signal:'6 ediciones verificadas. Unico congreso de industria deportiva con presencia sostenida en Mexico. Producido por Neta Agencia Deportiva.'},
+{id:'E18',label:'Interproteccion Deportes',vertical:'V5',tier:3,role:'Seguros y risk management deportivo — niche especializado',certeza:'FUENTE UNICA',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Operador de seguros especializado en deporte profesional mexicano. Liga MX y atletas como clientes reportados.'},
+// ── V7 ADICIONALES (2) ──
+{id:'G19',label:'Estadio Yu Va / Harp Helu',vertical:'V7',tier:2,role:'Nuevo estadio beisbol CDMX — Alfredo Harp Helu (abr 2026)',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'~USD 175M',conexiones:['V9','V1'],signal:'Inaugurado abril 2026. Reemplaza al Parque Alfredo Harp Helu como sede principal de Diablos Rojos. Estado del arte para beisbol en Mexico.'},
+{id:'G20',label:'Club Sonoma / GNP MTY',vertical:'V7',tier:2,role:'Venue WTA 500 Monterrey — San Pedro Garza Garcia',certeza:'VERIFICADO',ciudad:'Monterrey',valoracion:'—',conexiones:['V5','V3'],signal:'Sede Abierto GNP Seguros Monterrey (WTA 500). Estadio GNP Seguros dentro del Club Sonoma. Propiedad privada familiar (Garza Echavarria).'},
+// ── V8 ADICIONALES (4) ──
+{id:'H19',label:'Caliplay / Caliente TV tech',vertical:'V8',tier:3,role:'Stack tecnologico apuestas en vivo — Caliente.mx',certeza:'VERIFICADO',ciudad:'Tijuana',valoracion:'—',conexiones:['V9','V3'],signal:'Plataforma tecnologica de apuestas en vivo integrada a transmisiones Liga MX. Adquirida por Fox Corp junto con Caliente TV jun 2025.'},
+{id:'H20',label:'Stats Perform / Opta',vertical:'V8',tier:2,role:'Datos estadisticos media — proveedor para broadcasters MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V2','V1'],signal:'Opta: datos estadisticos en transmisiones de Liga MX via TUDN y ESPN. Stats Perform: datos historicos y en tiempo real para periodismo deportivo MX.'},
+{id:'H21',label:'Sportradar',vertical:'V8',tier:2,role:'Data integrity y distribucion global — rival Genius Sports',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V6'],signal:'Partner oficial FIFA para distribucion de datos WC26. Competidor de Genius Sports en mercado global de datos deportivos. Sin mandato Liga MX (perdio vs Genius en 2020).'},
+{id:'H22',label:'Victor Guevara / CITEC',vertical:'V8',tier:2,role:'Director CITEC FMF — gatekeeper tecnologico futbol mexicano',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V8','V1'],signal:'Centro de Innovacion Tecnologica FMF. Decide el stack de vendors (Hudl, GolStats, seeUplay) de los 18 clubes Liga MX. Gatekeeper real del mercado tech deportivo MX.'},
+// ── V2 ADICIONALES (3) ──
+{id:'B11',label:'Paramount+ Mexico',vertical:'V2',tier:2,role:'Streaming UFC en Mexico — Moreno vs Kavanagh feb 2026',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V5'],signal:'Broadcaster UFC en Mexico desde 2026. Reemplaza a ESPN como casa del UFC en territorio mexicano. TKO/Endeavor como proveedor de contenido.'},
+{id:'B12',label:'Sky Sports Mexico',vertical:'V2',tier:2,role:'Pay-TV — LaLiga, Champions, Premier para Mexico',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V4'],signal:'TelevisaUnivision opera SKY Sports en Mexico. Comprador de LaLiga via Relevent Sports. Champions League y Premier como productos premium de pay-TV.'},
+{id:'B13',label:'Azteca Deportes Digital',vertical:'V2',tier:3,role:'Plataforma digital TV Azteca — separada del concurso mercantil',certeza:'FUENTE UNICA',ciudad:'CDMX',valoracion:'—',conexiones:['V1'],signal:'Operacion digital de TV Azteca que mantiene audiencias digitales mientras el broadcasting tradicional enfrenta el concurso mercantil.'},
+// ── V1 ADICIONALES NUEVOS (6) ──
+{id:'A34',label:'Leagues Cup',vertical:'V1',tier:1,role:'JV 50/50 MLS-Liga MX — Apple TV / Concacaf',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V2','V4','V1'],signal:'Apple TV Season Pass como broadcaster. JV 50/50 entre MLS y Liga MX. Creado en 2019 como respuesta a la demanda del mercado hispano en EE.UU.'},
+{id:'A35',label:'Concacaf Nations League',vertical:'V1',tier:2,role:'Torneo regional Concacaf — derechos Netflix desde 2027',certeza:'VERIFICADO',ciudad:'Miami',valoracion:'—',conexiones:['V2','V1'],signal:'Parte del portfolio Netflix-Concacaf. Liga MX como proveedor de la mayoria de talento de la Seleccion Mexicana.'},
+{id:'A36',label:'Copa Oro Concacaf',vertical:'V1',tier:2,role:'Copa Oro — activo principal Concacaf con diaspora MX',certeza:'VERIFICADO',ciudad:'Miami',valoracion:'—',conexiones:['V2','V4','V5'],signal:'Torneo principal de selecciones en Concacaf. Diaspora mexicana en EE.UU. como audiencia central. SUM como comercializador en territorio US.'},
+{id:'A37',label:'UFC Mexico',vertical:'V1',tier:2,role:'UFC como propiedad en expansion estructural en MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V5','V7','V2'],signal:'UFC PI CDMX operativo (estructura permanente). Moreno vs Erceg mar 2025 (gate USD 2.53M). Arena CDMX como venue natural.'},
+{id:'A38',label:'Diablos Rojos del Mexico',vertical:'V1',tier:2,role:'Franquicia emblematica LMB — Alfredo Harp Helu',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V9','V7'],signal:'Franquicia historica de la LMB. Estadio Yu\'Va inaugurado abr 2026. Harp Helu como propietario y mecenas del beisbol mexicano.'},
+{id:'A39',label:'Checo Perez F1',vertical:'V1',tier:2,role:'Piloto F1 mexicano — activo individual clave para GP MX',certeza:'VERIFICADO',ciudad:'Guadalajara',valoracion:'—',conexiones:['V3','V5','V4'],signal:'Regresa con Cadillac para GP Mexico 2026 tras salida de Red Bull. Catalizador de asistencia y sponsors locales del GP. Telcel como sponsor historico.'},
+// ── V3 ADICIONALES NUEVOS (4) ──
+{id:'C19',label:'Totalplay / TV Azteca Grupo Salinas',vertical:'V3',tier:2,role:'Patrocinio cruzado Grupo Salinas — telco + sports',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V2','V1'],signal:'Totalplay sponsor de propiedades Grupo Salinas. Presencia en VidantaWorld Mexico Open (TV Azteca broadcast + Totalplay). Grupo Salinas como cluster multi-asset.'},
+{id:'C20',label:'Kavak',vertical:'V3',tier:2,role:'Sponsor innovador — unicornio MX en ecosistema deportivo',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V5'],signal:'Participa en fideicomiso privado GP F1 Mexico. Sponsor de Seleccion Mexicana. Unicornio MX que usa deporte como plataforma de visibilidad de marca.'},
+{id:'C21',label:'Citibanamex',vertical:'V3',tier:2,role:'Naming Centro Citibanamex + transition a Banamex',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V7'],signal:'Naming rights Centro Citibanamex en proceso de transicion post-venta Banamex a Fernando Chico Pardo (Asur, 2024-2025). Participante en fideicomiso GP F1.'},
+{id:'C22',label:'Hennessy / LVMH',vertical:'V3',tier:2,role:'Sponsor Canelo Alvarez — lujo en ecosistema boxeo MX',certeza:'VERIFICADO',ciudad:'—',valoracion:'—',conexiones:['V1','V4'],signal:'Anchor sponsor de Canelo Alvarez via Eddy Reynoso/Canelo Team. LVMH posicionando marcas premium en el atleta mas valioso de Mexico.'},
+// ── V4 ADICIONALES NUEVOS (2) ──
+{id:'D23',label:'Mikel Arriola (POI independiente)',vertical:'V4',tier:1,role:'Intermediario de intermediarios — gatekeeper absoluto futbol MX',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V1','V2','V3','V9'],signal:'Presidente Liga MX + CONCACAF Council. Salario ~MXN 700,000/mes. Firma TEAM Marketing oct 2025. Contraparte directa de todos los deals comerciales estructurales de Liga MX.'},
+{id:'D24',label:'Alejandro Soberon Kuri (POI)',vertical:'V4',tier:1,role:'CEO CIE / OCESA — gatekeeper de eventos premium Mexico',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V5','V7','V4'],signal:'Fundador y mayor accionista CIE (~33%). Decide que evento internacional toca Mexico y bajo que estructura. Controla venue y promotoria simultaneamente.'},
+// ── V5 ADICIONALES NUEVOS (3) ──
+{id:'E19',label:'Caliente Experiences',vertical:'V5',tier:3,role:'Hospitality VIP Caliente — paquetes para clientela apuestas',certeza:'FUENTE UNICA',ciudad:'Tijuana',valoracion:'—',conexiones:['V9','V6'],signal:'Grupo Caliente como operador de experiencias VIP para clientes premium de apuestas en eventos deportivos Liga MX.'},
+{id:'E20',label:'Stadibox Mexico',vertical:'V5',tier:3,role:'Marketplace palcos y suites — estadios Liga MX y F1',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V7','V1'],signal:'Marketplace verificado para palcos en Estadio Banorte, Akron, BBVA, GNP, Palacio de los Deportes y Autodromo HR. Mas cercano a V5 hospitality que a ticketing primario.'},
+{id:'E21',label:'Boris Gartner / Stephen Ross (Relevent)',vertical:'V5',tier:2,role:'Stephen Ross via Boris Gartner — Hard Rock Stadium / Relevent',certeza:'VERIFICADO',ciudad:'Miami',valoracion:'—',conexiones:['V4','V7','V1'],signal:'Boris Gartner CEO Relevent Sports. Stephen Ross (Miami Dolphins/Hard Rock Stadium) como principal. 7 partidos WC26 en Hard Rock. Conexion Relevent-FMF para amistosos Seleccion en EE.UU.'},
+// ── V9 ADICIONALES NUEVOS (2) ──
+{id:'I20',label:'Grupo Lauman / Fox Sports',vertical:'V9',tier:2,role:'Fox Sports Mexico — disputa derechos vs Grupo Pachuca / Jesus Martinez',certeza:'VERIFICADO',ciudad:'CDMX',valoracion:'—',conexiones:['V2','V1'],signal:'Orden de aprehension contra Jesus Martinez Patino (oct 2025) por disputa derechos de transmision con Grupo Lauman (Fox Sports Mexico). Conflicto activo que bloquea venta Club Leon.'},
+{id:'I21',label:'Searchlight Capital',vertical:'V9',tier:3,role:'Accionista TelevisaUnivision — exposicion indirecta ecosistema MX',certeza:'VERIFICADO',ciudad:'Nueva York',valoracion:'—',conexiones:['V2'],signal:'Searchlight Capital Partners: accionista de TelevisaUnivision junto a ForgeLight, SoftBank LatAm, Liberty Global, Google y The Raine Group. Exposicion deportiva via derechos TUDN.'},
+];
+
+// ============================================================
+// EDGE MAP — COMPLETE CONNECTIONS
+// ============================================================
+const EDGES=[
+// V1 clubs internal
+['A18','A19'],['A20','A18'],['A20','A19'],
+// V1 → V9 ownership
+['A01','I04'],['A01','I01'],['A02','I07'],['A03','I02'],['A04','I08'],
+['A05','I10'],['A06','I05'],['A09','I06'],['A10','I10'],
+['A13','I15'],['A14','I03'],['A15','I09'],
+// V1 → V7 venues
+['A01','G01'],['A02','G03'],['A03','G02'],['A04','G06'],['A05','G07'],
+['A07','G05'],['A08','G05'],['A10','G13'],['A13','G01'],
+['A15','G14'],['A17','G01'],
+// V1 → V2 media
+['A18','B01'],['A20','B01'],['A02','B04'],
+// V1 → V3 sponsors
+['A01','C03'],['A01','C06'],['A01','C11'],['A02','C03'],['A02','C10'],
+['A03','C01'],['A03','C13'],['A05','C11'],
+['A20','C06'],['A20','C09'],['A22','C08'],['A22','C04'],
+['A24','C05'],['A25','C04'],
+// V1 → V4 activacion
+['A18','D10'],['A19','D04'],['A19','D11'],['A20','D11'],
+['A20','D04'],['A12','D02'],['A25','D12'],
+// V1 → V5 experiencias
+['A21','E01'],['A21','E07'],['A21','E12'],
+['A22','E03'],['A22','E11'],['A23','E01'],
+['A24','E09'],['A25','E04'],
+// V1 → V6 ticketing
+['A18','F05'],['A18','F01'],['A18','F02'],['A18','F03'],['A18','F04'],
+['A19','F05'],['A21','F06'],
+['A13','F07'],
+// V1 → V8 technology
+['A01','H07'],['A01','H08'],['A11','H01'],
+['A18','H01'],['A19','H04'],['A18','H03'],
+['A18','H05'],['A18','H06'],
+['A21','H12'],['A21','H02'],
+// V2 → V8
+['B01','H09'],['B01','H14'],['B01','H15'],
+// V2 → V3
+['B01','C01'],['B07','C04'],
+// V3 → V7 venues
+['C01','G02'],['C02','G01'],['C05','G04'],['C05','G08'],
+// V4 → V5
+['D09','E03'],['D09','E11'],['D08','E07'],
+// V4 → V7
+['D09','G08'],['D09','G04'],['D08','G17'],
+// V4 → V1
+['D10','A18'],['D06','A01'],['D06','A03'],
+['D07','A02'],['D07','A18'],
+// V5 → V7
+['E01','G01'],['E01','G02'],['E01','G03'],
+['E02','G01'],['E03','G08'],['E04','E04'],
+['E06','G09'],['E11','G08'],['E12','G01'],['E12','G02'],['E12','G03'],
+['E13','G18'],
+// V5 → V6
+['E01','F06'],['E07','F06'],
+// V6 → V7 venues
+['F01','G01'],['F02','G03'],['F02','G06'],
+['F03','G09'],['F04','G04'],
+['F05','F01'],['F06','G01'],['F06','G02'],['F06','G03'],
+// V7 → V9
+['G01','I04'],['G01','I01'],['G02','I02'],['G03','I07'],
+['G04','D09'],['G06','I08'],['G09','I11'],
+['G10','I11'],['G11','I11'],['G12','I14'],
+['G14','I09'],['G18','I13'],
+// V8 → V1/V7
+['H01','A18'],['H02','G01'],['H02','G02'],['H02','G03'],
+['H03','A18'],['H04','A19'],['H05','A18'],
+['H06','A18'],['H07','A01'],['H07','I01'],
+['H08','A01'],['H08','A19'],
+['H09','B01'],['H10','G01'],['H11','G02'],
+['H12','A21'],['H14','B01'],['H14','D03'],
+['H15','B01'],['H17','G01'],['H17','G02'],
+// V9 → V1/V7
+['I01','A01'],['I01','G01'],['I01','H07'],
+['I02','A03'],['I02','G02'],
+['I03','A14'],['I04','A01'],['I04','G01'],
+['I05','A06'],['I06','A09'],
+['I07','A02'],['I07','G03'],
+['I08','A04'],['I08','G06'],
+['I09','A15'],['I10','A10'],
+['I11','G09'],['I11','G10'],['I11','G11'],['I11','F03'],
+['I12','E01'],['I12','E06'],
+['I13','E13'],['I13','G18'],
+['I14','C05'],['I14','G12'],
+['I15','A13'],['I15','C03'],
+// V9 adicionales → V1/V7
+['I16','A27'],['I16','G12'],['I16','G19'],
+['I17','A22'],['I17','C04'],
+['I18','B02'],['I18','E13'],
+['I19','A31'],
+// V1 adicionales
+['A26','B01'],['A26','C06'],['A26','C14'],['A26','D11'],
+['A27','C01'],['A27','G12'],['A27','G19'],['A27','I16'],
+['A28','G09'],['A28','B01'],
+['A29','B08'],['A29','D14'],['A29','D11'],
+['A30','D18'],['A30','C08'],['A30','B06'],
+['A31','I19'],
+['A32','G09'],['A32','G10'],['A32','G11'],['A32','B01'],
+['A33','B01'],['A33','D11'],['A33','C06'],
+// V3 adicionales
+['C14','A02'],['C14','A26'],
+['C15','A20'],['C15','D11'],
+['C16','A29'],
+['C17','D17'],['C17','A22'],['C17','E16'],
+['C18','A18'],
+// V4 adicionales
+['D13','A20'],['D13','A03'],
+['D14','A29'],['D14','B05'],
+['D15','A18'],['D15','A19'],['D15','H14'],
+['D16','A18'],
+['D17','B02'],['D17','C17'],
+['D18','A30'],['D18','C09'],['D18','B06'],
+['D19','A19'],['D19','D11'],
+['D21','A18'],['D21','I03'],
+['D22','E01'],['D22','A23'],
+// V5 adicionales
+['E15','G20'],['E15','C05'],['E15','A25'],
+['E16','A30'],['E16','B06'],
+['E17','D01'],
+// V7 adicionales
+['G19','I16'],['G19','A27'],
+['G20','E15'],['G20','C05'],
+// V8 adicionales
+['H19','I15'],['H19','B03'],
+['H20','B01'],['H20','B05'],['H20','A18'],
+['H21','A21'],['H21','A18'],
+['H22','A19'],['H22','H04'],['H22','H05'],
+// V2 adicionales
+['B11','E06'],['B11','A30'],
+['B12','A29'],['B12','D08'],
+['B13','A18'],
+['B13','A18'],
+// V9/V1 final batch
+['I20','B03'],['I20','A31'],['I20','A29'],
+['I21','B01'],
+['A34','B08'],['A34','D08'],['A34','A18'],
+['A35','A29'],['A35','B08'],
+['A36','D11'],['A36','A29'],['A36','E07'],
+['A37','E06'],['A37','G09'],['A37','B11'],
+['A38','I16'],['A38','G19'],
+['A39','C04'],['A39','E03'],['A39','C08'],
+['C19','B02'],['C19','I18'],['C19','I15'],
+['C20','A20'],['C20','A22'],['C20','A19'],
+['C21','G16'],['C21','D09'],
+['C22','A30'],['C22','D18'],
+['D23','A18'],['D23','D10'],['D23','D11'],
+['D24','D09'],['D24','G08'],['D24','G04'],
+['E19','I15'],['E20','G01'],['E20','G08'],
+['E21','G17'],['E21','D08'],['E21','D24'],
+// Cross-vertical sponsor connections
+['C06','A20'],['C06','A01'],
+['C04','A25'],['C04','A22'],
+['C08','A22'],['C08','E03'],
+['C05','A24'],['C05','A25'],
+// V5 experiencias cross
+['E04','A25'],['E05','G08'],
+['E06','G09'],['E08','D09'],
+['E11','D09'],['E11','C04'],
+];
+
+// ============================================================
+// POI DATA
+// ============================================================
+const POI={
+  'A01':{poi:[{n:'Emilio Azcarraga Jean',r:'CEO Ollamani / Executive Chairman'},{n:'Alexandre Costa',r:'DGE Grupo Aguilas (nov 2025)'},{n:'Santiago Banos',r:'Presidente Deportivo'},{n:'Andre Jardine',r:'Director Tecnico (hasta 2027)'}],riesgo:'Ano sin titulos reduce traccion comercial. Deuda remodelacion Banorte MXN 2,568M presiona flujo. TV Azteca en concurso mercantil.'},
+  'A02':{poi:[{n:'Amaury Vergara',r:'Propietario y Presidente'},{n:'Javier Mier',r:'Director Deportivo (feb 2025)'},{n:'Gabriel Milito',r:'Director Tecnico (jul 2025)'}],riesgo:'Sequia de titulo desde Clausura 2017. Carrusel de DTs (6 en 3 anos). Saturacion de patrocinadores en jersey. Litigio herencia Valentina y Mariaignacia.'},
+  'A03':{poi:[{n:'Pedro Esquivel',r:'Director General Rayados'},{n:'Domenec Torrent',r:'Director Tecnico (may 2025)'}],riesgo:'Nomina alta (USD 27.31M) exige resultados deportivos sostenidos. Sin titulo en temporada 2025-26.'},
+  'A18':{poi:[{n:'Mikel Arriola',r:'Presidente Liga MX — gatekeeper #1'},{n:'Ivar Sisniega',r:'Vicepresidente Operaciones'}],riesgo:'Separacion juridica de FMF implica redefinicion de contratos centrales. Gobernanza nueva sin precedente.'},
+  'A19':{poi:[{n:'Yon de Luisa',r:'Presidente FMF (saliente)'},{n:'Victor Guevara',r:'Director CITEC FMF'}],riesgo:'Perdida de control sobre Liga MX. Redefinicion del rol rector de la FMF en el ecosistema.'},
+  'A21':{poi:[{n:'Jurgen Mainka',r:'Director General FIFA Mexico'},{n:'Felix Aguirre Gil',r:'Host City Manager CDMX'}],riesgo:'Logistica de 3 ciudades simultaneas. Conflictos de palcohabientes en Banorte activos.'},
+  'A22':{poi:[{n:'Federico Gonzalez Compean',r:'Broker principal GP Mexico (subterraneo)'},{n:'Alejandro Soberon',r:'CEO OCESA / CIE'}],riesgo:'Dependencia de la relacion OCESA-FIA. Renovacion 2028 no es automatica.'},
+  'A25':{poi:[{n:'Renata Burillo',r:'Presidenta Consejo Mextenis (post-Burillo)'},{n:'Alvaro Falla',r:'CEO Mextenis'}],riesgo:'Muerte de Alejandro Burillo Azcarraga (abr 2026) abre mayor vacante estructural del circuito tenis MX en 30 anos.'},
+  'B01':{poi:[{n:'Bernardo Gomez',r:'Presidente Televisa'},{n:'Wade Davis',r:'CEO TelevisaUnivision'}],riesgo:'TV Azteca en concurso mercantil presiona el mercado pero tambien deja gaps que TUDN debe llenar con rapidez.'},
+  'B02':{poi:[{n:'Benjamin Salinas Sada',r:'Presidente TV Azteca'}],riesgo:'Concurso mercantil activo. Riesgo de perdida de contratos de derechos corrientes si incumple pagos.'},
+  'C01':{poi:[{n:'Eduardo Osuna',r:'CEO BBVA Mexico'}],riesgo:'Durante WC26 el Estadio BBVA se llama Estadio Monterrey. Pausa de visibilidad de naming en el evento mas visto del ano.'},
+  'C02':{poi:[{n:'Marcos Ramirez Miguel',r:'CEO Banorte'}],riesgo:'Credito MXN 2,568M crea dependencia financiera. Si flujo post-WC26 no cubre expectativas la relacion se tensiona.'},
+  'C03':{poi:[{n:'Jorge Hank Rhon',r:'Grupo Caliente — propietario Xolos'}],riesgo:'Mayor riesgo regulatorio del ecosistema. Senalamiento OFAC (sep 2025, retirado). IEPS 50% desde ene 2026.'},
+  'C06':{poi:[{n:'Martin Shankland',r:'VP Adidas Latam'}],riesgo:'Clausula Nike con Liga MX Femenil bloqueo mega-deal USD 900M. Nike recupera Chivas desde jul-2026.'},
+  'D09':{poi:[{n:'Alejandro Soberon Kuri',r:'CEO CIE / OCESA'},{n:'Federico Gonzalez Compean',r:'DG GP F1 Mexico'}],riesgo:'Live Nation 75% OCESA desde ago 2025. Integracion con LN puede reconfigurar relaciones con venues gubernamentales.'},
+  'D10':{poi:[{n:'Mikel Arriola',r:'Presidente Liga MX'}],riesgo:'Separacion FMF exige reinventar gobernanza comercial y derechos TV. Renegociacion Apollo/SUM pendiente para 2028.'},
+  'E01':{poi:[{n:'Will Whitmire',r:'CEO On Location Events'}],riesgo:'Monopolio hace al ecosistema dependiente de una sola contraparte global. Revenue splits no divulgados publicamente.'},
+  'E04':{poi:[{n:'Renata Burillo',r:'Presidenta Consejo Mextenis'},{n:'Alvaro Falla',r:'CEO Mextenis'},{n:'Raul Zurutuza',r:'Director deportivo'}],riesgo:'Vacante post-Burillo abre primera ventana de transaccion de la franquicia ATP 500 en 30 anos. Riesgo de reubicacion a ciudad distinta de Acapulco.'},
+  'E11':{poi:[{n:'Federico Gonzalez Compean',r:'DG GP F1 Mexico / CIE'}],riesgo:'Fideicomiso privado no publico, fuera de licitacion gubernamental. Tension con el modelo de financiamiento publico.'},
+  'E12':{poi:[{n:'Jurgen Mainka',r:'DG FIFA Mexico'}],riesgo:'Autoridad maxima solo activa durante el torneo. Ventana de poder: mayo-julio 2026.'},
+  'F01':{poi:[{n:'Tatiana Fontalvo',r:'CEO y Fundadora Fanki'},{n:'Alan Kraus',r:'Cofundador Fanki'},{n:'Andres Morris',r:'Head of Growth & Partnerships'}],riesgo:'Fallo de plataforma en preventa Mexico vs. Portugal dic-2025. Capacidad para absorber 87,523 aforo mundialista sin probar a escala.'},
+  'F02':{poi:[{n:'Fundadores Boletomovil',r:'Empresa mexicana Guadalajara/Sinaloa'}],riesgo:'Dependencia de relacion con Chivas (Amaury Vergara) y Tigres (Sinergia Deportiva). Akron es sede mundialista: presion operativa.'},
+  'F05':{poi:[{n:'Ricardo Amper',r:'CEO y Fundador Incode Technologies'},{n:'German Elvira',r:'Responsable proyecto Fan ID Liga MX'}],riesgo:'Privacidad de datos biometricos sensibles bajo supervision INAI. Implementacion no uniforme en estadios.'},
+  'G01':{poi:[{n:'Emilio Azcarraga Jean',r:'Presidente Ejecutivo Grupo Aguilas'},{n:'Alexandre Costa',r:'Director General Ejecutivo (nov 2025)'},{n:'Felix Aguirre Gil',r:'Host City Manager CDMX / FIFA'}],riesgo:'Litigio palcohabientes (AMTPP) no resuelto. Deuda MXN 2,568M. Concreto irregular reportado en reapertura (The Athletic).'},
+  'G02':{poi:[{n:'Pedro Esquivel',r:'Presidente Rayados / Miembro Comite WC26 Monterrey'}],riesgo:'Inversion acotada USD 7.2M para WC26. Dependencia total de FEMSA como propietario y financiador.'},
+  'G03':{poi:[{n:'Amaury Vergara',r:'Propietario Estadio Akron / Chivas'}],riesgo:'Vergara invierte proporcionalmente mas que otros venues. MXN 250M. Dependencia financiera de Omnilife.'},
+  'H01':{poi:[{n:'Mark Locke',r:'CEO Global Genius Sports'},{n:'Fernando Martinez',r:'Head of LATAM Commercial'}],riesgo:'Concentracion de 4 funciones en un solo proveedor extranjero. Desplazado temporalmente por Hawk-Eye en WC26.'},
+  'H07':{poi:[{n:'Jessica Gelman',r:'CEO y cofundadora KAGR'},{n:'Robert Kraft',r:'Chairman matriz Kraft Group'}],riesgo:'Deal reciente (dic 2025); ejecucion pendiente de medirse. Define el estandar competitivo para Rayados, Tigres y Chivas.'},
+  'I01':{poi:[{n:'Luis Cervantes',r:'Managing Director CDMX'},{n:'Martin Escobari',r:'Co-President General Atlantic'},{n:'Emilio Azcarraga Jean',r:'Contraparte Ollamani'}],riesgo:'Forward-looking valuation (USD 490M) apuesta al post-WC26. Flujo de caja presente no valida el multiplo.'},
+  'I02':{poi:[{n:'Eugenio Garza Herrera',r:'Presidente Consejo FEMSA'},{n:'Pedro Esquivel',r:'Director General Rayados'}],riesgo:'Sin planes declarados de PE externo. Club no cotiza de forma segregada. Opacidad financiera relativa.'},
+  'I04':{poi:[{n:'Emilio Azcarraga Jean',r:'Executive Chairman Ollamani'},{n:'Alexandre Costa',r:'DGE Grupo Aguilas'}],riesgo:'Litigio palcohabientes activo. Deuda MXN 2,568M al cierre. Dependencia del ciclo mundialista para validar valoracion.'},
+  'I07':{poi:[{n:'Amaury Vergara',r:'Propietario y CEO Omnilife / Chivas'}],riesgo:'Ha rechazado explicitamente capital externo. Sequia deportiva 9 anos sin titulo. Riesgo sucesion familiar.'},
+  'D13':{poi:[{n:'Rafael Coronel',r:'Fundador y CEO StayPro (desde 2015)'},{n:'Patrycja Giemza',r:'Cofundadora y Co-CEO / London expansion'}],riesgo:'Dependencia de cartera reducida de estrellas. Exposure regulatoria FIFA si jugadores son sancionados. Corredor MX-UK novedoso pero sin precedente similar.'},
+  'D17':{poi:[{n:'Fernando Beltran Rendon',r:'Fundador y CEO Zanfer Promotions'}],riesgo:'Dependencia de TV Azteca en concurso mercantil. Competencia Matchroom Mexico + Golden Boy/PBC. Sistema Box Azteca amenazado si Azteca pierde licencia de transmision.'},
+  'D18':{poi:[{n:'Eddy Reynoso',r:'Manager Canelo / Fundador Canelo Team'},{n:'Saul Canelo Alvarez',r:'Atleta / Co-titular Canelo Promotions'}],riesgo:'Dependencia absoluta de la carrera y salud de un solo atleta. Post-carrera activa, todo el pipeline de sponsorship se desvanece.'},
+  'D19':{poi:[{n:'Yon de Luisa Plazas',r:'Ex Presidente FMF (2018-may 2023)'}],riesgo:'Poder residual post-cargo: relevante solo mientras roles FIFA/CONCACAF WC26 esten activos. Post-julio 2026 su influencia decae.'},
+  'A30':{poi:[{n:'Saul Canelo Alvarez',r:'Atleta / activo deportivo individual mas valioso MX'},{n:'Eddy Reynoso',r:'Manager desde 2006'}],riesgo:'Peak comercial ya alcanzado; toda carrera post-peak genera caida en valor de activaciones. Dependencia de DAZN como plataforma.'},
+  'I16':{poi:[{n:'Alfredo Harp Helu',r:'Propietario Diablos Rojos + San Diego Padres minority'}],riesgo:'Edad avanzada del propietario implica riesgo de sucesion. San Diego Padres en proceso de venta (Clearlake/Feliciano) reduce posicion MLB.'},
+  'E15':{poi:[{n:'Hernan Garza Echavarria',r:'DG fundador HG Promotores (desde 1976)'},{n:'Alejandra Cardenas',r:'DG Operativa (desde 2024)'}],riesgo:'Estructura familiar sin PE externo. Ascenso a WTA 500 (2024) requiere mayor inversion para sostener categoria. Dependencia de relacion GNP Seguros como naming anchor.'},
+  'H22':{poi:[{n:'Victor Guevara',r:'Director CITEC FMF — gatekeeper tecnologico'}],riesgo:'Concentracion de decisiones tech en una sola figura institucional. Si sale de la FMF, el stack de vendors se renegocia desde cero.'},
+};
+const RIESGO_DEFAULT = 'Sin datos de riesgo registrados en este prototipo.';
+
+const actorMap = new Map(ACTORS.map(a => [a.id, a]));
+
+// TICKER
+const TICKER_DATA=[
+  {v:'V9',aid:'I01',t:'General Atlantic · 49% Grupo Aguilas · USD 490M EV · Dic 2025'},
+  {v:'V9',aid:'I03',t:'Apollo Sports Capital · Atletico de Madrid → Atletico San Luis · Nov 2025'},
+  {v:'V1',aid:'A18',t:'Liga MX · Asociacion Civil autonoma separada de FMF · 23 Abr 2026'},
+  {v:'V8',aid:'H01',t:'Genius Sports · SAOT 18 estadios Liga MX · Ene 2026'},
+  {v:'V2',aid:'B04',t:'Amazon Prime Video · Chivas exclusivo en casa · USD 20M / 4 anos'},
+  {v:'V1',aid:'A22',t:'F1 CDMX · Renovado hasta 2028 · Derrama MXN 20,892M · Checo Perez regresa con Cadillac'},
+  {v:'V3',aid:'C06',t:'Adidas reemplaza Nike como kit Club America · Jul 2025 · Mega-deal Liga MX USD 900M no concretado'},
+  {v:'V7',aid:'G01',t:'Estadio Banorte reinaugurado · LEED Platinum · 81,344 asistentes · Mar 2026'},
+  {v:'V9',aid:'I09',t:'Innovatio Capital · Queretaro USD 120M · Grupo PRODI · Atlas ~USD 220M · 2025-2026'},
+  {v:'V2',aid:'B02',t:'TV Azteca · Concurso mercantil · Fox Corp adquiere Caliente TV · Jun 2025'},
+  {v:'V6',aid:'F01',t:'Fanki Bitsports · Boletera exclusiva Estadio Banorte · 5 partidos WC26 incluyendo inaugural'},
+  {v:'V8',aid:'H02',t:'Hawk-Eye Sony · Proveedor VAR oficial FIFA WC26 · Desplaza Genius Sports en venues MX'},
+  {v:'V3',aid:'C02',t:'Banorte · Acreedor + patrocinador · Credito MXN 2,568M + naming Estadio · Sin precedente'},
+  {v:'V7',aid:'G06',t:'Estadio Volcan Tigres · USD 320M · Populous + Juego de Pelota · 65,000 asientos · Post-2027'},
+  {v:'V1',aid:'A21',t:'FIFA WC26 · Partido inaugural Mexico vs Sudafrica · Estadio Banorte · 11 Jun 2026'},
+  {v:'V5',aid:'E04',t:'Mextenis · Muerte Alejandro Burillo Azcarraga abr 2026 · Vacante ATP 500 mayor en 30 anos'},
+  {v:'V9',aid:'I15',t:'Grupo Caliente · Caliente Interactive USD 900M-1,200M valuation · JV Playtech renegociado'},
+  {v:'V7',aid:'G09',t:'Arena CDMX · Grupo Avalanz · USD 330M · 22,300 cap · Triangulo arenas nacional completo'},
+  {v:'V6',aid:'F05',t:'Incode Technologies · Fan ID 30+ estadios · Unicornio MX USD 1,250M · Mandato exclusivo Liga MX'},
+];
+
+// PASSWORD
+document.getElementById('pw-in').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+document.getElementById('pw-in').addEventListener('input',()=>{
+  const st=document.getElementById('pw-status');
+  const v=document.getElementById('pw-in').value;
+  if(st)st.textContent=v.length>0?'Clave introducida — '+v.length+' caracteres':'Esperando autenticacion';
+});
+
+function doLogin(){
+  const v=document.getElementById('pw-in').value.toLowerCase().trim();
+  const err=document.getElementById('pw-err');
+  const st=document.getElementById('pw-status');
+  if(v==='playbook2026'){
+    err.classList.remove('on');if(st)st.textContent='Verificando...';
+    if(_particleRaf){cancelAnimationFrame(_particleRaf);_particleRaf=null;}
+    document.getElementById('screen-pw').classList.add('out');
+    setTimeout(startUnlock,900);
+  } else {
+    err.classList.add('on');if(st)st.textContent='Clave invalida';
+    const field=document.getElementById('pw-in');
+    field.value='';field.classList.remove('shake');void field.offsetWidth;field.classList.add('shake');field.focus();
+    setTimeout(()=>{err.classList.remove('on');field.classList.remove('shake');if(st)st.textContent='Esperando autenticacion';},2800);
+  }
+}
+
+// PARTICLES
+let _particleRaf;
+(()=>{
+  const c=document.getElementById('pw-canvas');
+  const ctx=c.getContext('2d');
+  let pts=[];
+  const resize=()=>{c.width=innerWidth;c.height=innerHeight;pts=Array.from({length:55},()=>({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.2+.4}));};
+  resize();window.addEventListener('resize',resize);
+  const draw=()=>{
+    ctx.clearRect(0,0,c.width,c.height);
+    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>c.width)p.vx*=-1;if(p.y<0||p.y>c.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(69,216,2,0.45)';ctx.fill();});
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);if(d<130){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(69,216,2,${.07*(1-d/130)})`;ctx.lineWidth=.5;ctx.stroke();}}
+    _particleRaf=requestAnimationFrame(draw);
+  };
+  draw();
+})();
+
+// UNLOCK
+const STEPS=[{pct:18,lbl:'Verificando credenciales',st:'',chk:0},{pct:38,lbl:'Acceso concedido',st:'Usuario autorizado',chk:1},{pct:60,lbl:'Cargando ecosistema',st:'Indexando actores...',chk:2},{pct:82,lbl:'Construyendo red de relaciones',st:'Mapeando conexiones...',chk:3},{pct:100,lbl:'Listo',st:'Bienvenido al ecosistema',chk:4}];
+function startUnlock(){
+  document.getElementById('screen-unlock').classList.add('on');
+  let si=0,cur=0;
+  const run=()=>{if(si>=STEPS.length){setTimeout(launchMain,700);return}const s=STEPS[si];document.getElementById('ul-lbl').textContent=s.lbl;document.getElementById('ul-status').textContent=s.st;animPct(cur,s.pct,()=>{cur=s.pct;document.querySelectorAll('.ul-chk').forEach(el=>{if(+el.dataset.s<=s.chk)el.classList.add('done')});si++;setTimeout(run,si===STEPS.length?500:300);});};run();
+}
+function animPct(from,to,done){
+  const fill=document.getElementById('ul-fill'),pctEl=document.getElementById('ul-pct');
+  let c=from;const step=(to-from)/22;
+  const iv=setInterval(()=>{c=Math.min(c+step,to);fill.style.width=c+'%';pctEl.textContent=Math.round(c)+'%';if(c>=to){clearInterval(iv);done();}},28);
+}
+function launchMain(){
+  document.getElementById('screen-unlock').classList.remove('on');
+  document.getElementById('screen-main').classList.add('on');
+  document.getElementById('ticker').classList.add('on');
+  Object.keys(VX).forEach(v=>{const el=document.getElementById('sc-'+v);if(el)el.textContent=ACTORS.filter(a=>a.vertical===v).length;});
+  initTicker();initNet();buildIdx();buildBrief();
+}
+
+// VIEW SWITCHING
+let curView='network';
+function switchView(v,sbEl,tabEl){
+  curView=v;
+  ['network','index','brief'].forEach(id=>{const el=document.getElementById('view-'+id);if(!el)return;if(id===v){el.style.display='block';el.style.visibility='visible';void el.offsetHeight;}else{el.style.display='none';el.style.visibility='hidden';}});
+  document.querySelectorAll('.sb-item[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===v));
+  document.querySelectorAll('.vt').forEach(el=>el.classList.toggle('active',el.dataset.view===v));
+  const lbls={network:'Red <em>/ Ecosistema completo</em>',index:'Indice <em>/ Todos los actores</em>',brief:'Briefings <em>/ Por vertical</em>'};
+  document.getElementById('tb-crumb').innerHTML=lbls[v];
+  if(v==='index'){try{renderIdx();}catch(e){console.warn(e);}}
+  if(v==='brief'){const nav=document.getElementById('brief-nav');const body=document.getElementById('brief-body');if(nav&&body&&nav.children.length===0){try{buildBrief();}catch(e){console.warn(e);}}}
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')['net-panel','idx-panel','br-panel'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('open');});});
+
+let activeV=null;
+function filterV(v){
+  activeV=activeV===v?null:v;
+  document.querySelectorAll('[id^="sv-"]').forEach(el=>el.classList.remove('active'));
+  if(activeV){const el=document.getElementById('sv-'+activeV);if(el)el.classList.add('active');}
+  if(curView==='index')renderIdx();
+  applyNetFilter(activeV);
+}
+function onSearch(q){if(curView==='index')renderIdx(q);}
+
+// PANEL
+function openPanel(actor,pid){
+  const vc=VX[actor.vertical];
+  const panel=document.getElementById(pid);
+  const px=pid==='net-panel'?'np':pid==='idx-panel'?'ip':'bp';
+  document.getElementById(px+'-vt').innerHTML=`<span style="color:${vc.color}">${actor.vertical} · ${vc.label}</span>`;
+  document.getElementById(px+'-n').textContent=actor.label;
+  document.getElementById(px+'-r').textContent=actor.role;
+  const bc=actor.certeza==='VERIFICADO'?'bv':actor.certeza==='FUENTE UNICA'?'bs':'bi';
+  const tierColor=vc.color;
+  const tierLabel=['','DOMINANTE','RELEVANTE','ESPECIALIZADO'][actor.tier];
+  const tierDots=[1,2,3].map(i=>`<div style="width:${20+i*4}px;height:3px;border-radius:1px;background:${i<=actor.tier?tierColor:'rgba(255,255,255,0.08)'}"></div>`).join('');
+  const conns=actor.conexiones.map(cv=>`<span class="ap-conn" style="border-color:${VX[cv]?.color||'#444'}33;color:${VX[cv]?.color||'#888'}" onclick="filterV('${cv}')">${cv} · ${VX[cv]?.label||cv}</span>`).join('');
+  const poiData=POI[actor.id];
+  const poiHtml=poiData?.poi?.length
+    ?poiData.poi.map(p=>`<div style="display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)"><div style="width:26px;height:26px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono);font-size:8px;color:${vc.color}">${p.n.split(' ').map(w=>w[0]).slice(0,2).join('')}</div><div><div style="font-family:var(--sans);font-size:11px;color:var(--text);font-weight:500">${p.n}</div><div style="font-family:var(--mono);font-size:8px;color:var(--text-muted);letter-spacing:0.06em;margin-top:2px">${p.r}</div></div></div>`).join('')
+    :'<div style="font-family:var(--mono);font-size:8px;color:var(--text-dim)">Sin POI registrados en este prototipo</div>';
+  const riesgoTxt=poiData?.riesgo||RIESGO_DEFAULT;
+
+  document.getElementById(px+'-b').innerHTML=`
+    <div>
+      <div class="ap-bt">Clasificacion</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span class="ap-badge ${bc}">● ${actor.certeza}</span>
+        <span style="font-family:var(--mono);font-size:7px;letter-spacing:0.14em;color:${tierColor};text-transform:uppercase;border:1px solid ${tierColor}44;padding:2px 6px">TIER ${actor.tier} · ${tierLabel}</span>
+      </div>
+      <div style="display:flex;gap:3px;align-items:flex-end">${tierDots}</div>
+    </div>
+    <div>
+      <div class="ap-bt">Datos clave</div>
+      <div class="ap-kv">
+        ${actor.valoracion!=='—'?`<div class="ap-kvi"><div class="ap-kv-l">Valoracion</div><div class="ap-kv-v" style="color:${vc.color};font-size:11px">${actor.valoracion}</div></div>`:''}
+        <div class="ap-kvi"><div class="ap-kv-l">Ciudad / Sede</div><div class="ap-kv-v">${actor.ciudad}</div></div>
+        <div class="ap-kvi"><div class="ap-kv-l">Vertical primaria</div><div class="ap-kv-v" style="color:${vc.color}">${actor.vertical} · ${vc.label}</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="ap-bt">Senal de inteligencia</div>
+      <div class="ap-sig" style="border-left-color:${vc.color}">${actor.signal}</div>
+    </div>
+    <div>
+      <div class="ap-bt">People of Interest</div>
+      ${poiHtml}
+    </div>
+    <div>
+      <div class="ap-bt">Riesgo / Tension</div>
+      <div style="padding:10px 12px;background:rgba(255,77,109,0.06);border-left:2px solid rgba(255,77,109,0.4);font-family:var(--sans);font-size:11px;color:var(--text-muted);line-height:1.6;font-weight:300">${riesgoTxt}</div>
+    </div>
+    <div>
+      <div class="ap-bt">Conexiones verticales</div>
+      <div class="ap-conns">${conns||'<span style="font-family:var(--mono);font-size:8px;color:var(--text-dim)">Sin conexiones registradas</span>'}</div>
+    </div>`;
+  panel.classList.add('open');
+}
+function closeP(id){document.getElementById(id).classList.remove('open');}
+
+// NETWORK — D3 SVG
+let simulation,svgSel,gMain,zoomBehavior,linkSel,nodeSel,labelSel;
+let hoveredId=null;
+
+function initNet(){
+  const wrap=document.getElementById('net-svg-wrap');
+  const W=wrap.clientWidth,H=wrap.clientHeight;
+  svgSel=d3.select('#net-svg').attr('viewBox',[0,0,W,H]);
+  const defs=svgSel.append('defs');
+  const filter=defs.append('filter').attr('id','glow').attr('x','-50%').attr('y','-50%').attr('width','200%').attr('height','200%');
+  filter.append('feGaussianBlur').attr('in','SourceGraphic').attr('stdDeviation','4').attr('result','blur');
+  const feMerge=filter.append('feMerge');
+  feMerge.append('feMergeNode').attr('in','blur');feMerge.append('feMergeNode').attr('in','SourceGraphic');
+  const radGrad=defs.append('radialGradient').attr('id','radBg').attr('cx','50%').attr('cy','50%').attr('r','55%');
+  radGrad.append('stop').attr('offset','0%').attr('stop-color','rgba(69,216,2,0.025)');
+  radGrad.append('stop').attr('offset','100%').attr('stop-color','rgba(0,0,0,0)');
+  svgSel.append('rect').attr('width',W).attr('height',H).attr('fill','url(#radBg)');
+  let currentScale=1;
+  zoomBehavior=d3.zoom().scaleExtent([0.1,5]).on('zoom',e=>{
+    gMain.attr('transform',e.transform);currentScale=e.transform.k;
+    const badge=document.getElementById('zoom-badge');if(badge)badge.textContent=Math.round(currentScale*100)+'%';
+    updateLOD(currentScale);updateMinimap(e.transform);
+  });
+  svgSel.call(zoomBehavior);
+  gMain=svgSel.append('g');
+  const vKeys=Object.keys(VX);
+  const R=Math.min(W,H)*0.31,cx=W/2,cy=H/2;
+  gMain.selectAll('.c-ring').data(vKeys).enter().append('circle').attr('class','c-ring').attr('r',75).attr('cx',(v,i)=>cx+R*Math.cos((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('cy',(v,i)=>cy+R*Math.sin((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('fill','none').attr('stroke',v=>VX[v].color).attr('stroke-width',0.5).attr('opacity',0.08);
+  gMain.selectAll('.c-lbl').data(vKeys).enter().append('text').attr('class','c-lbl').attr('x',(v,i)=>cx+(R+92)*Math.cos((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('y',(v,i)=>cy+(R+92)*Math.sin((i/vKeys.length)*Math.PI*2-Math.PI/2)+4).attr('text-anchor','middle').attr('font-family','Space Mono, monospace').attr('font-size','8px').attr('letter-spacing','0.12em').attr('fill',v=>VX[v].color).attr('opacity',0.35).text(v=>v);
+
+  const nodeData=ACTORS.map((a)=>{
+    const vi=vKeys.indexOf(a.vertical);
+    const ang=(vi/vKeys.length)*Math.PI*2-Math.PI/2;
+    const jitter=(Math.random()-.5)*60;
+    return{...a,x:cx+R*Math.cos(ang)+jitter,y:cy+R*Math.sin(ang)+jitter,r:a.tier===1?10:a.tier===2?6:4};
+  });
+  const edgeData=EDGES.map(([a,b])=>({source:nodeData.find(n=>n.id===a),target:nodeData.find(n=>n.id===b)})).filter(e=>e.source&&e.target);
+
+  linkSel=gMain.append('g').attr('class','links').selectAll('line').data(edgeData).enter().append('line').attr('stroke','rgba(255,255,255,0.12)').attr('stroke-width',0.7).attr('opacity',1);
+
+  const nodeGroups=gMain.append('g').attr('class','nodes').selectAll('g').data(nodeData).enter().append('g').attr('class','node-g').style('cursor','pointer')
+    .on('mouseenter',function(event,d){
+      hoveredId=d.id;updateHoverState();
+      const tt=document.getElementById('net-tt');
+      const rect=document.getElementById('net-svg-wrap').getBoundingClientRect();
+      tt.classList.add('on');tt.style.left=(event.clientX-rect.left+18)+'px';tt.style.top=(event.clientY-rect.top-10)+'px';
+      document.getElementById('tt-n').textContent=d.label;
+      document.getElementById('tt-v').style.color=VX[d.vertical].color;
+      document.getElementById('tt-v').textContent=d.vertical+' · '+VX[d.vertical].label+' · TIER '+d.tier;
+      document.getElementById('tt-r').textContent=d.role;
+    })
+    .on('mousemove',function(event){
+      const rect=document.getElementById('net-svg-wrap').getBoundingClientRect();
+      const tt=document.getElementById('net-tt');tt.style.left=(event.clientX-rect.left+18)+'px';tt.style.top=(event.clientY-rect.top-10)+'px';
+    })
+    .on('mouseleave',function(){hoveredId=null;updateHoverState();document.getElementById('net-tt').classList.remove('on');})
+    .on('click',function(event,d){event.stopPropagation();openPanel(d,'net-panel');})
+    .call(d3.drag()
+      .on('start',(event,d)=>{if(!event.active)simulation.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y;})
+      .on('drag',(event,d)=>{d.fx=event.x;d.fy=event.y;})
+      .on('end',(event,d)=>{if(!event.active)simulation.alphaTarget(0);d.fx=null;d.fy=null;})
+    );
+
+  nodeGroups.filter(d=>d.tier===1).append('circle').attr('class','node-glow').attr('r',d=>d.r*2.2).attr('fill',d=>VX[d.vertical].color).attr('opacity',0.08).attr('filter','url(#glow)');
+  nodeSel=nodeGroups.append('circle').attr('class','node-circle').attr('r',d=>d.r).attr('fill',d=>d.tier===1?VX[d.vertical].color:d.tier===2?VX[d.vertical].color+'66':'#222').attr('stroke',d=>VX[d.vertical].color).attr('stroke-width',d=>d.tier===1?0.5:0).attr('opacity',1);
+  labelSel=nodeGroups.append('text').attr('class','node-label').attr('dy',d=>d.r+12).attr('text-anchor','middle').attr('font-family','DM Sans, sans-serif').attr('font-size',d=>d.tier===1?'9.5px':'8.5px').attr('fill',d=>d.tier===1?VX[d.vertical].color:'rgba(255,255,255,0.3)').attr('font-weight',d=>d.tier===1?500:400).attr('pointer-events','none').text(d=>d.label).attr('opacity',d=>d.tier===1?0.85:0);
+
+  simulation=d3.forceSimulation(nodeData)
+    .force('link',d3.forceLink(edgeData).id(d=>d.id).distance(110).strength(0.5))
+    .force('charge',d3.forceManyBody().strength(-300).distanceMax(320))
+    .force('collision',d3.forceCollide().radius(d=>d.r+12).strength(0.85))
+    .force('cluster',clusterForce(vKeys,cx,cy,R,0.06))
+    .force('center',d3.forceCenter(cx,cy).strength(0.04))
+    .force('x',d3.forceX(cx).strength(0.015))
+    .force('y',d3.forceY(cy).strength(0.015))
+    .alphaDecay(0.022)
+    .on('tick',()=>{
+      linkSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      nodeGroups.attr('transform',d=>`translate(${d.x},${d.y})`);
+    });
+
+  svgSel.on('click',()=>{hoveredId=null;updateHoverState();});
+  initMinimap();
+}
+
+function updateLOD(scale){
+  if(!labelSel)return;
+  labelSel.attr('opacity',d=>{if(hoveredId)return;if(d.tier===1)return scale<0.4?0:Math.min(1,(scale-0.3)*2)*0.88;if(d.tier===2)return scale<1.1?0:Math.min(0.8,(scale-1.1)*2.5);if(d.tier===3)return scale<2.0?0:Math.min(0.7,(scale-2.0)*3);return 0;}).attr('font-size',d=>{const base=d.tier===1?9.5:8.5;return Math.max(7,base/Math.max(scale,0.5))+'px';});
+  d3.selectAll('.node-circle').attr('r',d=>{const base=d.r;if(scale<0.5)return base*1.4;if(scale<0.8)return base*1.1;return base;});
+  d3.selectAll('.c-ring').attr('opacity',scale<0.5?0.18:0.07);
+  d3.selectAll('.c-lbl').attr('opacity',scale<0.6?0.5:scale<1.2?0.25:0.08);
+}
+
+let minimapCtx,minimapW=120,minimapH=80;
+function initMinimap(){
+  const mc=document.getElementById('minimap-canvas');if(!mc)return;
+  mc.width=minimapW*2;mc.height=minimapH*2;mc.style.width=minimapW+'px';mc.style.height=minimapH+'px';
+  minimapCtx=mc.getContext('2d');
+  simulation.on('tick.minimap',drawMinimap);
+}
+function drawMinimap(){
+  if(!minimapCtx||!simulation)return;
+  const ns=simulation.nodes();if(!ns.length)return;
+  const ctx=minimapCtx;ctx.clearRect(0,0,minimapW*2,minimapH*2);
+  let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
+  ns.forEach(n=>{minX=Math.min(minX,n.x);maxX=Math.max(maxX,n.x);minY=Math.min(minY,n.y);maxY=Math.max(maxY,n.y);});
+  const pw=maxX-minX||1,ph=maxY-minY||1,pad=12;
+  const sx=(minimapW*2-pad*2)/pw,sy=(minimapH*2-pad*2)/ph,s=Math.min(sx,sy);
+  const toMX=x=>(x-minX)*s+pad,toMY=y=>(y-minY)*s+pad;
+  ctx.globalAlpha=0.15;ctx.strokeStyle='rgba(255,255,255,0.5)';ctx.lineWidth=0.4;
+  EDGES.forEach(([a,b])=>{const sa=ns.find(n=>n.id===a),sb=ns.find(n=>n.id===b);if(!sa||!sb)return;ctx.beginPath();ctx.moveTo(toMX(sa.x),toMY(sa.y));ctx.lineTo(toMX(sb.x),toMY(sb.y));ctx.stroke();});
+  ctx.globalAlpha=1;
+  ns.forEach(n=>{const vc=VX[n.vertical];const r=n.tier===1?3:n.tier===2?2:1.2;ctx.beginPath();ctx.arc(toMX(n.x),toMY(n.y),r,0,Math.PI*2);ctx.fillStyle=n.tier===1?vc.color:vc.color+'66';ctx.fill();});
+  window._mmScale=s;window._mmMinX=minX;window._mmMinY=minY;window._mmPad=pad;
+}
+function updateMinimap(transform){
+  drawMinimap();
+  const vp=document.getElementById('minimap-viewport');if(!vp||!window._mmScale)return;
+  const s=window._mmScale;const svgEl=document.getElementById('net-svg');
+  const W=svgEl.clientWidth,H=svgEl.clientHeight;
+  const vpW=W/transform.k,vpH=H/transform.k;
+  const vpX=-transform.x/transform.k,vpY=-transform.y/transform.k;
+  vp.style.left=Math.max(0,((vpX-window._mmMinX)*s+window._mmPad)/2)+'px';
+  vp.style.top=Math.max(0,((vpY-window._mmMinY)*s+window._mmPad)/2)+'px';
+  vp.style.width=Math.min(minimapW,(vpW*s)/2)+'px';
+  vp.style.height=Math.min(minimapH,(vpH*s)/2)+'px';
+}
+function clusterForce(vKeys,cx,cy,R,strength){
+  return function(alpha){simulation.nodes().forEach(n=>{const vi=vKeys.indexOf(n.vertical);const ang=(vi/vKeys.length)*Math.PI*2-Math.PI/2;const tx=cx+R*Math.cos(ang);const ty=cy+R*Math.sin(ang);n.vx+=(tx-n.x)*strength*alpha;n.vy+=(ty-n.y)*strength*alpha;});};
+}
+function updateHoverState(){
+  if(!linkSel)return;
+  const connectedIds=new Set();
+  if(hoveredId){linkSel.each(function(d){if(d.source.id===hoveredId)connectedIds.add(d.target.id);if(d.target.id===hoveredId)connectedIds.add(d.source.id);});}
+  linkSel.attr('stroke',d=>{if(!hoveredId)return'rgba(255,255,255,0.12)';const connected=d.source.id===hoveredId||d.target.id===hoveredId;return connected?VX[d.source.vertical].color:'rgba(255,255,255,0.04)';}).attr('stroke-width',d=>{if(!hoveredId)return 0.7;return(d.source.id===hoveredId||d.target.id===hoveredId)?1.8:0.4;}).attr('opacity',d=>{if(!hoveredId)return 1;return(d.source.id===hoveredId||d.target.id===hoveredId)?0.85:0.06;});
+  d3.selectAll('.node-circle').attr('opacity',function(d){if(!hoveredId)return 1;if(d.id===hoveredId)return 1;return connectedIds.has(d.id)?0.9:0.12;}).attr('r',function(d){const base=d.r;if(!hoveredId)return base;if(d.id===hoveredId)return base*1.6;return connectedIds.has(d.id)?base*1.2:base;});
+  d3.selectAll('.node-label').attr('opacity',function(d){if(!hoveredId)return d.tier===1?0.85:0;if(d.id===hoveredId)return 1;if(connectedIds.has(d.id))return 0.85;return d.tier===1?0.15:0;}).attr('fill',function(d){if(hoveredId&&(d.id===hoveredId||connectedIds.has(d.id)))return'#eaeaea';return d.tier===1?VX[d.vertical].color:'rgba(255,255,255,0.3)';});
+  d3.selectAll('.node-glow').attr('opacity',function(d){if(!hoveredId)return 0.08;return d.id===hoveredId?0.3:0.02;});
+}
+function applyNetFilter(v){
+  if(!linkSel)return;
+  d3.selectAll('.node-circle').transition().duration(300).attr('opacity',d=>!v||d.vertical===v?1:0.06);
+  d3.selectAll('.node-label').transition().duration(300).attr('opacity',d=>{if(!v)return d.tier===1?0.85:0;return d.vertical===v?(d.tier===1?1:0.7):0;});
+  d3.selectAll('.node-glow').transition().duration(300).attr('opacity',d=>!v||d.vertical===v?0.1:0);
+  linkSel.transition().duration(300).attr('opacity',d=>!v||d.source.vertical===v||d.target.vertical===v?1:0.03).attr('stroke-width',d=>!v||d.source.vertical===v||d.target.vertical===v?0.7:0.3);
+  d3.selectAll('.c-ring').transition().duration(300).attr('opacity',d=>!v||d===v?0.12:0.02);
+  d3.selectAll('.c-lbl').transition().duration(300).attr('opacity',d=>!v||d===v?0.5:0.08);
+}
+function netZoom(f){svgSel.transition().duration(300).call(zoomBehavior.scaleBy,f);}
+function netReset(){svgSel.transition().duration(500).call(zoomBehavior.transform,d3.zoomIdentity);}
+
+// INDEX
+let idxF=null;
+function buildIdx(){
+  const chips=document.getElementById('idx-chips');
+  Object.entries(VX).forEach(([k,v])=>{
+    const c=document.createElement('div');c.className='idx-chip';c.id='ic-'+k;
+    c.textContent=k+' · '+v.label;
+    c.onclick=()=>{idxF=idxF===k?null:k;document.querySelectorAll('.idx-chip').forEach(x=>x.classList.remove('on'));if(idxF)c.classList.add('on');renderIdx();};
+    chips.appendChild(c);
+  });
+  renderIdx();
+  document.getElementById('idx-body').addEventListener('click',e=>{const row=e.target.closest('tr[data-id]');if(row){const a=actorMap.get(row.dataset.id);if(a)openPanel(a,'idx-panel');}});
+}
+let sortCol=null,sortDir=1;
+function sortIdx(col){
+  if(sortCol===col){sortDir*=-1;}else{sortCol=col;sortDir=1;}
+  document.querySelectorAll('.idx-tbl th').forEach(th=>{th.classList.remove('sort-asc','sort-desc');const txt=th.textContent.trim().toLowerCase();if((col==='label'&&txt==='actor')||(col!=='label'&&txt.startsWith(col.slice(0,4).toLowerCase()))){th.classList.add(sortDir===1?'sort-asc':'sort-desc');}});
+  renderIdx();
+}
+function renderIdx(q=''){
+  const srch=(q||document.getElementById('srch').value||'').toLowerCase();
+  let rows=ACTORS.filter(a=>{
+    if(idxF&&a.vertical!==idxF)return false;
+    if(activeV&&a.vertical!==activeV)return false;
+    if(srch&&!a.label.toLowerCase().includes(srch)&&!a.role.toLowerCase().includes(srch))return false;
+    return true;
+  });
+  if(sortCol){rows=[...rows].sort((a,b)=>{let av=a[sortCol]||'',bv=b[sortCol]||'';if(sortCol==='tier'){av=+av;bv=+bv;}return av<bv?-sortDir:av>bv?sortDir:0;});}
+  document.getElementById('idx-cnt').textContent=rows.length+' actores';
+  document.getElementById('idx-body').innerHTML=rows.map(a=>{
+    const vc=VX[a.vertical];
+    const bc=a.certeza==='VERIFICADO'?'bv':a.certeza==='FUENTE UNICA'?'bs':'bi';
+    const dots=[1,2,3].map(i=>`<div class="td-dot${i<=a.tier?' on':''}" style="${i<=a.tier?'background:'+vc.color:''}"></div>`).join('');
+    return`<tr data-id="${a.id}"><td><span class="td-n">${a.label}</span></td><td><span class="td-vp" style="border-color:${vc.color}44;color:${vc.color}">${a.vertical}</span></td><td><div class="td-dots">${dots}</div></td><td>${a.ciudad}</td><td style="color:${vc.color}">${a.valoracion}</td><td><span class="td-bdg ${bc}">${a.certeza.slice(0,3)}</span></td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-dim)">${a.signal.slice(0,65)}...</td></tr>`;
+  }).join('');
+}
+
+// BRIEF
+const DEALFLOW={
+  V1:[{date:'Oct 2024',e:'Multipropiedad desmantelada — presion TAS/FIFA',c:'#ff6b35'},{date:'Nov 2024',e:'Renovacion Adidas-FMF El Tri hasta 2034',c:'#45d802'},{date:'Dic 2025',e:'General Atlantic 49% America — USD 490M EV',c:'#f8961e'},{date:'Feb 2025',e:'Sergio Ramos ficha con Rayados',c:'#45d802'},{date:'Jul 2025',e:'Adidas reemplaza Nike en Club America',c:'#45d802'},{date:'Nov 2025',e:'Apollo compra Atletico de Madrid → San Luis',c:'#f8961e'},{date:'Mar 2026',e:'Estadio Banorte reinaugurado vs Portugal',c:'#4cc9f0'},{date:'Abr 2026',e:'Liga MX se separa de FMF como AC autonoma',c:'#45d802'}],
+  V2:[{date:'Ago 2024',e:'Amazon Prime exclusivo Chivas — primer deal su tipo',c:'#00b4d8'},{date:'Jun 2025',e:'Fox Corp adquiere Caliente TV — derechos 6 clubes',c:'#00b4d8'},{date:'Oct 2025',e:'ESPN despidos masivos — control migra a Buenos Aires',c:'#ff4d6d'},{date:'2025',e:'TV Azteca entra en concurso mercantil',c:'#ff4d6d'},{date:'2026',e:'Netflix deal Concacaf — El Tri detras de paywall desde 2027',c:'#00b4d8'}],
+  V3:[{date:'2015',e:'BBVA naming Estadio BBVA (15 anos)',c:'#ff6b35'},{date:'2016',e:'BBVA title Liga BBVA MX (hasta 2028)',c:'#ff6b35'},{date:'Mar 2025',e:'Banorte naming Estadio + credito MXN 2,100M',c:'#ff6b35'},{date:'Jul 2025',e:'Adidas primer jersey America. Doble renovacion BBVA',c:'#45d802'},{date:'Oct 2025',e:'Renovacion Caliente+Seleccion Mexicana (4 anos)',c:'#ff6b35'}],
+  V4:[{date:'2022',e:'Mikel Arriola consolida poder institucional Liga MX',c:'#c77dff'},{date:'Ago 2025',e:'Live Nation adquiere 75% OCESA — USD 646M',c:'#c77dff'},{date:'Oct 2025',e:'TEAM Marketing AG como socio comercial FMF',c:'#c77dff'},{date:'Mar 2026',e:'Wasserman rebrand a THE-TEAM',c:'#c77dff'},{date:'Abr 2026',e:'Liga MX AC — renegociacion Apollo/SUM proyectada 2028',c:'#c77dff'}],
+  V5:[{date:'Jul 2025',e:'Mundomex: mandato On Location/FIFA Mexico',c:'#ffd60a'},{date:'Jul 2025',e:'Elevate Sports Ventures: contrato 10 anos Banorte',c:'#ffd60a'},{date:'Feb 2026',e:'Fuse Mexico: lanzamiento Omnicom',c:'#ffd60a'},{date:'Abr 2026',e:'Muerte Burillo Azcarraga — vacante ATP 500',c:'#ff4d6d'},{date:'Jun 2026',e:'On Location WC26 — monopolio hospitality',c:'#ffd60a'}],
+  V6:[{date:'Nov 2022',e:'Incode Fan ID Liga MX — biometria obligatoria',c:'#ff4d6d'},{date:'Dic 2025',e:'Fanki desplaza a Ticketmaster en Estadio Banorte',c:'#ff4d6d'},{date:'Feb 2026',e:'Profeco vs Ticketmaster / Viagogo / HelloTicket',c:'#ff4d6d'},{date:'Abr 2026',e:'FIFA Ticketing digital-only WC26 Mexico',c:'#ff4d6d'},{date:'Jun 2026',e:'5 partidos WC26 Banorte bajo Fanki',c:'#45d802'}],
+  V7:[{date:'2015',e:'Estadio BBVA inaugurado — USD 200M — LEED Silver',c:'#4cc9f0'},{date:'Mar 2025',e:'Naming Banorte firmado + credito estructurado',c:'#4cc9f0'},{date:'Jul 2025',e:'Elevate Sports Ventures — contrato 10 anos Banorte',c:'#4cc9f0'},{date:'Oct 2025',e:'Arena Guadalajara Avalanz inaugura — triangulo completo',c:'#4cc9f0'},{date:'Nov 2025',e:'Alexandre Costa nuevo DG Estadio Banorte',c:'#4cc9f0'},{date:'Mar 2026',e:'Reapertura Estadio Banorte — LEED Platinum',c:'#45d802'},{date:'Jun 2026',e:'WC26 — partido inaugural Mexico vs Sudafrica',c:'#45d802'}],
+  V8:[{date:'Nov 2020',e:'Genius Sports — mandato exclusivo Liga MX',c:'#06d6a0'},{date:'Abr 2022',e:'Second Spectrum (Genius) — acuerdo Necaxa tracking',c:'#06d6a0'},{date:'Nov 2022',e:'Incode Fan ID — biometria acceso estadios',c:'#06d6a0'},{date:'Dic 2025',e:'KAGR entra en America via deal General Atlantic',c:'#06d6a0'},{date:'Ene 2026',e:'SAOT Genius Sports — 18 estadios Liga MX',c:'#06d6a0'},{date:'Jun 2026',e:'Hawk-Eye (Sony) opera VAR oficial WC26 venues MX',c:'#4cc9f0'}],
+  V9:[{date:'1999',e:'FEMSA adquiere Rayados de Monterrey',c:'#f8961e'},{date:'Sep 2024',e:'Caliente Interactive JV Playtech renegociado — USD 900M-1,200M',c:'#f8961e'},{date:'Oct 2025',e:'Apollo Sports Capital compra Atletico de Madrid',c:'#f8961e'},{date:'Dic 2025',e:'General Atlantic 49% Grupo Aguilas — USD 490M EV',c:'#f8961e'},{date:'2025',e:'Innovatio Capital compra Queretaro USD 120M',c:'#f8961e'},{date:'Abr 2026',e:'Grupo PRODI compra Atlas ~USD 220M / Atlante ascenso ~USD 65M',c:'#f8961e'}],
+};
+
+function dealFlowHtml(v){
+  const items=DEALFLOW[v]||[];if(!items.length)return'';
+  return`<div class="brief-sec" style="margin-top:24px">Deal flow · Hitos clave</div><div class="df-wrap"><div class="df-track">${items.map(i=>`<div class="df-item"><div class="df-dot" style="background:${i.c};border-color:${i.c}"></div><div class="df-date">${i.date}</div><div class="df-event">${i.e}</div></div>`).join('')}</div></div>`;
+}
+
+function buildBrief(){
+  const nav=document.getElementById('brief-nav');
+  Object.entries(VX).forEach(([k,v],i)=>{
+    const d=document.createElement('div');d.className='bn-item'+(i===0?' on':'');d.dataset.v=k;
+    d.textContent=k+' · '+v.label;
+    d.onclick=()=>{document.querySelectorAll('.bn-item').forEach(x=>x.classList.remove('on'));d.classList.add('on');renderBrief(k);};
+    nav.appendChild(d);
+  });
+  renderBrief('V1');
+  document.getElementById('brief-body').addEventListener('click',e=>{const card=e.target.closest('[data-aid]');if(card){const a=actorMap.get(card.dataset.aid);if(a)openPanel(a,'br-panel');}});
+}
+
+function renderBrief(v){
+  const vc=VX[v];
+  const va=ACTORS.filter(a=>a.vertical===v);
+  const t1=va.filter(a=>a.tier===1),t2=va.filter(a=>a.tier===2),t3=va.filter(a=>a.tier===3);
+  document.getElementById('brief-body').innerHTML=`
+    <div class="bv-hero">
+      <div class="bv-eye">${v} · Playbook Sports Intelligence · MX 2026</div>
+      <div class="bv-title" style="color:${vc.color}">${vc.label.toUpperCase()}</div>
+      <div class="bv-q">${vc.q}</div>
+      <div class="bv-note">${vc.note}</div>
+      <div class="bv-stats">
+        <div><div class="bv-stat-n" style="color:${vc.color}">${t1.length}</div><div class="bv-stat-l">Tier 1</div></div>
+        <div><div class="bv-stat-n" style="color:var(--text-muted)">${t2.length}</div><div class="bv-stat-l">Tier 2</div></div>
+        <div><div class="bv-stat-n" style="color:var(--text-dim)">${t3.length}</div><div class="bv-stat-l">Tier 3</div></div>
+        <div><div class="bv-stat-n" style="color:var(--text-muted)">${va.length}</div><div class="bv-stat-l">Total</div></div>
+      </div>
+    </div>
+    ${t1.length?`<div class="brief-sec">Tier 1 — Actores dominantes</div><div class="b-grid">${t1.map(a=>`<div class="bac" data-aid="${a.id}"><div class="bac-n">${a.label}</div><div class="bac-r">${a.role}</div>${a.valoracion!=='—'?`<div class="bac-v">${a.valoracion}</div>`:''}<span class="bac-b">● ${a.certeza}</span><div class="bac-sig"><em>${a.signal}</em></div></div>`).join('')}</div>`:''}
+    ${t2.length?`<div class="brief-sec" style="margin-top:22px">Tier 2 — Actores relevantes</div><div style="display:flex;flex-direction:column;gap:7px;margin-bottom:26px">${t2.map(a=>`<div style="display:flex;align-items:flex-start;gap:14px;padding:11px 13px;background:#0d0d0d;border:1px solid rgba(255,255,255,0.055);cursor:pointer" data-aid="${a.id}"><div style="flex:1"><div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px">${a.label}</div><div style="font-family:var(--sans);font-size:11px;color:var(--text-muted);font-weight:300">${a.role}</div></div><div style="font-family:var(--mono);font-size:8px;color:var(--text-dim);flex-shrink:0">${a.ciudad}</div></div>`).join('')}</div>`:''}
+    ${t3.length?`<div class="brief-sec" style="margin-top:8px">Tier 3 — Actores especializados</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:32px">${t3.map(a=>`<div style="padding:7px 11px;background:#0d0d0d;border:1px solid rgba(255,255,255,0.055);cursor:pointer;font-family:var(--mono);font-size:8px;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase" data-aid="${a.id}">${a.label}</div>`).join('')}</div>`:''}
+    ${va.length===0?`<div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);padding:40px 0">Sin actores registrados para ${v}.</div>`:''}
+    ${dealFlowHtml(v)}`;
+}
+
+// TICKER
+function initTicker(){
+  const doubled=[...TICKER_DATA,...TICKER_DATA];
+  document.getElementById('tk-track').innerHTML=doubled.map(t=>`<span class="ticker-item" style="cursor:${t.aid?'pointer':'default'}" onclick="${t.aid?`openTickerActor('${t.aid||''}')`:''}" onmouseenter="${t.aid?`this.style.color='#45d802'`:''}" onmouseleave="this.style.color=''"><span style="color:${VX[t.v].color};margin-right:5px">●</span>${t.t}${t.aid?'<span style="color:rgba(69,216,2,0.4);margin-left:6px;font-size:7px">→</span>':''}</span><span class="ticker-sep">//</span>`).join('');
+}
+function openTickerActor(aid){
+  const actor=actorMap.get(aid);if(!actor)return;
+  const panelId=curView==='index'?'idx-panel':curView==='brief'?'br-panel':'net-panel';
+  openPanel(actor,panelId);
+}
+
+// MOBILE
+function toggleSidebar(){const sb=document.querySelector('.sidebar');const ov=document.getElementById('sb-overlay');const opening=!sb.classList.contains('open');sb.classList.toggle('open',opening);ov.classList.toggle('on',opening);}
+function closeSidebar(){document.querySelector('.sidebar').classList.remove('open');document.getElementById('sb-overlay').classList.remove('on');}
+document.querySelector('.sidebar').addEventListener('click',e=>{const item=e.target.closest('.sb-item');if(item&&window.matchMedia('(max-width:768px)').matches)closeSidebar();});
+
+if(typeof ResizeObserver!=='undefined'){
+  const netWrap=document.getElementById('net-svg-wrap');
+  if(netWrap){const ro=new ResizeObserver(()=>{if(!svgSel||!simulation)return;const W=netWrap.clientWidth,H=netWrap.clientHeight;svgSel.attr('viewBox',[0,0,W,H]);simulation.force('center',d3.forceCenter(W/2,H/2).strength(0.04));simulation.force('x',d3.forceX(W/2).strength(0.015));simulation.force('y',d3.forceY(H/2).strength(0.015));simulation.alpha(0.3).restart();});ro.observe(netWrap);}
+}
+</script>
+</body>
+</html>
