@@ -205,6 +205,10 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 .ticker-sep{color:var(--text-dim);margin:0 6px}
 @keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-8px)}30%{transform:translateX(7px)}45%{transform:translateX(-6px)}60%{transform:translateX(5px)}75%{transform:translateX(-3px)}90%{transform:translateX(2px)}}
 .shake{animation:shake 0.45s ease}
+.net-layout-btns{position:absolute;top:12px;left:12px;display:flex;gap:4px;z-index:10}
+.net-lb{padding:0 10px;height:26px;background:#0d0d0d;border:1px solid rgba(255,255,255,0.07);font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s,color 0.2s;white-space:nowrap}
+.net-lb:hover{border-color:var(--bgreen);color:var(--green)}
+.net-lb.active{border-color:var(--green);color:var(--green)}
 #minimap{position:absolute;bottom:42px;right:16px;width:120px;height:80px;background:rgba(13,13,13,0.92);border:1px solid rgba(255,255,255,0.08);z-index:20;overflow:hidden}
 #minimap-canvas{width:100%;height:100%;display:block}
 #minimap-viewport{position:absolute;border:1px solid rgba(69,216,2,0.5);pointer-events:none;background:rgba(69,216,2,0.04)}
@@ -351,6 +355,11 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
       <div id="view-network">
         <div id="net-svg-wrap" style="width:100%;height:100%;position:relative;overflow:hidden">
           <svg id="net-svg" style="width:100%;height:100%;display:block"></svg>
+        </div>
+        <div class="net-layout-btns">
+          <button class="net-lb active" id="nlb-red" onclick="setNetLayout('red')">Red</button>
+          <button class="net-lb" id="nlb-clusters" onclick="setNetLayout('clusters')">Clusters</button>
+          <button class="net-lb" id="nlb-verticales" onclick="setNetLayout('verticales')">Verticales</button>
         </div>
         <div class="net-ctrl-grp">
           <button class="net-cb" onclick="netZoom(1.25)" title="Acercar">+</button>
@@ -692,6 +701,10 @@ function closeP(id){document.getElementById(id).classList.remove('open');}
 // NETWORK — D3 SVG
 let simulation,svgSel,gMain,zoomBehavior,linkSel,nodeSel,labelSel;
 let hoveredId=null;
+let netLayout='red';
+let netNodeData=[],netNodeGroups;
+let gClusterBg,gVLaneBg;
+let nodeClusterMap=new Map(),clusterCentroids=[];
 
 function initNet(){
   const wrap=document.getElementById('net-svg-wrap');
@@ -714,22 +727,62 @@ function initNet(){
   });
   svgSel.call(zoomBehavior);
   gMain=svgSel.append('g');
+
+  // Build cluster membership map
+  nodeClusterMap=new Map();
+  CLUSTERS.forEach((cl,ci)=>{cl.actor_ids.forEach(id=>nodeClusterMap.set(id,ci));});
+
+  // — Mode 2 background: cluster rings + labels —
+  const clusterRingR=Math.min(W,H)*0.13;
+  const clCols=4,clRows=Math.ceil(CLUSTERS.length/clCols);
+  const clPadX=W*0.12,clPadY=H*0.15;
+  const clCellW=(W-clPadX*2)/clCols;
+  const clCellH=clRows>1?(H-clPadY*2)/(clRows-1):0;
+  clusterCentroids=CLUSTERS.map((cl,i)=>{
+    const col=i%clCols,row=Math.floor(i/clCols);
+    return{x:clPadX+(col+0.5)*clCellW,y:clRows>1?clPadY+row*clCellH:H/2,nombre:cl.nombre,actor_ids:cl.actor_ids,verticales:cl.verticales};
+  });
+  gClusterBg=gMain.append('g').attr('class','cluster-bg-g').attr('opacity',0).attr('pointer-events','none');
+  clusterCentroids.forEach((cc)=>{
+    const firstV=(cc.verticales.match(/V\d/)||['V1'])[0];
+    const color=VX[firstV]?VX[firstV].color:'#45d802';
+    gClusterBg.append('circle').attr('class','cluster-ring').attr('cx',cc.x).attr('cy',cc.y).attr('r',clusterRingR).attr('fill',color).attr('fill-opacity',0.04).attr('stroke',color).attr('stroke-width',1).attr('stroke-opacity',0.28);
+    gClusterBg.append('text').attr('class','cluster-lbl').attr('x',cc.x).attr('y',cc.y-clusterRingR-8).attr('text-anchor','middle').attr('font-family','Space Mono, monospace').attr('font-size','7px').attr('letter-spacing','0.14em').attr('fill',color).attr('fill-opacity',0.75).text(cc.nombre.replace(/^Cluster /,'').slice(0,36));
+  });
+
+  // — Mode 3 background: vertical swim-lane lines + headers + tier bands —
+  gVLaneBg=gMain.append('g').attr('class','vlane-bg-g').attr('opacity',0).attr('pointer-events','none');
   const vKeys=Object.keys(VX);
+  const vPad=80,vColW=vKeys.length>1?(W-vPad*2)/(vKeys.length-1):0;
+  vKeys.forEach((v,i)=>{
+    const x=vPad+i*vColW;
+    const color=VX[v].color;
+    gVLaneBg.append('line').attr('class','v-lane-line').attr('data-vi',i).attr('x1',x).attr('y1',36).attr('x2',x).attr('y2',H-16).attr('stroke',color).attr('stroke-width',0.5).attr('stroke-opacity',0.14);
+    gVLaneBg.append('text').attr('class','v-lane-hdr').attr('data-vi',i).attr('x',x).attr('y',18).attr('text-anchor','middle').attr('font-family','Space Mono, monospace').attr('font-size','9px').attr('letter-spacing','0.15em').attr('fill',color).attr('opacity',0.9).text(v);
+    gVLaneBg.append('text').attr('class','v-lane-sub').attr('data-vi',i).attr('x',x).attr('y',30).attr('text-anchor','middle').attr('font-family','Space Mono, monospace').attr('font-size','6px').attr('letter-spacing','0.1em').attr('fill',color).attr('opacity',0.5).text(VX[v].label);
+  });
+  [[0.25,'TIER 1'],[0.55,'TIER 2'],[0.80,'TIER 3']].forEach(([frac,lbl])=>{
+    const ty=H*frac;
+    gVLaneBg.append('line').attr('class','tier-band').attr('data-frac',frac).attr('x1',40).attr('y1',ty).attr('x2',W-40).attr('y2',ty).attr('stroke','rgba(255,255,255,0.05)').attr('stroke-width',1).attr('stroke-dasharray','4 8');
+    gVLaneBg.append('text').attr('class','tier-band-lbl').attr('data-frac',frac).attr('x',44).attr('y',ty-5).attr('font-family','Space Mono, monospace').attr('font-size','7px').attr('letter-spacing','0.14em').attr('fill','rgba(255,255,255,0.2)').text(lbl);
+  });
+
+  // — Mode 1 background: vertical rings + labels —
   const R=Math.min(W,H)*0.31,cx=W/2,cy=H/2;
   gMain.selectAll('.c-ring').data(vKeys).enter().append('circle').attr('class','c-ring').attr('r',75).attr('cx',(v,i)=>cx+R*Math.cos((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('cy',(v,i)=>cy+R*Math.sin((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('fill','none').attr('stroke',v=>VX[v].color).attr('stroke-width',0.5).attr('opacity',0.08);
   gMain.selectAll('.c-lbl').data(vKeys).enter().append('text').attr('class','c-lbl').attr('x',(v,i)=>cx+(R+92)*Math.cos((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('y',(v,i)=>cy+(R+92)*Math.sin((i/vKeys.length)*Math.PI*2-Math.PI/2)+4).attr('text-anchor','middle').attr('font-family','Space Mono, monospace').attr('font-size','8px').attr('letter-spacing','0.12em').attr('fill',v=>VX[v].color).attr('opacity',0.35).text(v=>v);
 
-  const nodeData=ACTORS.map((a)=>{
+  netNodeData=ACTORS.map((a)=>{
     const vi=vKeys.indexOf(a.vertical);
     const ang=(vi/vKeys.length)*Math.PI*2-Math.PI/2;
     const jitter=(Math.random()-.5)*60;
     return{...a,x:cx+R*Math.cos(ang)+jitter,y:cy+R*Math.sin(ang)+jitter,r:a.tier===1?10:a.tier===2?6:4};
   });
-  const edgeData=EDGES.map(([a,b])=>({source:nodeData.find(n=>n.id===a),target:nodeData.find(n=>n.id===b)})).filter(e=>e.source&&e.target);
+  const edgeData=EDGES.map(([a,b])=>({source:netNodeData.find(n=>n.id===a),target:netNodeData.find(n=>n.id===b)})).filter(e=>e.source&&e.target);
 
   linkSel=gMain.append('g').attr('class','links').selectAll('line').data(edgeData).enter().append('line').attr('stroke','rgba(255,255,255,0.12)').attr('stroke-width',0.7).attr('opacity',1);
 
-  const nodeGroups=gMain.append('g').attr('class','nodes').selectAll('g').data(nodeData).enter().append('g').attr('class','node-g').style('cursor','pointer')
+  netNodeGroups=gMain.append('g').attr('class','nodes').selectAll('g').data(netNodeData).enter().append('g').attr('class','node-g').style('cursor','pointer')
     .on('mouseenter',function(event,d){
       hoveredId=d.id;updateHoverState();
       const tt=document.getElementById('net-tt');
@@ -752,11 +805,11 @@ function initNet(){
       .on('end',(event,d)=>{if(!event.active)simulation.alphaTarget(0);d.fx=null;d.fy=null;})
     );
 
-  nodeGroups.filter(d=>d.tier===1).append('circle').attr('class','node-glow').attr('r',d=>d.r*2.2).attr('fill',d=>VX[d.vertical].color).attr('opacity',0.08).attr('filter','url(#glow)');
-  nodeSel=nodeGroups.append('circle').attr('class','node-circle').attr('r',d=>d.r).attr('fill',d=>d.tier===1?VX[d.vertical].color:d.tier===2?VX[d.vertical].color+'66':'#222').attr('stroke',d=>VX[d.vertical].color).attr('stroke-width',d=>d.tier===1?0.5:0).attr('opacity',1);
-  labelSel=nodeGroups.append('text').attr('class','node-label').attr('dy',d=>d.r+12).attr('text-anchor','middle').attr('font-family','DM Sans, sans-serif').attr('font-size',d=>d.tier===1?'9.5px':'8.5px').attr('fill',d=>d.tier===1?VX[d.vertical].color:'rgba(255,255,255,0.3)').attr('font-weight',d=>d.tier===1?500:400).attr('pointer-events','none').text(d=>d.label).attr('opacity',d=>d.tier===1?0.85:0);
+  netNodeGroups.filter(d=>d.tier===1).append('circle').attr('class','node-glow').attr('r',d=>d.r*2.2).attr('fill',d=>VX[d.vertical].color).attr('opacity',0.08).attr('filter','url(#glow)');
+  nodeSel=netNodeGroups.append('circle').attr('class','node-circle').attr('r',d=>d.r).attr('fill',d=>d.tier===1?VX[d.vertical].color:d.tier===2?VX[d.vertical].color+'66':'#222').attr('stroke',d=>VX[d.vertical].color).attr('stroke-width',d=>d.tier===1?0.5:0).attr('opacity',1);
+  labelSel=netNodeGroups.append('text').attr('class','node-label').attr('dy',d=>d.r+12).attr('text-anchor','middle').attr('font-family','DM Sans, sans-serif').attr('font-size',d=>d.tier===1?'9.5px':'8.5px').attr('fill',d=>d.tier===1?VX[d.vertical].color:'rgba(255,255,255,0.3)').attr('font-weight',d=>d.tier===1?500:400).attr('pointer-events','none').text(d=>d.label).attr('opacity',d=>d.tier===1?0.85:0);
 
-  simulation=d3.forceSimulation(nodeData)
+  simulation=d3.forceSimulation(netNodeData)
     .force('link',d3.forceLink(edgeData).id(d=>d.id).distance(110).strength(0.5))
     .force('charge',d3.forceManyBody().strength(-300).distanceMax(320))
     .force('collision',d3.forceCollide().radius(d=>d.r+12).strength(0.85))
@@ -767,7 +820,7 @@ function initNet(){
     .alphaDecay(0.022)
     .on('tick',()=>{
       linkSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-      nodeGroups.attr('transform',d=>`translate(${d.x},${d.y})`);
+      netNodeGroups.attr('transform',d=>`translate(${d.x},${d.y})`);
     });
 
   svgSel.on('click',()=>{hoveredId=null;updateHoverState();});
@@ -778,8 +831,10 @@ function updateLOD(scale){
   if(!labelSel)return;
   labelSel.attr('opacity',d=>{if(hoveredId)return;if(d.tier===1)return scale<0.4?0:Math.min(1,(scale-0.3)*2)*0.88;if(d.tier===2)return scale<1.1?0:Math.min(0.8,(scale-1.1)*2.5);if(d.tier===3)return scale<2.0?0:Math.min(0.7,(scale-2.0)*3);return 0;}).attr('font-size',d=>{const base=d.tier===1?9.5:8.5;return Math.max(7,base/Math.max(scale,0.5))+'px';});
   d3.selectAll('.node-circle').attr('r',d=>{const base=d.r;if(scale<0.5)return base*1.4;if(scale<0.8)return base*1.1;return base;});
-  d3.selectAll('.c-ring').attr('opacity',scale<0.5?0.18:0.07);
-  d3.selectAll('.c-lbl').attr('opacity',scale<0.6?0.5:scale<1.2?0.25:0.08);
+  if(netLayout==='red'){
+    d3.selectAll('.c-ring').attr('opacity',scale<0.5?0.18:0.07);
+    d3.selectAll('.c-lbl').attr('opacity',scale<0.6?0.5:scale<1.2?0.25:0.08);
+  }
 }
 
 let minimapCtx,minimapW=120,minimapH=80;
@@ -819,11 +874,158 @@ function updateMinimap(transform){
 function clusterForce(vKeys,cx,cy,R,strength){
   return function(alpha){simulation.nodes().forEach(n=>{const vi=vKeys.indexOf(n.vertical);const ang=(vi/vKeys.length)*Math.PI*2-Math.PI/2;const tx=cx+R*Math.cos(ang);const ty=cy+R*Math.sin(ang);n.vx+=(tx-n.x)*strength*alpha;n.vy+=(ty-n.y)*strength*alpha;});};
 }
+
+function clusterCentroidForce(strength){
+  return function(alpha){
+    const fallX=clusterCentroids.reduce((s,c)=>s+c.x,0)/(clusterCentroids.length||1);
+    const fallY=clusterCentroids.reduce((s,c)=>s+c.y,0)/(clusterCentroids.length||1);
+    netNodeData.forEach(n=>{
+      const ci=nodeClusterMap.get(n.id);
+      if(ci!==undefined&&clusterCentroids[ci]){
+        n.vx+=(clusterCentroids[ci].x-n.x)*strength*alpha;
+        n.vy+=(clusterCentroids[ci].y-n.y)*strength*alpha;
+      }else{
+        n.vx+=(fallX-n.x)*strength*0.25*alpha;
+        n.vy+=(fallY-n.y)*strength*0.25*alpha;
+      }
+    });
+  };
+}
+
+function getBaseEdgeStroke(d){
+  if(netLayout==='clusters'){
+    const sc=nodeClusterMap.get(d.source.id),tc=nodeClusterMap.get(d.target.id);
+    if(sc!==undefined&&tc!==undefined&&sc===tc)return'rgba(255,255,255,0.1)';
+    return'rgba(69,216,2,0.65)';
+  }
+  return'rgba(255,255,255,0.12)';
+}
+function getBaseEdgeOpacity(d){
+  if(netLayout==='clusters'){
+    const sc=nodeClusterMap.get(d.source.id),tc=nodeClusterMap.get(d.target.id);
+    if(sc!==undefined&&tc!==undefined&&sc===tc)return 0.35;
+    return 0.28;
+  }
+  if(netLayout==='verticales')return 0.06;
+  return 1;
+}
+function getBaseEdgeWidth(d){
+  if(netLayout==='verticales')return 0.4;
+  if(netLayout==='clusters'){
+    const sc=nodeClusterMap.get(d.source.id),tc=nodeClusterMap.get(d.target.id);
+    if(sc!==undefined&&tc!==undefined&&sc===tc)return 0.5;
+    return 1.0;
+  }
+  return 0.7;
+}
+
+function applyModeEdgeStyle(){
+  if(!linkSel)return;
+  linkSel.transition().duration(300)
+    .attr('stroke',d=>getBaseEdgeStroke(d))
+    .attr('stroke-width',d=>getBaseEdgeWidth(d))
+    .attr('opacity',d=>getBaseEdgeOpacity(d));
+}
+
+function updateClusterCentroids(W,H){
+  const clCols=4,clRows=Math.ceil(CLUSTERS.length/clCols);
+  const clPadX=W*0.12,clPadY=H*0.15;
+  const clCellW=(W-clPadX*2)/clCols;
+  const clCellH=clRows>1?(H-clPadY*2)/(clRows-1):0;
+  CLUSTERS.forEach((_,i)=>{
+    const col=i%clCols,row=Math.floor(i/clCols);
+    if(clusterCentroids[i]){
+      clusterCentroids[i].x=clPadX+(col+0.5)*clCellW;
+      clusterCentroids[i].y=clRows>1?clPadY+row*clCellH:H/2;
+    }
+  });
+  if(gClusterBg){
+    const cx_arr=clusterCentroids.map(c=>c.x);
+    const cy_arr=clusterCentroids.map(c=>c.y);
+    const rr=Math.min(W,H)*0.13;
+    gClusterBg.selectAll('.cluster-ring').data(clusterCentroids).attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',rr);
+    gClusterBg.selectAll('.cluster-lbl').data(clusterCentroids).attr('x',d=>d.x).attr('y',d=>d.y-rr-8);
+  }
+}
+
+function updateVLanePositions(W,H){
+  if(!gVLaneBg)return;
+  const vKeys=Object.keys(VX);
+  const vPad=80,vColW=vKeys.length>1?(W-vPad*2)/(vKeys.length-1):0;
+  gVLaneBg.selectAll('.v-lane-line').each(function(){
+    const i=+this.getAttribute('data-vi');
+    const x=vPad+i*vColW;
+    d3.select(this).attr('x1',x).attr('x2',x).attr('y2',H-16);
+  });
+  gVLaneBg.selectAll('.v-lane-hdr').each(function(){
+    d3.select(this).attr('x',vPad+(+this.getAttribute('data-vi'))*vColW);
+  });
+  gVLaneBg.selectAll('.v-lane-sub').each(function(){
+    d3.select(this).attr('x',vPad+(+this.getAttribute('data-vi'))*vColW);
+  });
+  gVLaneBg.selectAll('.tier-band').each(function(){
+    const ty=H*+this.getAttribute('data-frac');
+    d3.select(this).attr('y1',ty).attr('y2',ty).attr('x2',W-40);
+  });
+  gVLaneBg.selectAll('.tier-band-lbl').each(function(){
+    d3.select(this).attr('y',H*+this.getAttribute('data-frac')-5);
+  });
+}
+
+function applyLayoutForces(mode,W,H){
+  const vKeys=Object.keys(VX);
+  const cx=W/2,cy=H/2;
+  const R=Math.min(W,H)*0.31;
+  if(mode==='red'){
+    simulation
+      .force('cluster',clusterForce(vKeys,cx,cy,R,0.06))
+      .force('center',d3.forceCenter(cx,cy).strength(0.04))
+      .force('x',d3.forceX(cx).strength(0.015))
+      .force('y',d3.forceY(cy).strength(0.015));
+  }else if(mode==='clusters'){
+    updateClusterCentroids(W,H);
+    simulation
+      .force('cluster',clusterCentroidForce(0.12))
+      .force('center',d3.forceCenter(cx,cy).strength(0.01))
+      .force('x',null)
+      .force('y',null);
+  }else if(mode==='verticales'){
+    const vPad=80,colW=vKeys.length>1?(W-vPad*2)/(vKeys.length-1):0;
+    updateVLanePositions(W,H);
+    simulation
+      .force('cluster',null)
+      .force('center',d3.forceCenter(cx,cy).strength(0.01))
+      .force('x',d3.forceX(d=>{const vi=vKeys.indexOf(d.vertical);return vPad+vi*colW;}).strength(0.35))
+      .force('y',d3.forceY(d=>d.tier===1?H*0.25:d.tier===2?H*0.55:H*0.80).strength(0.4));
+  }
+}
+
+function applyLayoutBg(mode){
+  const showRed=mode==='red';
+  d3.selectAll('.c-ring').transition().duration(300).attr('opacity',showRed?0.08:0);
+  d3.selectAll('.c-lbl').transition().duration(300).attr('opacity',showRed?0.35:0);
+  if(gClusterBg)gClusterBg.transition().duration(300).attr('opacity',mode==='clusters'?1:0);
+  if(gVLaneBg)gVLaneBg.transition().duration(300).attr('opacity',mode==='verticales'?1:0);
+}
+
+function setNetLayout(mode){
+  netLayout=mode;
+  document.querySelectorAll('.net-lb').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('nlb-'+mode);
+  if(btn)btn.classList.add('active');
+  if(!simulation)return;
+  const wrap=document.getElementById('net-svg-wrap');
+  const W=wrap.clientWidth,H=wrap.clientHeight;
+  applyLayoutForces(mode,W,H);
+  applyLayoutBg(mode);
+  applyModeEdgeStyle();
+  simulation.alpha(0.6).restart();
+}
 function updateHoverState(){
   if(!linkSel)return;
   const connectedIds=new Set();
   if(hoveredId){linkSel.each(function(d){if(d.source.id===hoveredId)connectedIds.add(d.target.id);if(d.target.id===hoveredId)connectedIds.add(d.source.id);});}
-  linkSel.attr('stroke',d=>{if(!hoveredId)return'rgba(255,255,255,0.12)';const connected=d.source.id===hoveredId||d.target.id===hoveredId;return connected?VX[d.source.vertical].color:'rgba(255,255,255,0.04)';}).attr('stroke-width',d=>{if(!hoveredId)return 0.7;return(d.source.id===hoveredId||d.target.id===hoveredId)?1.8:0.4;}).attr('opacity',d=>{if(!hoveredId)return 1;return(d.source.id===hoveredId||d.target.id===hoveredId)?0.85:0.06;});
+  linkSel.attr('stroke',d=>{if(!hoveredId)return getBaseEdgeStroke(d);const connected=d.source.id===hoveredId||d.target.id===hoveredId;return connected?VX[d.source.vertical].color:'rgba(255,255,255,0.04)';}).attr('stroke-width',d=>{if(!hoveredId)return getBaseEdgeWidth(d);return(d.source.id===hoveredId||d.target.id===hoveredId)?1.8:0.4;}).attr('opacity',d=>{if(!hoveredId)return getBaseEdgeOpacity(d);return(d.source.id===hoveredId||d.target.id===hoveredId)?0.85:0.06;});
   d3.selectAll('.node-circle').attr('opacity',function(d){if(!hoveredId)return 1;if(d.id===hoveredId)return 1;return connectedIds.has(d.id)?0.9:0.12;}).attr('r',function(d){const base=d.r;if(!hoveredId)return base;if(d.id===hoveredId)return base*1.6;return connectedIds.has(d.id)?base*1.2:base;});
   d3.selectAll('.node-label').attr('opacity',function(d){if(!hoveredId)return d.tier===1?0.85:0;if(d.id===hoveredId)return 1;if(connectedIds.has(d.id))return 0.85;return d.tier===1?0.15:0;}).attr('fill',function(d){if(hoveredId&&(d.id===hoveredId||connectedIds.has(d.id)))return'#eaeaea';return d.tier===1?VX[d.vertical].color:'rgba(255,255,255,0.3)';});
   d3.selectAll('.node-glow').attr('opacity',function(d){if(!hoveredId)return 0.08;return d.id===hoveredId?0.3:0.02;});
@@ -833,9 +1035,13 @@ function applyNetFilter(v){
   d3.selectAll('.node-circle').transition().duration(300).attr('opacity',d=>!v||d.vertical===v?1:0.06);
   d3.selectAll('.node-label').transition().duration(300).attr('opacity',d=>{if(!v)return d.tier===1?0.85:0;return d.vertical===v?(d.tier===1?1:0.7):0;});
   d3.selectAll('.node-glow').transition().duration(300).attr('opacity',d=>!v||d.vertical===v?0.1:0);
-  linkSel.transition().duration(300).attr('opacity',d=>!v||d.source.vertical===v||d.target.vertical===v?1:0.03).attr('stroke-width',d=>!v||d.source.vertical===v||d.target.vertical===v?0.7:0.3);
-  d3.selectAll('.c-ring').transition().duration(300).attr('opacity',d=>!v||d===v?0.12:0.02);
-  d3.selectAll('.c-lbl').transition().duration(300).attr('opacity',d=>!v||d===v?0.5:0.08);
+  linkSel.transition().duration(300)
+    .attr('opacity',d=>!v||d.source.vertical===v||d.target.vertical===v?getBaseEdgeOpacity(d):0.03)
+    .attr('stroke-width',d=>!v||d.source.vertical===v||d.target.vertical===v?getBaseEdgeWidth(d):0.3);
+  if(netLayout==='red'){
+    d3.selectAll('.c-ring').transition().duration(300).attr('opacity',d=>!v||d===v?0.12:0.02);
+    d3.selectAll('.c-lbl').transition().duration(300).attr('opacity',d=>!v||d===v?0.5:0.08);
+  }
 }
 function netZoom(f){svgSel.transition().duration(300).call(zoomBehavior.scaleBy,f);}
 function netReset(){svgSel.transition().duration(500).call(zoomBehavior.transform,d3.zoomIdentity);}
@@ -949,7 +1155,7 @@ document.querySelector('.sidebar').addEventListener('click',e=>{const item=e.tar
 
 if(typeof ResizeObserver!=='undefined'){
   const netWrap=document.getElementById('net-svg-wrap');
-  if(netWrap){const ro=new ResizeObserver(()=>{if(!svgSel||!simulation)return;const W=netWrap.clientWidth,H=netWrap.clientHeight;svgSel.attr('viewBox',[0,0,W,H]);simulation.force('center',d3.forceCenter(W/2,H/2).strength(0.04));simulation.force('x',d3.forceX(W/2).strength(0.015));simulation.force('y',d3.forceY(H/2).strength(0.015));simulation.alpha(0.3).restart();});ro.observe(netWrap);}
+  if(netWrap){const ro=new ResizeObserver(()=>{if(!svgSel||!simulation)return;const W=netWrap.clientWidth,H=netWrap.clientHeight;svgSel.attr('viewBox',[0,0,W,H]);applyLayoutForces(netLayout,W,H);simulation.alpha(0.3).restart();});ro.observe(netWrap);}
 }
 </script>
 </body>
