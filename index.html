@@ -509,10 +509,10 @@ const RIESGO_DEFAULT = 'Sin datos de riesgo registrados para este actor.';
 async function loadData() {
   try {
     const [actorsRaw, edgesRaw, poiRaw, clustersRaw] = await Promise.all([
-      fetch('data/actors.json').then(r => r.json()),
-      fetch('data/edges.json').then(r => r.json()),
-      fetch('data/poi.json').then(r => r.json()),
-      fetch('data/clusters.json').then(r => r.json()),
+      fetch('actors.json').then(r => r.json()),
+      fetch('edges.json').then(r => r.json()),
+      fetch('poi.json').then(r => r.json()),
+      fetch('clusters.json').then(r => r.json()),
     ]);
 
     ACTORS   = actorsRaw.map(adaptActor);
