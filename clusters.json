@@ -157,3 +157,126 @@
     "conexiones": "GA→Ollamani 49% (accionario T1) | Innovatio→Querétaro (accionario T1) | PRODI→Atlas (accionario T1) | Apollo→Atlético Madrid→San Luis (indirecto T1) | Moelis→Liga MX asesoría (T2)"
   }
 ]
+    "nombre": "Cluster CIE/OCESA-AHR-GNP (El Gatekeeper de Venues)",
+    "actor_ids": [
+      "V4-008",
+      "V5-001",
+      "V7-004",
+      "V7-005",
+      "V7-015",
+      "V6-004",
+      "V5-005"
+    ],
+    "verticales": "V4 · V5 · V6 · V7",
+    "puente": "Alejandro Soberón Kuri (POI-012/014)",
+    "control": "Controla los venues más importantes de CDMX y el evento deportivo más monetizado del país (GP México, MXN 137,000M acumulado 2015-2024). Ticketmaster como boletera exclusiva de sus venues. La integración Live Nation 75% desde ago-2025 amplía el cluster globalmente. Sin acceso a OCESA, cualquier marca pierde la puerta de entrada al ecosistema de eventos premium CDMX.",
+    "conexiones": "CIE→AHR (concesión T1) | CIE→GNP (concesión T1) | Soberón→González Compeán (jerárquico T2) | Ticketmaster→OCESA (integración Live Nation T1) | F1 Experiences→GP México (derechos T2)"
+  },
+  {
+    "nombre": "Cluster GRUPO CALIENTE (El Omnipresente de Apuestas)",
+    "actor_ids": [
+      "V3-003",
+      "V4-020",
+      "V9-007",
+      "V8-015",
+      "V1-021",
+      "V1-020",
+      "V2-003"
+    ],
+    "verticales": "V1 · V3 · V4 · V6 · V8 · V9",
+    "puente": "Jorge Hank Rhon (POI-017)",
+    "control": "El actor con más poder unilateral sobre Liga MX: jersey sponsor 14/18 clubes + Casa de Apuestas Oficial Liga MX y Selección + propietario Xolos. El riesgo sistémico es máximo: si Caliente retira presupuesto, 14 clubes pierden su sponsor principal simultáneamente. La venta de Caliente TV a Fox Corp (jun-2025) creó la primera integración media-apuestas del ecosistema.",
+    "conexiones": "Hank Rhon→Caliente.mx (propietario T1) | Hank Rhon→Xolos (propietario T1) | Caliplay→Playtech JV (tech T1) | Caliente TV→Fox Corp (deal T2) | Hank Rhon→Liga MX 14 clubes (jersey T2)"
+  },
+  {
+    "nombre": "Cluster OMNILIFE-CHIVAS-AKRON-AMAZON (El Autónomo)",
+    "actor_ids": [
+      "V1-002",
+      "V7-003",
+      "V9-012",
+      "V2-005",
+      "V6-002",
+      "V3-012"
+    ],
+    "verticales": "V1 · V2 · V3 · V6 · V7 · V9",
+    "puente": "Amaury Vergara Zatarain (POI-V9-007)",
+    "control": "Cluster autónomo con mayor fandom popular de México (Chivas). Es el único activo que logró acuerdo exclusivo con OTT global (Amazon, USD 20M/4 años). Su estadio propio + boletera propia + broadcaster propio crea independencia estructural respecto al mercado. Akron como sede de 4 partidos WC26 consolida la posición. El litigio familiar (Exp. 150/20) es la amenaza estructural más relevante.",
+    "conexiones": "Vergara→Chivas (propietario T1) | Vergara→Akron (propietario T1) | Amazon→Chivas (broadcaster exclusivo T1) | Boletomóvil→Akron (ticketing T2) | Puma→Chivas kit (hasta jul-26 T2)"
+  },
+  {
+    "nombre": "Cluster FIFA-WC26-VENUES-MX (El Temporal Dominante)",
+    "actor_ids": [
+      "V1-009",
+      "V5-002",
+      "V5-003",
+      "V5-019",
+      "V6-007",
+      "V7-001",
+      "V7-002",
+      "V7-003",
+      "V8-002",
+      "V8-011"
+    ],
+    "verticales": "V1 · V5 · V6 · V7 · V8",
+    "puente": "Jurgen Mainka — DG FIFA México (POI-047)",
+    "control": "Durante mayo-julio 2026, FIFA tiene la soberanía comercial completa sobre los 3 venues mexicanos. Arrebata temporalmente el ticketing a Fanki/Boletomóvil/Ticketmaster. On Location como único operador oficial de hospitality. Hawk-Eye + Lenovo como stack tecnológico VAR. El cluster activa la mayor derrama económica en la historia del deporte mexicano.",
+    "conexiones": "FIFA→Ticketing (soberanía temporal T1) | On Location→3 venues WC26 (monopolio hospitality T1) | Mundomex→On Location (agente territorial T2) | Hawk-Eye→venues (VAR T2) | Mainka→aprobación proveedores (autoridad T2)"
+  },
+  {
+    "nombre": "Cluster GENIUS SPORTS-MEDIAPRO-CITEC (El Stack Tecnológico Liga MX)",
+    "actor_ids": [
+      "V8-001",
+      "V8-003",
+      "V8-004",
+      "V8-005",
+      "V8-006",
+      "V4-016"
+    ],
+    "verticales": "V4 · V8",
+    "puente": "Víctor Guevara Gallegos — Director CITEC (POI-061)",
+    "control": "Controla la infraestructura tecnológica completa del fútbol mexicano: datos+streaming+integridad (Genius), VAR operativo (Mediapro), performance GPS/video (Hudl), estadísticas IA (GolStats), captura automatizada (SeeUplay). El CITEC es el punto único de aprobación. La separación FMF-Liga MX abr-2026 reorganiza las jerarquías de este cluster.",
+    "conexiones": "Genius→Liga MX (mandato exclusivo datos+SAOT T2) | Mediapro→Genius (operación VAR T2) | Hudl→CITEC (mandato 7+ años T2) | GolStats→CITEC (socio oficial T3) | SeeUplay→18 estadios (110 sistemas T2)"
+  },
+  {
+    "nombre": "Cluster GRUPO PACHUCA (El en Crisis)",
+    "actor_ids": [
+      "V9-006",
+      "V1-011",
+      "V1-W04",
+      "V3-W02"
+    ],
+    "verticales": "V1 · V3 · V9",
+    "puente": "Jesús Martínez Patiño (POI-V9-006) — EN CRISIS",
+    "control": "El cluster con mayor riesgo estructural del ecosistema 2026. Orden aprehensión del propietario + exclusión de León del Mundial de Clubes + asking price USD 500M vs. mercado USD 200M. La resolución de la crisis Pachuca definirá la segunda y tercera transacción más grandes del ciclo M&A 2026. Real Oviedo como activo español bajo incertidumbre.",
+    "conexiones": "Martínez→Pachuca (propietario T1) | Martínez→León en venta (propietario T1) | Martínez→Real Oviedo 51% (propietario T1) | Skechers→Pachuca (primer kit fútbol global T3)"
+  },
+  {
+    "nombre": "Cluster GRUPO SALINAS-DESINVERSIÓN (El en Salida)",
+    "actor_ids": [
+      "V9-011",
+      "V2-002",
+      "V1-024",
+      "V5-011"
+    ],
+    "verticales": "V1 · V2 · V5 · V9",
+    "puente": "Ricardo Salinas Pliego (POI-V2-006)",
+    "control": "Grupo Salinas en desinversión deportiva activa: vendió Mazatlán (USD 65M), Club Puebla en venta formal 2026, TV Azteca en concurso mercantil (USD 600M+ bonos). La crisis TV Azteca reordena el mapa de derechos TV Liga MX y libera activos al mercado. Co-promotor residual en Vidanta Mexico Open PGA Tour como presencia futbolística declinante.",
+    "conexiones": "Salinas→TV Azteca (propietario T1) | Salinas→Puebla (propietario T1 — en venta) | TV Azteca concurso mercantil (feb-2026) | Mazatlán→Escalante (venta T1) | VidantaWorld→co-promotor (T3)"
+  },
+  {
+    "nombre": "Cluster PE GLOBAL-LIGA MX (Los Inversores Nuevos)",
+    "actor_ids": [
+      "V9-001",
+      "V9-018",
+      "V9-023",
+      "V9-024",
+      "V9-025",
+      "V9-021",
+      "V9-022"
+    ],
+    "verticales": "V1 · V9",
+    "puente": "General Atlantic / Luis Cervantes (POI-V9-001)",
+    "control": "El cluster que define el ciclo M&A 2024-2026 de Liga MX. En 18 meses: GA-Ollamani (USD 490M EV), Innovatio-Querétaro (USD 120M), PRODI-Atlas (USD 220-250M), Escalante-Mazatlán (USD 65M) + Apollo vía Atlético Madrid → San Luis. Total de transacciones ~USD 850M+. Moelis y Morgan Stanley como advisors institucionales que fijan el framing metodológico de valuación.",
+    "conexiones": "GA→Ollamani 49% (accionario T1) | Innovatio→Querétaro (accionario T1) | PRODI→Atlas (accionario T1) | Apollo→Atlético Madrid→San Luis (indirecto T1) | Moelis→Liga MX asesoría (T2)"
+  }
+]
