@@ -1005,6 +1005,7 @@ function initNet(){
     });
   })(W,H);
 
+  const vKeys=Object.keys(VX);
   const R=Math.min(W,H)*0.31,cx=W/2,cy=H/2;
 
   netNodeData=ACTORS.map((a)=>{
