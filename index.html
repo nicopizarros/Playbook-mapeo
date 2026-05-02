@@ -810,9 +810,13 @@ function initNet(){
   const clPadX=W*0.12,clPadY=H*0.15;
   const clCellW=(W-clPadX*2)/clCols;
   const clCellH=clRows>1?(H-clPadY*2)/(clRows-1):0;
+  const clLastRowCount=CLUSTERS.length%clCols||clCols;
+  const clLastRowOffset=(clCols-clLastRowCount)/2;
   clusterCentroids=CLUSTERS.map((cl,i)=>{
     const col=i%clCols,row=Math.floor(i/clCols);
-    return{x:clPadX+(col+0.5)*clCellW,y:clRows>1?clPadY+row*clCellH:H/2,nombre:cl.nombre,actor_ids:cl.actor_ids,verticales:cl.verticales};
+    const isLast=row===clRows-1&&clLastRowCount!==clCols;
+    const cx=clPadX+(col+(isLast?clLastRowOffset:0)+0.5)*clCellW;
+    return{x:cx,y:clRows>1?clPadY+row*clCellH:H/2,nombre:cl.nombre,actor_ids:cl.actor_ids,verticales:cl.verticales};
   });
   gClusterBg=gMain.append('g').attr('class','cluster-bg-g').attr('opacity',0).attr('pointer-events','none');
   clusterCentroids.forEach((cc)=>{
@@ -841,10 +845,7 @@ function initNet(){
     gVLaneBg.append('text').attr('class','tier-band-lbl').attr('data-frac',frac).attr('x',44).attr('y',ty-5).attr('font-family','Space Mono, monospace').attr('font-size','7px').attr('letter-spacing','0.14em').attr('fill','rgba(255,255,255,0.2)').text(lbl);
   });
 
-  // — Mode 1 background: vertical rings + labels —
   const R=Math.min(W,H)*0.31,cx=W/2,cy=H/2;
-  gMain.selectAll('.c-ring').data(vKeys).enter().append('circle').attr('class','c-ring').attr('r',75).attr('cx',(v,i)=>cx+R*Math.cos((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('cy',(v,i)=>cy+R*Math.sin((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('fill','none').attr('stroke',v=>VX[v].color).attr('stroke-width',0.5).attr('opacity',0.08);
-  gMain.selectAll('.c-lbl').data(vKeys).enter().append('text').attr('class','c-lbl').attr('x',(v,i)=>cx+(R+92)*Math.cos((i/vKeys.length)*Math.PI*2-Math.PI/2)).attr('y',(v,i)=>cy+(R+92)*Math.sin((i/vKeys.length)*Math.PI*2-Math.PI/2)+4).attr('text-anchor','middle').attr('font-family','Space Mono, monospace').attr('font-size','8px').attr('letter-spacing','0.12em').attr('fill',v=>VX[v].color).attr('opacity',0.35).text(v=>v);
 
   netNodeData=ACTORS.map((a)=>{
     const vi=vKeys.indexOf(a.vertical);
@@ -948,10 +949,6 @@ function updateLOD(scale){
   }
   labelSel.attr('opacity',d=>{if(hoveredId)return;if(d.tier===1)return scale<0.4?0:Math.min(1,(scale-0.3)*2)*0.88;if(d.tier===2)return scale<1.1?0:Math.min(0.8,(scale-1.1)*2.5);if(d.tier===3)return scale<2.0?0:Math.min(0.7,(scale-2.0)*3);return 0;}).attr('font-size',d=>{const base=d.tier===1?9.5:8.5;return Math.max(7,base/Math.max(scale,0.5))+'px';});
   d3.selectAll('.node-circle').attr('r',d=>{const base=d.r;if(scale<0.5)return base*1.4;if(scale<0.8)return base*1.1;return base;});
-  if(netLayout==='red'){
-    d3.selectAll('.c-ring').attr('opacity',scale<0.5?0.18:0.07);
-    d3.selectAll('.c-lbl').attr('opacity',scale<0.6?0.5:scale<1.2?0.25:0.08);
-  }
 }
 
 let minimapCtx,minimapW=120,minimapH=80;
@@ -1104,10 +1101,13 @@ function updateClusterCentroids(W,H){
   const clPadX=W*0.12,clPadY=H*0.15;
   const clCellW=(W-clPadX*2)/clCols;
   const clCellH=clRows>1?(H-clPadY*2)/(clRows-1):0;
+  const clLastRowCount=CLUSTERS.length%clCols||clCols;
+  const clLastRowOffset=(clCols-clLastRowCount)/2;
   CLUSTERS.forEach((_,i)=>{
     const col=i%clCols,row=Math.floor(i/clCols);
     if(clusterCentroids[i]){
-      clusterCentroids[i].x=clPadX+(col+0.5)*clCellW;
+      const isLast=row===clRows-1&&clLastRowCount!==clCols;
+      clusterCentroids[i].x=clPadX+(col+(isLast?clLastRowOffset:0)+0.5)*clCellW;
       clusterCentroids[i].y=clRows>1?clPadY+row*clCellH:H/2;
     }
   });
@@ -1183,9 +1183,6 @@ function applyLayoutForces(mode,W,H){
 }
 
 function applyLayoutBg(mode){
-  const showRed=mode==='red';
-  d3.selectAll('.c-ring').transition().duration(300).attr('opacity',showRed?0.08:0);
-  d3.selectAll('.c-lbl').transition().duration(300).attr('opacity',showRed?0.35:0);
   if(gClusterBg)gClusterBg.transition().duration(300).attr('opacity',mode==='clusters'?1:0);
   if(gVLaneBg)gVLaneBg.transition().duration(300).attr('opacity',mode==='verticales'?1:0);
 }
