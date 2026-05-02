@@ -243,7 +243,7 @@ def main():
 
     tracker_path    = Path(args.tracker)
     conexiones_path = Path(args.conexiones)
-    out_dir         = Path(__file__).parent.parent / "data"
+    out_dir         = Path(__file__).parent
     out_dir.mkdir(exist_ok=True)
 
     for p in [tracker_path, conexiones_path]:

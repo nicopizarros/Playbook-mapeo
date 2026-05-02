@@ -77,7 +77,7 @@
       "actor_name": "Liga MX — AC Independiente",
       "vertical": "V1",
       "nombre": "Mikel Arriola Peñalosa",
-      "cargo": "Presidente Liga MX y Comisionado FMF",
+      "cargo": "Comisionado Presidente de la FMF (cargo formal post-2024); el cargo de Presidente de Liga MX AC está vacante a mayo 2026",
       "por_que": "Toda decisión comercial de la liga pasa por él en 2024-2028. Dualidad de mandato inédita. CROSS-REF: POI-013 (V4-016).",
       "conexion": "TEAM Marketing; Apollo/NFL; CONCACAF Council; Leagues Cup; separación jurídica AC abr-2026",
       "certeza": "Verificado",
@@ -763,7 +763,7 @@
       "actor_name": "Mikel Arriola Peñalosa",
       "vertical": "V4",
       "nombre": "Mikel Arriola Peñalosa",
-      "cargo": "Presidente Liga MX y Comisionado FMF",
+      "cargo": "Comisionado Presidente de la FMF (cargo formal post-2024); el cargo de Presidente de Liga MX AC está vacante a mayo 2026",
       "por_que": "Toda decisión V4 upstream pasa por él en 2024-2028; dualidad de mandato inédita",
       "conexion": "TEAM Marketing; Apollo/NFL; CONCACAF Council; Leagues Cup",
       "certeza": "Verificado",
@@ -978,7 +978,7 @@
       "actor_name": "Elevate Sports Ventures",
       "vertical": "V5",
       "nombre": "Al Guido",
-      "cargo": "Chair y CEO Elevate Sports Ventures; CEO SF 49ers",
+      "cargo": "Chairman & CEO Elevate Sports Ventures; CEO San Francisco 49ers (promovido de Presidente a CEO en 2026)",
       "por_que": "Ejecutivo dual: doble rol 49ers/Elevate; arquitecto del modelo premium seating en México",
       "conexion": "Grupo Ollamani; 49ers; NFL México City Game 2026",
       "certeza": "Verificado",
@@ -1080,11 +1080,11 @@
       "vertical": "V5",
       "nombre": "Renata Burillo Gómez Haro",
       "cargo": "Presidenta del Consejo, Mextenis",
-      "por_que": "Figura declarada de la sucesión post-Burillo; firma contratos con ATP",
+      "por_que": "Presidenta del Consejo de Mextenis desde 2022 (no asumió por sucesión — ya operaba). Garante de continuidad operativa post-Burillo; firma contratos con ATP",
       "conexion": "ATP/WTA; Telcel; HSBC; heredera capital relacional Burillo",
       "certeza": "Verificado",
       "linkedin": "",
-      "notas": "Monitoreo urgente — sucesión activa desde 16-abr-2026"
+      "notas": "Monitoreo urgente — continuidad confirmada — Renata ya era Presidenta del Consejo desde 2022; ATP 500 2027 ratificado (SECTUR Guerrero, 25-mar-2026)"
     },
     {
       "poi_id": "POI-036",
@@ -1489,7 +1489,7 @@
       "vertical": "V8",
       "nombre": "Francisco 'Fran' Iturbide",
       "cargo": "Director General de Competencias, Operaciones y Desarrollo Liga MX",
-      "por_que": "Principal candidato a Presidente Liga MX en la separación jurídica post-abril 2026; su llegada definirá el rumbo del stack tecnológico y las licitaciones post-Mundial.",
+      "por_que": "Principal principal candidato a Presidente Liga MX AC (designación pendiente del Comité de Buen Gobierno, proyectada julio 2026 o posterior) — NO designado oficialmente a mayo 2026; su llegada definirá el rumbo del stack tecnológico y las licitaciones post-Mundial.",
       "conexion": "Liga MX; Genius Sports; Hudl/CITEC; Hawk-Eye (contexto licitación).",
       "certeza": "Verificado",
       "linkedin": "",
@@ -1620,7 +1620,7 @@
       "vertical": "V9",
       "nombre": "Francisco Iturbide",
       "cargo": "Director General de Competencias, Operaciones y Desarrollo Liga MX; candidato a Presidente Liga MX AC",
-      "por_que": "Principal candidato a la presidencia de la nueva AC. Su llegada definirá el rumbo del stack tecnológico (V8), las licitaciones post-Mundial y la estrategia de centralización comercial 2028. Ya listado en V8 como POI-069.",
+      "por_que": "Principal candidato a la presidencia de la nueva AC (NO designado oficialmente a mayo 2026; designación proyectada julio 2026 o posterior por el Comité de Buen Gobierno). Su llegada definirá el rumbo del stack tecnológico (V8), las licitaciones post-Mundial y la estrategia de centralización comercial 2028. Ya listado en V8 como POI-069.",
       "conexion": "Liga MX — separación jurídica FMF | Genius Sports SAOT | Hudl/CITEC",
       "certeza": "Fuente única",
       "linkedin": "Pendiente de enriquecimiento",
@@ -1654,7 +1654,7 @@
       "conexion": "Pachuca · León (en venta) · Real Oviedo 51% · Talleres Córdoba · Everton Viña del Mar",
       "certeza": "Verificado",
       "linkedin": "Pendiente de enriquecimiento",
-      "notas": "Cross-referencia V9-006. Estado de prófugo es FUENTE ÚNICA (La Silla Rota). Monitoreo urgente — situación legal activa."
+      "notas": "Cross-referencia V9-006. Estado de protegido por amparo provisional (expediente 1096/2025) es FUENTE ÚNICA (La Silla Rota). Monitoreo urgente — situación legal activa."
     }
   ],
   "V9-012": [
@@ -1724,12 +1724,12 @@
       "actor_name": "Fillip Holdings",
       "vertical": "V9",
       "nombre": "Pendiente de enriquecimiento",
-      "cargo": "Fundador / CEO Fillip Holdings",
-      "por_que": "Decisor de la JV WWE-AAA (49% Fillip) y de la estrategia de inversión en Kings League México. Identidad del fundador no divulgada públicamente en fuentes tier-1 disponibles.",
+      "cargo": "Co-Founders confirmados: Alberto Fasja (Executive Chairman) y Hugo López-Velarde (Co-Founder y Co-CEO)",
+      "por_que": "Decisor de la JV WWE-AAA (49% Fillip) y de la estrategia de inversión en Kings League México. Fundadores públicamente identificados: Alberto Fasja (Executive Chairman) y Hugo López-Velarde (Co-Founder y Co-CEO). Sede: Lomas de Chapultepec, CDMX.",
       "conexion": "WWE / TKO Group Holdings (JV AAA) · Kings League · FEMSA Ventures · NAZCA · DILA Capital",
       "certeza": "Fuente única",
       "linkedin": "Pendiente de enriquecimiento",
-      "notas": "Fundador no identificado públicamente en fuentes disponibles. Sede Lomas de Chapultepec. Pendiente de enriquecimiento urgente dado el deal WWE-AAA."
+      "notas": "Fundadores identificados: Alberto Fasja (Executive Chairman) y Hugo López-Velarde (Co-Founder y Co-CEO). Sede Lomas de Chapultepec. Pendiente de enriquecimiento urgente dado el deal WWE-AAA."
     }
   ]
 }
