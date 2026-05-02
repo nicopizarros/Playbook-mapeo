@@ -4,6 +4,7 @@ import { initNet } from './views/network.js';
 import { buildIdx } from './views/index.js';
 import { buildBrief } from './views/brief.js';
 import { buildClusters } from './views/clusters.js';
+import { initChat } from './views/chat.js';
 import { initTicker } from './ticker.js';
 import { switchView } from './router.js';
 
@@ -49,6 +50,8 @@ export function animPct(from, to, done) {
 export async function launchMain() {
   await loadData();
   APP.actorMap = new Map(APP.ACTORS.map(a => [a.id, a]));
+  // Derive cluster membership set — single source of truth for cluster view
+  APP.clusteredActorIds = new Set(APP.CLUSTERS.flatMap(cl => cl.actor_ids || []));
   document.getElementById('screen-unlock').classList.remove('on');
   document.getElementById('screen-main').classList.add('on');
   document.getElementById('ticker').classList.add('on');
@@ -71,6 +74,7 @@ export async function launchMain() {
     }
   });
   initTicker();
+  initChat();
   if (typeof window.d3 === 'undefined') {
     document.querySelectorAll('.vt[data-view="network"],.sb-item[data-view="network"]').forEach(el => el.style.display = 'none');
     const netContainer = document.getElementById('view-network');

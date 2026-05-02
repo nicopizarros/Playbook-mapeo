@@ -82,6 +82,7 @@
       <div class="sb-item" data-view="index" onclick="switchView('index',this)"><div class="sb-dot" style="background:var(--v2)"></div><span class="sb-lbl">Indice</span></div>
       <div class="sb-item" data-view="brief" onclick="switchView('brief',this)"><div class="sb-dot" style="background:var(--v4)"></div><span class="sb-lbl">Briefings</span></div>
       <div class="sb-item" data-view="clusters" onclick="switchView('clusters',this)"><div class="sb-dot" style="background:var(--v4)"></div><span class="sb-lbl">Clusters</span></div>
+      <div class="sb-item" data-view="chat" onclick="switchView('chat',this)"><div class="sb-dot" style="background:var(--green);animation:pulse 2.5s ease-in-out infinite;opacity:0.8"></div><span class="sb-lbl">Inteligencia IA</span></div>
       <div class="sb-sec" style="margin-top:4px">Verticales</div>
       <div class="sb-item" onclick="filterV('V1')" id="sv-V1"><div class="sb-dot" style="background:var(--v1)"></div><span class="sb-lbl">V1 Propiedades</span><span class="sb-cnt" id="sc-V1"></span></div>
       <div class="sb-item" onclick="filterV('V2')" id="sv-V2"><div class="sb-dot" style="background:var(--v2)"></div><span class="sb-lbl">V2 Media</span><span class="sb-cnt" id="sc-V2"></span></div>
@@ -107,6 +108,7 @@
       <div class="vt" data-view="index" onclick="switchView('index',null,this)">Indice</div>
       <div class="vt" data-view="brief" onclick="switchView('brief',null,this)">Briefings verticales</div>
       <div class="vt" data-view="clusters" onclick="switchView('clusters',null,this)">Clusters de poder</div>
+      <div class="vt" data-view="chat" onclick="switchView('chat',null,this)">Inteligencia IA</div>
     </div>
     <div class="view-wrap">
       <div id="view-network">
@@ -189,6 +191,20 @@
         <div class="actor-panel" id="cluster-panel">
           <div class="ap-top"><div class="ap-x" onclick="closeP('cluster-panel')">✕</div><div class="ap-vtag" id="cp-vt"></div><div class="ap-name" id="cp-n"></div><div class="ap-role" id="cp-r"></div></div>
           <div class="ap-body" id="cp-b"></div>
+        </div>
+      </div>
+      <div id="view-chat">
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-area">
+          <div class="chat-input-row">
+            <textarea id="chat-input" class="chat-textarea" placeholder="Pregunta sobre el ecosistema deportivo MX 2026..." rows="1" maxlength="2000" aria-label="Consulta de inteligencia"></textarea>
+            <button id="chat-send" class="chat-btn chat-btn-send" title="Enviar">→</button>
+            <button id="chat-stop" class="chat-btn chat-btn-stop" style="display:none" title="Detener">■</button>
+          </div>
+          <div class="chat-input-meta">
+            <span class="chat-meta-hint">Enter para enviar · Shift+Enter para nueva línea · Los IDs de actores son clicables</span>
+            <button id="chat-clear" class="chat-clear-btn" title="Nueva conversación">Nueva conversación</button>
+          </div>
         </div>
       </div>
     </div>

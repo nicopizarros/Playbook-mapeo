@@ -10,6 +10,11 @@ function hexToRgb(hex) {
   return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`;
 }
 
+// Returns actor IDs that belong to a cluster AND exist in actorMap — no phantom counts
+function validClusterActors(cl) {
+  return (cl.actor_ids || []).filter(id => APP.clusteredActorIds.has(id) && APP.actorMap.has(id));
+}
+
 export function buildClusters(attempt) {
   attempt = attempt || 0;
   if (!(APP.CLUSTERS.length > 0 && APP.ACTORS.length > 0 && APP.actorMap.size > 0)) {
@@ -25,7 +30,8 @@ export function buildClusters(attempt) {
       const firstV = vCodes[0];
       const color = (VX[firstV] || VX.V1).color;
       const shortName = (cl.nombre || '').replace(/^Cluster /, '').split('(')[0].trim();
-      const actorCount = (cl.actor_ids || []).filter(id => APP.actorMap.has(id)).length;
+      // Count only actors that are both cluster-assigned AND loaded
+      const actorCount = validClusterActors(cl).length;
       const chips = vCodes.map(vc => `<span class="cl-list-chip" style="border-color:${(VX[vc] || VX.V1).color}55;color:${(VX[vc] || VX.V1).color}">${vc}</span>`).join('');
       return `<div class="cl-list-item" data-ci="${i}"><div class="cl-list-name">${shortName}</div><div class="cl-list-meta">${actorCount} actores</div><div class="cl-list-chips">${chips}</div></div>`;
     }).join('');
@@ -68,11 +74,17 @@ export function renderClusterDetail(clIdx) {
   const conexHtml = conexArr.map(c =>
     `<div class="cl-detail-conn"><span class="cl-detail-conn-arrow" style="color:${color}">→</span><span>${c}</span></div>`
   ).join('');
-  const pillsHtml = (cl.actor_ids || []).map(id => {
-    const a = APP.actorMap.get(id); if (!a) return '';
+
+  // Only render pills for actors that are cluster-assigned AND loaded — no fallback, no phantoms
+  const validIds = validClusterActors(cl);
+  const pillsHtml = validIds.map(id => {
+    const a = APP.actorMap.get(id);
+    // Guard is redundant (validClusterActors already checks) but keeps intent explicit
+    if (!a) return '';
     const ac = (VX[a.vertical] || VX.V1).color;
     return `<span data-aid="${id}" class="cl-detail-pill" style="border-color:${ac}44;color:${ac}" onmouseenter="this.style.background='${ac}15'" onmouseleave="this.style.background=''">${a.label}</span>`;
   }).join('');
+
   detailEl.innerHTML = `
     <div class="cl-detail-header">
       <div class="cl-detail-code">${clIdx + 1} / ${APP.CLUSTERS.length} &nbsp;·&nbsp; ${cl.verticales || ''}</div>
@@ -82,7 +94,7 @@ export function renderClusterDetail(clIdx) {
     <div class="cl-detail-sec">Control</div>
     <div class="cl-detail-control" style="border-left-color:${color};background:rgba(${rgb},0.04)">${cl.control || ''}</div>
     ${conexArr.length ? `<div class="cl-detail-sec">Conexiones documentadas</div><div style="margin-bottom:20px">${conexHtml}</div>` : ''}
-    <div class="cl-detail-sec">Actores (${(cl.actor_ids || []).length})</div>
+    <div class="cl-detail-sec">Actores (${validIds.length})</div>
     <div class="cl-detail-pills">${pillsHtml}</div>
   `;
 }

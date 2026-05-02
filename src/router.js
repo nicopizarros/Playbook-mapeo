@@ -4,6 +4,7 @@ import { renderIdx } from './views/index.js';
 import { buildBrief } from './views/brief.js';
 import { buildClusters } from './views/clusters.js';
 import { updateHoverState } from './views/network.js';
+import { focusChatInput } from './views/chat.js';
 
 export function closeAllPanels() {
   ['net-panel', 'idx-panel', 'br-panel', 'cluster-panel'].forEach(id => {
@@ -17,10 +18,12 @@ export function switchView(v, sbEl, tabEl) {
   APP.hoveredId = null;
   try { updateHoverState(); } catch(e) {}
   APP.curView = v;
-  ['network', 'index', 'brief', 'clusters'].forEach(id => {
+  // 'chat' uses flex layout; all others use block
+  const displayFor = { chat: 'flex' };
+  ['network', 'index', 'brief', 'clusters', 'chat'].forEach(id => {
     const el = document.getElementById('view-' + id);
     if (!el) return;
-    if (id === v) { el.style.display = 'block'; el.style.visibility = 'visible'; void el.offsetHeight; }
+    if (id === v) { el.style.display = displayFor[id] || 'block'; el.style.visibility = 'visible'; void el.offsetHeight; }
     else { el.style.display = 'none'; el.style.visibility = 'hidden'; }
   });
   document.querySelectorAll('.sb-item[data-view]').forEach(el => el.classList.toggle('active', el.dataset.view === v));
@@ -30,6 +33,7 @@ export function switchView(v, sbEl, tabEl) {
     index:   'Indice <em>/ Todos los actores</em>',
     brief:   'Briefings <em>/ Por vertical</em>',
     clusters:'Clusters <em>/ Poder y control</em>',
+    chat:    'Inteligencia <em>/ Consulta conversacional</em>',
   };
   document.getElementById('tb-crumb').innerHTML = lbls[v] || '';
   if (v === 'index') {
@@ -44,6 +48,9 @@ export function switchView(v, sbEl, tabEl) {
   }
   if (v === 'clusters') {
     try { buildClusters(); } catch(e) { console.warn('buildClusters error:', e); showViewError('view-clusters', buildClusters); }
+  }
+  if (v === 'chat') {
+    try { focusChatInput(); } catch(e) {}
   }
 }
 

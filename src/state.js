@@ -47,4 +47,9 @@ export const APP = {
   sortCol: null,
   sortDir: 1,
   _clustersBuilt: false,
+  // Chat view state
+  chatHistory: [],
+  chatOpen: false,
+  // Cluster membership — populated after data load; single source of truth
+  clusteredActorIds: new Set(),
 };
