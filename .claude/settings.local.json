@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/nicopizarro/Library/Python/3.9/bin/python3 *)",
+      "Bash(python3 -c \"import playwright; print\\('playwright ok'\\)\")",
+      "Bash(python3 *)",
+      "Bash(node --input-type=module)"
+    ]
+  }
+}
