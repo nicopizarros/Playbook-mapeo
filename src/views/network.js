@@ -145,13 +145,14 @@ export function initNet() {
 
     APP.simulation = d3.forceSimulation(APP.netNodeData)
       .force('link', d3.forceLink(edgeData).id(d => d.id).distance(130).strength(0.45))
-      .force('charge', d3.forceManyBody().strength(-380).distanceMax(380))
-      .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 58 : d.tier === 2 ? 22 : 12)).strength(0.9))
-      .force('cluster', clusterForce(vKeys, cx, cy, R, 0.06))
-      .force('center', d3.forceCenter(cx, cy).strength(0.04))
+      .force('charge', d3.forceManyBody().strength(-220).distanceMax(280))
+      .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 22 : d.tier === 2 ? 12 : 7)).strength(0.7))
+      .force('cluster', clusterForce(vKeys, cx, cy, R, 0.04))
+      .force('center', d3.forceCenter(cx, cy).strength(0.02))
       .force('x', d3.forceX(cx).strength(0.015))
       .force('y', d3.forceY(cy).strength(0.015))
-      .alphaDecay(0.02)
+      .alphaDecay(0.035)
+      .velocityDecay(0.55)
       .on('tick', () => {
         APP.linkSel.attr('x1', d => d.source.x).attr('y1', d => d.source.y).attr('x2', d => d.target.x).attr('y2', d => d.target.y);
         APP.netNodeGroups.attr('transform', d => `translate(${d.x},${d.y})`);
@@ -477,12 +478,12 @@ function applyLayoutForces(mode, W, H) {
   APP.simulation
     .force('clusterBound', null).force('laneBound', null).force('cluster', null)
     .force('x', null).force('y', null)
-    .force('charge', d3.forceManyBody().strength(-380).distanceMax(380))
-    .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 58 : d.tier === 2 ? 22 : 12)).strength(0.9));
+    .force('charge', d3.forceManyBody().strength(-220).distanceMax(280))
+    .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 22 : d.tier === 2 ? 12 : 7)).strength(0.7));
   if (mode === 'red') {
     APP.simulation
-      .force('cluster', clusterForce(vKeys, cx, cy, R, 0.06))
-      .force('center', d3.forceCenter(cx, cy).strength(0.04))
+      .force('cluster', clusterForce(vKeys, cx, cy, R, 0.04))
+      .force('center', d3.forceCenter(cx, cy).strength(0.02))
       .force('x', d3.forceX(cx).strength(0.015))
       .force('y', d3.forceY(cy).strength(0.015));
   } else if (mode === 'clusters') {
