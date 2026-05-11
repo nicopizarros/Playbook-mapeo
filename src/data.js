@@ -144,10 +144,10 @@ export async function loadData() {
   // Fetcheamos desde la raíz para mantener compatibilidad con el deploy actual de Vercel.
   // Si el dia de manana queremos servir desde /data/, basta cambiar los paths aqui.
   const [actorsRaw, edgesRaw, poiRaw, clustersRaw] = await Promise.all([
-    safeFetch('actors.json',   'actors'),
-    safeFetch('edges.json',    'edges'),
-    safeFetch('poi.json',      'poi'),
-    safeFetch('clusters.json', 'clusters'),
+    safeFetch('data/actors.json',   'actors'),
+    safeFetch('data/edges.json',    'edges'),
+    safeFetch('data/poi.json',      'poi'),
+    safeFetch('data/clusters.json', 'clusters'),
   ]);
   APP.ACTORS      = actorsRaw   ? actorsRaw.map(adaptActor) : [];
   APP.EDGES_RAW   = edgesRaw    || [];
