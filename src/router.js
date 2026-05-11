@@ -2,11 +2,11 @@ import { APP, VX } from './state.js';
 import { showViewError } from './data.js';
 import { renderIdx } from './views/index.js';
 import { buildBrief } from './views/brief.js';
-import { buildMatrix } from './views/matrix.js';
+import { buildClusters } from './views/clusters.js';
 import { updateHoverState } from './views/network.js';
 
 export function closeAllPanels() {
-  ['net-panel', 'idx-panel', 'br-panel', 'mx-panel'].forEach(id => {
+  ['net-panel', 'idx-panel', 'br-panel', 'cluster-panel', 'mx-panel'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.remove('open');
   });
@@ -17,7 +17,7 @@ export function switchView(v, sbEl, tabEl) {
   APP.hoveredId = null;
   try { updateHoverState(); } catch(e) {}
   APP.curView = v;
-  ['network', 'index', 'brief', 'matrix'].forEach(id => {
+  ['network', 'index', 'brief', 'clusters'].forEach(id => {
     const el = document.getElementById('view-' + id);
     if (!el) return;
     if (id === v) { el.style.display = 'block'; el.style.visibility = 'visible'; void el.offsetHeight; }
@@ -26,10 +26,10 @@ export function switchView(v, sbEl, tabEl) {
   document.querySelectorAll('.sb-item[data-view]').forEach(el => el.classList.toggle('active', el.dataset.view === v));
   document.querySelectorAll('.vt').forEach(el => el.classList.toggle('active', el.dataset.view === v));
   const lbls = {
-    network: 'Red <em>/ Ecosistema completo</em>',
-    index:   'Indice <em>/ Todos los actores</em>',
-    brief:   'Briefings <em>/ Por vertical</em>',
-    matrix:  'Matriz estratégica <em>/ Capacidad funcional</em>',
+    network:  'Red <em>/ Ecosistema completo</em>',
+    index:    'Indice <em>/ Todos los actores</em>',
+    brief:    'Briefings <em>/ Por vertical</em>',
+    clusters: 'Clusters ejecutivos <em>/ 7 estructuras de poder</em>',
   };
   document.getElementById('tb-crumb').innerHTML = lbls[v] || '';
   if (v === 'index') {
@@ -42,8 +42,8 @@ export function switchView(v, sbEl, tabEl) {
       try { buildBrief(); } catch(e) { console.warn('buildBrief error:', e); showViewError('view-brief', buildBrief); }
     }
   }
-  if (v === 'matrix') {
-    try { buildMatrix(); } catch(e) { console.warn('buildMatrix error:', e); showViewError('view-matrix', buildMatrix); }
+  if (v === 'clusters') {
+    try { buildClusters(); } catch(e) { console.warn('buildClusters error:', e); showViewError('view-clusters', buildClusters); }
   }
 }
 
