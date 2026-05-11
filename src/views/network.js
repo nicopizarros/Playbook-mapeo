@@ -3,6 +3,33 @@ import { openPanel } from '../panel.js';
 
 let minimapCtx, minimapW = 120, minimapH = 80;
 
+// Thresholds for red-mode dimming based on score_compuesto (0–1)
+const SCORE_DIM_FULL    = 0.35;  // >= full opacity
+const SCORE_DIM_PARTIAL = 0.15;  // >= mid dim; below this → ghost
+
+function getRedModeNodeOpacity(d) {
+  if (APP.netLayout !== 'red') return 1;
+  const sc = d.score_compuesto || 0;
+  if (sc >= SCORE_DIM_FULL)    return 1;
+  if (sc >= SCORE_DIM_PARTIAL) return 0.38;
+  return 0.1;
+}
+
+// Fill color driven by score_profundidad (depth of engagement)
+function scoreToFillColor(d) {
+  const base = VX[d.vertical].color;
+  const sp = d.score_profundidad || 1;
+  if (sp >= 3) return base;
+  if (sp >= 2) return base + 'AA';
+  return base + '66';
+}
+
+// Stroke width driven by score_amplitud (breadth across verticals)
+function scoreToStrokeWidth(d) {
+  const sa = d.score_amplitud || 1;
+  return 0.3 + sa * 0.4;  // sa=1 → 0.7px, sa=4 → 1.9px
+}
+
 export function initNet() {
   const _netLoadOv = document.getElementById('net-loading-overlay');
   if (_netLoadOv) { _netLoadOv.classList.remove('hidden'); _netLoadOv.innerHTML = '<div class="net-load-dot"></div><div class="net-load-txt">CARGANDO RED...</div>'; }
@@ -94,7 +121,7 @@ export function initNet() {
       const vi = vKeys.indexOf(a.vertical);
       const ang = (vi / vKeys.length) * Math.PI * 2 - Math.PI / 2;
       const jitter = (Math.random() - .5) * 60;
-      return { ...a, x: cx + R * Math.cos(ang) + jitter, y: cy + R * Math.sin(ang) + jitter, r: a.tier === 1 ? 10 : a.tier === 2 ? 6 : 4 };
+      return { ...a, x: cx + R * Math.cos(ang) + jitter, y: cy + R * Math.sin(ang) + jitter, r: 3.5 + (a.score_compuesto || 0) * 11 };
     });
     const edgeData = APP.EDGES.map(e => ({
       source: APP.netNodeData.find(n => n.id === e.source),
@@ -149,14 +176,14 @@ export function initNet() {
         .on('end', (event, d) => { if (!event.active) APP.simulation.alphaTarget(0); d.fx = null; d.fy = null; })
       );
 
-    APP.netNodeGroups.filter(d => d.tier === 1).append('circle').attr('class', 'node-glow').attr('r', d => d.r * 2.2).attr('fill', d => VX[d.vertical].color).attr('opacity', 0.08).attr('filter', 'url(#glow)');
-    APP.nodeSel = APP.netNodeGroups.append('circle').attr('class', 'node-circle').attr('r', d => d.r).attr('fill', d => d.tier === 1 ? VX[d.vertical].color : d.tier === 2 ? VX[d.vertical].color + '66' : '#222').attr('stroke', d => VX[d.vertical].color).attr('stroke-width', d => d.tier === 1 ? 0.5 : 0).attr('opacity', 1);
+    APP.netNodeGroups.filter(d => (d.score_compuesto || 0) >= 0.5).append('circle').attr('class', 'node-glow').attr('r', d => d.r * 2.2).attr('fill', d => VX[d.vertical].color).attr('opacity', d => (d.score_compuesto || 0) * 0.14).attr('filter', 'url(#glow)');
+    APP.nodeSel = APP.netNodeGroups.append('circle').attr('class', 'node-circle').attr('r', d => d.r).attr('fill', d => scoreToFillColor(d)).attr('stroke', d => VX[d.vertical].color).attr('stroke-width', d => scoreToStrokeWidth(d)).attr('opacity', d => getRedModeNodeOpacity(d));
     APP.labelSel = APP.netNodeGroups.append('text').attr('class', 'node-label').attr('dy', d => d.r + 12).attr('text-anchor', 'middle').attr('font-family', 'DM Sans, sans-serif').attr('font-size', d => d.tier === 1 ? '9.5px' : '8.5px').attr('fill', d => d.tier === 1 ? VX[d.vertical].color : 'rgba(255,255,255,0.65)').attr('font-weight', d => d.tier === 1 ? 500 : 400).attr('pointer-events', 'none').text(d => d.label).attr('opacity', d => d.tier === 1 ? 0.85 : 0);
 
     APP.simulation = d3.forceSimulation(APP.netNodeData)
-      .force('link', d3.forceLink(edgeData).id(d => d.id).distance(130).strength(0.45))
-      .force('charge', d3.forceManyBody().strength(-220).distanceMax(280))
-      .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 22 : d.tier === 2 ? 12 : 7)).strength(0.7))
+      .force('link', d3.forceLink(edgeData).id(d => d.id).distance(185).strength(0.45))
+      .force('charge', d3.forceManyBody().strength(-300).distanceMax(360))
+      .force('collision', d3.forceCollide().radius(d => d.r * 1.9).strength(0.7))
       .force('cluster', clusterForce(vKeys, cx, cy, R, 0.04))
       .force('center', d3.forceCenter(cx, cy).strength(0.02))
       .force('x', d3.forceX(cx).strength(0.015))
@@ -275,15 +302,18 @@ function drawMinimap() {
   });
   ctx.globalAlpha = 1;
   ns.forEach(n => {
-    // En clusters mode, los no-miembros se ven atenuados en el minimap.
+    const sc = n.score_compuesto || 0;
     if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(n.id)) {
       ctx.globalAlpha = 0.18;
+    } else if (APP.netLayout === 'red') {
+      ctx.globalAlpha = sc >= SCORE_DIM_FULL ? 1 : sc >= SCORE_DIM_PARTIAL ? 0.45 : 0.2;
     } else {
       ctx.globalAlpha = 1;
     }
-    const vc = VX[n.vertical]; const r = n.tier === 1 ? 3 : n.tier === 2 ? 2 : 1.2;
+    const vc = VX[n.vertical];
+    const r = 1.0 + sc * 2.8;
     ctx.beginPath(); ctx.arc(toMX(n.x), toMY(n.y), r, 0, Math.PI * 2);
-    ctx.fillStyle = n.tier === 1 ? vc.color : vc.color + '66'; ctx.fill();
+    ctx.fillStyle = scoreToFillColor(n); ctx.fill();
   });
   ctx.globalAlpha = 1;
   if (APP.netLayout === 'clusters' && APP.clusterCentroids.length) {
@@ -445,12 +475,16 @@ function applyModeEdgeStyle() {
 function applyClusterModeNodeOpacity() {
   if (!APP.nodeSel) return;
   APP.nodeSel.transition().duration(300).attr('opacity', d => {
-    if (APP.netLayout !== 'clusters') return 1;
-    return APP.nodeClusterMap.has(d.id) ? 1 : 0.08;
+    if (APP.netLayout === 'clusters') return APP.nodeClusterMap.has(d.id) ? 1 : 0.08;
+    return getRedModeNodeOpacity(d);
   });
   d3.selectAll('.node-glow').transition().duration(300).attr('opacity', d => {
-    if (APP.netLayout !== 'clusters') return 0.08;
-    return APP.nodeClusterMap.has(d.id) ? 0.12 : 0;
+    if (APP.netLayout === 'clusters') return APP.nodeClusterMap.has(d.id) ? 0.12 : 0;
+    if (APP.netLayout === 'red') {
+      const sc = d.score_compuesto || 0;
+      return sc >= SCORE_DIM_FULL ? 0.12 : sc >= SCORE_DIM_PARTIAL ? 0.06 : 0;
+    }
+    return 0.08;
   });
   if (APP.labelSel) {
     APP.labelSel.transition().duration(300).attr('opacity', d => {
@@ -520,8 +554,8 @@ function applyLayoutForces(mode, W, H) {
     .force('clusterBound', null).force('laneBound', null).force('cluster', null)
     .force('zoneBound', null)
     .force('x', null).force('y', null)
-    .force('charge', d3.forceManyBody().strength(-220).distanceMax(280))
-    .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 22 : d.tier === 2 ? 12 : 7)).strength(0.7));
+    .force('charge', d3.forceManyBody().strength(-300).distanceMax(360))
+    .force('collision', d3.forceCollide().radius(d => d.r * 1.9).strength(0.7));
   if (mode === 'red') {
     APP.simulation
       .force('cluster', clusterForce(vKeys, cx, cy, R, 0.04))
@@ -571,7 +605,7 @@ export function updateHoverState() {
     if (!APP.hoveredId) {
       if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0.08;
       if (APP.selectedCluster !== null && APP.netLayout === 'clusters') return APP.nodeClusterMap.get(d.id) === APP.selectedCluster ? 1 : 0.08;
-      return 1;
+      return getRedModeNodeOpacity(d);
     }
     if (d.id === APP.hoveredId) return 1;
     return connectedIds.has(d.id) ? 0.9 : 0.12;
@@ -598,6 +632,10 @@ export function updateHoverState() {
   d3.selectAll('.node-glow').attr('opacity', function(d) {
     if (!APP.hoveredId) {
       if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0;
+      if (APP.netLayout === 'red') {
+        const sc = d.score_compuesto || 0;
+        return sc >= SCORE_DIM_FULL ? 0.12 : sc >= SCORE_DIM_PARTIAL ? 0.06 : 0;
+      }
       return 0.08;
     }
     return d.id === APP.hoveredId ? 0.3 : 0.02;
@@ -608,7 +646,8 @@ export function applyNetFilter(v) {
   if (!APP.linkSel) return;
   d3.selectAll('.node-circle').transition().duration(300).attr('opacity', d => {
     if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0.08;
-    return !v || d.vertical === v ? 1 : 0.06;
+    if (!v) return getRedModeNodeOpacity(d);
+    return d.vertical === v ? 1 : 0.06;
   });
   d3.selectAll('.node-label').transition().duration(300).attr('opacity', d => {
     if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0;
