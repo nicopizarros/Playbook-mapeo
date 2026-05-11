@@ -4,7 +4,7 @@ import { openPanel } from '../panel.js';
 let mxResizeObserver = null;
 
 export function buildMatrix() {
-  const wrap = document.getElementById('matrix-wrap');
+  const wrap = document.getElementById('matrix-in-net');
   if (!wrap || !APP.ACTORS.length) return;
 
   d3.select('#matrix-svg').selectAll('*').remove();
@@ -214,7 +214,7 @@ export function buildMatrix() {
   if (mxResizeObserver) mxResizeObserver.disconnect();
   if (typeof ResizeObserver !== 'undefined') {
     mxResizeObserver = new ResizeObserver(() => {
-      if (APP.curView === 'matrix') buildMatrix();
+      if (APP.netLayout === 'matriz') buildMatrix();
     });
     mxResizeObserver.observe(wrap);
   }
@@ -230,7 +230,7 @@ function mxFillColor(d) {
 
 function showMxTooltip(event, d) {
   const tt = document.getElementById('mx-tt');
-  const wrap = document.getElementById('matrix-wrap');
+  const wrap = document.getElementById('matrix-in-net');
   if (!tt || !wrap) return;
   const rect = wrap.getBoundingClientRect();
   tt.classList.add('on');
@@ -248,7 +248,7 @@ function showMxTooltip(event, d) {
 
 function moveMxTooltip(event) {
   const tt = document.getElementById('mx-tt');
-  const wrap = document.getElementById('matrix-wrap');
+  const wrap = document.getElementById('matrix-in-net');
   if (!tt || !wrap) return;
   const rect = wrap.getBoundingClientRect();
   const ttW = 244;

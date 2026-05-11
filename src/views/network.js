@@ -1,5 +1,6 @@
 import { APP, VX } from '../state.js';
 import { openPanel } from '../panel.js';
+import { buildMatrix } from './matrix.js';
 
 let minimapCtx, minimapW = 120, minimapH = 80;
 
@@ -673,6 +674,19 @@ export function setNetLayout(mode) {
   document.querySelectorAll('.net-lb').forEach(b => b.classList.remove('active'));
   const btn = document.getElementById('nlb-' + mode);
   if (btn) btn.classList.add('active');
+
+  // Matriz mode: swap to scatter-plot overlay — bypasses D3 simulation entirely
+  const matrixDiv = document.getElementById('matrix-in-net');
+  const netSvgEl = document.getElementById('net-svg');
+  if (mode === 'matriz') {
+    if (matrixDiv) matrixDiv.style.display = 'block';
+    if (netSvgEl) netSvgEl.style.display = 'none';
+    buildMatrix();
+    return;
+  }
+  if (matrixDiv) matrixDiv.style.display = 'none';
+  if (netSvgEl) netSvgEl.style.display = 'block';
+
   if (!APP.simulation) return;
   const W = wrap.clientWidth, H = wrap.clientHeight;
   applyLayoutForces(mode, W, H);

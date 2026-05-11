@@ -129,7 +129,6 @@
       <div class="sb-item" data-view="index" onclick="switchView('index',this)"><div class="sb-dot" style="background:var(--v2)"></div><span class="sb-lbl">Indice</span></div>
       <div class="sb-item" data-view="brief" onclick="switchView('brief',this)"><div class="sb-dot" style="background:var(--v4)"></div><span class="sb-lbl">Briefings</span></div>
       <div class="sb-item" data-view="clusters" onclick="switchView('clusters',this)"><div class="sb-dot" style="background:var(--v4)"></div><span class="sb-lbl">Clusters ejecutivos</span></div>
-      <div class="sb-item" data-view="matrix" onclick="switchView('matrix',this)"><div class="sb-dot" style="background:var(--v9)"></div><span class="sb-lbl">Matriz estratégica</span></div>
       <div class="sb-sec" style="margin-top:4px">Verticales</div>
       <div class="sb-item" onclick="filterV('V1')" id="sv-V1"><div class="sb-dot" style="background:var(--v1)"></div><span class="sb-lbl">V1 Rights Owners</span><span class="sb-cnt" id="sc-V1"></span></div>
       <div class="sb-item" onclick="filterV('V2')" id="sv-V2"><div class="sb-dot" style="background:var(--v2)"></div><span class="sb-lbl">V2 Media</span><span class="sb-cnt" id="sc-V2"></span></div>
@@ -155,12 +154,21 @@
       <div class="vt" data-view="index" onclick="switchView('index',null,this)">Indice maestro</div>
       <div class="vt" data-view="brief" onclick="switchView('brief',null,this)">Briefings verticales</div>
       <div class="vt" data-view="clusters" onclick="switchView('clusters',null,this)">Clusters ejecutivos</div>
-      <div class="vt" data-view="matrix" onclick="switchView('matrix',null,this)">Matriz estratégica</div>
     </div>
     <div class="view-wrap">
       <div id="view-network">
         <div id="net-svg-wrap" style="width:100%;height:100%;position:relative;overflow:hidden">
           <svg id="net-svg" style="width:100%;height:100%;display:block"></svg>
+          <!-- Matriz estratégica — 3rd graphic layout mode, overlays when active -->
+          <div id="matrix-in-net" style="width:100%;height:100%;position:absolute;top:0;left:0;display:none;overflow:hidden;background:var(--bg,#0a0a0a)">
+            <svg id="matrix-svg" style="width:100%;height:100%;display:block"></svg>
+            <div class="net-tt" id="mx-tt">
+              <div class="net-tt-name" id="mxt-n"></div>
+              <div class="net-tt-v" id="mxt-v"></div>
+              <div class="net-tt-role" id="mxt-r"></div>
+              <div class="net-tt-hint">Click para ficha completa</div>
+            </div>
+          </div>
           <div id="net-loading-overlay">
             <div class="net-load-dot"></div>
             <div class="net-load-txt">CARGANDO RED...</div>
@@ -169,6 +177,7 @@
         <div class="net-layout-btns">
           <button class="net-lb active" id="nlb-red" onclick="setNetLayout('red')">Red</button>
           <button class="net-lb" id="nlb-verticales" onclick="setNetLayout('verticales')">Verticales</button>
+          <button class="net-lb" id="nlb-matriz" onclick="setNetLayout('matriz')">Matriz</button>
         </div>
         <div class="net-ctrl-grp">
           <button class="net-cb" onclick="netZoom(1.25)" title="Acercar">+</button>
@@ -196,6 +205,10 @@
         <div class="actor-panel" id="net-panel">
           <div class="ap-top"><div class="ap-x" onclick="closeP('net-panel')">✕</div><div class="ap-vtag" id="np-vt"></div><div class="ap-name" id="np-n"></div><div class="ap-role" id="np-r"></div></div>
           <div class="ap-body" id="np-b"></div>
+        </div>
+        <div class="actor-panel" id="mx-panel">
+          <div class="ap-top"><div class="ap-x" onclick="closeP('mx-panel')">✕</div><div class="ap-vtag" id="mxp-vt"></div><div class="ap-name" id="mxp-n"></div><div class="ap-role" id="mxp-r"></div></div>
+          <div class="ap-body" id="mxp-b"></div>
         </div>
       </div>
       <div id="view-index">
@@ -237,21 +250,6 @@
         <div class="actor-panel" id="cluster-panel">
           <div class="ap-top"><div class="ap-x" onclick="closeP('cluster-panel')">✕</div><div class="ap-vtag" id="cp-vt"></div><div class="ap-name" id="cp-n"></div><div class="ap-role" id="cp-r"></div></div>
           <div class="ap-body" id="cp-b"></div>
-        </div>
-      </div>
-      <div id="view-matrix">
-        <div id="matrix-wrap" style="width:100%;height:100%;position:relative;overflow:hidden">
-          <svg id="matrix-svg" style="width:100%;height:100%;display:block"></svg>
-          <div class="net-tt" id="mx-tt">
-            <div class="net-tt-name" id="mxt-n"></div>
-            <div class="net-tt-v" id="mxt-v"></div>
-            <div class="net-tt-role" id="mxt-r"></div>
-            <div class="net-tt-hint">Click para ficha completa</div>
-          </div>
-        </div>
-        <div class="actor-panel" id="mx-panel">
-          <div class="ap-top"><div class="ap-x" onclick="closeP('mx-panel')">✕</div><div class="ap-vtag" id="mxp-vt"></div><div class="ap-name" id="mxp-n"></div><div class="ap-role" id="mxp-r"></div></div>
-          <div class="ap-body" id="mxp-b"></div>
         </div>
       </div>
     </div>
