@@ -41,7 +41,6 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 .app-logo--unlock{opacity:0.74;filter:drop-shadow(0 0 14px rgba(69,216,2,0.14))}
 .app-logo--sidebar{opacity:0.92}
 .pw-logo{width:auto;height:auto}
-.pw-logo-sub{font-family:var(--mono);font-size:7px;letter-spacing:0.35em;color:rgba(255,255,255,0.2);text-transform:uppercase}
 .pw-sep{display:flex;align-items:center;gap:16px;width:360px}
 .pw-sep-line{flex:1;height:1px}
 .pw-sep-line.l{background:linear-gradient(to right,transparent,rgba(69,216,2,0.25))}
