@@ -66,7 +66,7 @@ export const VX = {
 const LOGO_SVG =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 310" preserveAspectRatio="xMidYMid meet">' +
     '<g fill="#ffffff" font-family="Syne, Inter, system-ui, sans-serif" font-weight="800">' +
-      '<text x="0" y="240" font-size="280" letter-spacing="-8">Playbook</text>' +
+      '<text x="0" y="240" font-size="280" letter-spacing="-8" textLength="1040" lengthAdjust="spacingAndGlyphs">Playbook</text>' +
     '</g>' +
     // Corner mark verde arriba a la derecha (L invertida)
     '<g fill="#90E840">' +
@@ -76,6 +76,8 @@ const LOGO_SVG =
   '</svg>';
 
 export const LOGO = 'data:image/svg+xml;base64,' + btoa(LOGO_SVG);
+
+export const RIESGO_DEFAULT = 'Sin riesgo identificado';
 
 // Clave de acceso. Cambiala por la que uses en produccion.
 export const ACCESS_KEY = 'playbook2026';
