@@ -61,14 +61,21 @@ export const VX = {
   V9: { code:'V9', name:'Capital',           color:'var(--v9)' },
 };
 
-// Logo SVG inline en base64. Sustituir por el real cuando lo tengas listo.
-// Mientras tanto un placeholder limpio con el wordmark "PLAYBOOK".
-export const LOGO = 'data:image/svg+xml;base64,' + btoa(
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60">' +
-    '<text x="0" y="42" font-family="Syne, sans-serif" font-weight="800" font-size="36" fill="#45d802" letter-spacing="2">PLAYBOOK</text>' +
-    '<text x="0" y="56" font-family="Space Mono, monospace" font-size="7" fill="#909090" letter-spacing="3">SPORTS INTELLIGENCE</text>' +
-  '</svg>'
-);
+// Logo oficial Playbook: wordmark blanco + corner mark verde.
+// SVG inline (vectorial, escalable, sin pixelado). viewBox 1040x310 mantiene la proporcion del original.
+const LOGO_SVG =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 310" preserveAspectRatio="xMidYMid meet">' +
+    '<g fill="#ffffff" font-family="Syne, Inter, system-ui, sans-serif" font-weight="800">' +
+      '<text x="0" y="240" font-size="280" letter-spacing="-8">Playbook</text>' +
+    '</g>' +
+    // Corner mark verde arriba a la derecha (L invertida)
+    '<g fill="#90E840">' +
+      '<rect x="900" y="40" width="100" height="28"/>' +
+      '<rect x="972" y="40" width="28" height="130"/>' +
+    '</g>' +
+  '</svg>';
+
+export const LOGO = 'data:image/svg+xml;base64,' + btoa(LOGO_SVG);
 
 // Clave de acceso. Cambiala por la que uses en produccion.
 export const ACCESS_KEY = 'playbook2026';

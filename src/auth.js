@@ -40,7 +40,6 @@ function tick() {
     ctx.fillStyle = 'rgba(69,216,2,' + p.a + ')';
     ctx.fill();
   }
-  // Lineas finas entre puntas cercanas
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x;
@@ -87,7 +86,10 @@ function showError(msg) {
 
 export function doLogin() {
   const input = document.getElementById('pw-in');
-  if (!input) return;
+  if (!input) {
+    console.error('[auth] #pw-in no encontrado');
+    return;
+  }
   const val = (input.value || '').trim();
   if (!val) {
     showError('CLAVE REQUERIDA');
@@ -111,6 +113,11 @@ export function doLogin() {
   }, 800);
 }
 
+// CRITICO: exponer doLogin a window inmediatamente al cargar el modulo,
+// no dentro de initAuth(). El onclick="doLogin()" del HTML necesita
+// que exista en window apenas se parsea el modulo.
+window.doLogin = doLogin;
+
 export function initAuth() {
   canvas = document.getElementById('pw-canvas');
   if (canvas) {
@@ -125,6 +132,7 @@ export function initAuth() {
     input.addEventListener('keydown', e => {
       if (e.key === 'Enter') { e.preventDefault(); doLogin(); }
     });
+    setTimeout(() => input.focus(), 100);
   }
-  window.doLogin = doLogin;
+  console.log('[auth] inicializado, ACCESS_KEY length:', ACCESS_KEY.length);
 }
