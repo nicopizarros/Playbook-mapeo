@@ -39,6 +39,7 @@ export const APP = {
   labelSel:         null,
   netNodeData:      [],
   netNodeGroups:    null,
+  netClean:         true,
   nodeClusterMap:   new Map(),
   nodeClusterLabel: new Map(),
   clusterCentroids: new Map(),

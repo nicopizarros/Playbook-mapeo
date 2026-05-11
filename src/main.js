@@ -9,7 +9,7 @@ import { initSearch } from './search.js';
 import { initTicker } from './ticker.js';
 import { initRouterListeners, switchView } from './router.js';
 import {
-  initNet, setNetLayout, netZoom, netReset,
+  initNet, setNetLayout, netZoom, netReset, toggleNetClean,
 } from './views/network.js';
 import { renderIdx, sortIdx } from './views/index.js';
 import { buildBrief, expandBacSig } from './views/brief.js';
@@ -29,6 +29,7 @@ function exposeGlobals() {
   window.setNetLayout = setNetLayout;
   window.netZoom      = netZoom;
   window.netReset     = netReset;
+  window.toggleNetClean = toggleNetClean;
   window.closeP       = closeP;
   window.sortIdx      = sortIdx;
   window.expandBacSig = expandBacSig;

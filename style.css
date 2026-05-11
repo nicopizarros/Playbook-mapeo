@@ -228,6 +228,13 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 #minimap-viewport{position:absolute;border:1px solid rgba(69,216,2,0.5);pointer-events:none;background:rgba(69,216,2,0.04)}
 .minimap-label{position:absolute;top:4px;left:5px;font-family:'Space Mono',monospace;font-size:6px;letter-spacing:0.15em;color:rgba(255,255,255,0.2);text-transform:uppercase}
 #zoom-badge{position:absolute;bottom:42px;left:18px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--text-dim);background:rgba(13,13,13,0.85);padding:3px 7px;border:1px solid rgba(255,255,255,0.06)}
+#zoom-badge{opacity:0;transition:opacity .22s ease}
+#zoom-badge.on{opacity:1}
+.net-clean .net-legend{opacity:0.42;transform:scale(0.96);transform-origin:bottom left}
+.net-clean .net-mobile-hint{opacity:.55}
+.net-clean .net-layout-btns,.net-clean .net-ctrl-grp{backdrop-filter:blur(1px)}
+.net-clean #minimap{opacity:.88}
+.net-clean .node-label{fill:rgba(255,255,255,0.45)!important}
 #srch-count{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:0.08em;display:none;white-space:nowrap;margin-left:4px}
 .df-wrap{margin:0 0 28px;overflow-x:auto;padding-bottom:8px}
 .df-track{display:flex;gap:0;position:relative;min-width:500px}
