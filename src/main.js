@@ -13,7 +13,6 @@ import {
 } from './views/network.js';
 import { renderIdx, sortIdx } from './views/index.js';
 import { buildBrief, expandBacSig } from './views/brief.js';
-import { buildClusters } from './views/clusters.js';
 import { closeP } from './panel.js';
 
 function setDate() {
