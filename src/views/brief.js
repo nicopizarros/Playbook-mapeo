@@ -14,6 +14,16 @@ const DEALFLOW = {
   V9:[{date:'1999',e:'FEMSA adquiere Rayados de Monterrey',c:'#f8961e'},{date:'Sep 2024',e:'Caliente Interactive JV Playtech renegociado — USD 900M-1,200M',c:'#f8961e'},{date:'Oct 2025',e:'Apollo Sports Capital compra Atletico de Madrid',c:'#f8961e'},{date:'Dic 2025',e:'General Atlantic 49% Grupo Aguilas — USD 490M EV',c:'#f8961e'},{date:'2025',e:'Innovatio Capital compra Queretaro USD 120M',c:'#f8961e'},{date:'Abr 2026',e:'Grupo PRODI compra Atlas ~USD 220M / Atlante ascenso ~USD 65M',c:'#f8961e'}],
 };
 
+function fmtScore(n) {
+  if (n === null || n === undefined || typeof n !== 'number') return '';
+  return (n * 100).toFixed(0) + '%';
+}
+
+function shortTipo(t) {
+  if (!t) return '';
+  return t.split('(')[0].trim();
+}
+
 export function dealFlowHtml(v) {
   const items = DEALFLOW[v] || [];
   if (!items.length) return '';
@@ -22,29 +32,31 @@ export function dealFlowHtml(v) {
 
 export function buildBrief() {
   const nav = document.getElementById('brief-nav');
-  Object.entries(VX).forEach(([k, v], i) => {
-    const d = document.createElement('div');
-    d.className = 'bn-item' + (i === 0 ? ' on' : '');
-    d.dataset.v = k;
-    d.textContent = k + ' · ' + v.label;
-    d.onclick = () => {
-      document.querySelectorAll('.bn-item').forEach(x => x.classList.remove('on'));
-      d.classList.add('on');
-      renderBrief(k);
-    };
-    nav.appendChild(d);
-  });
+  if (nav && nav.children.length === 0) {
+    Object.entries(VX).forEach(([k, v], i) => {
+      const d = document.createElement('div');
+      d.className = 'bn-item' + (i === 0 ? ' on' : '');
+      d.dataset.v = k;
+      d.textContent = k + ' · ' + v.label;
+      d.onclick = () => {
+        document.querySelectorAll('.bn-item').forEach(x => x.classList.remove('on'));
+        d.classList.add('on');
+        renderBrief(k);
+      };
+      nav.appendChild(d);
+    });
+    document.getElementById('brief-body').addEventListener('click', e => {
+      if (e.target.closest('.bac-cta')) return;
+      const card = e.target.closest('[data-aid]');
+      if (card) { const a = APP.actorMap.get(card.dataset.aid); if (a) openPanel(a, 'br-panel'); }
+    });
+  }
   renderBrief('V1');
-  document.getElementById('brief-body').addEventListener('click', e => {
-    if (e.target.closest('.bac-cta')) return;
-    const card = e.target.closest('[data-aid]');
-    if (card) { const a = APP.actorMap.get(card.dataset.aid); if (a) openPanel(a, 'br-panel'); }
-  });
 }
 
 export function renderBrief(v) {
   try {
-    const vc = VX[v];
+    const vc = VX[v] || VX.V1;
     const va = APP.ACTORS.filter(a => a.vertical === v);
     const t1 = va.filter(a => a.tier === 1), t2 = va.filter(a => a.tier === 2), t3 = va.filter(a => a.tier === 3);
     document.getElementById('brief-body').innerHTML = `
@@ -60,8 +72,13 @@ export function renderBrief(v) {
         <div><div class="bv-stat-n" style="color:var(--text-muted)">${va.length}</div><div class="bv-stat-l">Total</div></div>
       </div>
     </div>
-    ${t1.length ? `<div class="brief-sec">Tier 1 — Actores dominantes</div><div class="b-grid">${t1.map(a => `<div class="bac" data-aid="${a.id}"><div class="bac-n">${a.label}</div><div class="bac-r">${a.role}</div>${a.valoracion !== '—' ? `<div class="bac-v">${a.valoracion}</div>` : ''}<span class="bac-b">● ${a.certeza}</span>${a.signal ? `<div class="bac-sig" id="bsig-${a.id}"><em>${a.signal}</em></div><div class="bac-cta" onclick="expandBacSig(event,'bsig-${a.id}',this)">Ver senal completa →</div>` : ''}</div>`).join('')}</div>` : ''}
-    ${t2.length ? `<div class="brief-sec" style="margin-top:22px">Tier 2 — Actores relevantes</div><div style="display:flex;flex-direction:column;gap:7px;margin-bottom:26px">${t2.map(a => `<div style="display:flex;align-items:flex-start;gap:14px;padding:11px 13px;background:#0d0d0d;border:1px solid rgba(255,255,255,0.055);cursor:pointer" data-aid="${a.id}"><div style="flex:1"><div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px">${a.label}</div><div style="font-family:var(--sans);font-size:11px;color:var(--text-muted);font-weight:300">${a.role}</div></div><div style="font-family:var(--mono);font-size:8px;color:var(--text-dim);flex-shrink:0">${a.ciudad}</div></div>`).join('')}</div>` : ''}
+    ${t1.length ? `<div class="brief-sec">Tier 1 — Actores dominantes</div><div class="b-grid">${t1.map(a => {
+      const sc = fmtScore(a.score_compuesto);
+      const tc = shortTipo(a.tipo_capacidad);
+      const scoreLine = sc ? `<div class="bac-v">Score ${sc}${tc ? ' · ' + tc : ''}</div>` : '';
+      return `<div class="bac" data-aid="${a.id}"><div class="bac-n">${a.label}</div><div class="bac-r">${a.role}</div>${scoreLine}<span class="bac-b">● ${a.certeza}</span>${a.signal ? `<div class="bac-sig" id="bsig-${a.id}"><em>${a.signal}</em></div><div class="bac-cta" onclick="expandBacSig(event,'bsig-${a.id}',this)">Ver senal completa →</div>` : ''}</div>`;
+    }).join('')}</div>` : ''}
+    ${t2.length ? `<div class="brief-sec" style="margin-top:22px">Tier 2 — Actores relevantes</div><div style="display:flex;flex-direction:column;gap:7px;margin-bottom:26px">${t2.map(a => `<div style="display:flex;align-items:flex-start;gap:14px;padding:11px 13px;background:#0d0d0d;border:1px solid rgba(255,255,255,0.055);cursor:pointer" data-aid="${a.id}"><div style="flex:1"><div style="font-family:var(--display);font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px">${a.label}</div><div style="font-family:var(--sans);font-size:11px;color:var(--text-muted);font-weight:300">${a.role}</div></div><div style="font-family:var(--mono);font-size:8px;color:var(--text-dim);flex-shrink:0">${a.ciudad || '—'}</div></div>`).join('')}</div>` : ''}
     ${t3.length ? `<div class="brief-sec" style="margin-top:8px">Tier 3 — Actores especializados</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:32px">${t3.map(a => `<div style="padding:7px 11px;background:#0d0d0d;border:1px solid rgba(255,255,255,0.055);cursor:pointer;font-family:var(--mono);font-size:8px;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase" data-aid="${a.id}">${a.label}</div>`).join('')}</div>` : ''}
     ${va.length === 0 ? `<div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);padding:40px 0">Sin actores registrados para ${v}.</div>` : ''}
     ${dealFlowHtml(v)}`;

@@ -1,7 +1,35 @@
 import { APP, VX } from '../state.js';
 import { openPanel } from '../panel.js';
+import { buildMatrix } from './matrix.js';
 
 let minimapCtx, minimapW = 120, minimapH = 80;
+
+// Thresholds for red-mode dimming based on score_compuesto (0–1)
+const SCORE_DIM_FULL    = 0.35;  // >= full opacity
+const SCORE_DIM_PARTIAL = 0.15;  // >= mid dim; below this → ghost
+
+function getRedModeNodeOpacity(d) {
+  if (APP.netLayout !== 'red') return 1;
+  const sc = d.score_compuesto || 0;
+  if (sc >= SCORE_DIM_FULL)    return 0.88;
+  if (sc >= SCORE_DIM_PARTIAL) return 0.22;
+  return 0.06;
+}
+
+// Fill color driven by score_profundidad (depth of engagement)
+function scoreToFillColor(d) {
+  const base = VX[d.vertical].color;
+  const sp = d.score_profundidad || 1;
+  if (sp >= 3) return base;
+  if (sp >= 2) return base + 'AA';
+  return base + '66';
+}
+
+// Stroke width driven by score_amplitud (breadth across verticals)
+function scoreToStrokeWidth(d) {
+  const sa = d.score_amplitud || 1;
+  return 0.3 + sa * 0.4;  // sa=1 → 0.7px, sa=4 → 1.9px
+}
 
 export function initNet() {
   const _netLoadOv = document.getElementById('net-loading-overlay');
@@ -39,13 +67,15 @@ export function initNet() {
     APP.nodeClusterMap = new Map();
     APP.nodeClusterLabel = new Map();
     APP.CLUSTERS.forEach((cl, ci) => {
-      cl.actor_ids.forEach(id => APP.nodeClusterMap.set(id, ci));
-      const shortName = cl.nombre.replace(/^Cluster /, '').split('(')[0].trim();
-      cl.actor_ids.forEach(id => APP.nodeClusterLabel.set(id, shortName));
+      (cl.actor_ids || []).forEach(id => APP.nodeClusterMap.set(id, ci));
+      const rawName = cl.nombre || cl.header || '';
+      const shortName = rawName.replace(/^CLUSTER\s+\d+\s+[—-]\s+/i, '').replace(/^Cluster\s+/i, '').split('(')[0].trim();
+      (cl.actor_ids || []).forEach(id => APP.nodeClusterLabel.set(id, shortName));
     });
 
     const clusterRingR = Math.min(W, H) * 0.13;
-    const clCols = 4, clRows = Math.ceil(APP.CLUSTERS.length / clCols);
+    const clCols = Math.min(4, Math.max(1, APP.CLUSTERS.length));
+    const clRows = Math.ceil(APP.CLUSTERS.length / clCols);
     const clPadX = W * 0.12, clPadY = H * 0.15;
     const clCellW = (W - clPadX * 2) / clCols;
     const clCellH = clRows > 1 ? (H - clPadY * 2) / (clRows - 1) : 0;
@@ -55,14 +85,17 @@ export function initNet() {
       const col = i % clCols, row = Math.floor(i / clCols);
       const isLast = row === clRows - 1 && clLastRowCount !== clCols;
       const cx = clPadX + (col + (isLast ? clLastRowOffset : 0) + 0.5) * clCellW;
-      return { x: cx, y: clRows > 1 ? clPadY + row * clCellH : H / 2, nombre: cl.nombre, actor_ids: cl.actor_ids, verticales: cl.verticales };
+      const rawName = cl.nombre || cl.header || ('Cluster ' + (cl.num || (i + 1)));
+      const verts = Array.isArray(cl.verticales) ? cl.verticales.join(' · ') : (cl.verticales || '');
+      return { x: cx, y: clRows > 1 ? clPadY + row * clCellH : H / 2, nombre: rawName, actor_ids: cl.actor_ids || [], verticales: verts };
     });
     APP.gClusterBg = APP.gMain.append('g').attr('class', 'cluster-bg-g').attr('opacity', 0).attr('pointer-events', 'none');
     APP.clusterCentroids.forEach(cc => {
-      const firstV = (cc.verticales.match(/V\d/) || ['V1'])[0];
+      const vMatch = (cc.verticales || '').match(/V\d+/);
+      const firstV = vMatch ? vMatch[0] : 'V1';
       const color = VX[firstV] ? VX[firstV].color : '#45d802';
       APP.gClusterBg.append('circle').attr('class', 'cluster-ring').attr('cx', cc.x).attr('cy', cc.y).attr('r', clusterRingR).attr('fill', color).attr('fill-opacity', 0.04).attr('stroke', color).attr('stroke-width', 1).attr('stroke-opacity', 0.28);
-      const clLblText = cc.nombre.replace(/^Cluster /, '');
+      const clLblText = cc.nombre.replace(/^CLUSTER\s+\d+\s+[—-]\s+/i, '').replace(/^Cluster /, '');
       const clLblShort = clLblText.length > 42 ? clLblText.slice(0, 40) + '…' : clLblText;
       const clLblEl = APP.gClusterBg.append('text').attr('class', 'cluster-lbl').attr('x', cc.x).attr('y', cc.y - clusterRingR - 8).attr('text-anchor', 'middle').attr('font-family', 'Space Mono, monospace').attr('font-size', '7px').attr('letter-spacing', '0.14em').attr('fill', color).attr('fill-opacity', 0.75).text(clLblShort);
       clLblEl.append('title').text(cc.nombre);
@@ -89,11 +122,16 @@ export function initNet() {
       const vi = vKeys.indexOf(a.vertical);
       const ang = (vi / vKeys.length) * Math.PI * 2 - Math.PI / 2;
       const jitter = (Math.random() - .5) * 60;
-      return { ...a, x: cx + R * Math.cos(ang) + jitter, y: cy + R * Math.sin(ang) + jitter, r: a.tier === 1 ? 10 : a.tier === 2 ? 6 : 4 };
+      return { ...a, x: cx + R * Math.cos(ang) + jitter, y: cy + R * Math.sin(ang) + jitter, r: 3.5 + (a.score_compuesto || 0) * 11 };
     });
-    const edgeData = APP.EDGES.map(([a, b]) => ({
-      source: APP.netNodeData.find(n => n.id === a),
-      target: APP.netNodeData.find(n => n.id === b),
+    const edgeData = APP.EDGES.map(e => ({
+      source: APP.netNodeData.find(n => n.id === e.source),
+      target: APP.netNodeData.find(n => n.id === e.target),
+      tipo: e.tipo,
+      nivel: e.nivel,
+      direccion: e.direccion,
+      cross: e.cross,
+      id_rel: e.id,
     })).filter(e => e.source && e.target);
 
     APP.linkSel = APP.gMain.append('g').attr('class', 'links').selectAll('line').data(edgeData).enter().append('line').attr('stroke', 'rgba(255,255,255,0.12)').attr('stroke-width', 0.7).attr('opacity', 1);
@@ -139,14 +177,14 @@ export function initNet() {
         .on('end', (event, d) => { if (!event.active) APP.simulation.alphaTarget(0); d.fx = null; d.fy = null; })
       );
 
-    APP.netNodeGroups.filter(d => d.tier === 1).append('circle').attr('class', 'node-glow').attr('r', d => d.r * 2.2).attr('fill', d => VX[d.vertical].color).attr('opacity', 0.08).attr('filter', 'url(#glow)');
-    APP.nodeSel = APP.netNodeGroups.append('circle').attr('class', 'node-circle').attr('r', d => d.r).attr('fill', d => d.tier === 1 ? VX[d.vertical].color : d.tier === 2 ? VX[d.vertical].color + '66' : '#222').attr('stroke', d => VX[d.vertical].color).attr('stroke-width', d => d.tier === 1 ? 0.5 : 0).attr('opacity', 1);
+    APP.netNodeGroups.filter(d => (d.score_compuesto || 0) >= 0.5).append('circle').attr('class', 'node-glow').attr('r', d => d.r * 2.2).attr('fill', d => VX[d.vertical].color).attr('opacity', d => (d.score_compuesto || 0) * 0.14).attr('filter', 'url(#glow)');
+    APP.nodeSel = APP.netNodeGroups.append('circle').attr('class', 'node-circle').attr('r', d => d.r).attr('fill', d => scoreToFillColor(d)).attr('stroke', d => VX[d.vertical].color).attr('stroke-width', d => scoreToStrokeWidth(d)).attr('opacity', d => getRedModeNodeOpacity(d));
     APP.labelSel = APP.netNodeGroups.append('text').attr('class', 'node-label').attr('dy', d => d.r + 12).attr('text-anchor', 'middle').attr('font-family', 'DM Sans, sans-serif').attr('font-size', d => d.tier === 1 ? '9.5px' : '8.5px').attr('fill', d => d.tier === 1 ? VX[d.vertical].color : 'rgba(255,255,255,0.65)').attr('font-weight', d => d.tier === 1 ? 500 : 400).attr('pointer-events', 'none').text(d => d.label).attr('opacity', d => d.tier === 1 ? 0.85 : 0);
 
     APP.simulation = d3.forceSimulation(APP.netNodeData)
-      .force('link', d3.forceLink(edgeData).id(d => d.id).distance(130).strength(0.45))
-      .force('charge', d3.forceManyBody().strength(-220).distanceMax(280))
-      .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 22 : d.tier === 2 ? 12 : 7)).strength(0.7))
+      .force('link', d3.forceLink(edgeData).id(d => d.id).distance(185).strength(0.45))
+      .force('charge', d3.forceManyBody().strength(-300).distanceMax(360))
+      .force('collision', d3.forceCollide().radius(d => d.r * 1.9).strength(0.7))
       .force('cluster', clusterForce(vKeys, cx, cy, R, 0.04))
       .force('center', d3.forceCenter(cx, cy).strength(0.02))
       .force('x', d3.forceX(cx).strength(0.015))
@@ -221,6 +259,8 @@ export function updateLOD(scale) {
   const t3Thresh = isMobile ? 4.0 : 2.0;
   APP.labelSel.attr('opacity', d => {
     if (APP.hoveredId) return;
+    // En modo clusters, los no-miembros quedan invisibles independientemente del zoom.
+    if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0;
     if (d.tier === 1) return scale < t1Thresh ? 0 : Math.min(1, (scale - t1Thresh) * 2.5) * 0.88;
     if (d.tier === 2) return scale < t2Thresh ? 0 : Math.min(0.8, (scale - t2Thresh) * 2.5);
     if (d.tier === 3) return scale < t3Thresh ? 0 : Math.min(0.7, (scale - t3Thresh) * 3);
@@ -256,17 +296,27 @@ function drawMinimap() {
   const sx = (minimapW * 2 - pad * 2) / pw, sy = (minimapH * 2 - pad * 2) / ph, s = Math.min(sx, sy);
   const toMX = x => (x - minX) * s + pad, toMY = y => (y - minY) * s + pad;
   ctx.globalAlpha = 0.15; ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 0.4;
-  APP.EDGES.forEach(([a, b]) => {
-    const sa = ns.find(n => n.id === a), sb = ns.find(n => n.id === b);
+  APP.EDGES.forEach(e => {
+    const sa = ns.find(n => n.id === e.source), sb = ns.find(n => n.id === e.target);
     if (!sa || !sb) return;
     ctx.beginPath(); ctx.moveTo(toMX(sa.x), toMY(sa.y)); ctx.lineTo(toMX(sb.x), toMY(sb.y)); ctx.stroke();
   });
   ctx.globalAlpha = 1;
   ns.forEach(n => {
-    const vc = VX[n.vertical]; const r = n.tier === 1 ? 3 : n.tier === 2 ? 2 : 1.2;
+    const sc = n.score_compuesto || 0;
+    if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(n.id)) {
+      ctx.globalAlpha = 0.18;
+    } else if (APP.netLayout === 'red') {
+      ctx.globalAlpha = sc >= SCORE_DIM_FULL ? 1 : sc >= SCORE_DIM_PARTIAL ? 0.45 : 0.2;
+    } else {
+      ctx.globalAlpha = 1;
+    }
+    const vc = VX[n.vertical];
+    const r = 1.0 + sc * 2.8;
     ctx.beginPath(); ctx.arc(toMX(n.x), toMY(n.y), r, 0, Math.PI * 2);
-    ctx.fillStyle = n.tier === 1 ? vc.color : vc.color + '66'; ctx.fill();
+    ctx.fillStyle = scoreToFillColor(n); ctx.fill();
   });
+  ctx.globalAlpha = 1;
   if (APP.netLayout === 'clusters' && APP.clusterCentroids.length) {
     ctx.globalAlpha = 0.18; ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 0.6;
     APP.clusterCentroids.forEach(cc => { ctx.beginPath(); ctx.arc(toMX(cc.x), toMY(cc.y), 130 * s, 0, Math.PI * 2); ctx.stroke(); });
@@ -326,6 +376,8 @@ function updateFixedHeaders(transform, W, H) {
   }
 }
 
+// En modo clusters, los actores sin centroid (no-miembros de ningun cluster)
+// reciben empuje hacia el fondo de la pantalla — donde no estorban al layout principal.
 function clusterCentroidForce(strength, fallbackX, fallbackY) {
   return function(alpha) {
     APP.netNodeData.forEach(n => {
@@ -334,6 +386,7 @@ function clusterCentroidForce(strength, fallbackX, fallbackY) {
         n.vx += (APP.clusterCentroids[ci].x - n.x) * strength * alpha;
         n.vy += (APP.clusterCentroids[ci].y - n.y) * strength * alpha;
       } else if (fallbackX !== undefined) {
+        // Los no-miembros se quedan en una zona "estacionada" abajo, atenuada visualmente.
         n.vx += (fallbackX - n.x) * strength * 0.3 * alpha;
         n.vy += (fallbackY - n.y) * strength * 0.3 * alpha;
       }
@@ -360,19 +413,6 @@ function clusterBoundForce(W, H) {
   };
 }
 
-function laneBoundForce(vKeys, vPad, colW, W, H) {
-  return function() {
-    APP.netNodeData.forEach(n => {
-      const vi = vKeys.indexOf(n.vertical);
-      const targetX = vPad + vi * colW;
-      const targetY = n.tier === 1 ? H * 0.25 : n.tier === 2 ? H * 0.55 : H * 0.80;
-      const halfLane = colW / 2 - 10, halfBand = 85;
-      if (Math.abs(n.x - targetX) > halfLane) { n.x = targetX + Math.sign(n.x - targetX) * halfLane; n.vx *= 0.2; }
-      if (Math.abs(n.y - targetY) > halfBand) { n.y = targetY + Math.sign(n.y - targetY) * halfBand; n.vy *= 0.2; }
-    });
-  };
-}
-
 function zoneBoundForce3x3(W, H) {
   const zo = ['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9'];
   return function() {
@@ -394,7 +434,8 @@ function zoneBoundForce3x3(W, H) {
 function getBaseEdgeStroke(d) {
   if (APP.netLayout === 'clusters') {
     const sc = APP.nodeClusterMap.get(d.source.id), tc = APP.nodeClusterMap.get(d.target.id);
-    if (sc !== undefined && tc !== undefined && sc === tc) return 'rgba(255,255,255,0.1)';
+    if (sc === undefined || tc === undefined) return 'rgba(255,255,255,0.04)';
+    if (sc === tc) return 'rgba(255,255,255,0.1)';
     return 'rgba(69,216,2,0.65)';
   }
   return 'rgba(255,255,255,0.12)';
@@ -403,21 +444,28 @@ function getBaseEdgeStroke(d) {
 function getBaseEdgeOpacity(d) {
   if (APP.netLayout === 'clusters') {
     const sc = APP.nodeClusterMap.get(d.source.id), tc = APP.nodeClusterMap.get(d.target.id);
-    if (sc !== undefined && tc !== undefined && sc === tc) return 0.35;
+    // Edges que tocan a un no-miembro: invisible en modo clusters.
+    if (sc === undefined || tc === undefined) return 0;
+    if (sc === tc) return 0.35;
     return 0.28;
   }
   if (APP.netLayout === 'verticales') return 0;
-  return 1;
+  // red mode: score-weighted — only high-relevance connections stand out
+  const avg = ((d.source.score_compuesto || 0) + (d.target.score_compuesto || 0)) / 2;
+  if (avg >= SCORE_DIM_FULL)    return 0.32;
+  if (avg >= SCORE_DIM_PARTIAL) return 0.1;
+  return 0.03;
 }
 
 function getBaseEdgeWidth(d) {
   if (APP.netLayout === 'verticales') return 0;
   if (APP.netLayout === 'clusters') {
     const sc = APP.nodeClusterMap.get(d.source.id), tc = APP.nodeClusterMap.get(d.target.id);
-    if (sc !== undefined && tc !== undefined && sc === tc) return 0.5;
+    if (sc === undefined || tc === undefined) return 0;
+    if (sc === tc) return 0.5;
     return 1.0;
   }
-  return 0.7;
+  return 0.5;
 }
 
 function applyModeEdgeStyle() {
@@ -428,8 +476,40 @@ function applyModeEdgeStyle() {
     .attr('opacity', d => getBaseEdgeOpacity(d));
 }
 
+// En modo clusters, los no-miembros quedan visualmente atenuados y sin glow.
+function applyClusterModeNodeOpacity() {
+  if (!APP.nodeSel) return;
+  APP.nodeSel.transition().duration(300).attr('opacity', d => {
+    if (APP.netLayout === 'clusters') return APP.nodeClusterMap.has(d.id) ? 1 : 0.08;
+    return getRedModeNodeOpacity(d);
+  });
+  d3.selectAll('.node-glow').transition().duration(300).attr('opacity', d => {
+    if (APP.netLayout === 'clusters') return APP.nodeClusterMap.has(d.id) ? 0.12 : 0;
+    if (APP.netLayout === 'red') {
+      const sc = d.score_compuesto || 0;
+      return sc >= SCORE_DIM_FULL ? 0.12 : sc >= SCORE_DIM_PARTIAL ? 0.06 : 0;
+    }
+    return 0.08;
+  });
+  if (APP.labelSel) {
+    APP.labelSel.transition().duration(300).attr('opacity', d => {
+      if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0;
+      if (APP.netLayout === 'verticales') return d.tier === 1 ? 1 : d.tier === 2 ? 0.75 : 0;
+      return d.tier === 1 ? 0.85 : 0;
+    });
+  }
+  // Los no-miembros tampoco deben aceptar pointer events en cluster mode
+  if (APP.netNodeGroups) {
+    APP.netNodeGroups.style('pointer-events', d => {
+      if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 'none';
+      return 'auto';
+    });
+  }
+}
+
 function updateClusterCentroids(W, H) {
-  const clCols = 4, clRows = Math.ceil(APP.CLUSTERS.length / clCols);
+  const clCols = Math.min(4, Math.max(1, APP.CLUSTERS.length));
+  const clRows = Math.ceil(APP.CLUSTERS.length / clCols);
   const clPadX = W * 0.12, clPadY = H * 0.15;
   const clCellW = (W - clPadX * 2) / clCols;
   const clCellH = clRows > 1 ? (H - clPadY * 2) / (clRows - 1) : 0;
@@ -477,9 +557,10 @@ function applyLayoutForces(mode, W, H) {
   const cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.31;
   APP.simulation
     .force('clusterBound', null).force('laneBound', null).force('cluster', null)
+    .force('zoneBound', null)
     .force('x', null).force('y', null)
-    .force('charge', d3.forceManyBody().strength(-220).distanceMax(280))
-    .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 22 : d.tier === 2 ? 12 : 7)).strength(0.7));
+    .force('charge', d3.forceManyBody().strength(-300).distanceMax(360))
+    .force('collision', d3.forceCollide().radius(d => d.r * 1.9).strength(0.7));
   if (mode === 'red') {
     APP.simulation
       .force('cluster', clusterForce(vKeys, cx, cy, R, 0.04))
@@ -491,7 +572,7 @@ function applyLayoutForces(mode, W, H) {
     APP.simulation
       .force('charge', d3.forceManyBody().strength(-100).distanceMax(320))
       .force('collision', d3.forceCollide().radius(d => d.r + (d.tier === 1 ? 48 : d.tier === 2 ? 18 : 10)).strength(0.92))
-      .force('cluster', clusterCentroidForce(0.35, W / 2, H * 0.88))
+      .force('cluster', clusterCentroidForce(0.35, W / 2, H * 1.4)) // fallbackY fuera de la pantalla
       .force('center', d3.forceCenter(cx, cy).strength(0.01))
       .force('clusterBound', clusterBoundForce(W, H));
   } else if (mode === 'verticales') {
@@ -526,7 +607,11 @@ export function updateHoverState() {
     .attr('stroke-width', d => { if (!APP.hoveredId) return getBaseEdgeWidth(d); return (d.source.id === APP.hoveredId || d.target.id === APP.hoveredId) ? 1.8 : 0.4; })
     .attr('opacity', d => { if (!APP.hoveredId) return getBaseEdgeOpacity(d); return (d.source.id === APP.hoveredId || d.target.id === APP.hoveredId) ? 0.85 : 0.06; });
   d3.selectAll('.node-circle').attr('opacity', function(d) {
-    if (!APP.hoveredId) { if (APP.selectedCluster !== null && APP.netLayout === 'clusters') return APP.nodeClusterMap.get(d.id) === APP.selectedCluster ? 1 : 0.08; return 1; }
+    if (!APP.hoveredId) {
+      if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0.08;
+      if (APP.selectedCluster !== null && APP.netLayout === 'clusters') return APP.nodeClusterMap.get(d.id) === APP.selectedCluster ? 1 : 0.08;
+      return getRedModeNodeOpacity(d);
+    }
     if (d.id === APP.hoveredId) return 1;
     return connectedIds.has(d.id) ? 0.9 : 0.12;
   }).attr('r', function(d) {
@@ -537,6 +622,7 @@ export function updateHoverState() {
   });
   d3.selectAll('.node-label').attr('opacity', function(d) {
     if (!APP.hoveredId) {
+      if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0;
       if (APP.selectedCluster !== null && APP.netLayout === 'clusters') return APP.nodeClusterMap.get(d.id) === APP.selectedCluster ? (d.tier === 1 ? 1 : 0.7) : 0;
       if (APP.netLayout === 'verticales') return d.tier === 1 ? 1 : d.tier === 2 ? 0.75 : 0;
       return d.tier === 1 ? 0.85 : 0;
@@ -549,26 +635,37 @@ export function updateHoverState() {
     return d.tier === 1 ? VX[d.vertical].color : 'rgba(255,255,255,0.65)';
   });
   d3.selectAll('.node-glow').attr('opacity', function(d) {
-    if (!APP.hoveredId) return 0.08;
+    if (!APP.hoveredId) {
+      if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0;
+      if (APP.netLayout === 'red') {
+        const sc = d.score_compuesto || 0;
+        return sc >= SCORE_DIM_FULL ? 0.12 : sc >= SCORE_DIM_PARTIAL ? 0.06 : 0;
+      }
+      return 0.08;
+    }
     return d.id === APP.hoveredId ? 0.3 : 0.02;
   });
 }
 
 export function applyNetFilter(v) {
   if (!APP.linkSel) return;
-  d3.selectAll('.node-circle').transition().duration(300).attr('opacity', d => !v || d.vertical === v ? 1 : 0.06);
+  d3.selectAll('.node-circle').transition().duration(300).attr('opacity', d => {
+    if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0.08;
+    if (!v) return getRedModeNodeOpacity(d);
+    return d.vertical === v ? 1 : 0.06;
+  });
   d3.selectAll('.node-label').transition().duration(300).attr('opacity', d => {
+    if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0;
     if (!v) { if (APP.netLayout === 'verticales') return d.tier === 1 ? 1 : d.tier === 2 ? 0.75 : 0; return d.tier === 1 ? 0.85 : 0; }
     return d.vertical === v ? (d.tier === 1 ? 1 : 0.7) : 0;
   });
-  d3.selectAll('.node-glow').transition().duration(300).attr('opacity', d => !v || d.vertical === v ? 0.1 : 0);
+  d3.selectAll('.node-glow').transition().duration(300).attr('opacity', d => {
+    if (APP.netLayout === 'clusters' && !APP.nodeClusterMap.has(d.id)) return 0;
+    return !v || d.vertical === v ? 0.1 : 0;
+  });
   APP.linkSel.transition().duration(300)
     .attr('opacity', d => !v || d.source.vertical === v || d.target.vertical === v ? getBaseEdgeOpacity(d) : 0.03)
     .attr('stroke-width', d => !v || d.source.vertical === v || d.target.vertical === v ? getBaseEdgeWidth(d) : 0.3);
-  if (APP.netLayout === 'red') {
-    d3.selectAll('.c-ring').transition().duration(300).attr('opacity', d => !v || d === v ? 0.12 : 0.02);
-    d3.selectAll('.c-lbl').transition().duration(300).attr('opacity', d => !v || d === v ? 0.5 : 0.08);
-  }
 }
 
 export function setNetLayout(mode) {
@@ -577,15 +674,29 @@ export function setNetLayout(mode) {
   document.querySelectorAll('.net-lb').forEach(b => b.classList.remove('active'));
   const btn = document.getElementById('nlb-' + mode);
   if (btn) btn.classList.add('active');
+
+  // Matriz mode: swap to scatter-plot overlay — bypasses D3 simulation entirely
+  const matrixDiv = document.getElementById('matrix-in-net');
+  const netSvgEl = document.getElementById('net-svg');
+  if (mode === 'matriz') {
+    if (matrixDiv) matrixDiv.style.display = 'block';
+    if (netSvgEl) netSvgEl.style.display = 'none';
+    buildMatrix();
+    return;
+  }
+  if (matrixDiv) matrixDiv.style.display = 'none';
+  if (netSvgEl) netSvgEl.style.display = 'block';
+
   if (!APP.simulation) return;
   const W = wrap.clientWidth, H = wrap.clientHeight;
   applyLayoutForces(mode, W, H);
   if (APP.gClusterBg) APP.gClusterBg.transition().duration(300).attr('opacity', mode === 'clusters' ? 1 : 0);
   if (APP.gVLaneBg) APP.gVLaneBg.transition().duration(300).attr('opacity', mode === 'verticales' ? 1 : 0);
   applyModeEdgeStyle();
+  applyClusterModeNodeOpacity();
   if (mode === 'verticales') {
     if (APP.labelSel) APP.labelSel.transition().duration(300).attr('opacity', d => d.tier === 1 ? 1 : d.tier === 2 ? 0.75 : 0).attr('font-size', d => d.tier === 1 ? '10px' : d.tier === 2 ? '8.5px' : '7.5px');
-  } else {
+  } else if (mode === 'red') {
     if (APP.labelSel) APP.labelSel.transition().duration(300).attr('opacity', d => d.tier === 1 ? 0.85 : 0).attr('font-size', d => d.tier === 1 ? '9.5px' : '8.5px');
   }
   applyNetFilter(APP.activeV);

@@ -1,86 +1,138 @@
-import { APP } from './state.js';
+// auth.js — pantalla de acceso (#screen-pw).
+// Maneja: canvas de fondo, validacion de clave, transicion a unlock.
+// Expone doLogin() global (lo llama el onclick del HTML).
+
+import { ACCESS_KEY } from './state.js';
 import { startUnlock } from './unlock.js';
 
-export function doLogin() {
-  const v = document.getElementById('pw-in').value.toLowerCase().trim();
-  const err = document.getElementById('pw-err');
-  const st = document.getElementById('pw-status');
-  if (v === 'playbook2026') {
-    err.classList.remove('on');
-    if (st) st.textContent = 'Verificando...';
-    if (APP._particleRaf) { cancelAnimationFrame(APP._particleRaf); APP._particleRaf = null; }
-    document.getElementById('screen-pw').classList.add('out');
-    setTimeout(startUnlock, 900);
-  } else {
-    err.classList.add('on');
-    if (st) st.textContent = 'Clave invalida';
-    const field = document.getElementById('pw-in');
-    field.value = '';
-    field.classList.remove('shake');
-    void field.offsetWidth;
-    field.classList.add('shake');
-    field.focus();
-    setTimeout(() => {
-      err.classList.remove('on');
-      field.classList.remove('shake');
-      if (st) st.textContent = 'Esperando autenticacion';
-    }, 2800);
+let canvas, ctx, particles = [], rafId = null;
+
+function resizeCanvas() {
+  if (!canvas) return;
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initParticles() {
+  particles = [];
+  const n = Math.min(60, Math.floor(window.innerWidth / 24));
+  for (let i = 0; i < n; i++) {
+    particles.push({
+      x:  Math.random() * window.innerWidth,
+      y:  Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      r:  Math.random() * 1.2 + 0.3,
+      a:  Math.random() * 0.35 + 0.08,
+    });
   }
 }
 
-export function initParticles() {
-  const c = document.getElementById('pw-canvas');
-  const ctx = c.getContext('2d');
-  let pts = [];
-  const resize = () => {
-    c.width = innerWidth;
-    c.height = innerHeight;
-    pts = Array.from({ length: 55 }, () => ({
-      x: Math.random() * c.width,
-      y: Math.random() * c.height,
-      vx: (Math.random() - .5) * .28,
-      vy: (Math.random() - .5) * .28,
-      r: Math.random() * 1.2 + .4,
-    }));
-  };
-  resize();
-  window.addEventListener('resize', resize);
-  const draw = () => {
-    ctx.clearRect(0, 0, c.width, c.height);
-    pts.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > c.width) p.vx *= -1;
-      if (p.y < 0 || p.y > c.height) p.vy *= -1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(69,216,2,0.45)';
-      ctx.fill();
-    });
-    for (let i = 0; i < pts.length; i++) {
-      for (let j = i + 1; j < pts.length; j++) {
-        const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
-        if (d < 130) {
-          ctx.beginPath();
-          ctx.moveTo(pts[i].x, pts[i].y);
-          ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.strokeStyle = `rgba(69,216,2,${.07 * (1 - d / 130)})`;
-          ctx.lineWidth = .5;
-          ctx.stroke();
-        }
+function tick() {
+  if (!ctx) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const p of particles) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;  else if (p.x > canvas.width)  p.x = 0;
+    if (p.y < 0) p.y = canvas.height; else if (p.y > canvas.height) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(69,216,2,' + p.a + ')';
+    ctx.fill();
+  }
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 < 11000) {
+        const alpha = (1 - d2 / 11000) * 0.12;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = 'rgba(69,216,2,' + alpha + ')';
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
       }
     }
-    APP._particleRaf = requestAnimationFrame(draw);
-  };
-  draw();
+  }
+  rafId = requestAnimationFrame(tick);
 }
 
-export function initAuthListeners() {
-  document.getElementById('pw-in').addEventListener('keydown', e => {
-    if (e.key === 'Enter') doLogin();
-  });
-  document.getElementById('pw-in').addEventListener('input', () => {
-    const st = document.getElementById('pw-status');
-    const v = document.getElementById('pw-in').value;
-    if (st) st.textContent = v.length > 0 ? 'Clave introducida — ' + v.length + ' caracteres' : 'Esperando autenticacion';
-  });
+function stopCanvas() {
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = null;
+  if (ctx && canvas) ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function showError(msg) {
+  const err = document.getElementById('pw-err');
+  const fld = document.querySelector('.pw-field');
+  const input = document.getElementById('pw-in');
+  if (err) {
+    if (msg) err.textContent = msg;
+    err.classList.add('on');
+  }
+  if (fld) {
+    fld.classList.add('shake');
+    setTimeout(() => fld.classList.remove('shake'), 500);
+  }
+  if (input) {
+    input.value = '';
+    input.focus();
+  }
+  setTimeout(() => { if (err) err.classList.remove('on'); }, 2400);
+}
+
+export function doLogin() {
+  const input = document.getElementById('pw-in');
+  if (!input) {
+    console.error('[auth] #pw-in no encontrado');
+    return;
+  }
+  const val = (input.value || '').trim();
+  if (!val) {
+    showError('CLAVE REQUERIDA');
+    return;
+  }
+  if (val !== ACCESS_KEY) {
+    showError('CLAVE INCORRECTA — ACCESO DENEGADO');
+    return;
+  }
+  const status = document.getElementById('pw-status');
+  if (status) {
+    status.textContent = 'Autenticado';
+    status.style.color = 'var(--green)';
+  }
+  const screen = document.getElementById('screen-pw');
+  if (screen) screen.classList.add('out');
+  setTimeout(() => {
+    if (screen) screen.style.display = 'none';
+    stopCanvas();
+    startUnlock();
+  }, 800);
+}
+
+// CRITICO: exponer doLogin a window inmediatamente al cargar el modulo,
+// no dentro de initAuth(). El onclick="doLogin()" del HTML necesita
+// que exista en window apenas se parsea el modulo.
+window.doLogin = doLogin;
+
+export function initAuth() {
+  canvas = document.getElementById('pw-canvas');
+  if (canvas) {
+    ctx = canvas.getContext('2d');
+    resizeCanvas();
+    initParticles();
+    window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+    tick();
+  }
+  const input = document.getElementById('pw-in');
+  if (input) {
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); doLogin(); }
+    });
+    setTimeout(() => input.focus(), 100);
+  }
+  console.log('[auth] inicializado, ACCESS_KEY length:', ACCESS_KEY.length);
 }

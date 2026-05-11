@@ -1,0 +1,2154 @@
+{
+  "A-043": [
+    {
+      "poi_id": "P-005",
+      "actor_id": "A-043",
+      "actor_name": "Federación Mexicana de Fútbol",
+      "vertical": "V1",
+      "nombre": "Mikel Andoni Arriola Peñalosa",
+      "cargo": "Comisionado Presidente, Federación Mexicana de Futbol; Presidente Ejecutivo, Liga MX",
+      "tier": "Tier 1",
+      "por_que": "Cargo dual (FMF desde dic-2024, Liga MX desde 2020) tras renuncia de Juan Carlos Rodríguez. Decisor único de la agenda Liga MX-FMF rumbo a WC26: fin de la multipropiedad para 2026, separación jurídica Liga MX-FMF aprobada abr-2026, gobernanza con cuatro comités estratégicos. Representante de Norteamérica en Consejo Concacaf desde mar-2025.",
+      "vinculos": "Ivar Sisniega (Pres. Ejecutivo FMF); Frank Iturbide (DG Competencias Liga MX, candidato a sucesor en Liga MX); CONCACAF; Javier Aguirre (DT Selección); Mauricio Sulaimán (WBC, vínculo institucional); cargo en Liga MX simultáneo",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-006",
+      "actor_id": "A-043",
+      "actor_name": "Federación Mexicana de Fútbol",
+      "vertical": "V1",
+      "nombre": "Ivar Sisniega Campbell",
+      "cargo": "Presidente Ejecutivo, Federación Mexicana de Futbol",
+      "tier": "Tier 2",
+      "por_que": "Operativo principal de FMF debajo de Arriola (Comisionado). Ex pentatleta olímpico y ex CONADE. Su permanencia ha sido cuestionada tras la consolidación de poder de Arriola; periodistas señalan que los movimientos de la administración FMF dependerán de decisiones que tome Arriola sobre su continuidad.",
+      "vinculos": "Mikel Arriola (Comisionado FMF, cargo superior); FIFA; CONCACAF; comité organizador WC26 México",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-100",
+      "actor_id": "A-043",
+      "actor_name": "Federación Mexicana de Fútbol",
+      "vertical": "V1",
+      "nombre": "Duilio Davino",
+      "cargo": "Director de Selecciones Nacionales, FMF",
+      "tier": "Tier 1",
+      "por_que": "Responsable operativo de los equipos nacionales (Tri varonil, femenil, sub-20, sub-17). Define la agenda de partidos amistosos, torneos y la relación operativa con SUM y TEAM Marketing AG (A-135) para derechos comerciales de las selecciones. Anunció junto con Ivar Sisniega la llegada de Javier Aguirre como DT y Rafael Márquez como auxiliar (jul-2024).",
+      "vinculos": "Ivar Sisniega (Pres. FMF, P-009); Mikel Arriola (Comisionado, P-007); Javier Aguirre (DT Tri, A-123); Rafael Márquez (auxiliar, sucesor 2030); SUM (Soccer United Marketing); TEAM Marketing AG (A-135)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-055": [
+    {
+      "poi_id": "P-009",
+      "actor_id": "A-055",
+      "actor_name": "Gran Premio de México — Fórmula 1",
+      "vertical": "V1",
+      "nombre": "Federico González Compeán",
+      "cargo": "Director General, Fórmula 1 Gran Premio de la Ciudad de México; Director General, CIE Internacional",
+      "tier": "Tier 1",
+      "por_que": "Decisor operativo del GP México F1 desde su regreso en 2015. Bajo su gestión la carrera mexicana se consolidó entre las tres más caras del calendario F1 (sólo debajo de Las Vegas y Miami) y el contrato fue extendido hasta 2028. Edición 2025 generó derrama de 19.84 mil millones de pesos. Producción simultánea de Corona Capital, Vive Latino y musicales (La Bella y la Bestia, El Rey León) bajo la división CIE Internacional.",
+      "vinculos": "Alejandro Soberón Kuri (Presidente CIE); Fórmula 1 (Liberty Media); FIA; Autódromo Hermanos Rodríguez; CDMX (concesión); Sergio \"Checo\" Pérez (regreso 2026 con Cadillac, eje de demanda)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-025": [
+    {
+      "poi_id": "P-016",
+      "actor_id": "A-025",
+      "actor_name": "Consejo Mundial de Lucha Libre (CMLL)",
+      "vertical": "V1",
+      "nombre": "Salvador \"Chavo\" Lutteroth III (Lutteroth Lomelí)",
+      "cargo": "Presidente y CEO, Consejo Mundial de Lucha Libre (CMLL); biznieto del fundador Salvador Lutteroth González",
+      "tier": "Tier 1",
+      "por_que": "Decisor único de la promotora de lucha libre activa más antigua del mundo (fundada 1933, 92 años). Bajo su gestión (desde 2019) CMLL ha consolidado alianzas con AEW (Tony Khan), New Japan Pro Wrestling, RevPro y MLW. Postura firme sobre Arena México como sede no negociable. Estrategia explícita de internacionalización vía CMLL Slamfest (Las Vegas, abr-2026).",
+      "vinculos": "Tony Khan (AEW, alianza estratégica); NJPW; AEW Grand Slam México; Arena México (Catedral de la Lucha Libre); Arena Coliseo; Arena Puebla; Familia Lutteroth (Sofía Alonso predecesora 2019)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-052": [
+    {
+      "poi_id": "P-019",
+      "actor_id": "A-052",
+      "actor_name": "Global Champions Tour — LGCT México",
+      "vertical": "V1",
+      "nombre": "Jan Tops",
+      "cargo": "Fundador y CEO, Global Champions Tour (GCT) y Global Champions League (GCL)",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del circuito GCT/GCL, el mayor circuito comercial de show jumping del mundo. La etapa LGCT México (Mextenis o sede directa GCT) es el evento ecuestre premium más importante en MX. Tops controla la curaduría de etapas, comerciales, equipos GCL, y ha sido figura controversial por la entrada de capital saudí (Falcon Stables) al circuito.",
+      "vinculos": "Atletas top mundiales (McLain Ward, Steve Guerdat, Ben Maher); equipos GCL (Riesenbeck Internat, Stockholm Hearts, Madrid in Motion, Mexico Amigos); FEI (gobernanza); patrocinadores Longines, Rolex, EEM",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-083": [
+    {
+      "poi_id": "P-028",
+      "actor_id": "A-083",
+      "actor_name": "Liga Mexicana del Pacífico (LMP)",
+      "vertical": "V1",
+      "nombre": "Salvador Escobar Cornejo",
+      "cargo": "Presidente Ejecutivo, Liga Arco Mexicana del Pacífico (LAMP/LMP) — desde 10 de abril de 2025",
+      "tier": "Tier 1",
+      "por_que": "Tercer presidente en cuatro años de la LMP. Sustituyó a Carlos Manrique González (2022-abr-2025) tras la renuncia de éste por causas personales y profesionales (ruptura con televisoras dejó la temporada 2024-25 solo en YouTube). Antes presidente Omar Canizales (2009-mar-2022). Trayectoria comercial en Coca-Cola, Grupo Modelo, TV Azteca y Grupo Orlegi (jefe de comercial y mercadotecnia 2017-2019). Bajo su gestión: aprobó venta y mudanza de Sultanes Monterrey a Tepic (Jaguares de Nayarit), mudanza de Mayos Navojoa a Tucson Arizona (Tucson Baseball Team) y cierre del deal Megacable para transmisiones 2025-26.",
+      "vinculos": "Carlos Manrique González (predecesor 2022-2025); Omar Canizales Soto (predecesor 2009-2022); Christian Véliz Valencia (Director Deportivo LMP); Enrique Mazón Rubio (Naranjeros Hermosillo); Megacable (deal transmisiones 2025-26); 10 equipos LMP (Naranjeros, Tomateros, Charros, Yaquis, Cañeros, Águilas, Venados, Algodoneros Guasave, Jaguares Nayarit, Tucson Baseball Team); Caribbean Series (Mexicali 2025, Hermosillo 2027)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-084": [
+    {
+      "poi_id": "P-029",
+      "actor_id": "A-084",
+      "actor_name": "Liga MX",
+      "vertical": "V1",
+      "nombre": "Francisco \"Frank\" Iturbide",
+      "cargo": "Director General de Competiciones, Operaciones y Desarrollo, Liga MX (designado en 2025); candidato principal y futuro Presidente Liga MX AC",
+      "tier": "Tier 2",
+      "por_que": "Principal candidato a la presidencia de la nueva Liga MX como asociación civil independiente (separación FMF aprobada 23-abr-2026). Su nombramiento formal está sujeto a aprobación del G8 (clubes América, Chivas, Monterrey, Toluca, Santos y otros) y se proyecta para después del WC26 (jul-2026 o posterior). Perfil técnico-operativo (ex futbolista América Sub-20). Representante Liga MX ante World Leagues Forum desde jun-2025. Reporta a Mikel Arriola hasta su designación formal.",
+      "vinculos": "Mikel Arriola (Comisionado FMF, cargo superior); Asamblea de Dueños (G8 con poder de ratificación); World Leagues Forum (representante Liga MX); Premier League (visitas en Londres); Junta Dueños 23-abr-2026",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-085": [
+    {
+      "poi_id": "P-030",
+      "actor_id": "A-085",
+      "actor_name": "LIV Golf League (Mexico City)",
+      "vertical": "V1",
+      "nombre": "Scott O'Neil",
+      "cargo": "CEO, LIV Golf League",
+      "tier": "Tier 1",
+      "por_que": "CEO global de LIV Golf desde febrero 2025 (sustituyó a Greg Norman). Decide la curaduría de sedes y el ciclo de etapas, incluyendo LIV Golf México (Club de Golf Chapultepec o Club de Golf México, depende del año). Bajo su gestión se ha buscado consolidación competitiva con PGA Tour y reactivar la presencia en Latam con Carlos Ortiz como bandera mexicana.",
+      "vinculos": "PIF / Yasir Al-Rumayyan (financiador); Greg Norman (predecesor); PGA Tour (negociación marco); Carlos Ortiz (golfista mexicano LIV); Club de Golf Chapultepec / sedes MX",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-107",
+      "actor_id": "A-085",
+      "actor_name": "LIV Golf League (Mexico City)",
+      "vertical": "V1",
+      "nombre": "Ross Hallett",
+      "cargo": "EVP y Head of Events, LIV Golf",
+      "tier": "Tier 2",
+      "por_que": "Responsable global de la operación de eventos LIV Golf, incluyendo la fecha LIV Mayakoba (Vidanta, MX). Reporta a Scott O'Neil (CEO desde feb-2025, Tier 1 P-038 ya cargado). Operador estructural de la franquicia mexicana del PIF/LIV en alianza con Vidanta (A-066).",
+      "vinculos": "Scott O'Neil (CEO LIV, Tier 1 P-038); Vidanta / Daniel Chávez Morán (sede Mayakoba, A-066); PIF Saudi Arabia (financiador); PGA Tour (rivalidad histórica)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-102": [
+    {
+      "poi_id": "P-034",
+      "actor_id": "A-102",
+      "actor_name": "NFL México City Games",
+      "vertical": "V1",
+      "nombre": "Arturo Olivé",
+      "cargo": "Director General, NFL México",
+      "tier": "Tier 1",
+      "por_que": "Decisor operativo de la NFL en México. Egresado UAnáhuac. Bajo su gestión se aseguró el regreso de partidos de temporada regular al Estadio Banorte por compromiso de tres años a partir de 2026 (anuncio formal feb-2026, primer partido confirmado 49ers como locales, dic-2026, oponente TBD). Lead del trabajo coordinado con Estadio Banorte, NFL Flag, programas comunitarios y los 10 equipos con derechos internacionales en MX (49ers, Cowboys, Cardinals, Raiders, Broncos, Texans, Chiefs, Rams, Dolphins, Steelers).",
+      "vinculos": "Roger Goodell (Comisionado NFL, cargo superior); Al Guido (CEO 49ers, locales 2026); Estadio Banorte / Felix Aguirre (Host City Manager); 10 equipos con derechos MX",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-022": [
+    {
+      "poi_id": "P-043",
+      "actor_id": "A-022",
+      "actor_name": "Club Toluca",
+      "vertical": "V1",
+      "nombre": "Valentín Diez Morodo",
+      "cargo": "Presidente del Consejo, Grupo Toluca FC; co-fundador Grupo Modelo y patriarca de la propiedad de los Diablos Rojos del Toluca",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del activo Toluca FC. Empresario de mayor peso patrimonial del fútbol mexicano (patrimonio combinado familia Diez ~USD 5B+ post-venta Modelo a AB InBev 2013). Bicampeón Liga MX Apertura 2025-Clausura 2026 (Toluca campeón nacional reciente). Una de las plazas más estables del fútbol mexicano. Estadio Nemesio Diez \"La Bombonera\" en remodelación. Compromisos institucionales con WC26 Mexico City (Toluca como base hub para selecciones).",
+      "vinculos": "Familia Diez (co-fundadora Grupo Modelo, ahora AB InBev); Hernán Cristante (entrenador histórico); Mikel Arriola (Liga MX); Estadio Nemesio Diez; ABInBev (Corona, sponsor); Comité G8 Liga MX (Toluca como uno de los clubes G8)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-027": [
+    {
+      "poi_id": "P-044",
+      "actor_id": "A-027",
+      "actor_name": "Copa Mundial FIFA 2026 en México",
+      "vertical": "V1",
+      "nombre": "Mikel Arriola Peñalosa",
+      "cargo": "Comisionado FMF y Comisionado Presidente Liga MX (consultar también P-005 cargado bajo A-043); decisor central WC26 México",
+      "tier": "Tier 1",
+      "por_que": "Decisor político-institucional del esquema mexicano para el Mundial 2026. Coordina los tres comités organizadores locales (CDMX, Guadalajara, Monterrey) con FIFA. Tres sedes mexicanas: Estadio Banorte/Azteca CDMX (5 partidos incluyendo opening match Mexico-South Africa 11-jun-2026 y Round of 16 5-jul-2026), Estadio Akron Guadalajara (4 partidos), Estadio BBVA Monterrey (4 partidos + Round of 32). Guadalajara y Monterrey también sedes Play-Off Tournament 23-31 marzo 2026 (6 selecciones). POI ya cargado bajo A-043; cross-reference para A-027.",
+      "vinculos": "Gianni Infantino (Presidente FIFA); Ivar Sisniega (Pres. Ejecutivo FMF); Francisco Iturbide (Pres. operativo Liga MX, ya cargado P-030); Comités organizadores CDMX/GDL/MTY; Chief Tournament Officer FIFA WC26 México (POI sin nombre verificado); Host City Managers (POIs por verificar)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-087": [
+    {
+      "poi_id": "P-059",
+      "actor_id": "A-087",
+      "actor_name": "Maratón de la Ciudad de México Telcel",
+      "vertical": "V1",
+      "nombre": "Carlos Slim Helú",
+      "cargo": "Presidente Honorario Vitalicio, Grupo Carso; controlador, América Móvil/Telcel (sponsor titular Maratón CDMX Telcel)",
+      "tier": "Tier 1",
+      "por_que": "Patrocinador titular del Maratón de la Ciudad de México Telcel, evento más importante de running urbano en MX y uno de los maratones más grandes de Latinoamérica (26,000+ corredores). Decisor último de la decisión sponsor; el evento es operado por INDEPORTE CDMX en sociedad con Telcel. Slim también ancla el ecosistema sports MX via patrocinio Selección Mexicana (Telcel desde 1997), Memorial Cup MLB y otras propiedades. POI también cargado bajo A-041 Carso. Patrimonio Forbes USD 125,300M, lugar 16 mundial.",
+      "vinculos": "Marco Antonio Slim Domit (hijo, Pres. Inbursa); INDEPORTE CDMX (operador maratón); Selección Mexicana (sponsor histórico); Maratón CDMX (organización); WC26 (Telcel patrocinador clave)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-092": [
+    {
+      "poi_id": "P-060",
+      "actor_id": "A-092",
+      "actor_name": "Medio Maratón de la Ciudad de México BBVA",
+      "vertical": "V1",
+      "nombre": "Enrique K. Cornish Stanton",
+      "cargo": "CMO, BBVA México; decisor del sponsorship Medio Maratón CDMX BBVA",
+      "tier": "Tier 2",
+      "por_que": "Vocero principal de la estrategia \"banco del deporte\" de BBVA México. Decisor del patrocinio Medio Maratón CDMX BBVA (uno de los half-marathons más grandes de Latinoamérica). Contraparte directa con Mikel Arriola en renovación naming rights Liga MX (vigente hasta 2028) y con Pedro Esquivel en Estadio BBVA Monterrey. Reporta a Eduardo Osuna Osuna (CEO BBVA México, ya cargado P-018X).",
+      "vinculos": "Eduardo Osuna Osuna (CEO BBVA México, ya cargado A-010); Mikel Arriola (Liga BBVA MX); Pedro Esquivel Ayanegui (Rayados/Estadio BBVA); INDEPORTE CDMX (operador); Maratón CDMX (Telcel, evento hermano)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-093": [
+    {
+      "poi_id": "P-061",
+      "actor_id": "A-093",
+      "actor_name": "Medio Maratón Internacional Guadalajara Electrolit",
+      "vertical": "V1",
+      "nombre": "Carlos Álvarez Bermejillo",
+      "cargo": "Presidente Ejecutivo PiSA Farmacéutica; sponsor titular Medio Maratón Internacional Guadalajara Electrolit",
+      "tier": "Tier 1",
+      "por_que": "Decisor del sponsorship titular Electrolit en el Medio Maratón Internacional Guadalajara, evento running más importante de Jalisco. Vínculo natural con la sede tapatía de PiSA. POI ya cargado bajo A-033; cross-reference para A-093.",
+      "vinculos": "PiSA Farmacéutica (matriz); Gobierno Jalisco; CODE Jalisco; Medio Maratón GDL Electrolit (organización)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-143": [
+    {
+      "poi_id": "P-064",
+      "actor_id": "A-143",
+      "actor_name": "Victum Sports México (HYROX México)",
+      "vertical": "V1",
+      "nombre": "Álvaro Taracena y Jan Peters",
+      "cargo": "Co-Founders, Victum Sports (propietaria franquicia HYROX Iberia y México); Smart Fit como naming partner exclusivo",
+      "tier": "Tier 1",
+      "por_que": "Victum Sports es el OPERADOR LICENCIATARIO de HYROX en Iberia y México. Jan Peters es además Co-Founder histórico de HYROX en Alemania. Crecimiento explosivo MX: primer evento abr-2024 CDMX 2,800 atletas → MTY 2026 sold-out 10,800 atletas en 2 días (21,000 m2, 25,000 espectadores). TEMPORADA 25-26 PROYECTADA: 5 eventos (vs 3 anterior), 11+ días de competición, +45,000 atletas (vs 13,000). Nuevas sedes Acapulco y Puebla; consolidación CDMX, GDL, MTY. Smart Fit (A-128 Edgard Corona) es naming partner exclusivo MX. Modelo de category creation reconocido por Fast Company entre 50 Most Innovative Companies in the World 2024. Equipo MX clave: Nuño Pérez-Pla de Alvear, Alan Benabib, Adriana Pedrayes, Christian Scherf, Gina Jiménez.",
+      "vinculos": "HYROX HQ Hamburg (matriz; Christian Toetzke Co-Founder; Douglas Gremmen, Maja Janzen, Jochen Möller board); Smart Fit (naming partner exclusivo MX, A-128 Edgard Corona); Nuño Pérez-Pla de Alvear (lead MX); Christian Scherf (HYROX MX); Centr (partnership Centr x HYROX equipment); Velites (comba oficial HYROX); FIBO (presencia ferial); cluster fitness/wellness MX (Sport City, Sports World)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-016": [
+    {
+      "poi_id": "P-071",
+      "actor_id": "A-016",
+      "actor_name": "Canelo Promotions / Saúl Álvarez",
+      "vertical": "V1",
+      "nombre": "Saúl \"Canelo\" Álvarez Barragán",
+      "cargo": "Founder, Canelo Promotions (lanzada 2026); boxeador profesional supermediano",
+      "tier": "Tier 1",
+      "por_que": "Boxeador más importante de México (3.5+ millones de PPV, USD 350M+ en bolsas). Lanzó Canelo Promotions en 2026 tras perder cinturones supermediano vs Terence Crawford (sep-2025) y firmar contrato global con Turki Alalshikh (PIF/Saudi General Entertainment Authority). Primera cartelera Canelo Promotions: \"México contra el Mundo\", 12-sept-2026 en Riyadh, Arabia Saudita, vs probable Lester Martínez. Crawford se retiró dejando vacantes los cinturones supermediano. Eddy Reynoso sigue como entrenador.",
+      "vinculos": "Turki Alalshikh (Chairman Saudi General Entertainment Authority y dueño Ring Magazine, partner global); Eddy Reynoso (entrenador); Mauricio Sulaimán (Pres. CMB, A-147); PIF Saudi Arabia (financiador indirecto); Terence Crawford (rival sep-2025, retirado); Lester Martínez (próximo rival probable); David Benavidez (rival pendiente light heavyweight)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-021": [
+    {
+      "poi_id": "P-072",
+      "actor_id": "A-021",
+      "actor_name": "Club Necaxa",
+      "vertical": "V1",
+      "nombre": "Al Tylis",
+      "cargo": "Co-owner y operador, Club Necaxa; partner principal de Eva Longoria, Ryan Reynolds, Rob McElhenney y Mesut Özil",
+      "tier": "Tier 1",
+      "por_que": "Inversor estadounidense que lideró la entrada de Eva Longoria al Club Necaxa, expandiendo posteriormente con Ryan Reynolds y Rob McElhenney (Wrexham AFC) y Mesut Özil (futbolista alemán retirado). Tylis es CEO de Sports Global Management. Necaxa con sede Aguascalientes, multipropiedad consorciada (no individual). Modelo Wrexham aplicado al fútbol mexicano: storytelling/documental + activos tradicionales (jugadores, infraestructura).",
+      "vinculos": "Eva Longoria (co-owner, embajadora); Ryan Reynolds (co-owner, Wrexham); Rob McElhenney (co-owner, Wrexham); Mesut Özil (co-owner); Sports Global Management; Wrexham AFC (sister club); Estadio Victoria",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-029": [
+    {
+      "poi_id": "P-075",
+      "actor_id": "A-029",
+      "actor_name": "Cruz Azul FC",
+      "vertical": "V1",
+      "nombre": "Víctor Manuel Velázquez Rangel",
+      "cargo": "Presidente del Consejo de Administración, Cooperativa La Cruz Azul S.C.L. y Presidente del Club Cruz Azul (desde abril 2021)",
+      "tier": "Tier 1",
+      "por_que": "Decisor del activo Cruz Azul tras la salida de Guillermo \"Billy\" Álvarez (2020). También Pres. Consejo Superior del Cooperativismo (Cosucoop) desde feb-2024. Logros recientes: Liga MX 2021 (rompiendo sequía 23 años), Supercopa 2022, Concachampions 2025. Recuperación planta cemento Hidalgo Tula de Allende feb-2026 (5 años \"secuestrada\"). Estadio Olímpico Universitario sede provisional tras salida Estadio Azul, regreso a sede propia en construcción.",
+      "vinculos": "Iván Alonso (Director Deportivo); Martín Anselmi (DT, hasta hace poco); Guillermo \"Billy\" Álvarez (predecesor histórico, en disputa legal); Cooperativa La Cruz Azul S.C.L. (cementera matriz); Estadio Olímpico Universitario (sede provisional, A-039); CONACAF Champions Cup (Concachampions 2025)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-115": [
+    {
+      "poi_id": "P-086",
+      "actor_id": "A-115",
+      "actor_name": "Pumas UNAM",
+      "vertical": "V1",
+      "nombre": "Luis Raúl González Pérez",
+      "cargo": "Presidente del Patronato del Club Universidad Nacional (Pumas UNAM); también ex-Presidente CNDH (2014-2019)",
+      "tier": "Tier 1",
+      "por_que": "Decisor operativo del Patronato Pumas. Sustituyó a Leopoldo Silva Gutiérrez. Estructura única en Liga MX: la UNAM es la dueña institucional pero el Patronato (asociación civil de empresarios y universitarios) administra. Rector UNAM como Presidente Honorario. Pumas terminó Apertura 2025 como líder de la competencia. Director Deportivo: Jesús Ramírez. Pumas Femenil también bajo su consejo.",
+      "vinculos": "Leopoldo Silva Gutiérrez (predecesor); Jesús Ramírez (Director Deportivo); Rector UNAM (Pres. Honorario); Patronato Club Universidad (asociación civil); Estadio Olímpico Universitario (sede, A-039); Liga MX Femenil (sister club Pumas Femenil)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-123": [
+    {
+      "poi_id": "P-087",
+      "actor_id": "A-123",
+      "actor_name": "Selección Mexicana de Fútbol",
+      "vertical": "V1",
+      "nombre": "Javier \"Vasco\" Aguirre Onaindía",
+      "cargo": "Director Técnico, Selección Mexicana de Fútbol; tercera etapa al frente del Tri (Mundial 2002, 2010, 2026)",
+      "tier": "Tier 1",
+      "por_que": "DT del Tri rumbo al WC26. Asume tras fracaso Copa América 2024 (eliminación fase de grupos bajo Jaime Lozano). Confirmado por Ivar Sisniega (Pres. FMF) que sale post-WC26; sucesor designado Rafael Márquez (auxiliar técnico, Proyecto 2030). Concentración de seis semanas previa al WC26. Partidos de preparación: Ghana 22-mayo en Estadio Cuauhtémoc Puebla. Polémica reciente con clubes Toluca y Chivas por liberación de jugadores resuelta como \"malentendido\" (mayo 2026).",
+      "vinculos": "Ivar Sisniega Peñalosa (Pres. FMF); Rafael Márquez (auxiliar, sucesor 2030); Duilio Davino (Director Deportivo Selecciones); Mikel Arriola (Comisionado FMF); Toluca y Chivas (polémica liberación jugadores mayo 2026); CAR FMF (concentración)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-124": [
+    {
+      "poi_id": "P-088",
+      "actor_id": "A-124",
+      "actor_name": "Selección Mexicana Femenil",
+      "vertical": "V1",
+      "nombre": "Pedro López Jiménez",
+      "cargo": "Director Técnico, Selección Mexicana de Fútbol Femenil",
+      "tier": "Tier 1",
+      "por_que": "DT del Tri Femenil con miras a Copa Mundial Femenina 2027 (México co-anfitriona junto con USA y Brasil, anuncio FIFA 2024). Bajo su gestión, Tri Femenil avanzó por primera vez a fase final de torneos Concacaf importantes. Liga MX Femenil como cantera principal. POI MX dedicado: pendiente complementar con Andrea Rodebaugh (Directora Selecciones Femeniles FMF).",
+      "vinculos": "Mundial Femenil 2027 (co-host MX-USA-Brasil); Liga MX Femenil (cantera); Andrea Rodebaugh (Directora Selecciones Femeniles FMF, POI complementario); Concacaf W; Ivar Sisniega (Pres. FMF)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-017": [
+    {
+      "poi_id": "P-144",
+      "actor_id": "A-017",
+      "actor_name": "Capitanes de Ciudad de México (NBA G-League)",
+      "vertical": "V1",
+      "nombre": "Patricio Garza y Gilberto Hernández",
+      "cargo": "Co-Owners y Co-Presidentes, Capitanes de Ciudad de México (NBA G-League); Vitor Galvani Head Coach (Coach del Año G-League 2025-26)",
+      "tier": "Tier 1",
+      "por_que": "Co-fundadores y propietarios de la franquicia que en diciembre 2019 se convirtió en el primer equipo NBA G-League fuera de USA y Canadá (anuncio histórico junto a Adam Silver y Shareef Abdur-Rahim presidente G-League). Sede Arena Ciudad de México. Temporada 2025-26 récord 24-12, segundo sembrado Conferencia Oeste, debut en playoffs G-League el 1-abril-2026 vs Rip City Remix. Vitor Galvani (entrenador brasileño) nombrado Coach del Año G-League 2025-26 en su primer ciclo al mando, sustituyendo la era Ramón Díaz. Cluster crítico con NBA México y NBA Mexico City Game.",
+      "vinculos": "NBA G-League (matriz, Shareef Abdur-Rahim presidente); NBA México (Raúl Zárraga DG); Adam Silver (Comisionado NBA); Vitor Galvani (Head Coach, Coach del Año 2025-26); Arena Ciudad de México (sede); Felipe Haase (capitán y figura del equipo); James Bouknight (jugador estrella); Mexico City Game NBA",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-019": [
+    {
+      "poi_id": "P-145",
+      "actor_id": "A-019",
+      "actor_name": "Charros de Jalisco (LMB + LMP)",
+      "vertical": "V1",
+      "nombre": "Salvador Quirarte",
+      "cargo": "Presidente, Charros de Jalisco (LMB + LMP); Grupo Quirarte",
+      "tier": "Tier 1",
+      "por_que": "Equipo LMB y LMP de Guadalajara. Charros campeón LMP varias temporadas, base estable de fans GDL. Cluster béisbol con Tomateros, Diablos Rojos, Sultanes.",
+      "vinculos": "LMP (Salvador Escobar Cornejo, A-083 P-035); LMB; Diablos Rojos (cluster béisbol, A-059); Sultanes/Jaguares Nayarit (cluster); Tomateros (A-138)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-098": [
+    {
+      "poi_id": "P-146",
+      "actor_id": "A-098",
+      "actor_name": "Naranjeros de Hermosillo (LMP)",
+      "vertical": "V1",
+      "nombre": "Enrique Mazón Rubio",
+      "cargo": "Presidente, Naranjeros de Hermosillo (LMP)",
+      "tier": "Tier 1",
+      "por_que": "Mazón es figura histórica LMP, fue uno de los presidentes que avaló la elección de Salvador Escobar Cornejo (A-083). Naranjeros con base en Hermosillo Sonora, máximo titulación LMP. Cluster béisbol noroeste.",
+      "vinculos": "Salvador Escobar Cornejo (Pres. LMP, A-083 P-035); LMP (10 equipos); Sonora Gobierno; Mexicali 2025 (Serie del Caribe sede); Hermosillo 2027 (Serie del Caribe sede)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-133": [
+    {
+      "poi_id": "P-147",
+      "actor_id": "A-133",
+      "actor_name": "Sultanes de Monterrey (LMB)",
+      "vertical": "V1",
+      "nombre": "Familia Maíz",
+      "cargo": "Owners, Sultanes de Monterrey (LMB) — vendieron franquicia LMP a Tepic (Jaguares de Nayarit) en 2025",
+      "tier": "Tier 1",
+      "por_que": "Familia Maíz vendió la franquicia LMP de Sultanes de Monterrey a Tepic en 2025 (transformada en Jaguares de Nayarit). Mantienen Sultanes en LMB (Liga Mexicana de Beisbol verano). Cluster béisbol MTY con Diablos Rojos.",
+      "vinculos": "Sultanes LMB (mantienen); Jaguares de Nayarit (LMP, ex Sultanes vendido 2025); Salvador Escobar Cornejo (Pres. LMP, A-083); FEMSA/Rayados (cluster MTY, A-044)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-138": [
+    {
+      "poi_id": "P-148",
+      "actor_id": "A-138",
+      "actor_name": "Tomateros de Culiacán (LMP)",
+      "vertical": "V1",
+      "nombre": "Juan Manuel Ley López",
+      "cargo": "Presidente, Tomateros de Culiacán (LMP)",
+      "tier": "Tier 1",
+      "por_que": "Juan Manuel Ley López, miembro del consejo de Casa Ley (cadena retail Sinaloa) y propietario Tomateros, máximo titulado LMP (12+ campeonatos). Cluster Sinaloa con Algodoneros, Cañeros, Águilas Mexicali.",
+      "vinculos": "Casa Ley (familia Ley, retail Sinaloa); LMP (Salvador Escobar, A-083); Salvador Maldonado (presidencia operativa rotativa); Estadio Tomateros (sede); cluster béisbol Sinaloa",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-139": [
+    {
+      "poi_id": "P-149",
+      "actor_id": "A-139",
+      "actor_name": "Toros de Tijuana (LMB)",
+      "vertical": "V1",
+      "nombre": "Familia Hank (Jorge Hank Rhon como propietario)",
+      "cargo": "Owners, Toros de Tijuana (LMB); ex-Pres. LMP Omar Canizales actualmente Pres. Ejecutivo Toros (cross-ref P-029 anterior)",
+      "tier": "Tier 1",
+      "por_que": "Toros de Tijuana en LMB. Bajo control familia Hank Rhon (cluster con Xolos LigaMX A-058). Omar Canizales (ex Pres. LMP 2009-2022) es actualmente Pres. Ejecutivo Toros desde 2024-25. Cluster béisbol noroeste y México-USA frontera.",
+      "vinculos": "Jorge Hank Rhon (cluster Caliente, A-058); Familia Hank; Omar Canizales (Pres. Ejecutivo Toros; ex Pres. LMP 2009-2022); LMB; Xolos Tijuana (cluster Hank, A-058)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-141": [
+    {
+      "poi_id": "P-150",
+      "actor_id": "A-141",
+      "actor_name": "Venados de Mazatlán (LMP)",
+      "vertical": "V1",
+      "nombre": "Familia Toledo Hernández",
+      "cargo": "Owners, Venados de Mazatlán (LMP)",
+      "tier": "Tier 1",
+      "por_que": "Familia Toledo Hernández como propietarios históricos de Venados Mazatlán. LMP cluster béisbol Sinaloa. Mazatlán fue sede Serie del Caribe 2021.",
+      "vinculos": "LMP (Salvador Escobar, A-083); cluster béisbol Sinaloa (Tomateros A-138, Algodoneros, Cañeros); Mazatlán FC (cluster ciudad, A-065 ex-Salinas vendido a Escalante 2025)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-147": [
+    {
+      "poi_id": "P-151",
+      "actor_id": "A-147",
+      "actor_name": "World Boxing Council (WBC) — sede CDMX",
+      "vertical": "V1",
+      "nombre": "Mauricio Sulaimán Saldívar",
+      "cargo": "Presidente, World Boxing Council (WBC) — sede CDMX",
+      "tier": "Tier 1",
+      "por_que": "Hijo de José Sulaimán (Pres. histórico WBC). Mauricio asumió en 2014. WBC con sede en Ciudad de México, organismo más prestigioso del boxeo mundial junto con WBA, IBF, WBO. Cluster directo con Canelo Promotions (A-016 P-079) — los cinturones supermediano vacantes (post-Crawford retirado) son administrados por WBC. Mauricio fue clave en el deal Canelo-Crawford 2025.",
+      "vinculos": "Saúl \"Canelo\" Álvarez (boxeador, A-016 P-079); Eddy Reynoso (entrenador Canelo); Turki Alalshikh (PIF / Saudi General Entertainment Authority, partner Canelo); Christian M'billi (campeón actual WBC supermediano); Lester Martínez (interino WBC); WBA, IBF, WBO (peers)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-075": [
+    {
+      "poi_id": "P-160",
+      "actor_id": "A-075",
+      "actor_name": "INDEPORTE — Instituto del Deporte de la Ciudad de México",
+      "vertical": "V1",
+      "nombre": "Javier Hidalgo Ponce",
+      "cargo": "Director General, INDEPORTE — Instituto del Deporte de la Ciudad de México",
+      "tier": "Tier 1",
+      "por_que": "Decisor operativo del deporte público CDMX. Operador del Maratón CDMX Telcel (A-087, en alianza con Telcel/Slim), Medio Maratón CDMX BBVA (A-092 con Cornish Stanton P-062), eventos masivos en Zócalo y carreras populares. Brazo institucional del Gobierno CDMX (Clara Brugada). Reporta directamente a la Jefa de Gobierno.",
+      "vinculos": "Clara Brugada (Jefa de Gobierno CDMX, jefa directa); Maratón CDMX Telcel (A-087); Medio Maratón CDMX BBVA (A-092); ASdeporte / Antonio Álvarez Martínez (operador, A-007); Estadio Banorte (relación institucional); FIFA WC26 (sede CDMX)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-004": [
+    {
+      "poi_id": "P-013",
+      "actor_id": "A-004",
+      "actor_name": "Amazon Prime Video",
+      "vertical": "V2",
+      "nombre": "Tomás Tejero",
+      "cargo": "Country Manager / Director, Amazon Prime Video México",
+      "tier": "Tier 1",
+      "por_que": "Decisor del portafolio deportivo de Prime Video en México. Gestionó la adquisición de derechos exclusivos de partidos en casa de Chivas (vigente hasta Clausura 2028) y la integración de NBA, NFL, F1, MLB, UEFA Champions League y Liga MX en la parrilla local. Vocero declarado sobre saturación de licencias deportivas en México y la estrategia de retención de suscriptores vía deportes.",
+      "vinculos": "Chivas/Amaury Vergara (deal home games hasta 2028); FOX Sports (alianza distribución LMB); Tigres (negociación post-Televisa); NBA/NFL/MLB/F1 (carry-over global)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-036": [
+    {
+      "poi_id": "P-017",
+      "actor_id": "A-036",
+      "actor_name": "ESPN / Disney+ México",
+      "vertical": "V2",
+      "nombre": "Martín Iraola",
+      "cargo": "Presidente, The Walt Disney Company Latin America (incluye ESPN y Disney+ México)",
+      "tier": "Tier 1",
+      "por_que": "Decisor regional de la estrategia ESPN y Disney+ en México y LatAm. Bajo su gestión se construyó el bundle ViX+Disney+ con TelevisaUnivision. ESPN sigue siendo broadcaster relevante de Liga MX, NFL, F1 GP México y eventos premium MLB.",
+      "vinculos": "TelevisaUnivision (bundle ViX+); ESPN (cartera deportiva); Hulu/Star+ migración; Olek Loewenstein (TUDN, contraparte)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-137": [
+    {
+      "poi_id": "P-039",
+      "actor_id": "A-137",
+      "actor_name": "TelevisaUnivision",
+      "vertical": "V2",
+      "nombre": "Daniel Alegre",
+      "cargo": "CEO, TelevisaUnivision (desde 19 de septiembre de 2024)",
+      "tier": "Tier 1",
+      "por_que": "Decisor último de TelevisaUnivision, broadcaster con derechos centrales del WC26 en USA hispano y propietario de TUDN/ViX. Sustituyó a Wade Davis en sep-2024. Su mandato es acelerar la monetización de ViX y gestionar el ciclo WC26. Bajo su gestión Bernardo Gómez y Alfonso de Angoitia consolidaron la estructura Co-CEO de Grupo Televisa (ene-2026).",
+      "vinculos": "Bernardo Gómez (Co-CEO Grupo Televisa); Alfonso de Angoitia (Co-CEO Grupo Televisa); Olek Loewenstein (Pres. Deportes y Noticias TUDN); Marco Liceaga (EVP Adquisición Derechos); Emilio Azcárraga Jean (accionista controlador post-reducción); FIFA (derechos WC26 hispano USA)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-040",
+      "actor_id": "A-137",
+      "actor_name": "TelevisaUnivision",
+      "vertical": "V2",
+      "nombre": "Olek Loewenstein",
+      "cargo": "Presidente Global de Deportes y Noticias, TelevisaUnivision (lidera TUDN)",
+      "tier": "Tier 2",
+      "por_que": "Responsable de la estrategia de derechos deportivos y producción de TUDN. Firmó la sublicencia con DAZN para FIFA Club World Cup 2025. Figura clave en la renovación del deal Liga MX global y en la integración de TUDN con ViX para WC26.",
+      "vinculos": "Daniel Alegre (CEO, jefe); Marco Liceaga (EVP Adquisición Derechos); DAZN (sublicencia FIFA Club World Cup); Liga MX (deal renovación); FIFA (WC26)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-114",
+      "actor_id": "A-137",
+      "actor_name": "TelevisaUnivision",
+      "vertical": "V2",
+      "nombre": "Bernardo Gómez",
+      "cargo": "Co-CEO, Grupo Televisa (desde enero 2026)",
+      "tier": "Tier 1",
+      "por_que": "Junto con Alfonso de Angoitia es el poder real detrás del accionista controlador post-reducción de Emilio Azcárraga Jean. Consolida la agenda estratégica del grupo hacia ViX y el Mundial 2026. Control sobre decisiones comerciales y de derechos de Televisa. Interlocutor directo con Daniel Alegre (CEO TelevisaUnivision, P-046 ya cargado).",
+      "vinculos": "Alfonso de Angoitia (Co-CEO, par); Daniel Alegre (CEO TelevisaUnivision, P-046); Emilio Azcárraga Jean (accionista reducido, A-105); ViX; FIFA WC26 (derechos)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-115",
+      "actor_id": "A-137",
+      "actor_name": "TelevisaUnivision",
+      "vertical": "V2",
+      "nombre": "Alfonso de Angoitia",
+      "cargo": "Co-CEO, Grupo Televisa (desde enero 2026)",
+      "tier": "Tier 1",
+      "por_que": "Co-decisor del grupo junto con Bernardo Gómez. Su perfil financiero complementa la agenda operativa. Responsable del ciclo de desapalancamiento 2025-2028 (deuda neta USD 9B). Pieza clave en la estrategia financiera y de derechos deportivos del grupo durante el ciclo WC26.",
+      "vinculos": "Bernardo Gómez (Co-CEO, par); Daniel Alegre (CEO TelevisaUnivision, P-046); deuda neta USD 9B; ciclo desapalancamiento 2025-2028; FIFA WC26 derechos",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-116",
+      "actor_id": "A-137",
+      "actor_name": "TelevisaUnivision",
+      "vertical": "V2",
+      "nombre": "Marco Liceaga",
+      "cargo": "EVP Adquisición de Derechos, TelevisaUnivision",
+      "tier": "Tier 2",
+      "por_que": "Ejecutivo responsable de negociar y cerrar los contratos de derechos deportivos. Figura clave en la renovación del deal Liga MX global y en las propiedades internacionales (Champions, NFL, Premier League en MX). Cluster operativo con Olek Loewenstein (TUDN/ViX, P-047 ya cargado).",
+      "vinculos": "Olek Loewenstein (TUDN/ViX, P-047); Daniel Alegre (CEO TelevisaUnivision, P-046); Liga MX (renovación derechos); FMF; UEFA, NFL, Premier League en MX",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-047": [
+    {
+      "poi_id": "P-048",
+      "actor_id": "A-047",
+      "actor_name": "Fox Corporation / FOX One / Tubi México",
+      "vertical": "V2",
+      "nombre": "Carlos Martínez",
+      "cargo": "EVP & MD, Fox Corporation Latin America",
+      "tier": "Tier 1",
+      "por_que": "Ejecutivo regional que lideró la adquisición de Caliente TV (junio 2025) por parte de Fox Corp y la construcción del triple stack en MX (FOX Sports vía Lauman + FOX One + Tubi MX free streaming). Tubi México distribuye Liga MX Femenil (10 equipos), Tour de Francia, Liga MX masculina selecta. Decisor último de la estrategia FOX en MX/LatAm, incluyendo derechos deportivos y la integración de la cartera Caliente TV.",
+      "vinculos": "Lachlan Murdoch (CEO Fox Corp); Eric Alvarez (líder México operativo, por confirmar nombre); Caliente TV (adquirida jun-2025); FOX Sports MX/Grupo Lauman (relación licenciataria); Tubi (free streaming); Liga MX Femenil (10 equipos en Tubi)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-048": [
+    {
+      "poi_id": "P-049",
+      "actor_id": "A-048",
+      "actor_name": "Fox Sports México / Grupo Lauman",
+      "vertical": "V2",
+      "nombre": "Manuel Arroyo",
+      "cargo": "Presidente, Grupo Lauman (matriz Fox Sports México, El Financiero, Comtelsat)",
+      "tier": "Tier 1",
+      "por_que": "Compró Fox Sports México a The Walt Disney Company en mayo 2021 por más de USD 300M (forced divestment IFT post-fusión Disney/21st Century Fox). Grupo Lauman también controla El Financiero (periódico), Comtelsat (broadcast/telecom) y El Financiero Bloomberg TV. CRISIS OPERATIVA EN CURSO MAY-2026: Fox Sports MX en deterioro acelerado tras perder UFC a Paramount (oct-2025), recortes masivos de 70+ empleados (nov-dic 2025), salidas de Alberto Lati y Raúl Orvañanos (figuras históricas), señales removidas de MEGA cable (ene-2026), migración de contenido a nuevo Fox One de Fox Corporation. Activo en deterioro estructural.",
+      "vinculos": "Grupo Lauman (matriz); El Financiero (periódico hermana); Comtelsat (broadcast/telecom hermana); Fox Corporation (rival post-spinoff con Caliente TV/Fox One nuevo, Carlos Martínez EVP LatAm); Paramount/Skydance (ganador rights UFC); IFT (regulatorio histórico); Disney (vendedor 2021); ecosistema rights deportivos en deterioro (NFL, MLB, F1, NASCAR, Premier League, Concacaf Champions Cup, Liga MX)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-100": [
+    {
+      "poi_id": "P-062",
+      "actor_id": "A-100",
+      "actor_name": "Netflix México",
+      "vertical": "V2",
+      "nombre": "Carolina Leconte",
+      "cargo": "VP Content, Netflix México y LatAm",
+      "tier": "Tier 1",
+      "por_que": "Firmó el deal Concacaf con Netflix el 14-abril-2026 (Copa Oro y Concacaf Nations League Finals 2027-2029), el primer acuerdo deportivo exclusivo de Netflix en México. Arquitecta de la estrategia deportiva de Netflix en LatAm. Esto rompe la tradición de Netflix de no entrar a sports rights en vivo en MX y abre un ciclo nuevo de competencia con TelevisaUnivision, Disney+ y FOX por derechos Concacaf.",
+      "vinculos": "Concacaf (deal Copa Oro + Nations League Finals 2027-2029); FMF (A-043); TelevisaUnivision (competencia, A-137); ESPN/Disney+ (competencia, A-036); Bela Bajaria (Chief Content Officer Netflix global)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-118": [
+    {
+      "poi_id": "P-063",
+      "actor_id": "A-118",
+      "actor_name": "Récord",
+      "vertical": "V2",
+      "nombre": "Carlos Ponce de León",
+      "cargo": "Director General, RÉCORD Diario Deportivo (Autflo S.A. de C.V.)",
+      "tier": "Tier 1",
+      "por_que": "Director general de RÉCORD, diario deportivo mexicano fundado en 2002. Circulación 105,339 ejemplares diarios L-S y 87,677 dominicales (registro oficial SIC). Multiplataforma con sitio web, ediciones impresas Ciudad de México, Guadalajara y Monterrey, redes sociales con 4.6M+ seguidores Facebook y 1.5M TikTok. Editorialmente con concepto de \"infoentretenimiento\", crítico, con amplio despliegue fotográfico. Operada por Autflo S.A. de C.V. Diana Pérez aparece como Director (registro SIC, posiblemente cargo distinto a DG corporativo) y Oscar Caliz como Jefe de Redacción.",
+      "vinculos": "Autflo S.A. de C.V. (matriz); Diana Pérez (Director cargo SIC); Oscar Caliz (Jefe de Redacción); David Medrano, Antonio Moreno, El Hijo del Santo (columnistas históricos); Mediotiempo (competencia, A-094); ESTO/OEM (competencia); Caliente.mx (sponsor)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-006": [
+    {
+      "poi_id": "P-067",
+      "actor_id": "A-006",
+      "actor_name": "Apple TV (Leagues Cup MLS-Liga MX)",
+      "vertical": "V2",
+      "nombre": "Eddy Cue",
+      "cargo": "SVP Services, Apple Inc. (responsable Apple TV+ y Apple TV); decisor último de los deals Apple TV con MLS Season Pass y Leagues Cup",
+      "tier": "Tier 1",
+      "por_que": "Decisor último de Apple TV en sports rights. Apple TV es titular global del MLS Season Pass (incluyendo Leagues Cup, torneo MLS-Liga MX donde participan los 18 clubes mexicanos cada verano). Deal MLS 10 años USD 2.5 mil millones (2023-2032). Lionel Messi factor multiplicador. Apple no tiene deals MX-only de derechos, pero la Leagues Cup es eje central de la presencia mexicana en su parrilla.",
+      "vinculos": "Tim Cook (CEO Apple); Don Garber (Comisionado MLS, contraparte deal); Mikel Arriola (Liga MX, contraparte Leagues Cup); Lionel Messi (Inter Miami, factor demanda); MLS Season Pass",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-011": [
+    {
+      "poi_id": "P-069",
+      "actor_id": "A-011",
+      "actor_name": "Better Collective / Futbol Sites / Bolavip",
+      "vertical": "V2",
+      "nombre": "Jesper Søgaard",
+      "cargo": "CEO y Co-Founder, Better Collective A/S (NASDAQ Stockholm: BETCO)",
+      "tier": "Tier 1",
+      "por_que": "CEO global del mayor publisher de sports media y betting tips del mundo. Better Collective opera Futbol Sites (incluyendo Bolavip, Pulzo, World Soccer Talk en MX/LATAM) tras adquisición 2021. Marcas en MX: Bolavip, World Soccer Talk en español. Modelo de negocio integrado con sportsbooks (incluyendo Caliente.mx). Capitalización ~USD 1.2B+. Vínculo activo con ecosistema apuestas regulado y no regulado MX.",
+      "vinculos": "Christian Kirk Rasmussen (Co-Founder, Co-CEO); Futbol Sites (subsidiaria LATAM); Bolavip (marca MX); Caliente.mx (sportsbook partnership potencial); Codere Online (competencia)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-090": [
+    {
+      "poi_id": "P-082",
+      "actor_id": "A-090",
+      "actor_name": "Max / HBO Max Warner Bros. Discovery",
+      "vertical": "V2",
+      "nombre": "Juan Solá",
+      "cargo": "SVP Streaming, Warner Bros. Discovery LatAm (HBO Max)",
+      "tier": "Tier 1",
+      "por_que": "Líder operativo de HBO Max LatAm (37,000+ horas catálogo). Lideró el lanzamiento HBO Max LatAm a mediados 2021 (alcanzando 30M+ suscriptores LatAm a finales 2022, ~10% México estimado), la transición a Max en feb-2024 y el regreso a HBO Max en jul-2025 (decisión global Zaslav may-2025). Sin sports rights en vivo MX a may-2026 pero con cartera contenido sports adyacente (deportes documentales, especiales). Juan Solá reporta a David Zaslav (Pres. y CEO global WBD). Anouk Aarón es la líder de Producción de Contenidos LatAm/US Hispanic con éxitos como Chespirito (mayor éxito global LatAm en HBO Max).",
+      "vinculos": "David Zaslav (Pres. y CEO global Warner Bros. Discovery, NASDAQ: WBD); Casey Bloys (CEO HBO y Max Content); Anouk Aarón (Líder Producción Contenidos WBD LatAm/US Hispanic); ecosistema streaming MX (Netflix A-100, Disney+/ESPN A-036, ViX A-137, Prime Video A-004); fusión pendiente Paramount Skydance + WBD (USD 110B termination fee discutida en Q1-2026)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-094": [
+    {
+      "poi_id": "P-083",
+      "actor_id": "A-094",
+      "actor_name": "Mediotiempo",
+      "vertical": "V2",
+      "nombre": "Agustín Martínez",
+      "cargo": "Director Editorial de Deportes, Grupo Multimedios (Mediotiempo, Canal 6, Milenio Deportes)",
+      "tier": "Tier 1",
+      "por_que": "Responsable editorial de Mediotiempo, principal portal deportivo digital de Grupo Multimedios. Lidera la estrategia de cobertura WC26 con más de 2,000 horas de producción, 20 enviados especiales, 130 colaboradores, 31 reporteros y 5 plataformas. Despliegue editorial de los más amplios del periodismo deportivo MX para el Mundial. Reporta a Óscar Cedillo (Director Editorial Nacional Multimedios) y Ángel Cong (DG Grupo Multimedios), bajo Francisco D. González Albuerne (Pres. Ejecutivo Multimedios y Milenio).",
+      "vinculos": "Óscar Cedillo (Director Editorial Nacional Multimedios); Ángel Cong (DG Grupo Multimedios); Francisco D. González Albuerne (Pres. Ejecutivo Multimedios); Enrique Domínguez (Director Contenidos Multimedios); Karen Ortiz (Directora Digital Regiones); Récord (competencia, A-118); ESTO/OEM (competencia)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-109": [
+    {
+      "poi_id": "P-085",
+      "actor_id": "A-109",
+      "actor_name": "Paramount+ / Pluto TV",
+      "vertical": "V2",
+      "nombre": "Chris McCarthy",
+      "cargo": "President & CEO, Paramount Streaming (incluye Paramount+ y Pluto TV) — sujeto a confirmación post-merger Skydance",
+      "tier": "Tier 1",
+      "por_que": "Decisor del streaming Paramount en MX. Pluto TV (free streaming, contenido sport selecto) y Paramount+ con cobertura UEFA Champions League y NFL. Post-fusión Skydance/Paramount completada 2025, estructura ejecutiva en flujo. POI por reconfirmar antes de presentación. Influencia menor que TelevisaUnivision o Disney+ en sports MX, pero relevante para UCL y NFL niche.",
+      "vinculos": "David Ellison (CEO Paramount Skydance); UEFA (Champions League rights); NFL (rights niche); Pluto TV (free streaming MX); ecosistema OTT MX",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-127": [
+    {
+      "poi_id": "P-089",
+      "actor_id": "A-127",
+      "actor_name": "Sky Sports México / NBCUniversal",
+      "vertical": "V2",
+      "nombre": "Ricardo Maldonado",
+      "cargo": "Director General, Izzi Telecom (Televisa) — Sky Sports México extinta como marca a finales de enero 2026; señal y rights migrados a Izzi con producción AyM Sports",
+      "tier": "Tier 1",
+      "por_que": "CONTEXTO CRÍTICO: Sky Sports México DEJÓ DE EXISTIR como marca operativa a finales de enero 2026 tras un proceso de reestructuración iniciado en 2024 cuando Televisa adquirió 100% de Sky (compró el 41% que mantenía AT&T en 2024). En ene-2026 más de 70 trabajadores Sky Sports despedidos tras 4 meses sin pagos. Los rights más valiosos (LaLiga, Copa del Rey, Bundesliga, F1 oct-2025 a 2028) migraron a Izzi con producción AyM Sports. El POI institucional ahora es la dirección Izzi (Ricardo Maldonado DG) bajo TelevisaUnivision. Actor en transición a extinción; mantenerlo solo por trazabilidad histórica.",
+      "vinculos": "TelevisaUnivision (matriz, A-137; Bernardo Gómez y Alfonso de Angoitia Co-CEOs; Marco Liceaga EVP); Izzi Telecom (operador post-Sky); AyM Sports (productor sucesor); LaLiga, Bundesliga, F1 (rights migrados a Izzi); Carlos Ponce de León (periodista que reveló la crisis y extinción, peer Récord A-118); AT&T (vendedor 41% en 2024)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-148": [
+    {
+      "poi_id": "P-159",
+      "actor_id": "A-148",
+      "actor_name": "YouTube (Alphabet/Google)",
+      "vertical": "V2",
+      "nombre": "Sundar Pichai",
+      "cargo": "CEO, Alphabet/Google (matriz YouTube)",
+      "tier": "Tier 1",
+      "por_que": "YouTube como vehículo deportivo MX: NFL Sunday Ticket (deal global desde 2023), Liga MX (canales oficiales clubes y YouTube TV potential rights), LMP temporada 2024-25 transmisión free vía YouTube post-disputa con televisoras. POI MX dedicado: Eduardo Sebastián Almeida (Director Consumer Apps YouTube LatAm) — pendiente reconfirmar.",
+      "vinculos": "Sundar Pichai (CEO Alphabet/Google); NFL Sunday Ticket (deal global desde 2023); LMP temporada 2024-25 (transmisión free YouTube); ecosistema streaming MX (Netflix, Disney+, Paramount+)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-106": [
+    {
+      "poi_id": "P-036",
+      "actor_id": "A-106",
+      "actor_name": "OXXO / FEMSA Comercio",
+      "vertical": "V3",
+      "nombre": "Carlos Arroyo Rico",
+      "cargo": "Director General, OXXO México (desde 19-nov-2024; transición completa 31-mar-2025)",
+      "tier": "Tier 1",
+      "por_que": "Sucesor de Carlos Arenas (40 años al frente de OXXO, jubilado mar-2025). Reporta directamente a JA Fernández Garza-Lagüera (CEO FEMSA Proximidad y Salud, ahora CEO FEMSA desde nov-2025). Líder operativo y comercial de la cadena de proximidad más grande de México (28,000+ tiendas). 25+ años de carrera en retail: ex-VP Senior y DG Walmart Centroamérica, VP Senior y COO Walmart México, DG Grupo Diagnóstico PROA, posiciones estratégicas en The Coca-Cola Company. ITESM + MBA ESADE. NOTA: Asensio Carrión no es DG OXXO; lidera Negocios Electrónicos y Financieros / Spin desde hace más de una década.",
+      "vinculos": "JA Fernández Garza-Lagüera (CEO FEMSA, jefe directo); Carlos Arenas (predecesor jubilado); Rodrigo García Jacques (CEO Spin desde 2026); Asensio Carrión (Director Negocios Electrónicos y Financieros / Spin, distinto al cargo DG OXXO); Coca-Cola FEMSA; Heineken México (sister company); Boletomóvil (ticketing)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-001": [
+    {
+      "poi_id": "P-041",
+      "actor_id": "A-001",
+      "actor_name": "adidas",
+      "vertical": "V3",
+      "nombre": "Jorge Dionne",
+      "cargo": "Director General, Adidas México",
+      "tier": "Tier 1",
+      "por_que": "DG de la operación mexicana de adidas. Responsable directo de los deals con FMF (kit Selección USD 290M), Club América (firmado jul-2025) y Tigres UANL. Lideró el proceso de desplazamiento de Nike en el América. Bjørn Gulden (CEO global adidas AG) es el decisor último corporativo, pero Dionne es el operador del footprint MX. Cluster blue-chip con Liga MX, Selección y los dos clubes históricamente más ricos en kits.",
+      "vinculos": "Bjørn Gulden (CEO global adidas AG); FMF (kit deal USD 290M, A-043); Club América (jul-2025, A-105); Tigres UANL (kit deal, A-018); Liga MX (apparel partner); Selección Mexicana (kit Tri, A-123); FIFA WC26 (sponsor global)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-010": [
+    {
+      "poi_id": "P-042",
+      "actor_id": "A-010",
+      "actor_name": "BBVA México",
+      "vertical": "V3",
+      "nombre": "Eduardo Osuna Osuna",
+      "cargo": "Vicepresidente y Director General (CEO), BBVA México y Country Manager México (desde 2015); 56 años",
+      "tier": "Tier 1",
+      "por_que": "CEO del banco más grande de México por número de clientes y activos. En BBVA desde agosto 1994; ascendió por Banca Corporativa, recuperación de crédito, Hipotecaria Nacional (DG 2006-2010). Decisor último del patrocinio Liga BBVA MX (naming rights desde 2014, contrato vigente hasta 2028) y del Medio Maratón CDMX BBVA. Convención Bancaria mar-2026 en Cancún. Tragedia personal reciente: fallecimiento de su hijo Diego Osuna Miranda (17 años) en accidente Valle de Bravo (14-mar-2026).",
+      "vinculos": "Enrique K. Cornish Stanton (CMO BBVA México, decisor sponsorship operativo); Mikel Arriola (Liga MX, contraparte naming rights); Pedro Esquivel (Rayados, contraparte renovaciones jul-2025); Estadio BBVA Monterrey (naming Rayados); Medio Maratón CDMX BBVA",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-033": [
+    {
+      "poi_id": "P-045",
+      "actor_id": "A-033",
+      "actor_name": "Electrolit / Grupo PiSA",
+      "vertical": "V3",
+      "nombre": "Carlos Álvarez Bermejillo",
+      "cargo": "Presidente Ejecutivo, Laboratorios PiSA (desde fundación, hijo del fundador Miguel Álvarez Ochoa); 87 años; lugar 100 ranking 100 empresarios más importantes de México (Expansión 2024)",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del conglomerado farmacéutico PiSA y de la marca Electrolit. Patrimonio estimado ~USD 900M. PiSA: 14 plantas de producción en MX, 20,000 empleados, 1,500+ marcas farmacéuticas. Electrolit es marca lider del mercado de hidratación deportiva en MX, top-5 en USA tras deal con Keurig Dr Pepper (oct-2023) que distribuye en USA. Riesgo regulatorio crítico: Paquete Económico 2026 incluye propuesta para gravar Electrolit con IVA/IEPS (~5,000 mdp en juego); diputados acusan ventaja fiscal por registro como medicamento.",
+      "vinculos": "Caridad Ochoa (Pres. & CEO Electrolit USA); Keurig Dr Pepper (distribución USA); Coparmex Jalisco (ex-presidente); Cámara de Comercio Guadalajara; Edgar Amador Zamora (Hacienda, propuesta IEPS); Medio Maratón Internacional Guadalajara Electrolit (sponsor titular evento)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-070": [
+    {
+      "poi_id": "P-056",
+      "actor_id": "A-070",
+      "actor_name": "Heineken México",
+      "vertical": "V3",
+      "nombre": "Etienne Strijp",
+      "cargo": "Presidente, HEINEKEN México (Cervecería Cuauhtémoc Moctezuma)",
+      "tier": "Tier 1",
+      "por_que": "CEO de la operación mexicana de Heineken (post-venta FEMSA 2010). Lidera la cartera Tecate, Heineken, Indio, Sol, Bohemia, Dos Equis. Patrocinador estructural Selección Mexicana (Heineken, Tecate), Liga MX (Tecate Light naming rights cartera), F1 GP México (Heineken sponsor global F1), NFL México (Tecate). Compromisos sustanciales con WC26 vía Heineken (sponsor global FIFA WC). POI por reconfirmar nombre Strijp antes de presentación (cargo regional con rotación).",
+      "vinculos": "FEMSA (vendedor 2010, sister company via JA Fernández Garza-Lagüera); Selección Mexicana; Liga MX; F1 GP México; NFL México (Tecate sponsor); FIFA WC26 (Heineken global sponsor); Mikel Arriola",
+      "certeza": "Fuente única"
+    },
+    {
+      "poi_id": "P-106",
+      "actor_id": "A-070",
+      "actor_name": "Heineken México",
+      "vertical": "V3",
+      "nombre": "Vinicius Salém Carvalho",
+      "cargo": "Director Marketing, Heineken México",
+      "tier": "Tier 1",
+      "por_que": "Responsable de la activación del patrocinio del GP México (title sponsor histórico) y de la estrategia de marca deportiva de Heineken en México. Operador clave del partnership global Heineken-Liberty Media en F1, replicado en MX vía OCESA. POI más relevante a nivel operativo en MX para sports marketing Heineken; complementa la presencia de Etienne Strijp en el cluster (cargo regional con rotación).",
+      "vinculos": "GP México (title sponsor); Liberty Media (partnership global F1); CIE/OCESA (operador GP, A-020); Etienne Strijp (cluster Pres. Heineken MX); FIFA WC26 (Heineken sponsor global); Selección Mexicana, Liga MX, NFL México",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-009": [
+    {
+      "poi_id": "P-068",
+      "actor_id": "A-009",
+      "actor_name": "Banorte / Grupo Financiero Banorte",
+      "vertical": "V3",
+      "nombre": "Carlos Hank González",
+      "cargo": "Presidente del Consejo de Administración, Grupo Financiero Banorte; familia Hank Rhon (relacionado A-058 Caliente)",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del banco con capitalización USD 26,100M y 15.3% market share MX (segundo más grande). Compra del naming del Estadio Banorte (ex-Azteca, valuado USD 1B+ deal anunciado 2024) ahora en controversia: FIFA decidió que el nombre oficial WC26 será \"Estadio Ciudad de México\", no Banorte. Tensión política con Sheinbaum (que dijo \"para mí siempre será el Estadio Azteca\"). Cluster operativo Ollamani-América-Banorte ya cargado vía A-105 (Reverter, Azcárraga Jean). RappiCard adquirido 100% en 2024.",
+      "vinculos": "Marcos Ramírez Miguel (DG GFB); Carla Juan Chelala (CMO Banorte); Emilio Azcárraga Jean (deal Estadio Banorte/Ollamani, A-105); Sheinbaum (tensión política nombre estadio); Familia Hank (Jorge Hank Rhon es hermano, A-058); Bineo (digital bank); RappiCard",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-095",
+      "actor_id": "A-009",
+      "actor_name": "Banorte / Grupo Financiero Banorte",
+      "vertical": "V3",
+      "nombre": "Marcos Ramírez Miguel",
+      "cargo": "Director General, Grupo Financiero Banorte",
+      "tier": "Tier 1",
+      "por_que": "CEO operativo del grupo. Aval ejecutivo de los contratos de deuda y patrocinio de Banorte con Ollamani (Estadio Banorte ex-Azteca). Interlocutor corporativo con Emilio Azcárraga Jean (Ollamani) y General Atlantic en el deal de naming + financiación. Bajo su gestión, Banorte fue Bank of the Year 2024 en MX (The Banker) con capitalización USD 26,100M y 15.3% market share.",
+      "vinculos": "Carlos Hank González (Pres. Consejo, Tier 1); Emilio Azcárraga Jean (Ollamani, contraparte deal); General Atlantic (A-050); Estadio Banorte; The Banker Bank of the Year 2024",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-096",
+      "actor_id": "A-009",
+      "actor_name": "Banorte / Grupo Financiero Banorte",
+      "vertical": "V3",
+      "nombre": "Carla Juan Chelala",
+      "cargo": "CMO, Banorte",
+      "tier": "Tier 2",
+      "por_que": "Responsable de la estrategia de marca y activaciones deportivas de Banorte. Gestiona la relación cotidiana con el Estadio Banorte (ex-Azteca) y con NFL México. Operadora del frente comercial de la inversión naming + activación, en plena tensión por la decisión FIFA de usar \"Estadio Ciudad de México\" en lugar de \"Banorte\" durante el WC26.",
+      "vinculos": "Estadio Banorte (operación diaria); Arturo Olivé (NFL México, A-102); Ollamani (marketing conjunto, A-105); FIFA WC26 (controversia naming); Carlos Hank González y Marcos Ramírez (jefes)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-023": [
+    {
+      "poi_id": "P-073",
+      "actor_id": "A-023",
+      "actor_name": "Coca-Cola México / Coca-Cola FEMSA",
+      "vertical": "V3",
+      "nombre": "Louis Balat",
+      "cargo": "Director General, Coca-Cola México (desde 1-nov-2025); originario de Tampico, Tamaulipas, 28 años en el Sistema Coca-Cola",
+      "tier": "Tier 1",
+      "por_que": "Sustituyó a Luis Felipe Avellar al frente de Coca-Cola México el 1-nov-2025. Coordina las operaciones con los ocho socios embotelladores (Coca-Cola FEMSA, Arca Continental y otros) que integran la Industria Mexicana de Coca-Cola, la cual aporta cerca del 2% del PIB nacional y genera ~1.7 millones de empleos directos e indirectos. Llega en un entorno fiscal complicado: el Paquete Económico 2026 duplicó el IEPS sobre bebidas azucaradas de 1.64 a 3.08 pesos por litro. Henrique Braun, antes EVP COO de Coca-Cola Company y patrón directo de Balat, ascendió a CEO global de Coca-Cola Company el 31-mar-2026 sustituyendo a James Quincey.",
+      "vinculos": "Henrique Braun (CEO global Coca-Cola Company desde 31-mar-2026); James Quincey (Executive Chairman); Coca-Cola FEMSA (Cuauhtémoc Saro CEO MX, embotellador clave); Arca Continental (embotellador); Selección Mexicana (Powerade sponsor); F1 GP México; Maratón Powerade Monterrey (A-088); Liga MX Femenil (Powerade Light)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-024": [
+    {
+      "poi_id": "P-074",
+      "actor_id": "A-024",
+      "actor_name": "Codere Online",
+      "vertical": "V3",
+      "nombre": "Aviv Sher",
+      "cargo": "CEO, Codere Online",
+      "tier": "Tier 1",
+      "por_que": "CEO de la operación online de Codere. Responsable del deal de jersey con Rayados y Rayadas Femenil, y de la expansión en México y LatAm. Codere Online compite directamente con Caliente.mx y plataformas internacionales en el mercado de apuestas online regulado mexicano.",
+      "vinculos": "CF Monterrey / Rayados (jersey deal, A-018 cluster MTY); Rayadas Femenil; LMB; Caliente.mx (competencia, A-058); Better Collective / Bolavip (competencia, A-011); Codere SA (matriz España)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-003": [
+    {
+      "poi_id": "P-121",
+      "actor_id": "A-003",
+      "actor_name": "Amazon / AWS",
+      "vertical": "V3",
+      "nombre": "Tomás Tejero",
+      "cargo": "Country Manager, Amazon México y AWS México (cross-ref A-004)",
+      "tier": "Tier 1",
+      "por_que": "POI ya cargado bajo A-004 Amazon Prime Video. Para Amazon/AWS es el mismo lead institucional regional. Cross-reference a P-004.",
+      "vinculos": "Andy Jassy (CEO Amazon global); Marc Lore; Amazon Prime Video MX (A-004 P-004 cross-ref); AWS reInvent ecosystem MX",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-008": [
+    {
+      "poi_id": "P-127",
+      "actor_id": "A-008",
+      "actor_name": "AT&T México",
+      "vertical": "V3",
+      "nombre": "Mónica Aspe Bernal",
+      "cargo": "CEO, AT&T México (desde mar-2021; primera mujer mexicana en el cargo); confirmada activa a may-2026 en M360 LATAM",
+      "tier": "Tier 1",
+      "por_que": "CEO de AT&T México desde marzo 2021 (interina desde abril 2020). Confirmada activa a mayo 2026 como ponente keynote en M360 LATAM 2026 junto a Daniel Hajj (CEO América Móvil) y Norma Solano (Comisionada Presidenta CRT MX). Sustituyó a Laurent Therivel. Antes Vicepresidenta de Asuntos Externos AT&T MX (2018-2020), representante de México ante OCDE en SRE, varios cargos en SCT. AT&T México ~3,182 empleados. Cartera deportiva histórica: naming Estadio AT&T Center Querétaro hasta 2024, sponsorships Liga MX selectos. Lisette Mendez como CFO/CCO.",
+      "vinculos": "AT&T Inc. (matriz USA, NYSE: T); Lori Lee (ex-CEO AT&T LatAm, jefa histórica); Lisette Mendez (CFO AT&T México); Daniel Hajj (CEO América Móvil/Telcel, peer telecom A-041); CRT/IFT (regulatorio); ecosistema telecom MX (Telcel, Movistar)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-012": [
+    {
+      "poi_id": "P-128",
+      "actor_id": "A-012",
+      "actor_name": "Bimbo",
+      "vertical": "V3",
+      "nombre": "Daniel Servitje Montull",
+      "cargo": "Presidente y CEO, Grupo Bimbo",
+      "tier": "Tier 1",
+      "por_que": "Bimbo es panificadora #1 mundial (USD 17B+ ingresos 2024). Sponsor estructural Liga MX (cluster patrocinios), Selección Mexicana, NFL México, F1 GP México. Familia Servitje con presencia histórica en Industria Mexicana de Coca-Cola y otros consumer staples. Bimbo Stadium (USA), Bimbo brand activation en eventos masivos.",
+      "vinculos": "Familia Servitje (control accionario); Selección Mexicana (sponsor); Liga MX (sponsor); NFL México (sponsor); F1 GP México (activación); Bimbo Stadium USA (Chicago Fire)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-028": [
+    {
+      "poi_id": "P-129",
+      "actor_id": "A-028",
+      "actor_name": "Corona / Grupo Modelo — AB InBev",
+      "vertical": "V3",
+      "nombre": "Cassiano de Stefano",
+      "cargo": "Presidente, Grupo Modelo (subsidiaria AB InBev México) — Corona, Modelo, Pacífico, Victoria",
+      "tier": "Tier 1",
+      "por_que": "CEO de Grupo Modelo (vendido a AB InBev en 2013 por USD 20.1B; familia Diez/Toluca A-022 vendió). Cartera de patrocinios estructural: Selección Mexicana (Corona), Liga MX (Corona Light), F1 GP México (Corona Cero), NFL México (Modelo Especial, sponsor en USA también via Constellation Brands). Corona Sunsets, Corona Capital festival.",
+      "vinculos": "AB InBev (matriz desde 2013); Constellation Brands (rights distribución USA); Familia Diez Morodo (vendedores históricos, A-022); Selección Mexicana (Corona kit sponsor); F1 GP México; NFL México",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-053": [
+    {
+      "poi_id": "P-130",
+      "actor_id": "A-053",
+      "actor_name": "GNP Seguros / Grupo BAL",
+      "vertical": "V3",
+      "nombre": "Alejandro Baillères",
+      "cargo": "Presidente, Grupo BAL (controla GNP Seguros, Profuturo, Palacio de Hierro, Grupo Nacional Provincial)",
+      "tier": "Tier 1",
+      "por_que": "Decisor de la cartera deportiva GNP Seguros: Estadio GNP Seguros (CDMX, ex-Foro Sol, sede de F1 GP México y conciertos masivos), Arena GNP Seguros Acapulco (sede AMT/ATP 500 vía Mundo Imperial Hernández Venegas A-096 P-117), naming rights Maratón GNP Monterrey (vinculado HG Promotores A-071), Tigres UANL (jersey deal histórico). Sucesor de Alberto Baillères González (fallecido feb-2022).",
+      "vinculos": "Familia Baillères (control accionario); Estadio GNP Seguros / Foro Sol (sede F1 GP); Arena GNP Seguros Acapulco (sede AMT, A-096); Tigres UANL (sponsor jersey, A-018); Maratón GNP Monterrey; HG Promotores (A-071, naming WTA MTY)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-089": [
+    {
+      "poi_id": "P-132",
+      "actor_id": "A-089",
+      "actor_name": "Mattel de México SA de CV",
+      "vertical": "V3",
+      "nombre": "Gabriel Galván",
+      "cargo": "Director General, Mattel de México S.A. de C.V. (consolidando operaciones LATAM); 25+ años en Mattel; Top 100 CEOs MX 2023 GPTW",
+      "tier": "Tier 1",
+      "por_que": "DG Mattel México con 25+ años en la empresa, reconocido entre los Top 100 CEOs en México 2023 por Great Place To Work. Bajo su liderazgo Mattel México consolidó operaciones para abarcar toda Latinoamérica. La planta Mattel en México es la MÁS GRANDE DEL MUNDO de la empresa (duplicó tamaño en últimos años, pilar producción global Hot Wheels y Barbie). Cartera deportiva: activaciones Hot Wheels en F1 GP México (paquetes coleccionables), eventos consumer masivos. Reporta a Ynon Kreiz (Chairman y CEO global Mattel Inc., NASDAQ: MAT).",
+      "vinculos": "Ynon Kreiz (Chairman y CEO global Mattel Inc., NASDAQ: MAT); Sanjay Luthra (nuevo Chief Commercial Officer global desde 1-may-2026); Anthony Disilvestro (CFO global); F1 GP México (Hot Wheels activaciones, A-055); CIE/OCESA (cluster activaciones, A-020); ecosistema consumer goods MX",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-095": [
+    {
+      "poi_id": "P-133",
+      "actor_id": "A-095",
+      "actor_name": "Mercado Pago / MercadoLibre",
+      "vertical": "V3",
+      "nombre": "Marcos Galperin",
+      "cargo": "CEO y Founder, Mercado Libre y Mercado Pago",
+      "tier": "Tier 1",
+      "por_que": "Founder del unicornio LatAm más grande (Mercado Libre USD 100B+ market cap NASDAQ). Mercado Pago es el brazo fintech con presencia masiva MX. Sponsorship deals: Liga MX (Mercado Pago jersey deals selectos), Selección Mexicana, NBA México (Mexico City Game). Cluster fintech/e-commerce blue-chip MX.",
+      "vinculos": "Mercado Libre (matriz, NASDAQ MELI); Pedro Arnt (ex-CFO MELI); Liga MX (jersey deals); NBA México (Capitanes A-017, sponsor); ecosistema fintech LatAm",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-101": [
+    {
+      "poi_id": "P-134",
+      "actor_id": "A-101",
+      "actor_name": "New Balance",
+      "vertical": "V3",
+      "nombre": "Brandarrays Mexico S.A. de C.V. (parte de Typhoon Sports Coalition)",
+      "cargo": "Distribuidor oficial New Balance México (operación licenciataria New Balance Athletics Inc.)",
+      "tier": "Tier 2",
+      "por_que": "New Balance opera en México vía distribuidor oficial Brandarrays Mexico S.A. de C.V., parte del grupo Typhoon Sports Coalition S.A.P.I. de C.V. (sede Cerrada de Loma Bonita 33, Lomas Altas, CDMX). New Balance Athletics Inc. (matriz USA, propiedad familia Davis con Jim Davis como Chairman histórico) mantiene el control de marca y datos personales. POI estructural: la operación MX no tiene Country Manager público dedicado al modelo Adidas/Nike sino una operación licenciataria con Brandarrays. Cluster apparel/footwear competidor de Adidas (A-001), Nike (A-103), Puma (A-114), Skechers (A-126).",
+      "vinculos": "New Balance Athletics Inc. (matriz USA, Boston); Familia Davis (Jim Davis Chairman histórico); Typhoon Sports Coalition S.A.P.I. de C.V. (grupo MX); Innovasport, Innvictus (retailers MX); ecosistema running MX; cluster apparel competencia (Adidas, Nike, Puma, Skechers, On)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-103": [
+    {
+      "poi_id": "P-135",
+      "actor_id": "A-103",
+      "actor_name": "Nike",
+      "vertical": "V3",
+      "nombre": "John Donahoe (saliente) / Elliott Hill (entrante CEO)",
+      "cargo": "CEO, Nike Inc. (transición Hill desde oct-2024)",
+      "tier": "Tier 1",
+      "por_que": "Decisor último de Nike a nivel global. Nike MX con país manager dedicado (POI por reconfirmar). Cartera MX: Tigres UANL (kit deal), Pumas UNAM (kit deal histórico), atletas individuales selectos. Adidas le quitó al Club América en jul-2025; Tigres se mantiene como activo principal Nike MX.",
+      "vinculos": "Elliott Hill (CEO Nike entrante); John Donahoe (predecesor); Tigres UANL (kit deal, A-018); Pumas UNAM (kit histórico, A-115); Adidas (competencia ganadora América, A-001)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-114": [
+    {
+      "poi_id": "P-136",
+      "actor_id": "A-114",
+      "actor_name": "Puma",
+      "vertical": "V3",
+      "nombre": "Arne Freundt",
+      "cargo": "CEO, Puma SE (desde 2022)",
+      "tier": "Tier 1",
+      "por_que": "CEO global de Puma. Cartera MX: Mexico City Marathon co-sponsor periódico, atletas individuales (futbolistas Liga MX), Manchester City partnership global. Cluster apparel competidor Adidas/Nike.",
+      "vinculos": "Adidas (competencia, A-001); Nike (competencia, A-103); ecosistema apparel/footwear MX; atletas Liga MX selectos (kit individual deals)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-121": [
+    {
+      "poi_id": "P-137",
+      "actor_id": "A-121",
+      "actor_name": "Scotiabank",
+      "vertical": "V3",
+      "nombre": "Jake Lawrence",
+      "cargo": "Group Head, Global Banking & Markets, Scotiabank — y CEO Pacific Alliance",
+      "tier": "Tier 1",
+      "por_que": "Scotiabank México (cuarto banco más grande MX) tiene cartera deportiva: Concacaf naming partner histórico (Liga de Campeones Concacaf), Arena Ciudad de México (alianza pasada), partners atletas selectos. POI MX dedicado: Adrián Otero (CEO Scotiabank México) — pendiente reconfirmar antes de presentación.",
+      "vinculos": "Scotiabank Group (matriz Toronto); Concacaf (Liga de Campeones naming partner); BBVA, Banorte, Santander (competencia banca MX); Adrián Otero (potential CEO MX, por reconfirmar)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-126": [
+    {
+      "poi_id": "P-138",
+      "actor_id": "A-126",
+      "actor_name": "Skechers",
+      "vertical": "V3",
+      "nombre": "Michael Greenberg",
+      "cargo": "President, Skechers (USA)",
+      "tier": "Tier 1",
+      "por_que": "Skechers con presencia creciente MX en running (carreras populares) y atletas individuales. Cluster apparel V3 secundario.",
+      "vinculos": "Skechers Inc. (matriz, NYSE: SKX); ecosistema running MX; New Balance, Puma (competencia segmento)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-128": [
+    {
+      "poi_id": "P-139",
+      "actor_id": "A-128",
+      "actor_name": "Smart Fit México",
+      "vertical": "V3",
+      "nombre": "Edgard Corona",
+      "cargo": "Founder y CEO, Smart Fit (matriz brasileña, NYSE: SMFT3)",
+      "tier": "Tier 1",
+      "por_que": "Smart Fit es la cadena de gimnasios más grande LatAm (~5,000 unidades regionales). En MX como sponsor titular del HYROX MX (A-143) y franquicia consumer fitness. Cluster fitness/wellness V3.",
+      "vinculos": "HYROX MX / Victum Sports (sponsor titular, A-143); Pat Gelsinger; ecosistema fitness MX; Sport City, Sports World (competencia)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-136": [
+    {
+      "poi_id": "P-140",
+      "actor_id": "A-136",
+      "actor_name": "Tecate / Cuauhtémoc Moctezuma",
+      "vertical": "V3",
+      "nombre": "Etienne Strijp",
+      "cargo": "Presidente, HEINEKEN México (cross-ref A-070; Tecate y Cuauhtémoc Moctezuma son las marcas mexicanas de la subsidiaria)",
+      "tier": "Tier 1",
+      "por_que": "Tecate, Indio, Sol, Bohemia, Dos Equis son marcas de Cervecería Cuauhtémoc Moctezuma (subsidiaria HEINEKEN MX desde 2010). POI ya cargado bajo A-070 (P-057 + P-114 Vinicius Salém Carvalho). Cross-reference para A-136. Tecate sponsor estructural Liga MX (Tecate Light naming) y NFL México.",
+      "vinculos": "HEINEKEN México (matriz, A-070); Vinicius Salém Carvalho (Director Marketing, P-114); Liga MX (Tecate Light naming); NFL México (Tecate sponsor); Selección Mexicana",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-140": [
+    {
+      "poi_id": "P-141",
+      "actor_id": "A-140",
+      "actor_name": "Uber / Uber Eats",
+      "vertical": "V3",
+      "nombre": "Andrew Macdonald",
+      "cargo": "Senior VP & Regional General Manager, Uber Americas",
+      "tier": "Tier 1",
+      "por_que": "Uber con cartera deportiva MX: Estadio Akron (Uber One sponsorship), F1 GP México (paquetes hospitality), Liga MX (sponsorship selecto). Uber Eats con activación deportiva en eventos masivos. Cluster mobility/delivery V3.",
+      "vinculos": "Uber Technologies (matriz, NYSE: UBER); Estadio Akron (sponsor Uber One); F1 GP México; Liga MX clubes (jersey deals selectos); DiDi (competencia mobility MX)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-144": [
+    {
+      "poi_id": "P-142",
+      "actor_id": "A-144",
+      "actor_name": "Viva Aerobus + Volaris (fusión dic-2025)",
+      "vertical": "V3",
+      "nombre": "Roberto Alcántara y Enrique Beltranena",
+      "cargo": "Founders, Viva Aerobus (Familia Alcántara) y Volaris (Beltranena CEO histórico) — fusión anunciada dic-2025 en proceso de aprobación regulatoria",
+      "tier": "Tier 1",
+      "por_que": "Fusión Viva Aerobus + Volaris anunciada en dic-2025, pendiente de aprobación COFECE/SCT. Crearía la aerolínea LCC #1 MX dominando el mercado low-cost. Cartera deportiva relevante: Volaris sponsor histórico FMF y Selección, Viva Aerobus sponsor Estadio Cuauhtémoc Puebla y eventos. Post-fusión: cluster aviación/movilidad sport sponsorship consolidado.",
+      "vinculos": "COFECE (autoridad regulatoria fusión); SCT/SICT (regulatoria); FMF (Volaris sponsor histórico); Estadio Cuauhtémoc Puebla (Viva sponsor); ecosistema aviación MX; Aeroméxico (competencia)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-145": [
+    {
+      "poi_id": "P-143",
+      "actor_id": "A-145",
+      "actor_name": "Walmart México",
+      "vertical": "V3",
+      "nombre": "Cristian Barrientos",
+      "cargo": "Presidente y CEO, Walmart de México y Centroamérica (WALMEX)",
+      "tier": "Tier 1",
+      "por_que": "Walmart MX (mayor retailer del país por ingresos, USD ~30B). Cluster sponsorships consumer: NFL México (jersey deals selectos), Liga MX clubes, eventos masivos. Sin cartera estructural sports propia pero anunciante blue-chip.",
+      "vinculos": "Walmart Inc. (matriz USA); Doug McMillon (CEO global); NFL México; Liga MX (anunciante); ecosistema retail MX (Soriana, Chedraui)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-099": [
+    {
+      "poi_id": "P-033",
+      "actor_id": "A-099",
+      "actor_name": "Neta Agencia Deportiva",
+      "vertical": "V4",
+      "nombre": "Alejandra Maffey Tarazona",
+      "cargo": "CEO y Fundadora, Neta Agencia Deportiva (desde 2012); creadora de Deportium Congreso de Ciencias Aplicadas al Deporte",
+      "tier": "Tier 2",
+      "por_que": "Considerada una de las mujeres pioneras del marketing deportivo, representación de atletas y relaciones públicas en el deporte en México. Primera mujer mexicana con licencia de fútbol español por el Valencia CF. Ex-seleccionada nacional de natación (Centroamericanos y del Caribe). Neta representa 16 atletas de alto rendimiento incluyendo medallistas olímpicos como Aremi Fuentes, Eduardo Ávila, Donovan Carrillo y Tonatiu López. Servicios: marketing deportivo, RP, organización de eventos, programas de bienestar empresarial (Nutre tu Empresa), activaciones BTL.",
+      "vinculos": "Atletas Neta (Aremi Fuentes, Eduardo Ávila, Donovan Carrillo, Tonatiu López, Tamara Vega); Valencia CF México (alianza); Comité Olímpico Mexicano (CON); Deportium Congreso (4 ediciones); marcas Bioderma, etc.; G100 México (red de mujeres líderes)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-104": [
+    {
+      "poi_id": "P-035",
+      "actor_id": "A-104",
+      "actor_name": "Octagon",
+      "vertical": "V4",
+      "nombre": "Rick Dudley",
+      "cargo": "CEO Global, Octagon (Interpublic Group)",
+      "tier": "Tier 1",
+      "por_que": "CEO de la agencia full-service de marketing y representación deportiva con presencia consolidada en MX. Decisor sobre estrategia regional y cartera de talento. POI global cargado por Score Compuesto altísimo (0.722) que refleja amplitud funcional excepcional en MX vía cartera de marcas patrocinadoras. POI MX operativo dedicado: pendiente registrar como Tier 2 cuando se confirme nombre del lead local.",
+      "vinculos": "Interpublic Group (matriz); Casey Wasserman/THE·TEAM (competencia); Wasserman / IMG / Endeavor (competencia agencias V4); marcas patrocinadoras blue-chip",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-116": [
+    {
+      "poi_id": "P-037",
+      "actor_id": "A-116",
+      "actor_name": "Relevent (Relevent Sports Group)",
+      "vertical": "V4",
+      "nombre": "Daniel Sillman",
+      "cargo": "CEO, Relevent Sports Group",
+      "tier": "Tier 1",
+      "por_que": "CEO de Relevent (operador detrás del Soccer Champions Tour, partner comercial de la UEFA en Norteamérica, y el ecosistema de partidos amistosos premium en USA/MX). Relevent ha sido figura central en disputas sobre la celebración de partidos oficiales La Liga en USA (caso Barcelona-Villarreal), litigio activo con FIFA. Para MX, Relevent es operador clave de tours premium del Tri y de clubes europeos.",
+      "vinculos": "Stephen Ross (founder/owner Relevent + Hard Rock Stadium); UEFA (partnership Norteamérica); FIFA (litigio); La Liga (deal partidos US); FMF/Selección Mexicana (tours amistosos); MLS (relación competitiva-cooperativa)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-112",
+      "actor_id": "A-116",
+      "actor_name": "Relevent (Relevent Sports Group)",
+      "vertical": "V4",
+      "nombre": "Boris Gartner",
+      "cargo": "CEO, Relevent Sports y LaLiga North America (JV)",
+      "tier": "Tier 1",
+      "por_que": "Ex Director de Estrategia y Operaciones Televisa; puente histórico con TUDN. Catalizador de la operación Liga MX en EE.UU. y de la JV LaLiga NA. Operador clave del Settlement con USSF (2025) que abrió la puerta a partidos oficiales LaLiga en suelo estadounidense. Daniel Sillman (P-044 ya cargado) es el CEO global; Gartner es el operativo Norteamérica con foco hispanohablante.",
+      "vinculos": "Daniel Sillman (CEO global Relevent, P-044); Stephen M. Ross (Owner, P-056); LaLiga NA (JV); TelevisaUnivision (background); USSF Settlement 2025; Liga MX MX-USA",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-130": [
+    {
+      "poi_id": "P-038",
+      "actor_id": "A-130",
+      "actor_name": "Sportfive",
+      "vertical": "V4",
+      "nombre": "Stefan Felsing",
+      "cargo": "Group CEO, SPORTFIVE",
+      "tier": "Tier 1",
+      "por_que": "CEO global de SPORTFIVE (rights sales y agencia consultora con presencia activa en MX, particularmente en sponsorships, hospitality y media rights). Decisor último de la cartera global y de las decisiones estratégicas regionales. POI MX operativo dedicado: pendiente registrar como Tier 2 cuando se confirme nombre del lead local de la oficina mexicana.",
+      "vinculos": "H.I.G. Capital (accionista controlador); marcas patrocinadoras europeas con presencia MX; clubes Liga MX (sponsorship deals); agencias rights sales competencia",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-077": [
+    {
+      "poi_id": "P-058",
+      "actor_id": "A-077",
+      "actor_name": "Jump SMS (Jump Sportainment Solutions)",
+      "vertical": "V4",
+      "nombre": "Luis Rico",
+      "cargo": "Founder y Director, Jump SMS (Jump Sportainment Solutions); actualmente Head Fuse México (cross-ref A-049)",
+      "tier": "Tier 1",
+      "por_que": "Cara pública de la consultora Jump SMS. Columnista NEO. Tras lanzar el brazo Jump Sportainment, fue reclutado por Omnicom Media Group para liderar el lanzamiento de Fuse México en 2026 (cross-ref A-049, P-019). Jump SMS continúa operativo bajo su dirección y mantiene clientes Liga MX. Doble sombrero ejecutivo entre la consultora propia y la red global Fuse/OMG.",
+      "vinculos": "Fuse México / Omnicom Media Group (head, A-049); Johan Cruyff Institute (alianza académica); Clubes Liga MX (clientes); NEO Magazine (columnista); ecosistema agencias V4-V5 MX",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-146": [
+    {
+      "poi_id": "P-065",
+      "actor_id": "A-146",
+      "actor_name": "Wasserman / THE·TEAM México",
+      "vertical": "V4",
+      "nombre": "Casey Wasserman",
+      "cargo": "Founder y Chairman, THE·TEAM (rebrand de Wasserman, marzo 2026); Chairman LA28 Olympic & Paralympic Games; CEO Wasserman Foundation",
+      "tier": "Tier 1",
+      "por_que": "Founder de la agencia de sports & entertainment marketing, rebautizada como THE·TEAM en marzo 2026 tras la presencia de Casey Wasserman en los Epstein Files (estigma reputacional severo). Providence Equity como accionista mayoritario apoya el sales process activo (Moelis como advisor; bidders en proceso de licitación formal por la totalidad o piezas de la agencia). Casey conserva la presidencia de LA28 (Olímpicos 2028). La oficina mexicana opera como rama LATAM con SVP Latin America (POI MX por confirmar antes de presentación).",
+      "vinculos": "Providence Equity (accionista mayoritario); LA28 (Wasserman Chairman); Kathy Carter (CEO LA28); IOC; SVP Latin America Wasserman/THE·TEAM (POI MX por confirmar); Moelis (advisor del sale process); Activision; Vox Media (boards)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-117",
+      "actor_id": "A-146",
+      "actor_name": "Wasserman / THE·TEAM México",
+      "vertical": "V4",
+      "nombre": "Rodrigo Morales Abiega",
+      "cargo": "SVP LatAm, Wasserman / THE·TEAM (CDMX)",
+      "tier": "Tier 2",
+      "por_que": "Lead operativo Wasserman/THE·TEAM en LatAm desde la oficina CDMX. Background: ex Director Comercial Chivas y ex VP Chivas USA. Nexo histórico con Liga MX. Activa la cuenta SF 49ers México y NFL México desde la oficina mexicana. POI MX dedicado, complementario a Casey Wasserman (Founder/Chairman global, P-067 ya cargado).",
+      "vinculos": "Casey Wasserman (Founder/Chairman, P-067); SF 49ers México (cuenta activa); NFL México (A-102 cluster); MLS; Chivas (background ex-Director Comercial); Providence Equity (accionista mayoritario)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-135": [
+    {
+      "poi_id": "P-113",
+      "actor_id": "A-135",
+      "actor_name": "TEAM Marketing AG",
+      "vertical": "V4",
+      "nombre": "Simon Crouch",
+      "cargo": "CEO, TEAM Marketing AG",
+      "tier": "Tier 1",
+      "por_que": "Firmó contrato con FMF en oct-2025 para los derechos comerciales globales de las selecciones mexicanas en los ciclos 2026-2030 y 2030-2034. Contraparte global única para el mandato comercial de las selecciones. Sustituyó al esquema anterior (SUM/Soccer United Marketing). TEAM Marketing AG es la agencia suiza histórica detrás de derechos UEFA Champions League.",
+      "vinculos": "Ivar Sisniega (Pres. FMF, contraparte directa); Duilio Davino (DD FMF); FMF (mandato exclusivo selecciones); UEFA Champions League (background TEAM); SUM (esquema predecesor)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-112": [
+    {
+      "poi_id": "P-119",
+      "actor_id": "A-112",
+      "actor_name": "Promofut S.A. de C.V.",
+      "vertical": "V4",
+      "nombre": "Héctor Eduardo \"Lalo\" Hernández Applebaum",
+      "cargo": "CEO y Propietario Único, Promofut S.A. de C.V. (desde 2014)",
+      "tier": "Tier 1",
+      "por_que": "Operó el fichaje histórico de Javier \"Chicharito\" Hernández al Manchester United en 2010 (deal que estableció Promofut como agencia #1 del fútbol mexicano). Cartera histórica: Chicharito, Carlos Vela, Edson Álvarez, Rafael Márquez. Continúa controlando agencia con presencia estructural en transferencias Liga MX-Europa. Caso paradigmático del cluster agencias V4 mexicanas con larga trayectoria.",
+      "vinculos": "Manchester United (deal Chicharito 2010); Carlos Vela; Edson Álvarez; Rafael Márquez (auxiliar Tri/futuro DT); ecosistema agencias V4 MX (Pitz Group, Soccer Media Solutions, Zanfer); clubes europeos via red transferencias",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-120",
+      "actor_id": "A-112",
+      "actor_name": "Promofut S.A. de C.V.",
+      "vertical": "V4",
+      "nombre": "Mariano Varela",
+      "cargo": "Ex Director Deportivo/Institucional Chivas (2018-2025); actualmente vinculado a Tapatío (Liga de Expansión); ex Promofut",
+      "tier": "Tier 2",
+      "por_que": "Caso paradigmático del conflicto agencia-club: ex ejecutivo Promofut que pasó a la dirección institucional Chivas. Núcleo de la controversia Chivas-canteras que llevó a la \"limpia\" Hierro desde 2023 al revisar la circulación de talento entre agencia y club. Continúa vinculado a Tapatío (filial Chivas en Liga de Expansión MX), preservando peso institucional en GDL.",
+      "vinculos": "Hernández Applebaum (Promofut, ex jefe); Chivas/Omnilife (ex empleador, A-061); Tapatío (vínculo actual Liga de Expansión); Fernando Hierro (ex DD Chivas controversia 2023); ecosistema canteras Liga MX",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-111": [
+    {
+      "poi_id": "P-154",
+      "actor_id": "A-111",
+      "actor_name": "Pitz Group",
+      "vertical": "V4",
+      "nombre": "Diego Alarcón",
+      "cargo": "Founder, Pitz Group",
+      "tier": "Tier 1",
+      "por_que": "Pitz Group es agencia mexicana de consultoría sports/marketing dirigida por Diego Alarcón. Pieza estructural en V4 MX junto con Soccer Media Solutions (A-129) y Promofut (A-112). Foco en consultoría partnerships y representación.",
+      "vinculos": "Soccer Media Solutions (peer, A-129); Promofut (peer, A-112); Wasserman/THE·TEAM (peer global, A-146); ecosistema agencias V4 MX",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-129": [
+    {
+      "poi_id": "P-155",
+      "actor_id": "A-129",
+      "actor_name": "Soccer Media Solutions (SMS)",
+      "vertical": "V4",
+      "nombre": "José Eshkenazi Smeke",
+      "cargo": "Director General y Key Principal, Soccer Media Solutions S.A. de C.V. (SMS); 15+ años marketing deportivo MX",
+      "tier": "Tier 1",
+      "por_que": "Empresa LÍDER en publicidad virtual y patrocinios deportivos en México con +150 clientes activos. Sede Av. Juan Salvador Agraz 65 piso 14-A, Cuajimalpa CDMX. Comercializa EN EXCLUSIVA inserciones virtuales (publicidad virtual en cancha) en los principales contenidos de TV Azteca: Selección Nacional de México, Liga MX, Copa Oro, Box Azteca, Super Bowl, La Voz, Masterchef, Exatlón, Survivor. Más de 15 años de experiencia conectando marcas con propiedades deportivas. Eshkenazi cerró el deal estratégico con TREBEL Music (2022) y el deal histórico FC Barcelona Femenino jugando pretemporada en México. Cluster directo con TV Azteca/Salinas (A-065) como proveedor exclusivo de virtuales.",
+      "vinculos": "TV Azteca / Salinas (cliente exclusivo virtuales, A-065); Selección Mexicana de México (FMF, contenido core, A-043); Liga MX (contenido core, A-084); Copa Oro / Concacaf; Box Azteca; FC Barcelona Femenino (deal pretemporada MX); TREBEL Music (alianza exclusiva 2022, Gary Mekikian CEO); Cruz Azul (cliente, A-029); cluster V4 agencias MX (Pitz Group A-111, Promofut A-112, Jump SMS A-077)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-131": [
+    {
+      "poi_id": "P-156",
+      "actor_id": "A-131",
+      "actor_name": "StayPro",
+      "vertical": "V4",
+      "nombre": "Rafa Coronel y Pati Coronel",
+      "cargo": "Co-CEOs y Co-Founders, StayPro Group (sede Polanco, CDMX; representación atletas y creators)",
+      "tier": "Tier 1",
+      "por_que": "StayPro Group es la PRIMERA Y MÁS GRANDE agencia de talent management en LatAm (10+ años de operación). Representa a futbolistas mexicanos top: Edson Álvarez (capitán Selección Mexicana, West Ham United), Héctor Herrera (Atlético de Madrid histórico), Diego Reyes (Tigres), Carlos Rodríguez (Monterrey), 3 de las 4 más influyentes futbolistas mexicanas (Nailea Vidrio, Jana Gutiérrez, Alondra González), Kevin Álvarez (América/Selección). Tres títulos consecutivos con el Tri: Copa Oro 2024, Concacaf Nations League 2025, Copa Oro 2025. División Stay On Social maneja creators (Alana Flores 15M+ seguidores, Ara y Fer Hernández, Paco de Miguel, Salomondrin, Bárbara de Regil). Edson Álvarez nuevo embajador Choco Milk rumbo al Mundial 2026. Featured en Forbes México.",
+      "vinculos": "Edson Álvarez (capitán Selección Mexicana, talento exclusivo); Héctor Herrera; Kevin Álvarez (Club América A-105/Selección); Alana Flores (creadora Raniza F.C.); Stay On Social (división creators); FMF/Selección Mexicana (clubes empleadores talentos, A-043); Wasserman/THE·TEAM (peer global, A-146); Pitz Group (peer V4, A-111); ecosistema Mundial 2026 (incremento 300% alcance digital)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-134": [
+    {
+      "poi_id": "P-157",
+      "actor_id": "A-134",
+      "actor_name": "SUM (Soccer United Marketing)",
+      "vertical": "V4",
+      "nombre": "Don Garber",
+      "cargo": "Comisionado MLS y CEO, SUM (Soccer United Marketing)",
+      "tier": "Tier 1",
+      "por_que": "CEO de Soccer United Marketing, brazo comercial MLS que gestiona derechos comerciales de selecciones nacionales (incluyendo el deal anterior FMF antes del traspaso a TEAM Marketing AG en oct-2025, A-135). SUM también opera Leagues Cup (MLS-Liga MX) y giras de selecciones en USA. Cluster directo con Apple TV (A-006 P-075) y Liga MX (A-084).",
+      "vinculos": "MLS (matriz); Apple TV (deal MLS Season Pass, A-006 P-075); Liga MX / Leagues Cup (A-084 P-036); FMF (deal predecesor TEAM Marketing AG, A-135); Lionel Messi (Inter Miami)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-020": [
+    {
+      "poi_id": "P-001",
+      "actor_id": "A-020",
+      "actor_name": "CIE / OCESA (V5 Experiencias)",
+      "vertical": "V5",
+      "nombre": "Alejandro Soberón Kuri",
+      "cargo": "Presidente y CEO, Corporación Interamericana de Entretenimiento (CIE)",
+      "tier": "Tier 1",
+      "por_que": "Decisor último de CIE/OCESA, holding que opera GP México F1, Estadio GNP Seguros, Autódromo Hermanos Rodríguez, Ticketmaster México, Foro Sol y Palacio de los Deportes. Controla la mayor concentración de venues, ticketing primario y eventos premium del ecosistema mexicano.",
+      "vinculos": "Federico González Compeán (DG CIE Internacional); Fórmula 1 (contrato GP México extendido a 2028); Ticketmaster Live Nation; CDMX (concesión Autódromo HR); Banamex (Centro Banamex)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-097",
+      "actor_id": "A-020",
+      "actor_name": "CIE / OCESA (V5 Experiencias)",
+      "vertical": "V5",
+      "nombre": "Jorge R. Uriza González",
+      "cargo": "Abogado General y Chief Commercial Officer, OCESA",
+      "tier": "Tier 2",
+      "por_que": "Firma los contratos venue, hospitality y naming de los cuatro venues premium CDMX bajo control OCESA: Arena Ciudad de México, Estadio GNP Seguros, Palacio de los Deportes y Centro Citibanamex. Es la pluma jurídica detrás de los principales acuerdos comerciales del ecosistema venues operados por CIE/OCESA. Reporta a Alejandro Soberón.",
+      "vinculos": "Alejandro Soberón Kuri (CEO CIE, jefe directo); Federico González Compeán (DG F1 GP, P-005 cross-ref); AHR; Estadio GNP Seguros; Palacio de los Deportes; Centro Citibanamex; Live Nation MX",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-098",
+      "actor_id": "A-020",
+      "actor_name": "CIE / OCESA (V5 Experiencias)",
+      "vertical": "V5",
+      "nombre": "Rodrigo González Calvillo",
+      "cargo": "Country Manager, Live Nation México",
+      "tier": "Tier 2",
+      "por_que": "Responsable del brazo Live Nation en MX (parent company de Ticketmaster México y socio operativo de OCESA en eventos premium). Operador clave de la integración entre la cartera Live Nation global y la red CIE/OCESA en eventos masivos.",
+      "vinculos": "Live Nation Entertainment (matriz global); Ticketmaster México (filial); CIE/OCESA (alianza estratégica); promotores conciertos LATAM",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-007": [
+    {
+      "poi_id": "P-014",
+      "actor_id": "A-007",
+      "actor_name": "ASdeporte (Asdeporte SA de CV)",
+      "vertical": "V5",
+      "nombre": "Antonio Álvarez Martínez",
+      "cargo": "Founder y CEO, ASdeporte; promotor mayor de eventos running MX (Maratón CDMX, Medio Maratón CDMX, decenas de carreras)",
+      "tier": "Tier 1",
+      "por_que": "POI principal del cluster Running & Wellness en México. Founder ASdeporte que organiza la mayoría de los grandes eventos de running MX en alianza con autoridades (INDEPORTE CDMX) y title sponsors blue-chip (Telcel, BBVA). Operador estructural del calendario running urbano CDMX y de la franquicia mexicana IRONMAN (Cozumel + 70.3 series). Steve Meckfessel (EVP Business Development, ex-COO IRONMAN desde 2017) es el operativo USA-side y la cara IRONMAN de la firma; Álvarez Martínez es el founder y decisor último.",
+      "vinculos": "Steve Meckfessel (EVP Business Development, brazo USA y franquicia IRONMAN); INDEPORTE CDMX (operador eventos públicos); Telcel (Maratón CDMX title sponsor, A-087); BBVA (Medio Maratón CDMX title sponsor, A-092); IRONMAN Group (matriz franquicias); Rock'n'Roll Marathon Series; gobiernos estatales sedes",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-049": [
+    {
+      "poi_id": "P-018",
+      "actor_id": "A-049",
+      "actor_name": "Fuse Mexico (Omnicom Media Group)",
+      "vertical": "V5",
+      "nombre": "Luis Rico",
+      "cargo": "Lead, Fuse Mexico (Omnicom Media Group); embebido en Omnicom Media Mexico",
+      "tier": "Tier 2",
+      "por_que": "Lider del lanzamiento oficial de Fuse Mexico CDMX en 2026 (anuncio LinkedIn corporativo). Fuse es la red global de marketing en sport, music & gaming de Omnicom Media Group; la oficina mexicana opera embebida en Omnicom Media Mexico para aprovechar la red local de PHD/OMD. Reporta a Louise Johnson (Global CEO Fuse) y al equipo regional LATAM de OMG. Aplica frameworks globales de partnership strategy, activación e industry-leading measurement al ecosistema MX.",
+      "vinculos": "Louise Johnson (Global CEO Fuse, UK); Monica Conway (Global Acting CEO/CFO/COO Fuse); Omnicom Media Mexico (red local); PHD MX y OMD MX (agencias hermanas OMG); marcas blue-chip MX en sport & entertainment",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-096": [
+    {
+      "poi_id": "P-031",
+      "actor_id": "A-096",
+      "actor_name": "Mextenis S.A. de C.V. (Grupo Pegaso)",
+      "vertical": "V5",
+      "nombre": "Renata Burillo",
+      "cargo": "Presidenta del Consejo de Administración, Mextenis y Grupo Pegaso (sucesora tras fallecimiento de Alejandro Burillo Azcárraga el 16-abr-2026)",
+      "tier": "Tier 1",
+      "por_que": "Asume la presidencia del Consejo de Mextenis y Grupo Pegaso tras el fallecimiento de su padre Alejandro \"El Güero\" Burillo Azcárraga (74 años, cáncer de piel) el 16-abril-2026. Mextenis opera el Abierto Mexicano de Tenis (ATP 500 Acapulco), WTA Guadalajara y Mexico Open Vidanta. Edición 2026 del AMT ya celebrada con Cobolli campeón. Transición patrimonial reciente: situación corporativa por monitorear de cerca.",
+      "vinculos": "Alejandro Burillo Azcárraga (padre, fallecido 16-abr-2026); Álvaro Falla (Director Torneo); Geoffrey Fernández (DO AMT); Emilio Azcárraga Jean (primo, Televisa/Ollamani); Telcel/HSBC (sponsors); GS Sports Management (WTA GDL); Vidanta (sede Mexico Open)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-032",
+      "actor_id": "A-096",
+      "actor_name": "Mextenis S.A. de C.V. (Grupo Pegaso)",
+      "vertical": "V5",
+      "nombre": "Álvaro Falla",
+      "cargo": "Director del Torneo, Abierto Mexicano de Tenis (Mextenis)",
+      "tier": "Tier 2",
+      "por_que": "Operativo principal del torneo. Vocero principal de Mextenis hacia patrocinadores, ATP, WTA y autoridades de Acapulco/Guerrero. Gestionó la continuidad del torneo tras Hurricane Otis (2023) y la transición post-fallecimiento Burillo (abr-2026). Cara visible de la operación cotidiana del AMT.",
+      "vinculos": "Renata Burillo (Pres. Consejo, jefa); ATP (Ali Nani supervisor); Geoffrey Fernández (DO); Hotel Princess Mundo Imperial (sede); Arena GNP Seguros (cancha)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-108",
+      "actor_id": "A-096",
+      "actor_name": "Mextenis S.A. de C.V. (Grupo Pegaso)",
+      "vertical": "V5",
+      "nombre": "Raúl Zurutuza",
+      "cargo": "Ex Director Deportivo, Abierto Mexicano de Tenis (19 años); voz pública post-Burillo",
+      "tier": "Tier 2",
+      "por_que": "Voz pública más creíble post-fallecimiento de Alejandro Burillo Azcárraga (16-abr-2026). Director Deportivo histórico del AMT durante 19 años. Citado por The New York Times sobre las negociaciones del torneo con Arabia Saudita. Es el facilitador potencial de cualquier reestructura o venta del AMT en la era post-Burillo.",
+      "vinculos": "Renata Burillo (sucesora Mextenis, Tier 1 ya cargado P-040); Álvaro Falla (Mextenis); ATP Tour; NYT (cita negociaciones Arabia); Arena GNP Seguros Acapulco (sede)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-109",
+      "actor_id": "A-096",
+      "actor_name": "Mextenis S.A. de C.V. (Grupo Pegaso)",
+      "vertical": "V5",
+      "nombre": "Juan Antonio Hernández Venegas",
+      "cargo": "Presidente, Grupo Autofin / Mundo Imperial",
+      "tier": "Tier 2",
+      "por_que": "Propietario del venue Arena GNP Seguros Acapulco (sede del AMT/ATP 500). Su cooperación es condición para la continuidad del torneo en Acapulco; contrato de arrendamiento vigente hasta ~2032. Mundo Imperial es operador hotelero/eventos premium en Acapulco (también sede HYROX Acapulco by Mundo Imperial vinculado a A-143).",
+      "vinculos": "Arena GNP Seguros Acapulco (venue propiedad); Mextenis (arrendatario AMT, A-096); Renata Burillo (contraparte); HYROX Acapulco (sede, A-143); Grupo Autofin (matriz)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-067": [
+    {
+      "poi_id": "P-054",
+      "actor_id": "A-067",
+      "actor_name": "GS Sports Management",
+      "vertical": "V5",
+      "nombre": "Gustavo Santoscoy Arriaga",
+      "cargo": "Presidente y Fundador, GS Sports Management",
+      "tier": "Tier 1",
+      "por_que": "Único promotor privado en México con portafolio WTA multi-torneo construido desde cero. Origen político en Zapopan. GS Sports opera el WTA 500 Guadalajara (con Akron como title sponsor histórico) y otros eventos en alianza con Octagon (A-104) y CODE Jalisco. Pieza clave del ecosistema tenis MX junto con Mextenis (A-096) y HG Promotores (A-071).",
+      "vinculos": "WTA (alianza institucional); Octagon (A-104, alianza operativa); Gobierno Zapopan; CODE Jalisco; Santiago Martínez de la Torre / Akron (title sponsor WTA GDL); Mextenis (A-096, ecosistema tenis MX)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-094",
+      "actor_id": "A-067",
+      "actor_name": "GS Sports Management",
+      "vertical": "V5",
+      "nombre": "Santiago Martínez de la Torre",
+      "cargo": "Presidente, Akron (lubricantes); título sponsor histórico del WTA 500 Guadalajara",
+      "tier": "Tier 2",
+      "por_que": "Title sponsor del WTA 500 Guadalajara via Akron. Su continuidad o retiro define la viabilidad económica del torneo. Familia Martínez de la Torre con historial de propiedad parcial de Chivas (ex-dueños). El título sponsor Akron también nombra al Estadio Akron de Chivas (sede WC26 GDL), cluster comercial relevante.",
+      "vinculos": "Akron Lubricantes (matriz); Estadio Akron / Chivas (naming rights, A-061); Familia Martínez de la Torre (ex-dueños Chivas); Gustavo Santoscoy / GS Sports (Tier 1, organizador WTA)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-071": [
+    {
+      "poi_id": "P-057",
+      "actor_id": "A-071",
+      "actor_name": "HG Promotores en Deporte y Entretenimiento",
+      "vertical": "V5",
+      "nombre": "Hernán Garza Echavarría",
+      "cargo": "Director General Fundador, HG Promotores en Deporte y Entretenimiento (desde 1976)",
+      "tier": "Tier 1",
+      "por_que": "Arquitecto del tenis profesional en Nuevo León. Amistad histórica con Lamar Hunt (founder ATP/WCT), vínculo que ancla la programación tenis MTY. HG Promotores opera el WTA Monterrey (con GNP Seguros como naming rights) y otros eventos premium NL. Operador veterano (~50 años) de eventos deportivos en México.",
+      "vinculos": "WTA (alianza histórica); GNP Seguros (naming rights WTA Monterrey, A-actor potencial); Club Sonoma (sede tradicional); Lamar Hunt (legado, founder ATP); Gobierno NL; Mextenis (A-096) y GS Sports (A-067) en ecosistema tenis MX",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-034": [
+    {
+      "poi_id": "P-152",
+      "actor_id": "A-034",
+      "actor_name": "Elevate Sports Ventures",
+      "vertical": "V5",
+      "nombre": "Joe Ahern",
+      "cargo": "CEO, Elevate Sports Ventures",
+      "tier": "Tier 1",
+      "por_que": "Elevate Sports Ventures es agencia de hospitality/sponsorship/architecture sports global. Activos LATAM via Wasserman partnerships y eventos premium. Cluster con On Location (A-035 P-103) y Wasserman/THE·TEAM.",
+      "vinculos": "Wasserman / THE·TEAM (alianza histórica, A-146); On Location (peer, A-035 P-103); ecosistema hospitality sports; Casey Wasserman (cluster, P-067)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-040": [
+    {
+      "poi_id": "P-153",
+      "actor_id": "A-040",
+      "actor_name": "F1 Experiences / QuintEvents",
+      "vertical": "V5",
+      "nombre": "Brian Wittman",
+      "cargo": "CEO y Founder, QuintEvents (incluye F1 Experiences)",
+      "tier": "Tier 1",
+      "por_que": "F1 Experiences es la oficial hospitality del F1 GP México (alianza con Liberty Media). QuintEvents tiene mandatos hospitality global F1 Grand Prix. Cluster directo con CIE/OCESA (A-020 operador GP) y Federico González Compeán (P-005 DG GP CDMX).",
+      "vinculos": "Liberty Media F1 (matriz mandato); CIE/OCESA (A-020 operador GP); Federico González Compeán (DG F1 GP CDMX, P-005); Stephen Ross / Hard Rock (peer hospitality, A-068 P-056)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-013": [
+    {
+      "poi_id": "P-070",
+      "actor_id": "A-013",
+      "actor_name": "Boletomóvil",
+      "vertical": "V6",
+      "nombre": "Walter González Domenzain",
+      "cargo": "CEO y Cofundador, Boletomóvil",
+      "tier": "Tier 1",
+      "por_que": "Doctor en Ingeniería Electrónica por Cambridge; arquitecto del producto y responsable de la relación con fondos VC y Redwood Ventures. Boletomóvil ha consolidado cuentas ancla con Chivas (Amaury Vergara) y Sinergia Deportiva (Tigres), posicionándose como competidor estructural de Ticketmaster MX y Superboletos en el ticketing primario deportivo.",
+      "vinculos": "Amaury Vergara (Chivas, cuenta ancla, A-061); Sinergia Deportiva / Tigres (cuenta ancla, A-018); Redwood Ventures (VC); Ticketmaster MX (competencia, A-020); Superboletos / Avalanz (competencia, A-056)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-042": [
+    {
+      "poi_id": "P-078",
+      "actor_id": "A-042",
+      "actor_name": "FANKI (Bitsports S.A.S.)",
+      "vertical": "V6",
+      "nombre": "Tatiana Fontalvo",
+      "cargo": "CEO y Fundadora, FANKI (Bitsports S.A.S.)",
+      "tier": "Tier 1",
+      "por_que": "Negoció y ganó la licitación multianual frente a Ticketmaster para el Estadio Banorte (ex-Azteca); maneja la relación directa con Grupo Ollamani. FANKI es la plataforma mexicana de fan engagement deportivo más relevante en V6, contraparte directa con Emilio Azcárraga Jean y Félix Aguirre en la operación del estadio.",
+      "vinculos": "Emilio Azcárraga Jean (Ollamani, A-105 cross-ref); Félix Aguirre (Estadio Banorte operativo, Host City Manager WC26 CDMX); Ticketmaster MX (competencia derrotada en licitación); Grupo Ollamani (cliente clave); Estadio Banorte / 5 partidos WC26",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-090",
+      "actor_id": "A-042",
+      "actor_name": "FANKI (Bitsports S.A.S.)",
+      "vertical": "V6",
+      "nombre": "Alan Kraus",
+      "cargo": "Cofundador, FANKI (Bitsports S.A.S.)",
+      "tier": "Tier 2",
+      "por_que": "Background en e-commerce (Dafiti, Groupon); arquitecto tecnológico de las integraciones de plataforma. Responsable de la robustez técnica del stack de cara a los cinco partidos mundialistas a celebrarse en el Estadio Banorte (CDMX, junio-julio 2026).",
+      "vinculos": "Tatiana Fontalvo (CEO co-fundadora, Tier 1); Estadio Banorte (5 partidos WC26); Dafiti, Groupon (background); ecosistema startups e-commerce MX",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-091",
+      "actor_id": "A-042",
+      "actor_name": "FANKI (Bitsports S.A.S.)",
+      "vertical": "V6",
+      "nombre": "Andrés Morris",
+      "cargo": "Head of Growth and Partnerships, FANKI (Bitsports S.A.S.)",
+      "tier": "Tier 2",
+      "por_que": "Responsable de la expansión comercial en México y de los acuerdos con clubes Liga MX. Interlocutor directo con Club América, Atlas FC y nuevas cuentas Liga MX. Ejecutor del go-to-market post-deal Estadio Banorte.",
+      "vinculos": "Club América (cuenta clave, A-105); Atlas FC (Grupo PRODI desde 1-jul-2026, A-064); Liga MX (cartera de clubes); Tatiana Fontalvo (CEO, jefa)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-045": [
+    {
+      "poi_id": "P-118",
+      "actor_id": "A-045",
+      "actor_name": "FIFA Ticketing — Copa Mundial 2026",
+      "vertical": "V6",
+      "nombre": "Rodrigo Martínez Celis Wogau",
+      "cargo": "Executive Director Safety & Security Mexico, FIFA World Cup 2026",
+      "tier": "Tier 1",
+      "por_que": "Responsable del protocolo de acceso y seguridad en las tres sedes mexicanas del Mundial 2026 (Mexico City Stadium / Estadio Banorte, Estadio Akron Guadalajara, Estadio BBVA Monterrey). Interlocutor formal entre FIFA y autoridades locales mexicanas. Coordina con SSC CDMX, Gobierno de Jalisco y Gobierno de Nuevo León para los operativos de acceso mundialistas. POI institucional crítico para el flujo operativo del torneo en suelo mexicano.",
+      "vinculos": "FIFA WC26 (mandato organizativo); SSC CDMX (Pablo Vázquez Camacho); Gobierno de Jalisco; Gobierno de Nuevo León; Estadio Banorte CDMX; Estadio Akron GDL; Estadio BBVA MTY; Comités Organizadores Locales",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-142": [
+    {
+      "poi_id": "P-158",
+      "actor_id": "A-142",
+      "actor_name": "Viagogo / Helloticket / Tophop",
+      "vertical": "V6",
+      "nombre": "Eric Baker",
+      "cargo": "CEO y Founder, Viagogo (incluye Helloticket y Tophop)",
+      "tier": "Tier 1",
+      "por_que": "Founder de Viagogo, segundo secondary marketplace global de boletos (compró StubHub 2020 USD 4B; spinoff posterior). Cartera secundaria amplia para WC26 y eventos premium MX.",
+      "vinculos": "Viagogo (matriz); StubHub (peer/ex-subsidiaria, A-132); FIFA WC26 (secondary market); CIE/OCESA (primary market); ecosistema secondary ticketing global",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-037": [
+    {
+      "poi_id": "P-046",
+      "actor_id": "A-037",
+      "actor_name": "Estadio Ciudad de los Deportes",
+      "vertical": "V7",
+      "nombre": "Antonio Cosío Pando",
+      "cargo": "Propietario, Estadio Ciudad de los Deportes (EAR / ex-Estadio Azul) y Plaza de Toros México; familia Cosío",
+      "tier": "Tier 1",
+      "por_que": "Decisor patrimonial del Estadio Ciudad de los Deportes (capacidad 32,904) y del recinto vecino Plaza de Toros México. La operación día a día está cedida a OCESA (CIE/Soberón, A-020 cross-ref). El estadio ha sido casa rotatoria de Cruz Azul, Atlante, Club América (durante remodelación Estadio Banorte/Azteca para WC26) y otros. En nov-2024 fue clausurado temporalmente por la alcaldía Benito Juárez por incumplir protocolo de protección civil cuando se realizaron eventos simultáneos en estadio y Plaza de Toros. Familia Cosío también con presencia en hoteles de lujo en Acapulco e Ixtapa.",
+      "vinculos": "Moisés Cosío (familia, co-propietario histórico); OCESA / CIE (operador, A-020); Alejandro Soberón Kuri (CEO CIE, A-020); Cruz Azul (ex-inquilino, A-029); Club América (uso temporal durante remodelación Estadio Banorte); Atlante FC (uso); Plaza de Toros México (mismo recinto)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-038": [
+    {
+      "poi_id": "P-076",
+      "actor_id": "A-038",
+      "actor_name": "Estadio Jalisco",
+      "vertical": "V7",
+      "nombre": "Aníbal Fájer Sade",
+      "cargo": "Presidente, Atlas FC (saliente, transición a Grupo PRODI 1-jul-2026); miembro de la mesa directiva Clubes Unidos de Jalisco A.C., administrador del Estadio Jalisco",
+      "tier": "Tier 1",
+      "por_que": "Voz pública del comité administrador del Estadio Jalisco, activo gestionado por Clubes Unidos de Jalisco A.C. (asociación civil de cuatro clubes: Atlas, Chivas, Oro y U. de Guadalajara, con presidencia rotativa anual). En 2024 la presidencia rotó a Arturo Gálvez (Chivas/Omnilife). El Estadio Jalisco será SEDE DE ENTRENAMIENTOS para selecciones que jueguen en GDL durante WC26 (no sede oficial de partidos, ese rol lo tiene Estadio Akron). Capacidad 56,713; sede de partidos en los Mundiales 1970 y 1986 (incluyendo a la selección brasileña de Pelé). El POI Fájer rota; la transición Atlas a Bejos/PRODI cambiará la representación.",
+      "vinculos": "Clubes Unidos de Jalisco A.C. (asociación civil propietaria); Atlas FC (transición a PRODI/Bejos 1-jul-2026, A-064 cross-ref); Chivas (A-061, Arturo Gálvez Pres. rotativo 2024); Club Oro de Jalisco; Club Universidad de Guadalajara; Estadio Akron (sede WC26 oficial GDL, vecindad funcional)",
+      "certeza": "Fuente única"
+    }
+  ],
+  "A-039": [
+    {
+      "poi_id": "P-077",
+      "actor_id": "A-039",
+      "actor_name": "Estadio Olímpico Universitario",
+      "vertical": "V7",
+      "nombre": "Alejandro Fernández Varela Jiménez",
+      "cargo": "Titular, Dirección General del Deporte Universitario (DGDU) UNAM; responsable institucional del Estadio Olímpico Universitario",
+      "tier": "Tier 1",
+      "por_que": "Responsable institucional UNAM del Estadio Olímpico Universitario (EOU), recinto Patrimonio Cultural de la Humanidad UNESCO desde 2007, capacidad 62,700, primera sede principal de unos Juegos Olímpicos en Latinoamérica (México 1968). Sede oficial de Pumas UNAM (A-115); sede temporal de Cruz Azul (A-029) hasta enero 2026 cuando Pumas no extendió la renta y Cruz Azul se mudó al Estadio Cuauhtémoc de Puebla. Bajo administración UNAM/Patronato Pumas (Luis Raúl González Pérez, A-115 P-095). Mural Diego Rivera \"La Universidad, la familia mexicana, la paz y la juventud deportista\" en fachada.",
+      "vinculos": "Pumas UNAM (uso primario, A-115); Luis Raúl González Pérez (Pres. Patronato, A-115 P-095); Cruz Azul (uso temporal hasta ene-2026, A-029); Pumas CU futbol americano; Rector UNAM Leonardo Lomelí Vanegas; UNESCO (Patrimonio Cultural de la Humanidad 2007); Juegos Olímpicos México 1968 (sede)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-051": [
+    {
+      "poi_id": "P-051",
+      "actor_id": "A-051",
+      "actor_name": "Genius Sports",
+      "vertical": "V8",
+      "nombre": "Mark Locke",
+      "cargo": "CEO y Co-Founder, Genius Sports Limited (NYSE: GENI)",
+      "tier": "Tier 1",
+      "por_que": "CEO global de Genius Sports, líder mundial en data sports y betting integrity. Genius MX trabaja con Liga MX en datos de partidos y con Caliente.mx en betting feeds. Empresa cotiza NYSE con valuación ~USD 1.5B+. Mandato global incluye NFL, FIBA y otras ligas. POI MX operativo dedicado: pendiente registrar como Tier 2 cuando se confirme nombre del lead local de la oficina mexicana.",
+      "vinculos": "NFL (cliente clave); FIBA; Liga MX (data partner); Caliente.mx (betting); ecosistema iGaming MX; H.I.G. Capital (similar a Sportfive en estructura PE)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-102",
+      "actor_id": "A-051",
+      "actor_name": "Genius Sports",
+      "vertical": "V8",
+      "nombre": "Víctor Guevara Gallegos",
+      "cargo": "Director General de Operaciones de Liga MX y Director del CITEC (desde su fundación en 2018)",
+      "tier": "Tier 1",
+      "por_que": "Gatekeeper único de toda compra tecnológica del fútbol mexicano profesional. Cualquier proveedor (Genius Sports, Hudl, Mediapro, etc.) que aspire al mandato Liga MX pasa por su mesa. CITEC = Centro de Innovación Tecnológica Liga MX. Ha presentado en Barça Technology Symposium y Sports Summit MX. Cross-ref con A-084 Liga MX, donde también es decisor central.",
+      "vinculos": "Mark Locke (CEO Genius global, Tier 1 A-051); Hudl (proveedor stack CITEC); Mediapro (proveedor); Liga MX (A-084 cross-ref); Francisco Iturbide (DG Liga MX); Mikel Arriola (Comisionado)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-078": [
+    {
+      "poi_id": "P-081",
+      "actor_id": "A-078",
+      "actor_name": "KAGR (Kraft Analytics Group)",
+      "vertical": "V8",
+      "nombre": "Jessica Gelman",
+      "cargo": "CEO, Kraft Analytics Group (KAGR)",
+      "tier": "Tier 1",
+      "por_que": "CEO de la empresa de data y analytics deportivo del grupo Kraft (Robert Kraft, Patriots, Apollo Sports Capital A-005). KAGR partner tecnológico de Grupo Águilas/Ollamani (vínculo establecido como pilar tecnológico, contrapeso interno a la presencia de General Atlantic). Sirve como infraestructura de fan data y CRM para clubes deportivos. Vínculo con Ferran Reverter (DG CDA, ya cargado P-012).",
+      "vinculos": "Robert Kraft (founder, Patriots, Apollo Sports Capital); Apollo Sports Capital (sister entity, A-005); Ollamani/Grupo Águilas (cliente clave, A-105 cross-ref); Ferran Reverter (DG CDA, P-012); ecosistema CRM/data sports global",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-073": [
+    {
+      "poi_id": "P-122",
+      "actor_id": "A-073",
+      "actor_name": "Hudl (Sportscode + Wyscout + Wimu + StatsBomb + Signal)",
+      "vertical": "V8",
+      "nombre": "David Graveen",
+      "cargo": "CEO, Hudl (Agile Sports Technologies) — incluye Sportscode, Wyscout, Wimu, StatsBomb y Signal post adquisición",
+      "tier": "Tier 1",
+      "por_que": "Stack tecnológico completo del CITEC Liga MX. Bajo Víctor Guevara (P-110 cross-ref) Hudl es el proveedor preferido del fútbol mexicano profesional desde 2018. Adquisiciones progresivas: Wyscout (2019), Wimu (2020), StatsBomb (2024), Signal (2024). Bain Capital y Nordic Capital como inversionistas.",
+      "vinculos": "Víctor Guevara Gallegos (CITEC gatekeeper, P-110); Liga MX clubes (uso obligatorio CITEC); Mediapro (peer); StatsBomb, Wyscout, Wimu, Signal (subsidiarias)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-074": [
+    {
+      "poi_id": "P-123",
+      "actor_id": "A-074",
+      "actor_name": "Incode Technologies",
+      "vertical": "V8",
+      "nombre": "Ricardo Amper",
+      "cargo": "CEO y Founder, Incode Technologies",
+      "tier": "Tier 1",
+      "por_que": "Founder de Incode, unicornio mexicano de identity verification (USD 1.25B+ valuación, levantó USD 220M Serie B 2022 con General Atlantic, JC Flowers y SoftBank LatAm). Provee verificación de identidad biométrica para FIFA Ticketing WC26, casinos online MX, fintech, banca digital. Pieza clave para el control de acceso a los 13 partidos del Mundial en suelo mexicano.",
+      "vinculos": "General Atlantic (inversionista, A-050); SoftBank LatAm (inversionista); FIFA WC26 (cliente verificación); Caliente.mx, Codere (clientes apuestas); ecosistema fintech MX (Bitso, Konfio)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-091": [
+    {
+      "poi_id": "P-124",
+      "actor_id": "A-091",
+      "actor_name": "Mediapro",
+      "vertical": "V8",
+      "nombre": "Tatxo Benet",
+      "cargo": "Co-Founder y Pres. Ejecutivo, Mediapro Group (Imagina/Grupo Mediapro)",
+      "tier": "Tier 1",
+      "por_que": "Mediapro Group es el productor audiovisual y proveedor tecnológico que tiene contrato con Liga MX para producción de partidos y datos. Cluster CITEC con Hudl, Genius, Akta. Tatxo Benet es co-fundador histórico (con Jaume Roures hasta su salida) del grupo catalán. Mediapro produce señal Liga MX desde temporada 2023-24.",
+      "vinculos": "Liga MX (contrato producción CITEC, A-084); Víctor Guevara (P-110); Hudl, Genius (cluster stack); Imagina Media Audiovisual (matriz); Orient Hontai Capital (accionista mayoritario chino)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-035": [
+    {
+      "poi_id": "P-002",
+      "actor_id": "A-035",
+      "actor_name": "Endeavor / WME Group",
+      "vertical": "V9",
+      "nombre": "Ariel \"Ari\" Emanuel",
+      "cargo": "Executive Chairman, WME Group; CEO y Executive Chair, TKO Group Holdings",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del conglomerado post going-private mar-2025 (Endeavor renombrado a WME Group, deal con Silver Lake USD 25B). TKO controla UFC, WWE, IMG, On Location y PBR. Endeavor Group Holdings retiene 63.9% de TKO. Para México la palanca es WC26 hospitality vía On Location y eventos UFC en CDMX.",
+      "vinculos": "Mark Shapiro (Pres./Managing Partner WME, Pres./COO TKO); Silver Lake (mayoría privada); Vince McMahon (8.6% TKO); FIFA (On Location oficial WC26); Live Nation",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-003",
+      "actor_id": "A-035",
+      "actor_name": "Endeavor / WME Group",
+      "vertical": "V9",
+      "nombre": "Mark Shapiro",
+      "cargo": "President y Managing Partner, WME Group; President y COO, TKO Group Holdings",
+      "tier": "Tier 2",
+      "por_que": "Operativo principal del conglomerado WME/TKO post-reestructura mar-2025. Compensación 2025 USD 42.64M. Bajo Shapiro reportan WME Sports, IMG Events, On Location y la operación cotidiana de UFC/WWE. Punto de contacto operativo para deals de gran escala que toquen MX.",
+      "vinculos": "Ari Emanuel (Executive Chair); Richard Weitz y Christian Muirhead (Co-Chairmen WME, reportan a Shapiro); On Location (subsidiaria TKO)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-004",
+      "actor_id": "A-035",
+      "actor_name": "Endeavor / WME Group",
+      "vertical": "V9",
+      "nombre": "Alicia Falken",
+      "cargo": "General Manager, On Location FIFA World Cup 26 Business",
+      "tier": "Tier 2",
+      "por_que": "Decisor operativo del programa hospitality oficial de FIFA WC26 (subsidiaria TKO/Endeavor). Gestiona venta de paquetes hospitality en las tres sedes mexicanas (CDMX, Guadalajara, Monterrey), nombramientos de sub-agentes regionales y la activación territorial del programa Starting 16. Lead operativo más relevante del conglomerado A-035 con presencia directa en MX.",
+      "vinculos": "Mark Shapiro (Pres. TKO); FIFA (cliente principal); Overseas Network (sub-agente internacional); MLS (sub-agente USA/Canadá); Mundomex (hospitalidad territorial)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-099",
+      "actor_id": "A-035",
+      "actor_name": "Endeavor / WME Group",
+      "vertical": "V9",
+      "nombre": "Paul Caine",
+      "cargo": "Presidente, On Location (subsidiaria de Endeavor)",
+      "tier": "Tier 2",
+      "por_que": "Lidera On Location, brazo de hospitality premium de Endeavor que tiene los derechos exclusivos de hospitality oficial FIFA WC26 (paquetes premium para los 16 estadios sede en MX, USA y Canadá). Operador estructural de los activos hospitality del Mundial 2026 en territorio mexicano, complementario a Alicia Falken (FIFA hospitality MX, ya cargado P-002).",
+      "vinculos": "Ari Emanuel (CEO TKO/Endeavor, P-001); Mark Shapiro (Pres. TKO, P-003); Alicia Falken (FIFA Hospitality MX, P-002); FIFA WC26 (mandato global hospitality); paquetes premium 16 estadios sede",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-044": [
+    {
+      "poi_id": "P-007",
+      "actor_id": "A-044",
+      "actor_name": "FEMSA / Club de Fútbol Monterrey Rayados",
+      "vertical": "V9",
+      "nombre": "José Antonio Fernández Carbajal",
+      "cargo": "Presidente Ejecutivo del Consejo de Administración, FEMSA; arquitecto del rescate y propiedad de Rayados desde 1999",
+      "tier": "Tier 1",
+      "por_que": "Decisor histórico y vigente sobre Rayados de Monterrey. Encabezó el rescate del club en 1999, la adquisición formal en 2006 y la construcción del Estadio BBVA (USD 200M+). Sigue como Presidente Ejecutivo del Consejo tras la transición de CEO al hijo (1-nov-2025). Familias Garza Lagüera (Eva, esposa) y Fernández controlan el holding propietario. Estadio BBVA es sede principal WC26 en Monterrey.",
+      "vinculos": "José Antonio Fernández Garza-Lagüera (hijo, CEO FEMSA desde nov-2025); Eva Garza Lagüera Gonda (esposa, dueña); BBVA (naming); Heineken México (Cuauhtémoc Moctezuma); OXXO; Coca-Cola FEMSA; Pedro Esquivel (operativo Rayados + comité WC26 MTY)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-008",
+      "actor_id": "A-044",
+      "actor_name": "FEMSA / Club de Fútbol Monterrey Rayados",
+      "vertical": "V9",
+      "nombre": "José Antonio Fernández Garza-Lagüera",
+      "cargo": "Director General (CEO), FEMSA (desde 1 de noviembre de 2025)",
+      "tier": "Tier 2",
+      "por_que": "CEO operativo del holding propietario de Rayados desde nov-2025 (apodado \"Diablo Jr.\"). Hijo del Presidente Ejecutivo del Consejo. Maestría en Stanford. Responsable de la operación FEMSA a través del próximo ciclo (incluyendo activos sports, OXXO, FEMSA Comercio, Coca-Cola FEMSA). Su prioridad declarada es expansión internacional y digitalización; las decisiones estratégicas sobre Rayados pasarán por él en cuanto a operación cotidiana.",
+      "vinculos": "José Antonio Fernández Carbajal (padre, Pres. Ejecutivo Consejo); Eva Garza Lagüera Gonda (madre); Coca-Cola FEMSA; Industrias Peñoles; Tecnológico de Monterrey",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-061": [
+    {
+      "poi_id": "P-010",
+      "actor_id": "A-061",
+      "actor_name": "Grupo Omnilife / Amaury Vergara / Chivas",
+      "vertical": "V9",
+      "nombre": "Amaury Vergara Zatarain",
+      "cargo": "Propietario y Presidente, Club Deportivo Guadalajara (Chivas) y Grupo Omnilife",
+      "tier": "Tier 1",
+      "por_que": "Decisor único sobre Chivas. Heredó el control tras fallecimiento de Jorge Vergara (nov-2019). Política sostenida de jugadores 100% mexicanos define modelo comercial. Litigio Exp. 150/20 con Angélica Fuentes (ex-esposa de Jorge) sigue activo en mayo 2026 y limita inversión visible en plantilla. Confrontación pública con FMF mayo 2026 por permisos selectivos (Toluca-Concachampions). Estadio Akron es sede WC26 Guadalajara; palcos vendidos en 2010 vencieron en 2025 y deben renovarse, fuente de ingresos clave.",
+      "vinculos": "Angélica Fuentes (litigio herencia activo); Familia Vergara; Amazon Prime Video (transmisión); Estadio Akron (WC26); Boletomóvil; FMF/Liga MX (oposición a permisos selectivos)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-105": [
+    {
+      "poi_id": "P-011",
+      "actor_id": "A-105",
+      "actor_name": "Ollamani, S.A.B. / Grupo Águilas (Club América + Estadio Banorte)",
+      "vertical": "V9",
+      "nombre": "Emilio Azcárraga Jean",
+      "cargo": "Presidente del Consejo de Administración, Controladora Deportiva Águilas (CDA); accionista controlador Ollamani (~40-41.5%)",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del activo Club América + Estadio Banorte vía Ollamani y la nueva CDA (Controladora Deportiva Águilas, creada con la entrada de General Atlantic dic-2025, alianza USD 490M EV cerrada formalmente mar-2026). Elevó tenencia comprando 25M CPOs adicionales en ene-2026. Lugar 36 en \"100 empresarios más importantes 2025\" (Expansión). Estadio Banorte es sede partido inaugural WC26.",
+      "vinculos": "Ferran Reverter (DG CDA, reporta a este consejo); General Atlantic (Martín Escobari, Luis Cervantes); Joaquín Balcárcel (Jefe Oficina Presidencia Ejecutiva Grupo Televisa); Banorte (naming); NFL 49ers (contrato 2026-2028); Adidas",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-012",
+      "actor_id": "A-105",
+      "actor_name": "Ollamani, S.A.B. / Grupo Águilas (Club América + Estadio Banorte)",
+      "vertical": "V9",
+      "nombre": "Ferran Reverter Planet",
+      "cargo": "Director General, Controladora Deportiva Águilas (Ollamani + General Atlantic) desde marzo de 2026",
+      "tier": "Tier 1",
+      "por_que": "Operativo máximo del nuevo modelo corporativo Club América + Estadio Banorte. Ex DG FC Barcelona (responsable del Espai Barça y reestructura financiera blaugrana), ex CEO Media Markt Saturn. Mandato explícito declarado: \"impulsar crecimiento y transformación de club y estadio\". Reporta directamente al consejo presidido por Azcárraga. Su llegada profesionaliza la gestión y resta peso político a Santiago Baños (Pres. Deportivo).",
+      "vinculos": "Emilio Azcárraga Jean (Pres. Consejo CDA); Alexandre Costa (DG Ejecutivo Estadio Banorte); Felix Aguirre (Host City Manager WC26); Santiago Baños (Pres. Deportivo, reporta a CDA); Antonio Ibrahim (Director Deportivo); González Iñárritu (Pres. operativo saliente 30-jul-2026); General Atlantic",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-110",
+      "actor_id": "A-105",
+      "actor_name": "Ollamani, S.A.B. / Grupo Águilas (Club América + Estadio Banorte)",
+      "vertical": "V9",
+      "nombre": "Héctor González Iñárritu",
+      "cargo": "Presidente operativo SALIENTE, Club América (sale junio/julio 2026)",
+      "tier": "Tier 2",
+      "por_que": "Gestiona la operación diaria del club y es interlocutor con patrocinadores y FMF. Su salida en jun/jul 2026 es parte del reacomodo post-deal General Atlantic + transición a Ferran Reverter (DG CDA, P-012 cross-ref). Nexo entre la agenda deportiva y la agenda comercial del activo Águilas durante la transición.",
+      "vinculos": "Ferran Reverter (DG CDA entrante mar-2026, P-012); Emilio Azcárraga Jean (Pres. Ollamani, P-011); Santiago Baños (Pres. deportivo); FMF; patrocinadores Club América (Banorte, adidas)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-111",
+      "actor_id": "A-105",
+      "actor_name": "Ollamani, S.A.B. / Grupo Águilas (Club América + Estadio Banorte)",
+      "vertical": "V9",
+      "nombre": "Santiago Baños",
+      "cargo": "Presidente Deportivo, Club América",
+      "tier": "Tier 2",
+      "por_que": "Responsable de transferencias, plantilla y relaciones con agentes. Las decisiones de fichajes determinan el valor de mercado del activo Águilas. Continúa post-transición Reverter. Red activa con representantes y clubes europeos.",
+      "vinculos": "Ferran Reverter (DG CDA, P-012); Héctor González Iñárritu (Pres. operativo SALIENTE); representantes y clubes europeos; ecosistema transferencias Liga MX",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-018": [
+    {
+      "poi_id": "P-015",
+      "actor_id": "A-018",
+      "actor_name": "CEMEX / Sinergia Deportiva",
+      "vertical": "V9",
+      "nombre": "Rogelio Zambrano Lozano",
+      "cargo": "Presidente del Consejo de Administración, CEMEX SAB de CV",
+      "tier": "Tier 1",
+      "por_que": "Presidente del Consejo de la cementera global con sede en Monterrey, accionista controlador de Sinergia Deportiva (operadora del Club Tigres UANL). Decisor último sobre el modelo de propiedad Tigres y la inversión deportiva del grupo. Tigres es uno de los activos sports más estables del fútbol mexicano y juega rol central en la economía sports de Nuevo León rumbo a WC26.",
+      "vinculos": "Familia Zambrano; CEMEX (gobierno corporativo); Sinergia Deportiva; Estadio Universitario UANL; FEMSA/Rayados (vecindad MTY); comité organizador WC26 Monterrey",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-056": [
+    {
+      "poi_id": "P-020",
+      "actor_id": "A-056",
+      "actor_name": "Grupo Avalanz / Zignia (Guillermo Salinas Pliego)",
+      "vertical": "V9",
+      "nombre": "Guillermo Salinas Pliego",
+      "cargo": "Presidente, Grupo Avalanz; controlador, Zignia Live (operador Arena Ciudad de México, Arena Monterrey, Arena Guadalajara)",
+      "tier": "Tier 1",
+      "por_que": "Hermano menor de Ricardo Salinas Pliego. Controla Grupo Avalanz (holding diversificado) y Zignia Live, operador de las tres arenas multipropósito más grandes de MX (CDMX, Monterrey, Guadalajara). Avalanz también opera Superboletos, plataforma ticketing primaria competidora de Ticketmaster. Posición estructural en venues y ticketing rumbo al ciclo WC26 + giras post-Mundial.",
+      "vinculos": "Ricardo Salinas Pliego (hermano, Grupo Salinas); Superboletos (ticketing); Arena CDMX, Arena MTY, Arena GDL (venues operados); promotores nacionales e internacionales",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-059": [
+    {
+      "poi_id": "P-021",
+      "actor_id": "A-059",
+      "actor_name": "Grupo Martí / Familia Harp Helú",
+      "vertical": "V9",
+      "nombre": "Alfredo Harp Helú",
+      "cargo": "Presidente, Grupo Martí SAB de CV; propietario, Diablos Rojos del México y Guerreros de Oaxaca; accionista (~15%) Padres de San Diego (MLB)",
+      "tier": "Tier 1",
+      "por_que": "Empresario y filántropo (patrimonio ~USD 1,100M Forbes). Controla la mayor concentración de activos sports del béisbol mexicano: Diablos Rojos (16 campeonatos LMB, debutó en BMV con símbolo DIABLOS, +17.14% YTD 2026), Estadio Alfredo Harp Helú (CDMX), Academia AHH en Oaxaca, Guerreros de Oaxaca. Único mexicano accionista de una franquicia MLB. Primo de Carlos Slim. Salón de la Fama LMB 2023.",
+      "vinculos": "Jorge del Valle (Pres. Ejecutivo Diablos Rojos desde oct-2025); Othón Díaz (Pres. saliente, sustituido oct-2025); Padres de San Diego (Peter O'Malley, accionistas); Carlos Slim (primo); Interceramic; Grupo Posadas; Fundación AHH",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-022",
+      "actor_id": "A-059",
+      "actor_name": "Grupo Martí / Familia Harp Helú",
+      "vertical": "V9",
+      "nombre": "Jorge del Valle",
+      "cargo": "Presidente Ejecutivo, Diablos Rojos del México (desde octubre de 2025)",
+      "tier": "Tier 2",
+      "por_que": "Operativo principal Diablos Rojos. Sustituyó a Othón Díaz en oct-2025 tras el bicampeonato. Tareas declaradas: capitalizar el flujo turístico WC26 hacia el Estadio AHH, sostener récord de asistencia (14,443 promedio 2024 a 592,153 anuales), gestionar la condición de empresa cotizada en BMV (DIABLOS) post-debut sin OPI.",
+      "vinculos": "Alfredo Harp Helú (propietario); Othón Díaz (predecesor); BMV (empresa cotizada); Estadio AHH; Academia AHH Oaxaca",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-062": [
+    {
+      "poi_id": "P-023",
+      "actor_id": "A-062",
+      "actor_name": "Grupo Orlegi",
+      "vertical": "V9",
+      "nombre": "Alejandro Irarragorri Gutiérrez",
+      "cargo": "Presidente del Consejo de Administración, Grupo Orlegi (Orlegi Sports); propietario Santos Laguna",
+      "tier": "Tier 1",
+      "por_que": "Decisor único de Orlegi tras la venta del Atlas FC a Grupo PRODI (José Miguel Bejos), aprobada por asamblea de dueños 23-abril-2026 con transición operativa al 1-julio-2026. Orlegi se queda solo con Santos Laguna en MX (también opera Sporting de Gijón en España, con reportes de tensión de liquidez). El 70-aniversario título de Atlas (bicampeonato 2021-2022) bajo su gestión ya quedó atrás.",
+      "vinculos": "José Miguel Bejos / Grupo PRODI (comprador Atlas); Alejandro \"Aleco\" Irarragorri Kalb (hijo, Pres. Santos); Sporting de Gijón (España); FMF/Liga MX (multipropiedad eliminada vía venta Atlas)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-063": [
+    {
+      "poi_id": "P-024",
+      "actor_id": "A-063",
+      "actor_name": "Grupo Pachuca",
+      "vertical": "V9",
+      "nombre": "Jesús Martínez Patiño",
+      "cargo": "Propietario y CEO, Grupo Pachuca (Tuzos del Pachuca, Club León, Estadio Hidalgo, Estadio Nou Camp)",
+      "tier": "Tier 1",
+      "por_que": "Actor crítico del ecosistema 2026 con perfil de riesgo elevado: orden de aprehensión vigente desde oct-2025 (disputa derechos con Grupo Lauman/Fox Sports MX), exclusión de Club León del Mundial de Clubes 2025 por violación a reglas FIFA de multipropiedad, asking price USD 500M para un activo estimado USD 200M por el mercado. Aún titular de Tuzos y León; Liga MX presiona venta de uno de los dos clubes para cerrar multipropiedad antes de fin 2026.",
+      "vinculos": "Grupo Lauman / Fox Sports MX (litigio derechos); FIFA (sanción Mundial de Clubes a León); Liga MX (presión multipropiedad); Mikel Arriola (presión institucional); Universidad del Futbol Pachuca",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-065": [
+    {
+      "poi_id": "P-025",
+      "actor_id": "A-065",
+      "actor_name": "Grupo Salinas / TV Azteca",
+      "vertical": "V9",
+      "nombre": "Ricardo B. Salinas Pliego",
+      "cargo": "Presidente y fundador, Grupo Salinas (TV Azteca, Banco Azteca, Elektra, Tiendas Neto)",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del holding. Vendió Mazatlán FC a Emilio Escalante (Atlante) en abr-2026 por aproximadamente USD 65M, conservando solo Puebla en Liga MX (Puebla también en proceso de venta según reportes). Adeudo SAT de USD 48 mil millones de pesos por Elektra 2008-2014 lo presiona a liquidar activos. Tensión política directa con el gobierno Sheinbaum. Salida del fútbol mexicano en curso. Bonistas internacionales TV Azteca buscan responsabilidad personal en concurso mercantil.",
+      "vinculos": "Benjamín Salinas Sada (CEO TV Azteca, hijo); Guillermo Salinas Pliego (hermano, Avalanz); Emilio Escalante (comprador Mazatlán); SAT/Sheinbaum (litigio fiscal); bonistas internacionales TV Azteca",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-026",
+      "actor_id": "A-065",
+      "actor_name": "Grupo Salinas / TV Azteca",
+      "vertical": "V9",
+      "nombre": "Benjamín Salinas Sada",
+      "cargo": "CEO, TV Azteca; hijo de Ricardo Salinas Pliego",
+      "tier": "Tier 2",
+      "por_que": "Operativo principal TV Azteca durante el concurso mercantil. Gestiona continuidad de operaciones, contratos vigentes con clubes Liga MX (Atlas, Tubi MX) y la transición de activos sports vendidos. Su firma es necesaria para los movimientos de derechos deportivos cotidianos.",
+      "vinculos": "Ricardo Salinas Pliego (padre, propietario); Rodolfo \"El Pollo\" Ramírez (DG Azteca Deportes); Carlos Martínez (Fox Corp LatAm, deal Caliente TV); concurso mercantil",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-105",
+      "actor_id": "A-065",
+      "actor_name": "Grupo Salinas / TV Azteca",
+      "vertical": "V9",
+      "nombre": "Rodolfo \"El Pollo\" Ramírez",
+      "cargo": "Director General, Azteca Deportes (TV Azteca)",
+      "tier": "Tier 2",
+      "por_que": "Responsable de la operación deportiva de TV Azteca durante el proceso de concurso mercantil del grupo. Gestiona los contratos vigentes con clubes Liga MX (Tigres, Juárez, Puebla) y la cartera deportiva del canal. Cluster operativo con Ricardo y Benjamín Salinas (Tier 1, ya cargados).",
+      "vinculos": "Ricardo Salinas Pliego (Pres. Grupo Salinas, Tier 1 P-022); Benjamín Salinas (CEO TV Azteca, Tier 2); Tigres UANL, Juárez, Puebla (contratos vigentes); proceso concurso mercantil USD 48 mil mdp adeudo SAT",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-076": [
+    {
+      "poi_id": "P-027",
+      "actor_id": "A-076",
+      "actor_name": "Innovatio Capital / Club Querétaro",
+      "vertical": "V9",
+      "nombre": "Marc Spiegel",
+      "cargo": "Founder, Managing Member y Chairman, Innovatio Capital; Chairman, Querétaro FC",
+      "tier": "Tier 1",
+      "por_que": "Decisor único de Innovatio Capital, fondo PE con sede Atlanta/Arizona. Cerró compra de Querétaro FC a Jorge Alberto Hank Inzunza (Grupo Caliente) por USD 120M en julio 2025, primera mayoría 100% estadounidense en Liga MX. Fundador de Rubicon (waste management tech). Bertram Capital se sumó a la propiedad en feb-2026 trayendo expertise tech/data. Tesis explícita: identificar franquicias subvaloradas, aplicar disciplina financiera y data, construir plataforma regional conectada a USA.",
+      "vinculos": "Chris Spooner (CFO Innovatio); Ed Malyon (Sporting Strategy, ex periodista); Bertram Capital (co-inversor desde feb-2026); Adrián Madero / Grupo Fonseca (socio estratégico MX); Jorge Alberto Hank Inzunza (vendedor Querétaro); Mauricio Kuri (gobernador Querétaro)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-041": [
+    {
+      "poi_id": "P-047",
+      "actor_id": "A-041",
+      "actor_name": "Familia Slim / Grupo Carso",
+      "vertical": "V9",
+      "nombre": "Carlos Slim Helú",
+      "cargo": "Presidente Honorario Vitalicio, Grupo Carso (Telmex, América Móvil/Telcel, Sanborns, Sears, IDEAL, etc.); patrimonio Forbes USD 125,300M, lugar 16 mundial 2026",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del conglomerado Carso. Patrocinador estructural del ecosistema sports MX vía Telcel: Selección Mexicana de Fútbol (sponsor titular desde 1997), Maratón CDMX Telcel, Abierto Mexicano de Tenis Telcel, Telmex F1 GP México (sponsorship histórico). También controla TelmexHub y diversas marcas en eventos masivos. POI ya cargado bajo A-087 Maratón CDMX Telcel; cross-reference para A-041.",
+      "vinculos": "Marco Antonio Slim Domit (hijo, Pres. Inbursa); Carlos Slim Domit (hijo, Pres. Telmex); Patrick Slim Domit (hijo, América Móvil); Selección Mexicana (Telcel sponsor histórico); GP México F1 (Telmex sponsor); AMT (Telcel título); Maratón CDMX Telcel; Alfredo Harp Helú (primo, A-059)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-050": [
+    {
+      "poi_id": "P-050",
+      "actor_id": "A-050",
+      "actor_name": "General Atlantic",
+      "vertical": "V9",
+      "nombre": "Luis Cervantes",
+      "cargo": "Managing Director y Head Oficina CDMX, General Atlantic",
+      "tier": "Tier 1",
+      "por_que": "Deal partner principal del deal General Atlantic - Ollamani (USD 490M EV, dic-2025) desde la oficina CDMX (abierta 2015). Contraparte directa con Emilio Azcárraga Jean en la negociación. Identificado en comunicados oficiales del deal. GA con Martín Escobari como Co-President y Chairman del Investment Committee LATAM. Cross-ref: ya identificado en legacy POI-V9-001.",
+      "vinculos": "Martín Escobari (Co-President GA, Chairman Investment Committee, autoridad máxima LATAM); Emilio Azcárraga Jean (counterparty Ollamani, A-105 ya cargado); Ollamani (deal vehicle); Ferran Reverter (DG CDA, ya cargado P-012)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-101",
+      "actor_id": "A-050",
+      "actor_name": "General Atlantic",
+      "vertical": "V9",
+      "nombre": "Martín Escobari",
+      "cargo": "Co-President y Chairman del Investment Committee, General Atlantic",
+      "tier": "Tier 1",
+      "por_que": "Autoridad máxima de General Atlantic en LatAm. Aprobó el deal Grupo Águilas/Ollamani (USD 490M EV, dic-2025) como Chairman del Investment Committee. Perfil público elevado en el ecosistema PE de la región. Es el escalón final de aprobación de cualquier inversión GA en MX, complementario a Luis Cervantes (MD oficina CDMX, P-051).",
+      "vinculos": "Luis Cervantes (MD CDMX, P-051 cross-ref); Emilio Azcárraga Jean (Ollamani counterparty, A-105); Apollo Sports Capital (peer competidor, A-005); ecosistema PE LATAM",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-058": [
+    {
+      "poi_id": "P-052",
+      "actor_id": "A-058",
+      "actor_name": "Grupo Caliente / Corporación Caliente, S.A. de C.V.",
+      "vertical": "V9",
+      "nombre": "Jorge Hank Rhon",
+      "cargo": "Dueño, Grupo Caliente / Caliente.mx; ex-gobernador Baja California",
+      "tier": "Tier 1",
+      "por_que": "Mayor poder comercial unilateral en Liga MX vía apuestas. Caliente.mx es la plataforma sportsbook más grande de MX. Vendió Querétaro a Innovatio (Spiegel) en jul-2025 por USD 120M; conserva Tijuana Xolos (con su hijo Jorge Alberto Hank Inzunza como propietario formal). Caliente TV vendida a Fox Corp en jun-2025 (Carlos Martínez, A-047). Marca presente en jerseys de la mayoría de equipos Liga MX, NFL México, F1 MX y eventos premium.",
+      "vinculos": "Jorge Alberto Hank Inzunza (hijo, propietario formal Xolos); Marc Spiegel (comprador Querétaro, ya cargado A-076); Carlos Martínez (Fox Corp, comprador Caliente TV); Fernanda Sainz (Directora Comercial Caliente Sport); ecosistema patrocinios MX (Caliente jersey deals)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-103",
+      "actor_id": "A-058",
+      "actor_name": "Grupo Caliente / Corporación Caliente, S.A. de C.V.",
+      "vertical": "V9",
+      "nombre": "Jorge Alberto Hank Inzunza",
+      "cargo": "Propietario formal Club Tijuana Xolos; hijo de Jorge Hank Rhon",
+      "tier": "Tier 2",
+      "por_que": "Figura jurídica de la propiedad de Xolos. Señalamiento OFAC en sep-2025 (posteriormente retirado). Operador de facto del brazo de apuestas junto con su padre. Cluster familiar con Jorge Hank Rhon (Tier 1, P-053) en la cabeza estratégica del grupo Caliente.",
+      "vinculos": "Jorge Hank Rhon (padre, Tier 1 P-053); Club Tijuana Xolos (propiedad formal); OFAC señalamiento sep-2025 retirado; Grupo Caliente operación; Liga MX",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-104",
+      "actor_id": "A-058",
+      "actor_name": "Grupo Caliente / Corporación Caliente, S.A. de C.V.",
+      "vertical": "V9",
+      "nombre": "Fernanda Sainz",
+      "cargo": "Directora Comercial, Caliente Sport",
+      "tier": "Tier 2",
+      "por_que": "Responsable de las activaciones comerciales de las apuestas en el ecosistema deportivo. Figura más visible del área comercial de Caliente.mx en los deals jersey con clubes Liga MX. Operadora del programa de patrocinios cruzados Caliente con Liga MX.",
+      "vinculos": "Jorge Hank Rhon (jefe, A-058 Tier 1); Liga MX clubs (jersey deals); FMF (activaciones); Caliplay (brazo betting); Fox Corp (post-venta Caliente TV jun-2025)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-066": [
+    {
+      "poi_id": "P-053",
+      "actor_id": "A-066",
+      "actor_name": "Grupo Vidanta",
+      "vertical": "V9",
+      "nombre": "Daniel Chávez Morán",
+      "cargo": "Presidente Fundador, Grupo Vidanta",
+      "tier": "Tier 1",
+      "por_que": "Founder y propietario del conglomerado turístico mexicano más grande con resorts en Vallarta, Mayan Riviera, Los Cabos, Acapulco. Dueño de Vidanta Golf (PGA Tour Latinoamérica sede en MX), Mexico Open at Vidanta (PGA Tour evento oficial USD 9.2M purse 2026). Cirque du Soleil Vidanta (alianza). Inversión sports significativa: Vidanta Park resort en Vallarta, sede de Cirque du Soleil JOYÀ. Sponsor titular en eventos premium MX.",
+      "vinculos": "Vidanta Group (matriz); PGA Tour (Mexico Open sanción); Cirque du Soleil (alianza JOYÀ); Mauricio Kuri (gobernador Querétaro, vínculo proyectos); Mextenis (Mexico Open Vidanta hosting)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-005": [
+    {
+      "poi_id": "P-066",
+      "actor_id": "A-005",
+      "actor_name": "Apollo Sports Capital",
+      "vertical": "V9",
+      "nombre": "Al Tylis",
+      "cargo": "CEO, Apollo Sports Capital (ASC); también co-owner Club Necaxa (cross-ref A-021)",
+      "tier": "Tier 1",
+      "por_que": "CEO de Apollo Sports Capital, vehículo lanzado en sept-2025 con USD 6,000M de capital comprometido para inversiones en sports y live events. Al Tylis ya tiene historia operativa en MX como co-owner del Club Necaxa con Eva Longoria, Reynolds y McElhenney (cross-ref A-021 P-080). Apollo Global con USD 938 mil millones AUM. Recientes deals ASC: Atlético de Madrid (mar-2026, mayoritario), Pickleball Inc/PPA Tour/MLP USD 225M (may-2026 con Tom Dundon). Marc Rowan (CEO Apollo) prevé USD 30-50 mil millones de oportunidades de origination del ecosistema sports.",
+      "vinculos": "Marc Rowan (CEO Apollo Global, A-005 cluster); Rob Givone y Lee Solomon (Co-Portfolio Managers ASC); Sam Porter (Chief Strategy Officer ASC); Apollo Global Management (matriz USD 938B AUM); Club Necaxa (A-021 cross-ref P-080); Atlético de Madrid (deal mar-2026); Tom Dundon/Dundon Capital (co-investor pickleball)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-046": [
+    {
+      "poi_id": "P-079",
+      "actor_id": "A-046",
+      "actor_name": "Fillip Holdings",
+      "vertical": "V9",
+      "nombre": "Alberto Fasja",
+      "cargo": "Co-Founder y Executive Chairman, Fillip Holdings",
+      "tier": "Tier 1",
+      "por_que": "Venture builder; ex-CEO Grupo Axo (30+ marcas globales, 5,500 puntos de venta MX/Chile); Senior Advisor General Atlantic; board Endeavor México. Arquitecto del modelo de adquisición y escala de IP deportiva en sports/entertainment. Fillip Holdings es el holding detrás del JV con WWE/TKO para AAA Lucha Libre Worldwide y la entrada de Kings League México.",
+      "vinculos": "General Atlantic (brazo advisor, A-050 cross-ref); Endeavor / WME / TKO (board MX, A-035); Grupo Axo (red retail histórica); WWE / TKO Group Holdings (JV AAA WrestleMania 41); Kings League México; AAA Lucha Libre Worldwide",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-092",
+      "actor_id": "A-046",
+      "actor_name": "Fillip Holdings",
+      "vertical": "V9",
+      "nombre": "Hugo López-Velarde",
+      "cargo": "Co-Founder y Co-CEO, Fillip Holdings",
+      "tier": "Tier 2",
+      "por_que": "Co-fundador operativo. Red directa WWE/TKO (vocero del anuncio WrestleMania 41 del deal AAA). Gestión operativa del deal AAA Lucha Libre Worldwide y la entrada de Kings League México. Ejecutor de la tesis de inversión en propiedades culturales de alto potencial.",
+      "vinculos": "WWE / TKO Group Holdings (JV AAA 49%, vínculo con A-035); Kings League México; AAA Lucha Libre Worldwide (cluster Kings/lucha); Alberto Fasja (Chairman co-fundador, Tier 1)",
+      "certeza": "Verificado"
+    },
+    {
+      "poi_id": "P-093",
+      "actor_id": "A-046",
+      "actor_name": "Fillip Holdings",
+      "vertical": "V9",
+      "nombre": "Bárbara González Briseño",
+      "cargo": "Co-CEO, Fillip Holdings",
+      "tier": "Tier 2",
+      "por_que": "Perfil financiero: ex-CFO y CEO México Bitso (levantó +USD 500M, unicornio USD 2,250M valuación). Ex Lazard M&A. Aporta disciplina de capital y estructuración financiera al holding. Harvard MBA. Es la pata de fundraising y due diligence de Fillip.",
+      "vinculos": "Bitso (background, unicornio fintech MX); Lazard (M&A background); FEMSA Ventures; NAZCA; DILA Capital; red Bitso fintech MX; Alberto Fasja y Hugo López-Velarde (co-fundadores)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-064": [
+    {
+      "poi_id": "P-080",
+      "actor_id": "A-064",
+      "actor_name": "Grupo PRODI / José Miguel Bejos",
+      "vertical": "V9",
+      "nombre": "José Miguel Bejos",
+      "cargo": "Founder y Presidente, Grupo PRODI (Promotor de Desarrollo e Infraestructura); propietario Pericos de Puebla (LMB); Presidente Mota-Engil México",
+      "tier": "Tier 1",
+      "por_que": "Empresario libanés-mexicano (48 años, Estado de México, egresado Universidad Anáhuac). Compró Atlas FC a Grupo Orlegi (Irarragorri, A-062) en abril 2026, transición operativa 1-jul-2026. Hijo de Jesús Alfredo Miguel Afif (Pres. Cámara Empresarial Mexicana Libanesa); nieto de José Miguel Nader. PRODI con cartera diversificada: industrial, financiero, fiscal, aeronáutico, petrolero. Pericos de Puebla en LMB. Mota-Engil México como infraestructura. Movimiento clave en el reacomodo de propiedades Liga MX rumbo al Apertura 2026.",
+      "vinculos": "Alejandro Irarragorri Gutiérrez (vendedor Atlas, A-062); Jesús Alfredo Miguel Afif (padre, Cámara Empresarial Mexicana Libanesa); Pericos de Puebla (LMB); Mota-Engil México; Atlas FC (transición 1-jul-2026); Universidad Anáhuac (alma mater)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-097": [
+    {
+      "poi_id": "P-084",
+      "actor_id": "A-097",
+      "actor_name": "Moelis & Co.",
+      "vertical": "V9",
+      "nombre": "Ken Moelis",
+      "cargo": "Founder, Chairman y CEO, Moelis & Company (NYSE: MC)",
+      "tier": "Tier 1",
+      "por_que": "Founder del banco de inversión advisor del sales process activo de Wasserman/THE·TEAM (rebrand mar-2026, A-146 ya cargado). Moelis & Co. especializado en M&A y restructuring. Presencia LatAm y mandatos sports deportivos relevantes. La conexión con A-146 es estructural en mayo 2026 (Wasserman vende, Moelis advisor). POI MX dedicado: pendiente verificar.",
+      "vinculos": "Wasserman/THE·TEAM (mandato venta, A-146); Providence Equity (counterparty institucional); ecosistema M&A sports global; banco de inversión advisor",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-110": [
+    {
+      "poi_id": "P-125",
+      "actor_id": "A-110",
+      "actor_name": "PIF (Saudi Public Investment Fund)",
+      "vertical": "V9",
+      "nombre": "Yasir Al-Rumayyan",
+      "cargo": "Governor, Public Investment Fund (PIF) Saudi Arabia",
+      "tier": "Tier 1",
+      "por_que": "Decisor último del PIF (USD 925B+ AUM), el fondo soberano saudí detrás de LIV Golf (A-085), Newcastle United, deals con Canelo Promotions vía Turki Alalshikh (A-016 cross-ref), boxeo (Riyadh Season). Influencia indirecta pero estructural en MX vía la cartelera Canelo 12-sept-2026 Riyadh.",
+      "vinculos": "Mohammed bin Salman (MBS, jefe directo); Turki Alalshikh (Chairman Saudi General Entertainment Authority y Ring Magazine, contraparte Canelo); Scott O'Neil (CEO LIV Golf, A-085 P-038); Canelo Promotions (deal global, A-016)",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-125": [
+    {
+      "poi_id": "P-126",
+      "actor_id": "A-125",
+      "actor_name": "Silver Lake",
+      "vertical": "V9",
+      "nombre": "Egon Durban",
+      "cargo": "Co-CEO, Silver Lake",
+      "tier": "Tier 1",
+      "por_que": "Silver Lake (USD 100B+ AUM) es el PE tecnológico-deportivo con presencia en City Football Group (Manchester City + cluster), MSP Sports Capital, A22 Sports Management (Super League), TKO/Endeavor. Peer competidor Apollo Sports Capital, General Atlantic. En MX presencia indirecta vía TKO (Ari Emanuel A-035) y exposición a propiedades sports globales.",
+      "vinculos": "Greg Mondre (Co-CEO Silver Lake); TKO Group Holdings (A-035 cross-ref vía Endeavor); City Football Group (potential MX expansion); A22 Sports Management; ecosistema PE sports tech",
+      "certeza": "Verificado"
+    }
+  ],
+  "A-057": [
+    {
+      "poi_id": "P-131",
+      "actor_id": "A-057",
+      "actor_name": "Grupo BAL / Familia Baillères",
+      "vertical": "0",
+      "nombre": "Alejandro Baillères",
+      "cargo": "Presidente, Grupo BAL / Familia Baillères (cross-ref A-053)",
+      "tier": "Tier 1",
+      "por_que": "Mismo POI que A-053. Grupo BAL es la matriz del cluster Baillères. Cross-reference para mantener trazabilidad entre el grupo holding (A-057) y la operación GNP Seguros (A-053).",
+      "vinculos": "Mismos vínculos que A-053 (Estadio GNP Seguros, Arena GNP Acapulco, Tigres, Maratón GNP MTY, HG Promotores)",
+      "certeza": "Verificado"
+    }
+  ]
+}
