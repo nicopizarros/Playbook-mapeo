@@ -2,6 +2,7 @@ import { APP, VX } from '../state.js';
 import { openPanel } from '../panel.js';
 
 let mxResizeObserver = null;
+let mxZoom = null;
 
 export function buildMatrix() {
   const wrap = document.getElementById('matrix-in-net');
@@ -28,6 +29,26 @@ export function buildMatrix() {
   fm.append('feMergeNode').attr('in', 'SourceGraphic');
 
   const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+  // Zoom + pan — title stays fixed (appended to svg), data group (g) transforms
+  mxZoom = d3.zoom().scaleExtent([0.3, 8])
+    .on('zoom', e => {
+      const t = e.transform;
+      g.attr('transform', `translate(${margin.left + t.x},${margin.top + t.y}) scale(${t.k})`);
+    });
+  svg.call(mxZoom).on('dblclick.zoom', null);
+
+  // Zoom control buttons — reuse network CSS classes
+  let ctrl = wrap.querySelector('.mx-zoom-ctrl');
+  if (ctrl) ctrl.remove();
+  ctrl = document.createElement('div');
+  ctrl.className = 'mx-zoom-ctrl net-ctrl-grp';
+  ctrl.style.cssText = 'position:absolute;bottom:36px;right:12px;z-index:5';
+  ctrl.innerHTML = '<button class="net-cb" id="mxz-in" title="Acercar">+</button><button class="net-cb" id="mxz-out" title="Alejar">−</button><button class="net-cb" style="font-size:9px;letter-spacing:0" id="mxz-rst" title="Reset">⌖</button>';
+  wrap.appendChild(ctrl);
+  ctrl.querySelector('#mxz-in').addEventListener('click', () => svg.transition().duration(250).call(mxZoom.scaleBy, 1.35));
+  ctrl.querySelector('#mxz-out').addEventListener('click', () => svg.transition().duration(250).call(mxZoom.scaleBy, 0.75));
+  ctrl.querySelector('#mxz-rst').addEventListener('click', () => svg.transition().duration(400).call(mxZoom.transform, d3.zoomIdentity));
 
   // Scales — amplitud/profundidad are integers 1–4
   const xSc = d3.scaleLinear().domain([0.5, 4.5]).range([0, iW]);
@@ -129,18 +150,19 @@ export function buildMatrix() {
     y: ySc(a.score_profundidad || 1),
   }));
 
+  // Lower strength lets collision win → nodes spread within cell rather than stacking
   const sim = d3.forceSimulation(nodeData)
-    .force('x', d3.forceX(d => xSc(d.score_amplitud || 1)).strength(0.85))
-    .force('y', d3.forceY(d => ySc(d.score_profundidad || 1)).strength(0.85))
-    .force('collision', d3.forceCollide().radius(d => d.r + 2).strength(0.95))
+    .force('x', d3.forceX(d => xSc(d.score_amplitud || 1)).strength(0.48))
+    .force('y', d3.forceY(d => ySc(d.score_profundidad || 1)).strength(0.48))
+    .force('collision', d3.forceCollide().radius(d => d.r + 4).strength(1).iterations(3))
     .stop();
 
-  for (let i = 0; i < 160; i++) sim.tick();
+  for (let i = 0; i < 300; i++) sim.tick();
 
-  // Clamp within inner area
+  // Soft clamp — allow slight overflow so zoom can reach edge nodes
   nodeData.forEach(n => {
-    n.x = Math.max(n.r + 2, Math.min(iW - n.r - 2, n.x));
-    n.y = Math.max(n.r + 2, Math.min(iH - n.r - 2, n.y));
+    n.x = Math.max(n.r, Math.min(iW - n.r, n.x));
+    n.y = Math.max(n.r, Math.min(iH - n.r, n.y));
   });
 
   // Glow rings for high-score nodes

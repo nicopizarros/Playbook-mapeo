@@ -118,11 +118,13 @@ export function buildPoiMap(rawMap) {
 }
 
 export function buildTicker(actors) {
-  const flagged = actors.filter(a => a.flag || a.tier === 1).slice(0, 20);
-  return flagged.map(a => ({
-    v:   a.vertical,
-    aid: a.id,
-    t:   a.signal || a.label,
+  const items = actors.filter(a => a.tier === 1 || a.flag || a.watchlist).slice(0, 36);
+  return items.map(a => ({
+    label:    a.label,
+    vertical: a.vertical,
+    signal:   a.signal || a.role || '',
+    score:    a.score_compuesto,
+    tier:     a.tier,
   }));
 }
 

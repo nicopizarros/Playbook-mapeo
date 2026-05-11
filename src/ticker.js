@@ -1,13 +1,7 @@
-// ticker.js — banda inferior de senales.
-// Lee APP.TICKER_DATA (poblado por data.js) y arma un loop CSS de doble largo.
+import { APP, VX } from './state.js';
 
-import { APP } from './state.js';
-
-function escapeHTML(s) {
-  return String(s || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 export function renderTicker() {
@@ -17,26 +11,30 @@ export function renderTicker() {
 
   const items = (APP.TICKER_DATA && APP.TICKER_DATA.length)
     ? APP.TICKER_DATA
-    : APP.ACTORS.filter(a => a.signal).slice(0, 16).map(a => ({
-        label:  a.label,
-        signal: a.signal,
-        vertical: a.vertical,
+    : APP.ACTORS.filter(a => a.tier === 1 || a.flag).slice(0, 28).map(a => ({
+        label: a.label, vertical: a.vertical, signal: a.signal || a.role || '',
+        score: a.score_compuesto, tier: a.tier,
       }));
 
-  if (!items.length) {
-    wrap.classList.remove('on');
-    track.innerHTML = '';
-    return;
-  }
+  if (!items.length) { wrap.classList.remove('on'); track.innerHTML = ''; return; }
 
   const html = items.map(it => {
-    const v = it.vertical ? '<span style="color:var(--' + escapeHTML(it.vertical.toLowerCase()) + ')">' + escapeHTML(it.vertical) + '</span>' : '';
-    const sep = '<span class="ticker-sep">·</span>';
-    const lbl = '<strong style="color:var(--text-muted);font-weight:700">' + escapeHTML(it.label) + '</strong>';
-    return '<span class="ticker-item">' + v + (v ? sep : '') + lbl + sep + escapeHTML(it.signal) + '</span>';
+    const vc    = VX[it.vertical] || {};
+    const col   = vc.color || '#45d802';
+    const vcode = `<span style="color:${col};font-weight:700;letter-spacing:0.1em">${esc(it.vertical || '')}</span>`;
+    const name  = `<span style="color:rgba(255,255,255,0.82);font-weight:700">${esc(it.label)}</span>`;
+    const score = it.score != null
+      ? `<span class="ticker-score" style="color:${col}">${Math.round((it.score||0)*100)}%</span>`
+      : '';
+    const sig   = it.signal
+      ? `<span style="color:rgba(255,255,255,0.42)">${esc(it.signal.length > 72 ? it.signal.slice(0,70)+'…' : it.signal)}</span>`
+      : '';
+    const sep   = `<span class="ticker-sep">·</span>`;
+    const parts = [vcode, name, score, sig].filter(Boolean).join(sep);
+    return `<span class="ticker-item">${parts}</span>`;
   }).join('');
 
-  // Doble largo para loop continuo
+  // Double the content for seamless infinite loop
   track.innerHTML = html + html;
   wrap.classList.add('on');
 }

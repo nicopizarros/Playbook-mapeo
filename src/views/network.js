@@ -111,8 +111,8 @@ export function initNet() {
         const zx = zPadX + col * zoneW, zy = zPadY + row * zoneH;
         const color = VX[v].color;
         APP.gVLaneBg.append('rect').attr('class', 'v-zone-bg').attr('data-vi', i).attr('x', zx + 5).attr('y', zy + 5).attr('width', zoneW - 10).attr('height', zoneH - 10).attr('rx', 2).attr('fill', color).attr('fill-opacity', 0.03).attr('stroke', color).attr('stroke-width', 0.5).attr('stroke-opacity', 0.18);
-        APP.gVLaneBg.append('text').attr('class', 'v-zone-code').attr('data-vi', i).attr('x', zx + 14).attr('y', zy + 28).attr('font-family', 'Space Mono, monospace').attr('font-size', '15px').attr('font-weight', '700').attr('letter-spacing', '0.08em').attr('fill', color).attr('fill-opacity', 0.28).text(v);
-        APP.gVLaneBg.append('text').attr('class', 'v-zone-name').attr('data-vi', i).attr('x', zx + 14).attr('y', zy + 44).attr('font-family', 'Space Mono, monospace').attr('font-size', '8px').attr('letter-spacing', '0.1em').attr('fill', color).attr('fill-opacity', 0.2).text(VX[v].label);
+        APP.gVLaneBg.append('text').attr('class', 'v-zone-code').attr('data-vi', i).attr('x', zx + 14).attr('y', zy + 28).attr('font-family', 'Space Mono, monospace').attr('font-size', '15px').attr('font-weight', '700').attr('letter-spacing', '0.08em').attr('fill', color).attr('fill-opacity', 0.72).text(v);
+        APP.gVLaneBg.append('text').attr('class', 'v-zone-name').attr('data-vi', i).attr('x', zx + 14).attr('y', zy + 44).attr('font-family', 'Space Mono, monospace').attr('font-size', '8px').attr('letter-spacing', '0.1em').attr('fill', color).attr('fill-opacity', 0.5).text(VX[v].label);
       });
     })(W, H);
 
@@ -700,7 +700,7 @@ export function setNetLayout(mode) {
     if (APP.labelSel) APP.labelSel.transition().duration(300).attr('opacity', d => d.tier === 1 ? 0.85 : 0).attr('font-size', d => d.tier === 1 ? '9.5px' : '8.5px');
   }
   applyNetFilter(APP.activeV);
-  if (APP.gFixedHeaders) APP.gFixedHeaders.attr('opacity', 0);
+  if (APP.gFixedHeaders) APP.gFixedHeaders.transition().duration(300).attr('opacity', mode === 'verticales' ? 1 : 0);
   if (APP.selectedCluster !== null) { APP.selectedCluster = null; updateClusterHighlight(); }
   APP.simulation.alpha(0.8).restart();
 }
