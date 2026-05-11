@@ -50,12 +50,21 @@ export function buildMatrix() {
   ctrl.querySelector('#mxz-out').addEventListener('click', () => svg.transition().duration(250).call(mxZoom.scaleBy, 0.75));
   ctrl.querySelector('#mxz-rst').addEventListener('click', () => svg.transition().duration(400).call(mxZoom.transform, d3.zoomIdentity));
 
-  // Scales — amplitud/profundidad are integers 1–4
-  const xSc = d3.scaleLinear().domain([0.5, 4.5]).range([0, iW]);
-  const ySc = d3.scaleLinear().domain([0.5, 4.5]).range([iH, 0]); // high at top
+  // Scales — use real score ranges to avoid stacking all high-amplitud actors on the right edge
+  const amps = APP.ACTORS.map(a => +a.score_amplitud || 0);
+  const profs = APP.ACTORS.map(a => +a.score_profundidad || 0);
+  const ampExtent = d3.extent(amps);
+  const profExtent = d3.extent(profs);
+  const ampMin = Math.min(0.5, ampExtent[0] ?? 0.5);
+  const ampMax = Math.max(4.5, ampExtent[1] ?? 4.5);
+  const profMin = Math.min(0.5, profExtent[0] ?? 0.5);
+  const profMax = Math.max(4.0, profExtent[1] ?? 4.0);
+
+  const xSc = d3.scaleLinear().domain([ampMin, ampMax]).range([0, iW]);
+  const ySc = d3.scaleLinear().domain([profMin, profMax]).range([iH, 0]); // high at top
 
   // Quadrant backgrounds (divided at 2.5)
-  const midX = xSc(2.5), midY = ySc(2.5);
+  const midX = xSc((ampMin + ampMax) / 2), midY = ySc((profMin + profMax) / 2);
   const quads = [
     { x: 0,    y: 0,    w: midX,      h: midY,      label: 'ESPECIALISTA',  desc: 'Alta profundidad · baja amplitud',  color: '#7B68EE' },
     { x: midX, y: 0,    w: iW - midX, h: midY,      label: 'DOMINANTE',     desc: 'Alta profundidad · alta amplitud',  color: '#45d802' },
@@ -88,20 +97,24 @@ export function buildMatrix() {
   g.append('line').attr('x1', 0).attr('y1', midY).attr('x2', iW).attr('y2', midY)
     .attr('stroke', 'rgba(255,255,255,0.1)').attr('stroke-width', 1).attr('stroke-dasharray', '5,4');
 
-  // Grid lines at each integer
-  [1, 2, 3, 4].forEach(v => {
-    if (v === 1 || v === 4) return; // skip outer edges, handled by axis
+  // Grid lines by quartiles
+  const xTicks = d3.range(0, 4).map(i => ampMin + ((ampMax - ampMin) * i) / 3);
+  const yTicks = d3.range(0, 4).map(i => profMin + ((profMax - profMin) * i) / 3);
+
+  xTicks.slice(1, -1).forEach(v => {
     g.append('line').attr('x1', xSc(v)).attr('y1', 0).attr('x2', xSc(v)).attr('y2', iH)
       .attr('stroke', 'rgba(255,255,255,0.04)').attr('stroke-width', 0.5);
+  });
+  yTicks.slice(1, -1).forEach(v => {
     g.append('line').attr('x1', 0).attr('y1', ySc(v)).attr('x2', iW).attr('y2', ySc(v))
       .attr('stroke', 'rgba(255,255,255,0.04)').attr('stroke-width', 0.5);
   });
 
   // Axes
-  const xLabels = { 1: 'Focal', 2: 'Dual', 3: 'Multi', 4: 'Ecosistema' };
-  const yLabels = { 1: 'Superficial', 2: 'Establecido', 3: 'Profundo', 4: 'Estructural' };
+  const xLabels = ['Focal', 'Dual', 'Multi', 'Ecosistema'];
+  const yLabels = ['Superficial', 'Establecido', 'Profundo', 'Estructural'];
 
-  const xAxis = d3.axisBottom(xSc).tickValues([1, 2, 3, 4]).tickFormat(d => xLabels[d] || d);
+  const xAxis = d3.axisBottom(xSc).tickValues(xTicks).tickFormat((d, i) => xLabels[i] || Math.round(d));
   g.append('g').attr('transform', `translate(0,${iH})`).call(xAxis).call(ax => {
     ax.select('.domain').attr('stroke', 'rgba(255,255,255,0.14)');
     ax.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,0.14)');
@@ -110,7 +123,7 @@ export function buildMatrix() {
       .attr('font-size', '8px').attr('letter-spacing', '0.08em').attr('dy', '1.2em');
   });
 
-  const yAxis = d3.axisLeft(ySc).tickValues([1, 2, 3, 4]).tickFormat(d => yLabels[d] || d);
+  const yAxis = d3.axisLeft(ySc).tickValues(yTicks).tickFormat((d, i) => yLabels[i] || Math.round(d));
   g.append('g').call(yAxis).call(ax => {
     ax.select('.domain').attr('stroke', 'rgba(255,255,255,0.14)');
     ax.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,0.14)');
@@ -140,6 +153,11 @@ export function buildMatrix() {
     .attr('text-anchor', 'middle').attr('font-family', 'DM Sans, sans-serif')
     .attr('font-size', '9px').attr('fill', 'rgba(255,255,255,0.22)')
     .text('Tamaño = score compuesto · Color = vertical · Trazo = amplitud');
+
+  // Brand accent (Playbook green corner)
+  const accent = svg.append('g').attr('transform', `translate(${W - 96},18)`);
+  accent.append('rect').attr('x', 0).attr('y', 0).attr('width', 64).attr('height', 6).attr('fill', 'var(--green)');
+  accent.append('rect').attr('x', 58).attr('y', 0).attr('width', 6).attr('height', 34).attr('fill', 'var(--green)');
 
   // Node data — use force simulation to spread overlapping nodes within their grid cell
   const nodeData = APP.ACTORS.map(a => ({
