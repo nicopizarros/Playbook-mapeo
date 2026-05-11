@@ -70,7 +70,7 @@
   <div class="pw-meta br">v1.00.31 // BUILD 11MAY26<br>149 ACTORES · 9 VERTICALES</div>
   <div class="pw-center">
     <div class="pw-logo-wrap">
-      <img class="pw-logo" src="logo.svg" alt="Playbook Intelligence">
+      <img class="pw-logo" src="logo.png" alt="Playbook Intelligence">
       <div class="pw-logo-sub">Sports Intelligence · Ecosistema Deportivo MX · 2026</div>
     </div>
     <div class="pw-sep">
@@ -100,7 +100,7 @@
 </div>
 
 <div id="screen-unlock">
-  <img class="ul-logo" src="logo.svg" alt="Playbook Intelligence">
+  <img class="ul-logo" src="logo.png" alt="Playbook Intelligence">
   <div class="ul-wrap">
     <div class="ul-lbl" id="ul-lbl">Iniciando sesion</div>
     <div class="ul-track"><div class="ul-fill" id="ul-fill"></div></div>
@@ -119,7 +119,7 @@
 <div id="screen-main">
   <nav class="sidebar">
     <div class="sb-head">
-      <img class="sb-logo" src="logo.svg" alt="Playbook Intelligence">
+      <img class="sb-logo" src="logo.png" alt="Playbook Intelligence">
       <div class="sb-tagline">Ecosistema Deportivo · MX · 2026</div>
       <button class="sb-close" onclick="closeSidebar()" aria-label="Cerrar menu">✕</button>
     </div>
@@ -128,6 +128,7 @@
       <div class="sb-item active" data-view="network" onclick="switchView('network',this)"><div class="sb-dot" style="background:var(--green)"></div><span class="sb-lbl">Red de actores</span></div>
       <div class="sb-item" data-view="index" onclick="switchView('index',this)"><div class="sb-dot" style="background:var(--v2)"></div><span class="sb-lbl">Indice</span></div>
       <div class="sb-item" data-view="brief" onclick="switchView('brief',this)"><div class="sb-dot" style="background:var(--v4)"></div><span class="sb-lbl">Briefings</span></div>
+      <div class="sb-item" data-view="clusters" onclick="switchView('clusters',this)"><div class="sb-dot" style="background:var(--v4)"></div><span class="sb-lbl">Clusters ejecutivos</span></div>
       <div class="sb-item" data-view="matrix" onclick="switchView('matrix',this)"><div class="sb-dot" style="background:var(--v9)"></div><span class="sb-lbl">Matriz estratégica</span></div>
       <div class="sb-sec" style="margin-top:4px">Verticales</div>
       <div class="sb-item" onclick="filterV('V1')" id="sv-V1"><div class="sb-dot" style="background:var(--v1)"></div><span class="sb-lbl">V1 Rights Owners</span><span class="sb-cnt" id="sc-V1"></span></div>
@@ -153,6 +154,7 @@
       <div class="vt active" data-view="network" onclick="switchView('network',null,this)">Mapa de actores</div>
       <div class="vt" data-view="index" onclick="switchView('index',null,this)">Indice maestro</div>
       <div class="vt" data-view="brief" onclick="switchView('brief',null,this)">Briefings verticales</div>
+      <div class="vt" data-view="clusters" onclick="switchView('clusters',null,this)">Clusters ejecutivos</div>
       <div class="vt" data-view="matrix" onclick="switchView('matrix',null,this)">Matriz estratégica</div>
     </div>
     <div class="view-wrap">
@@ -166,7 +168,6 @@
         </div>
         <div class="net-layout-btns">
           <button class="net-lb active" id="nlb-red" onclick="setNetLayout('red')">Red</button>
-          <button class="net-lb" id="nlb-clusters" onclick="setNetLayout('clusters')">Clusters</button>
           <button class="net-lb" id="nlb-verticales" onclick="setNetLayout('verticales')">Verticales</button>
         </div>
         <div class="net-ctrl-grp">
@@ -226,6 +227,16 @@
         <div class="actor-panel" id="br-panel">
           <div class="ap-top"><div class="ap-x" onclick="closeP('br-panel')">✕</div><div class="ap-vtag" id="bp-vt"></div><div class="ap-name" id="bp-n"></div><div class="ap-role" id="bp-r"></div></div>
           <div class="ap-body" id="bp-b"></div>
+        </div>
+      </div>
+      <div id="view-clusters">
+        <div class="cl-split">
+          <div class="cl-list" id="cl-list"></div>
+          <div class="cl-detail" id="cl-detail"><div class="cl-detail-empty">Selecciona un cluster</div></div>
+        </div>
+        <div class="actor-panel" id="cluster-panel">
+          <div class="ap-top"><div class="ap-x" onclick="closeP('cluster-panel')">✕</div><div class="ap-vtag" id="cp-vt"></div><div class="ap-name" id="cp-n"></div><div class="ap-role" id="cp-r"></div></div>
+          <div class="ap-body" id="cp-b"></div>
         </div>
       </div>
       <div id="view-matrix">
