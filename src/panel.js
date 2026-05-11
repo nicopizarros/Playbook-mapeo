@@ -14,7 +14,7 @@ export function openPanel(actor, pid) {
   const vc = VX[actor.vertical] || VX.V1;
   const panel = document.getElementById(pid);
   if (!panel) return;
-  const px = pid === 'net-panel' ? 'np' : pid === 'idx-panel' ? 'ip' : pid === 'cluster-panel' ? 'cp' : 'bp';
+  const px = pid === 'net-panel' ? 'np' : pid === 'idx-panel' ? 'ip' : pid === 'cluster-panel' ? 'cp' : pid === 'mx-panel' ? 'mxp' : 'bp';
 
   const idVertTag = actor.id_vertical ? `<span style="color:var(--text-dim);margin-left:8px;font-size:7px">· ${actor.id_vertical}</span>` : '';
   document.getElementById(px + '-vt').innerHTML = `<span style="color:${vc.color}">${actor.vertical} · ${vc.label}</span>${idVertTag}`;
