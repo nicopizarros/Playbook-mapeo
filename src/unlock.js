@@ -54,7 +54,8 @@ export async function startUnlockWithTask(taskFn) {
   await wait(interval * 0.6);
   setStep(4);
 
-  await wait(reduced ? 180 : 440);
+  // Mantener unos segundos extra para dar sensación de "momentum" visual
+  await wait(reduced ? 800 : 2200);
   if (screen) {
     screen.style.transition = 'opacity 0.6s ease';
     screen.style.opacity = '0';
