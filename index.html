@@ -8,6 +8,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+  // Fallback inline: garantiza que window.doLogin exista incluso si los modulos ES fallan al cargar.
+  // El modulo auth.js sobrescribira esta funcion con la version completa cuando termine de cargar.
+  // Si los modulos ES no cargan (404, error de sintaxis, etc), al menos el login funciona.
+  window.__ACCESS_KEY__ = 'playbook2026';
+  window.doLogin = function() {
+    var input = document.getElementById('pw-in');
+    if (!input) return;
+    var val = (input.value || '').trim();
+    var err = document.getElementById('pw-err');
+    var fld = document.querySelector('.pw-field');
+    if (!val) {
+      if (err) { err.textContent = 'CLAVE REQUERIDA'; err.classList.add('on'); }
+      return;
+    }
+    if (val !== window.__ACCESS_KEY__) {
+      if (err) { err.textContent = 'CLAVE INCORRECTA — ACCESO DENEGADO'; err.classList.add('on'); }
+      if (fld) { fld.classList.add('shake'); setTimeout(function(){ fld.classList.remove('shake'); }, 500); }
+      input.value = ''; input.focus();
+      setTimeout(function(){ if (err) err.classList.remove('on'); }, 2400);
+      return;
+    }
+    // Si los modulos no cargaron, hacemos un boot minimo
+    var screen = document.getElementById('screen-pw');
+    if (screen) {
+      screen.classList.add('out');
+      setTimeout(function() {
+        if (screen) screen.style.display = 'none';
+        // Si los modulos cargaron, startUnlock estara disponible. Si no, mostrar main directo.
+        if (window.__startUnlock__) {
+          window.__startUnlock__();
+        } else if (window.__bootMain__) {
+          var ul = document.getElementById('screen-unlock');
+          if (ul) ul.style.display = 'none';
+          var main = document.getElementById('screen-main');
+          if (main) main.classList.add('on');
+          window.__bootMain__();
+        } else {
+          // Sin modulos: solo desbloquea visualmente para que veas la UI
+          var main = document.getElementById('screen-main');
+          if (main) main.classList.add('on');
+          console.error('[fallback] Modulos ES no cargaron. Revisa Network tab para 404s.');
+        }
+      }, 800);
+    }
+  };
+</script>
 </head>
 <body>
 
@@ -23,7 +70,11 @@
   <div class="pw-meta br">v1.00.31 // BUILD 11MAY26<br>149 ACTORES · 9 VERTICALES</div>
   <div class="pw-center">
     <div class="pw-logo-wrap">
-      <img id="pw-logo" class="pw-logo" alt="Playbook Intelligence">
+      <svg class="pw-logo" viewBox="0 0 1040 310" xmlns="http://www.w3.org/2000/svg" aria-label="Playbook Intelligence">
+        <text x="0" y="240" font-family="Syne, Inter, system-ui, sans-serif" font-weight="800" font-size="280" letter-spacing="-8" fill="#ffffff">Playbook</text>
+        <rect x="900" y="40" width="100" height="28" fill="#90E840"/>
+        <rect x="972" y="40" width="28" height="130" fill="#90E840"/>
+      </svg>
       <div class="pw-logo-sub">Sports Intelligence · Ecosistema Deportivo MX · 2026</div>
     </div>
     <div class="pw-sep">
@@ -53,7 +104,11 @@
 </div>
 
 <div id="screen-unlock">
-  <img id="ul-logo" class="ul-logo" alt="Playbook Intelligence">
+  <svg class="ul-logo" viewBox="0 0 1040 310" xmlns="http://www.w3.org/2000/svg" aria-label="Playbook Intelligence">
+    <text x="0" y="240" font-family="Syne, Inter, system-ui, sans-serif" font-weight="800" font-size="280" letter-spacing="-8" fill="#ffffff">Playbook</text>
+    <rect x="900" y="40" width="100" height="28" fill="#90E840"/>
+    <rect x="972" y="40" width="28" height="130" fill="#90E840"/>
+  </svg>
   <div class="ul-wrap">
     <div class="ul-lbl" id="ul-lbl">Iniciando sesion</div>
     <div class="ul-track"><div class="ul-fill" id="ul-fill"></div></div>
@@ -72,7 +127,11 @@
 <div id="screen-main">
   <nav class="sidebar">
     <div class="sb-head">
-      <img id="sb-logo" class="sb-logo" alt="Playbook Intelligence">
+      <svg class="sb-logo" viewBox="0 0 1040 310" xmlns="http://www.w3.org/2000/svg" aria-label="Playbook Intelligence">
+        <text x="0" y="240" font-family="Syne, Inter, system-ui, sans-serif" font-weight="800" font-size="280" letter-spacing="-8" fill="#ffffff">Playbook</text>
+        <rect x="900" y="40" width="100" height="28" fill="#90E840"/>
+        <rect x="972" y="40" width="28" height="130" fill="#90E840"/>
+      </svg>
       <div class="sb-tagline">Ecosistema Deportivo · MX · 2026</div>
       <button class="sb-close" onclick="closeSidebar()" aria-label="Cerrar menu">✕</button>
     </div>

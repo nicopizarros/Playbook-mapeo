@@ -77,3 +77,6 @@ if (document.readyState === 'loading') {
 } else {
   start();
 }
+
+// Registrar global para que el fallback inline en index.html pueda invocarlo
+window.__bootMain__ = bootMain;

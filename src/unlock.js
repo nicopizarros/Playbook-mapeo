@@ -1,7 +1,6 @@
 // unlock.js — pantalla de carga (#screen-unlock).
 // Anima barra de progreso y checks; al terminar dispara la app principal.
 
-import { LOGO } from './state.js';
 import { bootMain } from './main.js';
 
 const STEPS = [
@@ -11,14 +10,6 @@ const STEPS = [
   { pct: 80, status: 'Construyendo relaciones',      check: 3 },
   { pct: 100,status: 'Interfaz lista',               check: 4 },
 ];
-
-function setLogos() {
-  const els = ['pw-logo', 'ul-logo', 'sb-logo'];
-  for (const id of els) {
-    const el = document.getElementById(id);
-    if (el && !el.src) el.src = LOGO;
-  }
-}
 
 function setStep(i) {
   const s = STEPS[i];
@@ -35,7 +26,6 @@ function setStep(i) {
 }
 
 export function startUnlock() {
-  setLogos();
   const screen = document.getElementById('screen-unlock');
   if (screen) screen.classList.add('on');
 
@@ -63,3 +53,7 @@ export function startUnlock() {
     }
   }, interval);
 }
+
+// Registrar globales para que el fallback inline en index.html pueda invocarlos
+// si los modulos ES cargan correctamente.
+window.__startUnlock__ = startUnlock;
