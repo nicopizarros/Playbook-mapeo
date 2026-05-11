@@ -26,32 +26,48 @@ function setStep(i) {
 }
 
 export function startUnlock() {
+  return startUnlockWithTask(() => bootMain());
+}
+
+export async function startUnlockWithTask(taskFn) {
   const screen = document.getElementById('screen-unlock');
   if (screen) screen.classList.add('on');
 
-  let i = 0;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const interval = reduced ? 220 : 420;
-  const id = setInterval(() => {
-    setStep(i);
-    i++;
-    if (i >= STEPS.length) {
-      clearInterval(id);
-      setTimeout(() => {
-        if (screen) {
-          screen.style.transition = 'opacity 0.6s ease';
-          screen.style.opacity = '0';
-        }
-        setTimeout(() => {
-          if (screen) {
-            screen.classList.remove('on');
-            screen.style.display = 'none';
-          }
-          bootMain();
-        }, reduced ? 200 : 650);
-      }, reduced ? 250 : 550);
-    }
-  }, interval);
+  const interval = reduced ? 280 : 460;
+
+  // Progreso guiado por eventos reales:
+  // 0/1: autenticación, 2/3: carga de datos/construcción, 4: interfaz lista.
+  setStep(0);
+  await wait(interval * 0.7);
+  setStep(1);
+  await wait(interval * 0.8);
+  setStep(2);
+
+  try {
+    if (typeof taskFn === 'function') await taskFn();
+  } catch (e) {
+    console.error('[unlock] task error:', e);
+  }
+
+  setStep(3);
+  await wait(interval * 0.6);
+  setStep(4);
+
+  await wait(reduced ? 180 : 440);
+  if (screen) {
+    screen.style.transition = 'opacity 0.6s ease';
+    screen.style.opacity = '0';
+  }
+  await wait(reduced ? 220 : 650);
+  if (screen) {
+    screen.classList.remove('on');
+    screen.style.display = 'none';
+  }
+}
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Registrar globales para que el fallback inline en index.html pueda invocarlos
