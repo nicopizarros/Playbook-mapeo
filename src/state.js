@@ -1,50 +1,74 @@
-export const LOGO = 'data:image/webp;base64,UklGRiYZAABXRUJQVlA4WAoAAAAQAAAAJwQAWgEAQUxQSNASAAABsFbbdthW14ZwIAiCIAiCIQiCIQiCIAiCIQiCIAjCYXB+tDeN95ETf68ZrxExAfjz/5////z/5/8////5/8//f/7/8/+f///8/+f/P///+f/P/3/+//P/n////M8aO+NngGSMf/77vxNqd19K2VO6u3InrHdXZ4znhbLodBHdVqm9bOG+KkbY7y5jTOclW3R5sb6dbZPPCF+PLB8SzLTFDwlm1tOnBLOePiWY9fgpwazKpwSb6VOCWZVPCTbipwTT/CnBrHxMsPYxwZp8SrAhnxJsyKcEOz4mWPuYYPVjguWPCRo/JdiUTwl2fEyw7X/7Yvet75XK//R57++VHR8TLH1MGB8TLH9MmB8TLH9MmB8TLP1im+X5tQ8Hxy+2jnNTnWQmv/UA5Mm1/+IDdmUav/oQB5GFX32QQZR/90EGz/HLDzJo9LcforJYuAhJD8qbJ+nBcC0hPXpFIT36XwN2mry8tNc+7YfaW0nyfqW99mk/1N72tLyYS+/249lbSXIJMZfe7cezt5LkPwMMlrK0WLqdOOr2RqU67MRe4qpkq91OncceVyZb7XbqPPb430Bi6euKddrp2ra3KDW107Wl9YS9G+Ws25rC3o1y1u0/AEySuSjJ00hnkceKEfZkpJUtGWfmk30a6dxlJZK7EWuNq5HcjVhrvKRktFPeoJ3EliRFjViLsGGSTLZKImxS1Ii1hVWEpsY+8kpCU2Mf+XpEeRLeoMAS1yNFjVwL205iG9nkOEC2q7E3WUE6zOUssoh0mMtZ5GIOoy14hzBI0nJ2NYczcYmSNK5onBtXHOZQi7vYza3uK4jd3Op+KZvRdrxH9ZLiMKdVmNBIVKh2DgVVMaczuQrNXM/NmzRzPbfrEKXR8CZlkrKWYn5HZIoklqkGR2OSYX6r+NnVvPfgalfz3sNVHEa74U1K1xOGedZEhE5yMAXj3IiimucRncRhC9TiJw5boJZr2I224l2Kl7OpOc9EmcQCUeZQ8GQ135pd7LbIHpzstsgeLiAozZC3CVdTzH/mgZLsRAdH5cnmv/JJt2Xq5kG6LVO39XVj1YibqtkKM08hGTxinJEm2woPIYtqK618UW2ldXW70e64p6TbGgdNILFIs3FMsExb4xCqbIvtQpZtsV2WFpXmwBuVrkSGXec3OEgqTeOoNMscQlRtuSNSVVvuiCsbxjrlnpJhl5NIJo1yhKuxITTNFqyRqNmCNa6rGG3CO7WT7CuQYdeDyWGJJBnlwOXYEJJmS9ZI02zJGlcVjbbgraokaQXDrmgnaSSVY78gG0LRbNEaSZotWuOiBk3HezUuo9kliXIoyeQIV2SdodmyNVI0W7bGJVVj1fBeBSMN/qpdExqHZYpolB2XZO28ZgvXSNBs4RoXlIx2w3u1s8BdtquKJAfFzpEvyvazmi1d42nNlq5xOTJpKt6sSTLdRb0sdA4ThsEhV2XpnN0WP+Sk3RY/ZDXVWIe8WdlIuzeZdl2ZZCcIRnngslTO2Gz5/ZzNlt8XsxmrRrxZk6V4a3ZhUI5BkDnydVk/Ier6rJ4RdX1WlyJKs+PNKsa6Odvs0gqHhfMOCsWF2f40GXaF2/Nk2BVuKzmM9cCbFY02+BK9tkBSTxOjbJem4VnNLlHD06pdooZ1bMY65c0SpZnwddi14eCYp20c26VZf9JmF9mftdlF9mWI0iS8VzKMtvlKdnWJw9JZjUJxbbY9RfQqrDxH9CqsrKIba8F7JcN4s695eZgc7SylqFc35RmHXaaGpzS7TA1r2I21472KasTiKtv17Rx6UjLKeHVWnpDsQvszkl1oX0JQFg1vlRRjPuBJ9AUQpbB8TqWYuDyVn80rse0J80psW0E31g1vlORp1NlVsRcAjeM4Z1LU67Pyo2yXOn+W7VLnAnZjrXibQm5q5OJJ9CWIHCZnRKMML4DKD0SvxfJPRK/FsrtorANvhfYzzWGDp2z8o5WUAgCklEvXJaBz7GfsFAMr6CWnBAAhpdIGn5UfFLtYlR8Uu1gVb4NF43ux2uRqsh1Z8OO4zwVkjnHGoNjdzZrwY8kHmz4mytfLlgRfYypt0ll+TJSvly0JvsZU2qSz7KwYa8aN0eFpM2otgien5g5KYeF5YpTBWc94cihKZfmhbORtw4/DPsnmY9nI24Yfh32STV/RWA/cGdnVwaRFcGLo3gpHfV6m6HA1E06UokzjoUmlRfDc1KksPzSptAiemzqVZU8yWKbcGROeghEfgpM39RU45vMOiuyq4OTQiSw8sBlzFTw/Tab+yGbMVfD8NJm6p2qsEXfG5mon2nG+dFc4KCw+zSjF0Yw4fyeqDxxEI+LcSmThgYNoRJxbiSz4ScZacGd0uBo0GkHZXCWO9qyN4oCfIWBMSjP/JcbbBGcn5an/EuNtgrOT8lQ3Mlk6bo3oKhirRpA2T5gU+qxGkf00AWdUFov/yDw7COOgmf/KPDsI46CZbqqRqtwaFa4yi0bQNk87hW1PUgaFmw7aqCzlHwdNBqUMFov/OGgyKGWwWHSyGeuGO2OKr4MlgfhwJEpxPCcaY3MzhAeJpX8nxppBKpOlfifGmkEqk6X6EGWpuDUSfCnJDmYZftAoTJ5SKTYvGsC8k5h8k1kaaKOSjO8ySwNtVJLh4zDSAfqYnh7ekQpf0Tg7uKOjwJGfMhkUXjZwd5Ltm0bSQbyRWPimkXQQbyQWPGxGqpHv8q9liLOdJJCh+kGnGM8Ixli9dJAH5SjfTA4NTKgk+ZvJoYEJlSQ7CMqScWdohLODo4Bd1E+msPCEnSJ6CWwoHP1LMM4d1DI56pdgnDuoZXJUB91ID9waG7xNChU6FD+YFOUJg2HCSQO9KIV+2TgmyDPH+LJxTJBnjsG3G+mUWyPDnVE28Iv6KRTzZ2KM1UvgQ6GwAKBwZDZMCvtSODIbJoXRBWWJuDMa3CWO4ADNT6Cw+KNMEZ10OAwcCUCnmKDPHAlAp5igzxyJrRtpwZ3R4C9TDHjc/KBRtB8dDANOsgcMigJgUux8UIoMYFLsfFCKTFaMtOPOaFhAoSguoH4Shf7IGHcv4mKnqACMMjhoFAWAUQYHjaJwRSNVuTMaVtAooo/mB5PBth9sFMFJh8tA0YFEMeBwoziARDHgcKM4uAbLhhujYQmdAj53R5ni+EFjGHBSfGAupHgARWcpHkDRqbqRVtwYFZfRnSRHogwmjylD9pKcHAwG7BTJRWeYwE6RXHSGScU6cGNkLEIZqhM4QqPID0VjFC/BSSEpFHBZGQwoFHBZGWw9Gu8LjViFMRYv01GgGA9VhgNe4DSvY/rY1zF97JeUcVt0wZUkL90ROoOFRyZD9jK9JApBY+g+Eklj6D7SFR24LQpOfgMyRXkgGKGKl76yhM5wrCuhMxzrSouZcleMiNeoecJkmA/sDA0Xg3UUH7KO4kMuKOKe0ILzX4XiqjBY/Ndg2N4rXByup+CeaAFvUaBo/xAjVPyXpXJL9ADKdwCNQf+RGdp/WnbcEC2A9FU4fCUG2747GOLlyMWFiwvXY/lmmCWA9lXovjAZ2ndGOHE5aR3dR6KIHN1HooiL0XgjaEtgXs52TZnB5MvGUB3pyoB6aUC9NCzGhtwEvUSQL6d4UWeiDPlLY4iOzMtOUhjURyEpDOqjXJG196+3PcEhlzI0J2LO0Bj6FyUY8BSdlHWYuGjrMHHRLsnyezPLuTkluOXqDMNJchcYLADRCHdXm5POoECm2FwMhgFkis3FYBhUSqLxrelY9nLMSXGHzrADlSG4qk6UoQOJonoQY+xAoqgexBg7VVYOG3J7VYrk4/CXGSYwCQZcDR/RSCLF8JApGhAphodM0ajSRmLt9ioU1Yf5wySwGIww+7LgolAUABQWHBwUBQCFBQcHReFCI7F8d20U08W2gsJQdwZxtrsYFDuASVH5xCg3AJOi8olRbmQySDTeXJHCkodjBYFBO8EBZ8NDNMoE4KBQoSscEcBBoUJXOCIZIokNubfA0RwEWwEaAWX2ZslB4xAAhcJ2NlEOACgUtrOJcoANO4m1m2tQWOBra0hLUHHX+YJRTgBIHCpkxSj7l8ShQlaMsvOhk1i+txrHQRdsDZgraHBnia5xHF+EwypXUI76RTiscgXlqA5ESTTeWpnDEtuxiryCbQGDLRln+YLBYYmqG+f2BYPDElU3zs0BEokNubMCyRSuzVYh6k+xACtcMknSN5VkClExUvmmkkwhKkYqHlBJrN1ZmBzWqIIuA81fW4Ilqmak+HYjsc6zGWnHtxuJdZ7NSDtcYJBYvrMaiWUiGbaO4C+uQSNRNtLjO7BYY4nKsn8HJbHGEpVldxKUROONlVks08iwhaB7m1iDDaHJxrr/42CxxhHVWMM/DhZrHFGNNThBJrEh95XQWCaRYUvZvNVV2Agk2WjDPzKNHUKwqbEO/HOjsUMINjXWAS9oJNbuKxw0tlPIsLVgOovLMI0UxWgH/q00NuJpxXj3f0FpbMTTivHufmSSWL6vMo81OS+prab4GliH2X6eHMa7P9B4TPdzQjdieaDxmO7nhG7E4geRReNtJcpjM50k1cgpxNe+FOvhpE2NWB6IRGY9PU+KMTc8GInMenqeFGNucISdxIbcVWhEZkc4I09bEJqrsBbTIiekbswHHu1MZj09JxQ16vQIOpNZT88JRY06uUInsXZbRSqzY3uS7NP4OZKngcWYaQ1P2rpxbw9lLrNZ009CPoy84+GNy2zW9JOQDyPv8CVKYvmuQucym3WTn8T9MJccGI729ZjZ2ONPZGtq5BOPT7KvvZb0bS7HNP78GCbZ115L+jaXYxp/doaNReNdldm+jqOU9DWX2tW8kmRHsqSvvZU9fS3lGOYw/yA7cD7xw+zA+YQ3VBIbclNhOlgkiaibA8vyPvHTeTHpJ5gXk/xhkFi7q/JLg+omvyrlR+laOn6crqVjAVFJLN9UmC9NcCMvysTP+6XEn6FfSlwBMovGmyq9NOhOGl6U/IRwJRVPDFdSsQQcJDZuKvSXZnOyvSgDzyzXofIMlOtQWYRMEqs3VXhpMF0oXpT0FIzL2PDccRkbFoHIYts9hfLSFBftRal4bryKhifHq2hYBgqLhnsK45URF+k1mfIk7Ncw5VnYr2HKQtBJbNxU8ZVBczDxmiQ8/biEiOcflxCxkqAkVu8plFcmOaivScXzZVxAxokyLiBjKdhYbLun0F8YDL74kgycGXV5DadGXV7DYlBZNNxTMl+YTDfximg4BWl1HSen1XUsRwaJjXsKUV8XUbb9JUk4Oa9tyFnIaxuyHkQlsXpPIb8uqGzhFck4Pa9sCM7PKxuCBWFnse2ewv66BLKBF6SBsK5rCBjruoZgSThYNNxTaC8LOtf+gjRQtlUNAWdb1RAsSiaJjZsK7WXZuOT1aCDNaxoC1rymIVgVEovVmwrtVcFkOvByNNDmFQ0Bb17REKwLhcW2mwrtVSlM+eVoIN50OYeAedPlHIKVobNouKlQ16DHcoRJ1jF1DQ3UcS6mgjzOxVSc7C8oiY27CnkFGsty0Hga1tGjrqCAXPpKNINe+ko0Y3XYWKzeVUjqTiMWlHi2lSCqO83gL+sYER7LOkbE+tBYbLurEIYzjVgRBotiKYjT2YjwmOYiKpymuYgKwhXIYNFwVwHV1QhYU2Zpi4EMV03gU+oKZoJbqSuYCdeAyGLjvkKafppgUZElrQaofnSD3zTcFbhOw10B5xKws1i9ryDViW74dkU7ycR6sKmTJnCd1dUR4D2rqyPgQnCw2HZfAbF7OATrmiR1RZDmYSR4l6JuesICpaibnkC7CFEWDTcWkCbbSPj3gjYjjUsCUmebGSuUMl0cCYuUMl0cCcSLQGKxcWsBW2caGY8uqJMMLApInWlkLDN3Nq0BK82dTWsA9SpQWKzeDrEzEgGxKUlLeDx3wsqVjHQnyp2wPgSkxtISlhrqJDoylhvqJDoy2DtjpMDRWcPr8X7mQ087smD1g0WIXEo+zjuyYL2xDAZtWbDmWAaDtiz438BU+vNG3QTrz0basHzZ6njeqBuWLVvtZ8xjj1i6bLWfMY894n8LYy5Hn4/MfpSccI2iLGl936Zcjj4f0d5LTlh/TKX2rg+NfpSccJExldq7PjT6UXLC/xYfRjrx23831vzbLxmryi+/qDQFv/ujGm343bcbb8Nv/tCNOPziC8WYG37tb4dxh195ksph7A2/6UP52ruax/CrLpnjgg8JKp8SdnxIGPiUED8lVHxImPIpIeFDQsGHhIEPCRo+JWz4kLDjQ0LDh4SODwlDPiQMwWeEIfiM0AWfERp+81Pt+IygCZ8RuuAjgu749U9yBHxE6AmfAAn6hs+Ap/WET4HnzBrwOfCEWRM+Cj5Jjz3i0+DPRi854hNhKA/uKQX8+f/P/3/+//P/n////P/n/z////n/z/9//v/z/5////z/f78DVlA4IDAGAADwjwCdASooBFsBPjEYikQiIaETWHwUIAMEtLdwu08S/wD8APwA+ox/Kn9Qf1XQX/jlUn/Jl0Z3AB6Kv+Z/lfAAdQB+wG8q6tz4F/gH4AfoB/AP3x7/BAESa4SWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsasRUPT975NaxutY3WsbrWN1rG61jdaxutY3WsbrWNzjHavhkwKoeiS0Gq+CW6CWN1rG61h8k/yzoq61jdaxutY3WsPkpOUJTiimOsKxoz22tYyG6vsg+mrg2y6/h7lsljdaxutY1un+J0MvTpxSHk6Ijzn6Or5GBsDX7tTAhD5QXTiI2a1qfxajYEd/q6V/MavMPNS/uvnbXG7Mym2MzlNb7pxNvX6ul0GL0IGQOkmoIi931kC8fSdJrcxz8IPFMQlIZjSatPctdNrnyet1ZHy/xdPy0QpiPwMEVcmC6Fgng6Xg/r6bG3OsSVhh7E21IHQz8H/XbB0u/8eFBTtNxMKgJI2/mYWoAwjVC3AhAHke2utvzpiOKET17t8e+TWC13QmLugUeJOnFIckXnloiOyHi4p0ohThB9QChvL61wY2PstVjZMGWmAkcvzoVu6a1hwolyQPt4Jf9eeFBXcvlNLgu7fSD0JWQSeyCvsnSPDPiyo6OEEXD6VqAfMt/K8UutTS2sA+Zb+V4oE1wfTL1k9SIJK72//VHBkWDkXTaZ0mt2FQCrukGPctdYxXxvjF99+PEYDWy3TpbBVIAhEOa+pib/cnh1AFnD9IS48geeikmuDggx50G2Xp0ccpg3c64dc9QZ1z9NptbdvQL8GkplCpDbXOjruNgz19NitalKehuNgz19NjXML7oNVoCdbtBcJLD09mwgamvTpxQx7lsliCm8F1/NSCUE0HaaL5455JS65+sgUllQ1Lkgh92ydiIgTp/FgYWKmD2QNUrkbnpHTLmtY3WKMgQiHSMfu9Jl3TsJLEFEUMmfiIhpxxMFOiFE/VxBU013nb6GTEU4fZ28YOYkwmKblkSs1If0Q9fTahwbZKkKqywxVd0lvW6O/pteMEfBMKuVyYFUPOfSwq3EQ+khUwet+KZVd6TqBVAMs0ySANe2i0LoQx0qUPRD1qN35vCyCE7ddpHAtrN3Dxv34ito3CSxutY3WsbrWN1rGs/8HM3bTP5NaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61P4h3G6F6dOKQ8nREmuEljdaxutY3WsbrWN1rG61jdaxutTIErvSwNuykPJ0RJrhJY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1rG61jdaxutY3WsbrWN1qUAD+7I4AAAAAAAABv/JOAOf5JxNfsOCi/Yei+nZM7/8XAxxU6fHg4bZf/FSedI4ccuKx+s+SEO+byPrH0ObNG99PStlB2SlMsgamrPlDwUv2A08y+gF/jTIAuPs/3/xi+5o1Of/xawTAqL+VN9zLGEYdjc2Gusdk3VR3375D4CF+mLm4B/hr9nKfPdv5ZQbrauQRqjzVr2NEh9wDcwBhT8mbf+Skz8lJ35KgvyUnfkpU/JPhfknHjUWJEfhYBSACDSX5ML/JPQfkn1Pkwv8lEH8mF/knyPyYH//JwP+TViqiub/yUjfkzKIf///anIJ+Sc2vk0myG1nj8mrH5Ov+kK0+S1P5Njvk8X8max+TxfyaEvyeL+TNp/J3vloy9gToZ6l/yjeMZvMs3/4/8E0Jux8l9wNZUH+TxfyZaf+TiP5NK/yZ3vyZlv5MvP+Tm3yZqf5J0J+Sgf+Sk78mB+TVAtfyZ5vyabfkzp/k2z+TLI/pCEj8mov5PF/Jnf/Jol9ttgE3+SsP5NAX5M8/0hnPbbYOj7XCL8mVAIr8mVAMf222AAAAAAAAAAA=';
-
-export const VX = {
-  V1:{label:'Propiedades',color:'#45d802',q:'Que activos generan el contenido, la atencion y el inventario comercial base?',note:'Clubes · Ligas · Federaciones · Selecciones · Eventos con Derechos Propios'},
-  V2:{label:'Media',color:'#00b4d8',q:'Quien distribuye y monetiza los derechos audiovisuales?',note:'Broadcasters · Streamers · Productoras · Medios Nativos Digitales'},
-  V3:{label:'Sponsors',color:'#ff6b35',q:'Quien financia el inventario comercial del ecosistema?',note:'Marcas · Patrocinadores · Naming Rights · Capital Comercial'},
-  V4:{label:'Activacion',color:'#c77dff',q:'Quien gestiona, activa y convierte los derechos en negocio?',note:'Agencias · Intermediarios · Rights Managers · Activadores'},
-  V5:{label:'Experiencias',color:'#ffd60a',q:'Quien convierte el deporte en experiencia vendible?',note:'Promotores · Hospitality · Fan Experience · Travel Premium'},
-  V6:{label:'Ticketing',color:'#ff4d6d',q:'Quien controla la transaccion de entrada y el acceso del fan?',note:'Boleteras · Plataformas de Acceso · Biometria · Reventa'},
-  V7:{label:'Venues',color:'#4cc9f0',q:'Donde ocurre el deporte y quien controla la infraestructura?',note:'Estadios · Arenas · Recintos · Concesionarios'},
-  V8:{label:'Tecnologia',color:'#06d6a0',q:'Que habilita inteligencia, operacion y rendimiento?',note:'Data · Analytics · Performance · Fan Tech · VAR'},
-  V9:{label:'Capital',color:'#f8961e',q:'Quien financia, adquiere y estructura el ecosistema?',note:'PE · Fondos · Propietarios · Holdings · Deal Architecture'},
-};
-
-export const RIESGO_DEFAULT = 'Sin datos de riesgo registrados para este actor.';
+// state.js — estado global compartido, constantes de verticales, logo.
+// No depende de otros modulos. Es la primera importacion en la cadena.
 
 export const APP = {
-  ACTORS: [],
-  EDGES: [],
-  EDGES_RAW: [],
-  POI: {},
-  CLUSTERS: [],
-  TICKER_DATA: [],
-  actorMap: new Map(),
+  // Datos crudos y adaptados (los carga data.js -> loadData)
+  ACTORS:       [],
+  EDGES:        [],
+  EDGES_RAW:    [],
+  POI:          {},
+  CLUSTERS:     [],
+  TICKER_DATA:  [],
+  actorMap:     new Map(),
+
+  // Vista actual
   curView: 'network',
+
+  // Filtros
   activeV: null,
-  simulation: null,
-  svgSel: null,
-  gMain: null,
-  zoomBehavior: null,
-  linkSel: null,
-  nodeSel: null,
-  labelSel: null,
+  idxF:    null,
+
+  // Hover / seleccion
   hoveredId: null,
-  netLayout: 'red',
-  netNodeData: [],
-  netNodeGroups: null,
-  gClusterBg: null,
-  gVLaneBg: null,
-  gFixedHeaders: null,
-  nodeClusterMap: new Map(),
-  clusterCentroids: [],
-  nodeClusterLabel: new Map(),
-  selectedCluster: null,
-  _particleRaf: null,
-  idxF: null,
-  sortCol: null,
+
+  // Indice (sort)
+  sortCol: 'label',
   sortDir: 1,
-  _clustersBuilt: false,
+
+  // Red (network.js)
+  netLayout:        'red',
+  simulation:       null,
+  svgSel:           null,
+  zoomBehavior:     null,
+  gMain:            null,
+  gClusterBg:       null,
+  gVLaneBg:         null,
+  gFixedHeaders:    null,
+  nodeSel:          null,
+  linkSel:          null,
+  labelSel:         null,
+  netNodeData:      [],
+  netNodeGroups:    null,
+  nodeClusterMap:   new Map(),
+  nodeClusterLabel: new Map(),
+  clusterCentroids: new Map(),
+
+  // Clusters
+  selectedCluster: null,
+  _clustersBuilt:  false,
 };
+
+// Verticales: codigo, nombre corto, color (alineado con --v1..--v9 del CSS)
+export const VX = {
+  V1: { code:'V1', name:'Rights Owners',     color:'var(--v1)' },
+  V2: { code:'V2', name:'Media',             color:'var(--v2)' },
+  V3: { code:'V3', name:'Comercializacion',  color:'var(--v3)' },
+  V4: { code:'V4', name:'Agencies & Talent', color:'var(--v4)' },
+  V5: { code:'V5', name:'Events',            color:'var(--v5)' },
+  V6: { code:'V6', name:'Ticketing',         color:'var(--v6)' },
+  V7: { code:'V7', name:'Infrastructure',    color:'var(--v7)' },
+  V8: { code:'V8', name:'Sports Tech',       color:'var(--v8)' },
+  V9: { code:'V9', name:'Capital',           color:'var(--v9)' },
+};
+
+// Logo SVG inline en base64. Sustituir por el real cuando lo tengas listo.
+// Mientras tanto un placeholder limpio con el wordmark "PLAYBOOK".
+export const LOGO = 'data:image/svg+xml;base64,' + btoa(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60">' +
+    '<text x="0" y="42" font-family="Syne, sans-serif" font-weight="800" font-size="36" fill="#45d802" letter-spacing="2">PLAYBOOK</text>' +
+    '<text x="0" y="56" font-family="Space Mono, monospace" font-size="7" fill="#909090" letter-spacing="3">SPORTS INTELLIGENCE</text>' +
+  '</svg>'
+);
+
+// Clave de acceso. Cambiala por la que uses en produccion.
+export const ACCESS_KEY = 'playbook2026';

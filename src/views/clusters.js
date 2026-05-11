@@ -10,6 +10,20 @@ function hexToRgb(hex) {
   return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`;
 }
 
+// Limpia el nombre del cluster para mostrar en la lista lateral.
+// El header viene como "CLUSTER N — Nombre" o el nombre puede tener "Cluster ...".
+function cleanName(cl) {
+  const raw = cl.nombre || cl.header || '';
+  return raw.replace(/^CLUSTER\s+\d+\s+[—-]\s+/i, '').replace(/^Cluster\s+/i, '').trim();
+}
+
+// Resuelve los verticales del cluster a un array de códigos V#.
+function clusterVerticals(cl) {
+  if (Array.isArray(cl.verticales)) return cl.verticales.filter(v => /^V\d+$/.test(v));
+  if (typeof cl.verticales === 'string') return (cl.verticales.match(/V\d+/g) || []);
+  return [];
+}
+
 export function buildClusters(attempt) {
   attempt = attempt || 0;
   if (!(APP.CLUSTERS.length > 0 && APP.ACTORS.length > 0 && APP.actorMap.size > 0)) {
@@ -21,13 +35,13 @@ export function buildClusters(attempt) {
   if (!listEl || !detailEl) return;
   try {
     listEl.innerHTML = APP.CLUSTERS.map((cl, i) => {
-      const vCodes = (cl.verticales || '').match(/V\d+/g) || ['V1'];
-      const firstV = vCodes[0];
+      const vCodes = clusterVerticals(cl);
+      const firstV = vCodes[0] || 'V1';
       const color = (VX[firstV] || VX.V1).color;
-      const shortName = (cl.nombre || '').replace(/^Cluster /, '').split('(')[0].trim();
+      const shortName = cleanName(cl);
       const actorCount = (cl.actor_ids || []).filter(id => APP.actorMap.has(id)).length;
       const chips = vCodes.map(vc => `<span class="cl-list-chip" style="border-color:${(VX[vc] || VX.V1).color}55;color:${(VX[vc] || VX.V1).color}">${vc}</span>`).join('');
-      return `<div class="cl-list-item" data-ci="${i}"><div class="cl-list-name">${shortName}</div><div class="cl-list-meta">${actorCount} actores</div><div class="cl-list-chips">${chips}</div></div>`;
+      return `<div class="cl-list-item" data-ci="${i}"><div class="cl-list-name">${shortName}</div><div class="cl-list-meta">${actorCount} actores · cluster ${cl.num || i + 1}</div><div class="cl-list-chips">${chips}</div></div>`;
     }).join('');
     listEl.querySelectorAll('.cl-list-item').forEach(item => {
       item.addEventListener('click', () => {
@@ -60,29 +74,82 @@ export function renderClusterDetail(clIdx) {
   const cl = APP.CLUSTERS[clIdx];
   const detailEl = document.getElementById('cl-detail');
   if (!cl || !detailEl) return;
-  const vCodes = (cl.verticales || '').match(/V\d+/g) || ['V1'];
-  const firstV = vCodes[0];
+  const vCodes = clusterVerticals(cl);
+  const firstV = vCodes[0] || 'V1';
   const color = (VX[firstV] || VX.V1).color;
   const rgb = hexToRgb(color);
-  const conexArr = (cl.conexiones || '').split('|').map(s => s.trim()).filter(Boolean);
-  const conexHtml = conexArr.map(c =>
-    `<div class="cl-detail-conn"><span class="cl-detail-conn-arrow" style="color:${color}">→</span><span>${c}</span></div>`
-  ).join('');
+
+  // Actor central: A-### o vacío
+  const centralActor = cl.actor_central ? APP.actorMap.get(cl.actor_central) : null;
+  const centralBlock = centralActor
+    ? `<div class="cl-detail-puente"><span style="color:${color}">●</span>&nbsp; Actor central: <span data-aid="${centralActor.id}" style="color:${color};cursor:pointer;border-bottom:1px dashed ${color}66">${centralActor.label}</span></div>`
+    : (cl.actor_central
+        ? `<div class="cl-detail-puente"><span style="color:${color}">●</span>&nbsp; Actor central: <span style="color:${color}">${cl.actor_central}</span></div>`
+        : '');
+
+  // POI principal (texto libre, no vinculado a actor)
+  const poiBlock = cl.poi_principal
+    ? `<div class="cl-detail-puente" style="margin-top:6px"><span style="color:${color}">●</span>&nbsp; POI principal: <span style="color:var(--text)">${cl.poi_principal}</span></div>`
+    : '';
+
+  // Conexiones internas: texto plano (puede traer saltos de línea o '|')
+  const conexRaw = (cl.conexiones || '').trim();
+  let conexHtml = '';
+  if (conexRaw) {
+    // Si trae '|' o saltos de línea, fragmentamos. Si no, mostramos como bloque.
+    const lines = conexRaw.split(/\s*\|\s*|\n+/).map(s => s.trim()).filter(Boolean);
+    if (lines.length > 1) {
+      conexHtml = lines.map(c =>
+        `<div class="cl-detail-conn"><span class="cl-detail-conn-arrow" style="color:${color}">→</span><span>${c}</span></div>`
+      ).join('');
+    } else {
+      conexHtml = `<div class="cl-detail-control" style="border-left-color:${color};background:rgba(${rgb},0.04);margin-bottom:18px">${conexRaw}</div>`;
+    }
+  }
+
+  // Insight ejecutivo: bloque destacado
+  const insightBlock = cl.insight
+    ? `<div class="cl-detail-sec">Insight ejecutivo</div>
+       <div class="cl-detail-control" style="border-left-color:${color};background:rgba(${rgb},0.04)">${cl.insight}</div>`
+    : '';
+
+  // Hueco accionable: bloque destacado en tono distinto
+  const huecoBlock = cl.hueco
+    ? `<div class="cl-detail-sec" style="margin-top:18px">Hueco accionable</div>
+       <div class="cl-detail-control" style="border-left-color:#ff4d6d;background:rgba(255,77,109,0.05);color:var(--text-muted)">${cl.hueco}</div>`
+    : '';
+
+  // Pills de actores miembros
   const pillsHtml = (cl.actor_ids || []).map(id => {
-    const a = APP.actorMap.get(id); if (!a) return '';
+    const a = APP.actorMap.get(id);
+    if (!a) return `<span class="cl-detail-pill" style="border-color:#33333355;color:var(--text-dim);opacity:0.5" title="ID no resuelto">${id}</span>`;
     const ac = (VX[a.vertical] || VX.V1).color;
     return `<span data-aid="${id}" class="cl-detail-pill" style="border-color:${ac}44;color:${ac}" onmouseenter="this.style.background='${ac}15'" onmouseleave="this.style.background=''">${a.label}</span>`;
   }).join('');
+
+  const headerLabel = cl.header || `CLUSTER ${cl.num || clIdx + 1}`;
+  const vertLabel = vCodes.length ? vCodes.join(' · ') : '';
+  const titleLabel = cleanName(cl);
+
   detailEl.innerHTML = `
     <div class="cl-detail-header">
-      <div class="cl-detail-code">${clIdx + 1} / ${APP.CLUSTERS.length} &nbsp;·&nbsp; ${cl.verticales || ''}</div>
-      <div class="cl-detail-title" style="color:${color}">${cl.nombre || ''}</div>
-      <div class="cl-detail-puente"><span style="color:${color}">●</span>&nbsp; Nodo de poder: <span style="color:${color}">${cl.puente || '—'}</span></div>
+      <div class="cl-detail-code">${headerLabel}${vertLabel ? '  ·  ' + vertLabel : ''}</div>
+      <div class="cl-detail-title" style="color:${color}">${titleLabel}</div>
+      ${centralBlock}
+      ${poiBlock}
     </div>
-    <div class="cl-detail-sec">Control</div>
-    <div class="cl-detail-control" style="border-left-color:${color};background:rgba(${rgb},0.04)">${cl.control || ''}</div>
-    ${conexArr.length ? `<div class="cl-detail-sec">Conexiones documentadas</div><div style="margin-bottom:20px">${conexHtml}</div>` : ''}
-    <div class="cl-detail-sec">Actores (${(cl.actor_ids || []).length})</div>
+    ${insightBlock}
+    ${huecoBlock}
+    ${conexHtml ? `<div class="cl-detail-sec" style="margin-top:18px">Conexiones internas clave</div>${lines_wrapper_if_needed(conexHtml)}` : ''}
+    <div class="cl-detail-sec" style="margin-top:18px">Actores (${(cl.actor_ids || []).length})</div>
     <div class="cl-detail-pills">${pillsHtml}</div>
   `;
+}
+
+// Pequeño helper para no envolver dos veces si conexHtml ya viene como bloque control.
+function lines_wrapper_if_needed(html) {
+  if (html.indexOf('cl-detail-control') === 0 || html.startsWith('<div class="cl-detail-control"')) {
+    return html;
+  }
+  return `<div style="margin-bottom:8px">${html}</div>`;
 }

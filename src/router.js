@@ -29,7 +29,7 @@ export function switchView(v, sbEl, tabEl) {
     network: 'Red <em>/ Ecosistema completo</em>',
     index:   'Indice <em>/ Todos los actores</em>',
     brief:   'Briefings <em>/ Por vertical</em>',
-    clusters:'Clusters <em>/ Poder y control</em>',
+    clusters:'Clusters ejecutivos <em>/ 7 estructuras de poder</em>',
   };
   document.getElementById('tb-crumb').innerHTML = lbls[v] || '';
   if (v === 'index') {
@@ -54,7 +54,8 @@ export function initRouterListeners() {
       const sb = document.querySelector('.sidebar');
       if (sb && sb.classList.contains('open')) {
         sb.classList.remove('open');
-        document.getElementById('sb-overlay').classList.remove('on');
+        const ov = document.getElementById('sb-overlay');
+        if (ov) ov.classList.remove('on');
       }
     }
   });
