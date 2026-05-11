@@ -10,9 +10,9 @@ const SCORE_DIM_PARTIAL = 0.15;  // >= mid dim; below this → ghost
 function getRedModeNodeOpacity(d) {
   if (APP.netLayout !== 'red') return 1;
   const sc = d.score_compuesto || 0;
-  if (sc >= SCORE_DIM_FULL)    return 1;
-  if (sc >= SCORE_DIM_PARTIAL) return 0.38;
-  return 0.1;
+  if (sc >= SCORE_DIM_FULL)    return 0.88;
+  if (sc >= SCORE_DIM_PARTIAL) return 0.22;
+  return 0.06;
 }
 
 // Fill color driven by score_profundidad (depth of engagement)
@@ -449,7 +449,11 @@ function getBaseEdgeOpacity(d) {
     return 0.28;
   }
   if (APP.netLayout === 'verticales') return 0;
-  return 1;
+  // red mode: score-weighted — only high-relevance connections stand out
+  const avg = ((d.source.score_compuesto || 0) + (d.target.score_compuesto || 0)) / 2;
+  if (avg >= SCORE_DIM_FULL)    return 0.32;
+  if (avg >= SCORE_DIM_PARTIAL) return 0.1;
+  return 0.03;
 }
 
 function getBaseEdgeWidth(d) {
@@ -460,7 +464,7 @@ function getBaseEdgeWidth(d) {
     if (sc === tc) return 0.5;
     return 1.0;
   }
-  return 0.7;
+  return 0.5;
 }
 
 function applyModeEdgeStyle() {
