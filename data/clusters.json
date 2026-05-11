@@ -1,0 +1,175 @@
+[
+  {
+    "num": 1,
+    "header": "GRUPO ÁGUILAS  ·  Ollamani × General Atlantic × Banorte × KAGR",
+    "nombre": "Grupo Águilas — el primer holding deportivo MX con capital PE global",
+    "actor_ids": [
+      "A-105",
+      "A-050",
+      "A-078",
+      "A-009",
+      "A-137"
+    ],
+    "actor_central": "A-105",
+    "poi_principal": "Emilio Azcárraga Jean (Presidente Ejecutivo Grupo Águilas)",
+    "conexiones": "GA→Ollamani 49% Grupo Águilas (USD 490M, dic-2025, R-264) · Banorte→Estadio Banorte naming (R-035) · KAGR→Ollamani alianza CRM/datos (R-266) · TelevisaUnivision spin-off histórico (Ollamani escindida feb-2024) · Club América + Estadio Banorte + terrenos adyacentes empacados en el JV",
+    "insight": "Primera entrada de PE global a un club Liga MX top-tier. El JV detona la ola 2026 de capital internacional en futbol MX (Apollo cerrando Atlético Madrid mar-2026 va por la misma puerta). Banorte como naming sponsor financia la remodelación pre-WC26 vía préstamo respaldado por el contrato. La triangulación con KAGR es el primer caso MX de arquitectura de datos premium estilo NE Patriots/Kraft Sports.",
+    "hueco": "El JV todavía no comunica cómo va a monetizar los terrenos adyacentes al Banorte ni si abre línea de hospitality premium aprovechando la alianza con KAGR. Quien capture ese deal antes de WC26 tiene un activo nuevo en MX.",
+    "verticales": [
+      "V9",
+      "V8",
+      "V3",
+      "V2"
+    ]
+  },
+  {
+    "num": 2,
+    "header": "CLUBES LIGA MX STANDALONE  ·  Necaxa · Toluca · Cruz Azul · Pumas",
+    "nombre": "Los 4 clubes Liga MX que NO se absorben bajo holding diversificado (excepción R-12)",
+    "actor_ids": [
+      "A-021",
+      "A-022",
+      "A-029",
+      "A-115"
+    ],
+    "actor_central": "",
+    "poi_principal": "Al Tylis (Necaxa co-chairman vía family office, además CEO Apollo Sports Capital) · Familia Harp Helú (Toluca, vínculo con A-059)",
+    "conexiones": "Necaxa↔Apollo Sports Capital (A-005) vía Tylis personal · Toluca↔Grupo Martí/Harp (A-059) histórico · Cruz Azul juega parcialmente en Banorte (Clausura 2026) compartiendo venue con América · Pumas juega en Estadio Olímpico Universitario (A-039, único venue propio UNAM)",
+    "insight": "Estos 4 clubes son la prueba de la R-12. Mostrarlos juntos visibiliza que el universo MX NO es 18 holdings = 18 clubes. Es asimétrico: 14 clubes absorbidos bajo holdings diversificados + 4 standalones por estructura de gobierno. Esto importa porque cada standalone tiene caja propia chica y depende de sponsorship/ticketing/transferencias sin subsidio cruzado.",
+    "hueco": "Necaxa es el caso donde Apollo entró antes de tener vehículo formal (Tylis vía family office, 2020). Si Apollo eventualmente consolida Necaxa bajo ASC, sale del cluster standalone y migra al cluster Apollo. Hay que monitorear.",
+    "verticales": [
+      "V1"
+    ]
+  },
+  {
+    "num": 3,
+    "header": "FMF · LIGA MX · SELECCIÓN  ·  La gobernanza del futbol mexicano",
+    "nombre": "La gobernanza del futbol MX — institucional + competitivo + comercial USA",
+    "actor_ids": [
+      "A-043",
+      "A-084",
+      "A-151",
+      "A-123",
+      "A-124",
+      "A-134",
+      "A-027"
+    ],
+    "actor_central": "A-043",
+    "poi_principal": "Mikel Arriola (Presidente Liga MX)  ·  Juan Carlos Rodríguez (Presidente Ejecutivo FMF)",
+    "conexiones": "FMF↔Liga MX (matriz directa) · FMF↔Selección (control derechos) · Liga MX→Liga MX Femenil membresía (R-13) · SUM↔FMF contrato exclusivo USA hasta 2028 (6 amistosos/año, ~1/3 presupuesto FMF) · WC26 país anfitrión (3 sedes: Banorte, BBVA, Akron) · Asamblea de Dueños aprobó eliminación de multipropiedad abr-2026",
+    "insight": "La FMF es el cluster con más palancas regulatorias: aprueba/rechaza compras de clubes, normaliza contratos de TV centralizados, define quién juega en territorio USA. El contrato SUM es el activo comercial más grande del futbol mexicano que no se discute públicamente. La Selección genera más dinero jugando en USA que en MX. Liga MX Femenil pendiente de definir si centraliza derechos de TV o los fragmenta por club.",
+    "hueco": "Tras Mundial 2026 vence el contrato MX-USA marketing rights el 2028 (SUM). La negociación ya está abierta en silencio. Quien pueda construir una alternativa a SUM (o presentarse como upgrade) tiene una conversación abierta con FMF.",
+    "verticales": [
+      "V1",
+      "V4"
+    ]
+  },
+  {
+    "num": 4,
+    "header": "CIE/OCESA · F1 GP MX · GNP NAMING  ·  El gatekeeper de venues y festivales",
+    "nombre": "CIE/OCESA + ecosistema venues bajo naming GNP",
+    "actor_ids": [
+      "A-020",
+      "A-055",
+      "A-053",
+      "A-149",
+      "A-040",
+      "A-013",
+      "A-132"
+    ],
+    "actor_central": "A-020",
+    "poi_principal": "Alejandro Soberón (CEO CIE/OCESA) · Federico González Compeán (Director General GP México)",
+    "conexiones": "OCESA opera Estadio GNP Seguros (ex Foro Sol), Palacio de los Deportes, Arena CDMX y Coliseo GNP Zapopan (lease 10 años) · GP México se realiza en Autódromo Hermanos Rodríguez (que OCESA acondiciona) · F1 Experiences hospitality oficial · GNP naming en 5+ venues simultáneos (Estadio GNP, Coliseo GNP, Arena GNP Acapulco, Foro GNP Mérida, Auditorio GNP Puebla) · Pulso GNP festival OCESA",
+    "insight": "OCESA es estructuralmente el actor más diversificado del cluster V5/V7. 7 festivales mayores + 4 venues + 10M asistentes/año (7.5% población MX). El naming GNP en 5+ venues es la estrategia de sponsorship más agresiva en MX, replica modelo Allianz Arena escalado a portfolio. GNP financia infrastructura vía contratos de naming en lugar de equity directo.",
+    "hueco": "Coliseo GNP Zapopan abrió abr-2026 como segundo modelo OCESA+GNP fuera de CDMX. La pregunta es si replica a Monterrey (alianza con FEMSA/CEMEX) o a Tijuana (donde Caliente domina venues). Quien construya el tercer venue OCESA+GNP regional define el cluster por la próxima década.",
+    "verticales": [
+      "V5",
+      "V1",
+      "V3",
+      "V7",
+      "V6"
+    ]
+  },
+  {
+    "num": 5,
+    "header": "FIFA WC26 EN MÉXICO  ·  El temporal que mueve todo en 2026",
+    "nombre": "Copa Mundial FIFA 2026 — el evento temporal que reordena el ecosistema",
+    "actor_ids": [
+      "A-027",
+      "A-045",
+      "A-105",
+      "A-044",
+      "A-061",
+      "A-149",
+      "A-074",
+      "A-079",
+      "A-117",
+      "A-042"
+    ],
+    "actor_central": "A-027",
+    "poi_principal": "Gianni Infantino (Presidente FIFA) · Heidi Beirich (FIFA Director Ticketing) · Equipo país-anfitrión FMF",
+    "conexiones": "Estadio Banorte: partido inaugural + 5 partidos · Estadio BBVA: 4 partidos · Estadio Akron: 4 partidos · FANKI captura ticketing primario en Banorte tras desplazar a Ticketmaster · FIFA Ticketing global vía Konnecta + Roadtrips · Incode provee biometría Fan ID para entrada · INDEPORTE coordina logística CDMX",
+    "insight": "WC26 no es solo un evento, es un catalizador de transición permanente: forzó la modernización del Banorte (USD 200M), aceleró el rebrand Estadio Azteca→Banorte vía naming (R-035), trajo FANKI como nuevo estándar de boletería, abrió la puerta a biometría Fan ID (Incode) que sobrevive al evento, y consolidó el cluster OCESA-GNP-Vegas como hospitality premium en MX. El legado infrastructure cambia el ecosistema 5-10 años.",
+    "hueco": "Sin claridad sobre qué hace MX con la infraestructura WC26 después. FIFA se va el 19-jul-2026. Tres preguntas abiertas: (a) ¿Banorte reabre a Liga MX inmediatamente o queda en pausa? (b) ¿FANKI mantiene el rol post-WC26 o vuelve a Ticketmaster/Boletomóvil? (c) ¿La biometría Fan ID se extiende a Liga MX permanente?",
+    "verticales": [
+      "V1",
+      "V6",
+      "V9",
+      "V7",
+      "V8",
+      "V5"
+    ]
+  },
+  {
+    "num": 6,
+    "header": "RUNNING & WELLNESS  ·  Fragmentación + monetización por marca",
+    "nombre": "Running, ciclismo y wellness — el cluster fragmentado pero comercialmente denso",
+    "actor_ids": [
+      "A-007",
+      "A-087",
+      "A-092",
+      "A-093",
+      "A-088",
+      "A-143",
+      "A-128",
+      "A-033",
+      "A-114",
+      "A-103",
+      "A-001"
+    ],
+    "actor_central": "",
+    "poi_principal": "Pablo Vásquez (CEO ASdeporte)",
+    "conexiones": "ASdeporte opera Circuito de las Estaciones + L'Étape MX + Tune Up + Woman Up · Maratón CDMX naming Telcel · Medio Maratón CDMX naming BBVA · Medio Maratón GDL naming Electrolit · Marcas (Puma, Nike, adidas) compiten por sponsorship eventos · Smart Fit como retail-touchpoint del fitness mainstream",
+    "insight": "Único cluster sin actor dominante. Esto NO es debilidad estructural: cada maratón mayor tiene un naming sponsor diferente (Telcel CDMX, BBVA Half, Electrolit GDL, Powerade MTY) y eso permite sponsorship parallel sin canibalización. Bajo nivel de consolidación = oportunidad de roll-up para un operador con capital, similar a IRONMAN consolidando triatlones globales.",
+    "hueco": "No hay un operador MX consolidado de eventos masivos endurance. Lo más cercano es ASdeporte pero solo cubre running/triatlón y se limita a su circuito propio. Una plataforma agregadora (ticketing + branding + logística + datos) capturaría el cluster antes que IRONMAN/SuperLeague Triathlon entren agresivamente.",
+    "verticales": [
+      "V5",
+      "V1",
+      "V3"
+    ]
+  },
+  {
+    "num": 7,
+    "header": "APOLLO · ENDEAVOR · GENERAL ATLANTIC  ·  El capital global llegando",
+    "nombre": "Capital deportivo global con vehículos activos en MX",
+    "actor_ids": [
+      "A-005",
+      "A-035",
+      "A-050",
+      "A-110",
+      "A-125",
+      "A-046",
+      "A-076",
+      "A-066",
+      "A-030"
+    ],
+    "actor_central": "A-005",
+    "poi_principal": "Al Tylis (CEO Apollo Sports Capital) · Ari Emanuel (CEO Endeavor)",
+    "conexiones": "Apollo→Atlético Madrid mayoritario (mar-2026)→Atlético San Luis MX (cadena formal) · Apollo+Tom Dundon→Pickleball Inc USD 225M (may-2026) · Apollo→Tylis personal→Necaxa co-chairman (no Apollo directo) · General Atlantic→Ollamani 49% Grupo Águilas (USD 490M, dic-2025) · Endeavor/Silver Lake take-private cerrado 2025 (USD 13B); Endeavor→TKO Holdings (UFC+WWE+AAA) · Innovatio Capital→Club Querétaro (USD 120M, jul-2025) · PIF→LIV Golf MX",
+    "insight": "En 12 meses el capital global cerró 4 deals mayores en MX: Innovatio/Querétaro (jul-2025, USD 120M), GA/Grupo Águilas (dic-2025, USD 490M), PRODI/Atlas (abr-2026, USD 220M), Apollo/Atlético Madrid cerrando ASL (mar-2026). Total ~USD 900M de equity nuevo entrando al ecosistema MX. Estos vehículos no son comparables: Apollo busca yield + control, GA busca crecimiento, Innovatio busca turnaround, PIF busca brand. Cada uno requiere una conversación diferente.",
+    "hueco": "El sector con más capital disponible y menos targets MX maduros es V8 sports tech. Apollo+GA+Silver Lake+CVC tendrían apetito por una plataforma sports-data MX a escala (alguien estilo Genius Sports pero LATAM-native). Hoy no existe. Quien construya esa pieza con suficiente data o se posicione como agregador captura el siguiente deal de $100-300M.",
+    "verticales": [
+      "V9"
+    ]
+  }
+]

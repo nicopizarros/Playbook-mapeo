@@ -6,7 +6,7 @@ import { buildClusters } from './views/clusters.js';
 import { updateHoverState } from './views/network.js';
 
 export function closeAllPanels() {
-  ['net-panel', 'idx-panel', 'br-panel', 'cluster-panel'].forEach(id => {
+  ['net-panel', 'idx-panel', 'br-panel', 'cluster-panel', 'mx-panel'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.remove('open');
   });
@@ -26,10 +26,10 @@ export function switchView(v, sbEl, tabEl) {
   document.querySelectorAll('.sb-item[data-view]').forEach(el => el.classList.toggle('active', el.dataset.view === v));
   document.querySelectorAll('.vt').forEach(el => el.classList.toggle('active', el.dataset.view === v));
   const lbls = {
-    network: 'Red <em>/ Ecosistema completo</em>',
-    index:   'Indice <em>/ Todos los actores</em>',
-    brief:   'Briefings <em>/ Por vertical</em>',
-    clusters:'Clusters <em>/ Poder y control</em>',
+    network:  'Red <em>/ Ecosistema completo</em>',
+    index:    'Indice <em>/ Todos los actores</em>',
+    brief:    'Briefings <em>/ Por vertical</em>',
+    clusters: 'Clusters ejecutivos <em>/ 7 estructuras de poder</em>',
   };
   document.getElementById('tb-crumb').innerHTML = lbls[v] || '';
   if (v === 'index') {
@@ -54,7 +54,8 @@ export function initRouterListeners() {
       const sb = document.querySelector('.sidebar');
       if (sb && sb.classList.contains('open')) {
         sb.classList.remove('open');
-        document.getElementById('sb-overlay').classList.remove('on');
+        const ov = document.getElementById('sb-overlay');
+        if (ov) ov.classList.remove('on');
       }
     }
   });

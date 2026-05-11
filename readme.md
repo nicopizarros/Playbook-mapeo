@@ -8,53 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script>
-  // Fallback inline: garantiza que window.doLogin exista incluso si los modulos ES fallan al cargar.
-  // El modulo auth.js sobrescribira esta funcion con la version completa cuando termine de cargar.
-  // Si los modulos ES no cargan (404, error de sintaxis, etc), al menos el login funciona.
-  window.__ACCESS_KEY__ = 'playbook2026';
-  window.doLogin = function() {
-    var input = document.getElementById('pw-in');
-    if (!input) return;
-    var val = (input.value || '').trim();
-    var err = document.getElementById('pw-err');
-    var fld = document.querySelector('.pw-field');
-    if (!val) {
-      if (err) { err.textContent = 'CLAVE REQUERIDA'; err.classList.add('on'); }
-      return;
-    }
-    if (val !== window.__ACCESS_KEY__) {
-      if (err) { err.textContent = 'CLAVE INCORRECTA — ACCESO DENEGADO'; err.classList.add('on'); }
-      if (fld) { fld.classList.add('shake'); setTimeout(function(){ fld.classList.remove('shake'); }, 500); }
-      input.value = ''; input.focus();
-      setTimeout(function(){ if (err) err.classList.remove('on'); }, 2400);
-      return;
-    }
-    // Si los modulos no cargaron, hacemos un boot minimo
-    var screen = document.getElementById('screen-pw');
-    if (screen) {
-      screen.classList.add('out');
-      setTimeout(function() {
-        if (screen) screen.style.display = 'none';
-        // Si los modulos cargaron, startUnlock estara disponible. Si no, mostrar main directo.
-        if (window.__startUnlock__) {
-          window.__startUnlock__();
-        } else if (window.__bootMain__) {
-          var ul = document.getElementById('screen-unlock');
-          if (ul) ul.style.display = 'none';
-          var main = document.getElementById('screen-main');
-          if (main) main.classList.add('on');
-          window.__bootMain__();
-        } else {
-          // Sin modulos: solo desbloquea visualmente para que veas la UI
-          var main = document.getElementById('screen-main');
-          if (main) main.classList.add('on');
-          console.error('[fallback] Modulos ES no cargaron. Revisa Network tab para 404s.');
-        }
-      }, 800);
-    }
-  };
-</script>
 </head>
 <body>
 
@@ -70,7 +23,7 @@
   <div class="pw-meta br">v1.00.31 // BUILD 11MAY26<br>149 ACTORES · 9 VERTICALES</div>
   <div class="pw-center">
     <div class="pw-logo-wrap">
-      <img class="pw-logo" src="logo.png" alt="Playbook Intelligence">
+      <img id="pw-logo" class="pw-logo" alt="Playbook Intelligence">
       <div class="pw-logo-sub">Sports Intelligence · Ecosistema Deportivo MX · 2026</div>
     </div>
     <div class="pw-sep">
@@ -100,7 +53,7 @@
 </div>
 
 <div id="screen-unlock">
-  <img class="ul-logo" src="logo.png" alt="Playbook Intelligence">
+  <img id="ul-logo" class="ul-logo" alt="Playbook Intelligence">
   <div class="ul-wrap">
     <div class="ul-lbl" id="ul-lbl">Iniciando sesion</div>
     <div class="ul-track"><div class="ul-fill" id="ul-fill"></div></div>
@@ -119,7 +72,7 @@
 <div id="screen-main">
   <nav class="sidebar">
     <div class="sb-head">
-      <img class="sb-logo" src="logo.png" alt="Playbook Intelligence">
+      <img id="sb-logo" class="sb-logo" alt="Playbook Intelligence">
       <div class="sb-tagline">Ecosistema Deportivo · MX · 2026</div>
       <button class="sb-close" onclick="closeSidebar()" aria-label="Cerrar menu">✕</button>
     </div>
@@ -159,16 +112,6 @@
       <div id="view-network">
         <div id="net-svg-wrap" style="width:100%;height:100%;position:relative;overflow:hidden">
           <svg id="net-svg" style="width:100%;height:100%;display:block"></svg>
-          <!-- Matriz estratégica — 3rd graphic layout mode, overlays when active -->
-          <div id="matrix-in-net" style="width:100%;height:100%;position:absolute;top:0;left:0;display:none;overflow:hidden;background:var(--bg,#0a0a0a)">
-            <svg id="matrix-svg" style="width:100%;height:100%;display:block"></svg>
-            <div class="net-tt" id="mx-tt">
-              <div class="net-tt-name" id="mxt-n"></div>
-              <div class="net-tt-v" id="mxt-v"></div>
-              <div class="net-tt-role" id="mxt-r"></div>
-              <div class="net-tt-hint">Click para ficha completa</div>
-            </div>
-          </div>
           <div id="net-loading-overlay">
             <div class="net-load-dot"></div>
             <div class="net-load-txt">CARGANDO RED...</div>
@@ -176,8 +119,8 @@
         </div>
         <div class="net-layout-btns">
           <button class="net-lb active" id="nlb-red" onclick="setNetLayout('red')">Red</button>
+          <button class="net-lb" id="nlb-clusters" onclick="setNetLayout('clusters')">Clusters</button>
           <button class="net-lb" id="nlb-verticales" onclick="setNetLayout('verticales')">Verticales</button>
-          <button class="net-lb" id="nlb-matriz" onclick="setNetLayout('matriz')">Matriz</button>
         </div>
         <div class="net-ctrl-grp">
           <button class="net-cb" onclick="netZoom(1.25)" title="Acercar">+</button>
@@ -205,10 +148,6 @@
         <div class="actor-panel" id="net-panel">
           <div class="ap-top"><div class="ap-x" onclick="closeP('net-panel')">✕</div><div class="ap-vtag" id="np-vt"></div><div class="ap-name" id="np-n"></div><div class="ap-role" id="np-r"></div></div>
           <div class="ap-body" id="np-b"></div>
-        </div>
-        <div class="actor-panel" id="mx-panel">
-          <div class="ap-top"><div class="ap-x" onclick="closeP('mx-panel')">✕</div><div class="ap-vtag" id="mxp-vt"></div><div class="ap-name" id="mxp-n"></div><div class="ap-role" id="mxp-r"></div></div>
-          <div class="ap-body" id="mxp-b"></div>
         </div>
       </div>
       <div id="view-index">

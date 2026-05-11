@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 310">
+  <text x="0" y="240" font-family="Syne, Inter, system-ui, sans-serif" font-weight="800" font-size="280" letter-spacing="-8" fill="#ffffff" textLength="1040" lengthAdjust="spacingAndGlyphs">Playbook</text>
+  <!-- Corner bracket mark — top bar -->
+  <rect x="900" y="30" width="130" height="30" fill="#45d802"/>
+  <!-- Corner bracket mark — right bar -->
+  <rect x="1000" y="30" width="30" height="140" fill="#45d802"/>
+</svg>
