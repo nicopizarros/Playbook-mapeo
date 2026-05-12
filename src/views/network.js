@@ -1,6 +1,6 @@
 import { APP, VX } from '../state.js';
 import { openPanel } from '../panel.js';
-import { buildMatrix } from './matrix.js';
+import { buildMatrix, matrixZoomBy, matrixZoomReset } from './matrix.js';
 
 let minimapCtx, minimapW = 120, minimapH = 80;
 let zoomBadgeTimer = null;
@@ -728,8 +728,14 @@ export function setNetLayout(mode) {
   APP.simulation.alpha(0.8).restart();
 }
 
-export function netZoom(f) { APP.svgSel.transition().duration(300).call(APP.zoomBehavior.scaleBy, f); }
-export function netReset() { APP.svgSel.transition().duration(500).call(APP.zoomBehavior.transform, d3.zoomIdentity); }
+export function netZoom(f) {
+  if (APP.netLayout === 'matriz') { matrixZoomBy(f); return; }
+  APP.svgSel.transition().duration(300).call(APP.zoomBehavior.scaleBy, f);
+}
+export function netReset() {
+  if (APP.netLayout === 'matriz') { matrixZoomReset(); return; }
+  APP.svgSel.transition().duration(500).call(APP.zoomBehavior.transform, d3.zoomIdentity);
+}
 
 function initNetResizeObserver() {
   if (typeof ResizeObserver === 'undefined') return;

@@ -3,6 +3,20 @@ import { openPanel } from '../panel.js';
 
 let mxResizeObserver = null;
 let mxZoom = null;
+let _mxResizeSkip = false; // skip the one initial notification fired by observe()
+
+const MX_MARGIN = { top: 64, right: 48, bottom: 76, left: 80 };
+
+export function matrixZoomBy(factor) {
+  if (!mxZoom) return;
+  d3.select('#matrix-svg').transition().duration(250).call(mxZoom.scaleBy, factor);
+}
+
+export function matrixZoomReset() {
+  if (!mxZoom) return;
+  d3.select('#matrix-svg').transition().duration(400)
+    .call(mxZoom.transform, d3.zoomIdentity.translate(MX_MARGIN.left, MX_MARGIN.top));
+}
 
 export function buildMatrix() {
   const wrap = document.getElementById('matrix-in-net');
@@ -13,7 +27,7 @@ export function buildMatrix() {
   const W = wrap.clientWidth, H = wrap.clientHeight;
   if (W < 80 || H < 80) return;
 
-  const margin = { top: 64, right: 48, bottom: 76, left: 80 };
+  const margin = MX_MARGIN;
   const iW = W - margin.left - margin.right;
   const iH = H - margin.top - margin.bottom;
 
@@ -38,18 +52,6 @@ export function buildMatrix() {
   svg.call(mxZoom).on('dblclick.zoom', null);
   // Seed D3's internal transform with the margin so scaleBy/wheel zoom around the correct origin
   svg.call(mxZoom.transform, d3.zoomIdentity.translate(margin.left, margin.top));
-
-  // Zoom control buttons — reuse network CSS classes
-  let ctrl = wrap.querySelector('.mx-zoom-ctrl');
-  if (ctrl) ctrl.remove();
-  ctrl = document.createElement('div');
-  ctrl.className = 'mx-zoom-ctrl net-ctrl-grp';
-  ctrl.style.cssText = 'position:absolute;bottom:36px;right:12px;z-index:5';
-  ctrl.innerHTML = '<button class="net-cb" id="mxz-in" title="Acercar">+</button><button class="net-cb" id="mxz-out" title="Alejar">−</button><button class="net-cb" style="font-size:9px;letter-spacing:0" id="mxz-rst" title="Reset">⌖</button>';
-  wrap.appendChild(ctrl);
-  ctrl.querySelector('#mxz-in').addEventListener('click', () => svg.transition().duration(250).call(mxZoom.scaleBy, 1.35));
-  ctrl.querySelector('#mxz-out').addEventListener('click', () => svg.transition().duration(250).call(mxZoom.scaleBy, 0.75));
-  ctrl.querySelector('#mxz-rst').addEventListener('click', () => svg.transition().duration(400).call(mxZoom.transform, d3.zoomIdentity.translate(margin.left, margin.top)));
 
   // Scales — use real score ranges to avoid stacking all high-amplitud actors on the right edge
   const amps = APP.ACTORS.map(a => +a.score_amplitud || 0);
@@ -251,10 +253,15 @@ export function buildMatrix() {
       .text(lbl);
   });
 
-  // ResizeObserver — rebuild on size change
+  // ResizeObserver — rebuild on actual size change (e.g. window resize).
+  // Chrome fires one notification immediately on every observe() call regardless
+  // of whether the size changed; we skip that synthetic first notification with
+  // the _mxResizeSkip flag to avoid an infinite rebuild loop.
   if (mxResizeObserver) mxResizeObserver.disconnect();
   if (typeof ResizeObserver !== 'undefined') {
+    _mxResizeSkip = true;
     mxResizeObserver = new ResizeObserver(() => {
+      if (_mxResizeSkip) { _mxResizeSkip = false; return; }
       if (APP.netLayout === 'matriz') buildMatrix();
     });
     mxResizeObserver.observe(wrap);
