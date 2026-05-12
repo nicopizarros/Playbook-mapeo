@@ -62,21 +62,8 @@ export const VX = {
   V9: { code:'V9', label:'Capital',           color:'var(--v9)', q:'¿Quién financia y adquiere activos deportivos en México?', note:'Fondos de inversión, family offices y corporativos con exposición al deporte.' },
 };
 
-// Logo oficial Playbook: wordmark blanco + corner mark verde.
-// SVG inline (vectorial, escalable, sin pixelado). viewBox 1040x310 mantiene la proporcion del original.
-const LOGO_SVG =
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 310" preserveAspectRatio="xMidYMid meet">' +
-    '<g fill="#ffffff" font-family="Syne, Inter, system-ui, sans-serif" font-weight="800">' +
-      '<text x="0" y="240" font-size="280" letter-spacing="-8" textLength="1040" lengthAdjust="spacingAndGlyphs">Playbook</text>' +
-    '</g>' +
-    // Corner mark verde arriba a la derecha (L invertida)
-    '<g fill="#90E840">' +
-      '<rect x="900" y="40" width="100" height="28"/>' +
-      '<rect x="972" y="40" width="28" height="130"/>' +
-    '</g>' +
-  '</svg>';
-
-export const LOGO = 'data:image/svg+xml;base64,' + btoa(LOGO_SVG);
+// Logo oficial Playbook: forzar PNG en toda la app.
+export const LOGO = 'logo.png';
 
 export const RIESGO_DEFAULT = 'Sin riesgo identificado';
 
