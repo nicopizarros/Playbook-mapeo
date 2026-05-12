@@ -28,15 +28,16 @@ export function buildMatrix() {
   fm.append('feMergeNode').attr('in', 'blur');
   fm.append('feMergeNode').attr('in', 'SourceGraphic');
 
-  const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+  const g = svg.append('g');
 
   // Zoom + pan — title stays fixed (appended to svg), data group (g) transforms
   mxZoom = d3.zoom().scaleExtent([0.3, 8])
     .on('zoom', e => {
-      const t = e.transform;
-      g.attr('transform', `translate(${margin.left + t.x},${margin.top + t.y}) scale(${t.k})`);
+      g.attr('transform', e.transform);
     });
   svg.call(mxZoom).on('dblclick.zoom', null);
+  // Seed D3's internal transform with the margin so scaleBy/wheel zoom around the correct origin
+  svg.call(mxZoom.transform, d3.zoomIdentity.translate(margin.left, margin.top));
 
   // Zoom control buttons — reuse network CSS classes
   let ctrl = wrap.querySelector('.mx-zoom-ctrl');
@@ -48,7 +49,7 @@ export function buildMatrix() {
   wrap.appendChild(ctrl);
   ctrl.querySelector('#mxz-in').addEventListener('click', () => svg.transition().duration(250).call(mxZoom.scaleBy, 1.35));
   ctrl.querySelector('#mxz-out').addEventListener('click', () => svg.transition().duration(250).call(mxZoom.scaleBy, 0.75));
-  ctrl.querySelector('#mxz-rst').addEventListener('click', () => svg.transition().duration(400).call(mxZoom.transform, d3.zoomIdentity));
+  ctrl.querySelector('#mxz-rst').addEventListener('click', () => svg.transition().duration(400).call(mxZoom.transform, d3.zoomIdentity.translate(margin.left, margin.top)));
 
   // Scales — use real score ranges to avoid stacking all high-amplitud actors on the right edge
   const amps = APP.ACTORS.map(a => +a.score_amplitud || 0);
