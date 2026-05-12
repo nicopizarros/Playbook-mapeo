@@ -3,6 +3,7 @@ import { openPanel } from '../panel.js';
 
 let mxResizeObserver = null;
 let mxZoom = null;
+let _mxResizeSkip = false; // skip the one initial notification fired by observe()
 
 const MX_MARGIN = { top: 64, right: 48, bottom: 76, left: 80 };
 
@@ -252,10 +253,15 @@ export function buildMatrix() {
       .text(lbl);
   });
 
-  // ResizeObserver — rebuild on size change
+  // ResizeObserver — rebuild on actual size change (e.g. window resize).
+  // Chrome fires one notification immediately on every observe() call regardless
+  // of whether the size changed; we skip that synthetic first notification with
+  // the _mxResizeSkip flag to avoid an infinite rebuild loop.
   if (mxResizeObserver) mxResizeObserver.disconnect();
   if (typeof ResizeObserver !== 'undefined') {
+    _mxResizeSkip = true;
     mxResizeObserver = new ResizeObserver(() => {
+      if (_mxResizeSkip) { _mxResizeSkip = false; return; }
       if (APP.netLayout === 'matriz') buildMatrix();
     });
     mxResizeObserver.observe(wrap);
