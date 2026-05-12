@@ -34,9 +34,9 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 .logo-pw,.logo-unlock{display:flex;align-items:center;justify-content:center}
 .logo-sidebar{display:block}
 .logo-img{display:block;height:auto}
-.logo-pw .logo-img{width:120px}
-.logo-unlock .logo-img{width:100px}
-.logo-sidebar .logo-img{width:70px}
+.logo-pw .logo-img{width:80px!important}
+.logo-unlock .logo-img{width:65px!important}
+.logo-sidebar .logo-img{width:50px!important}
 .pw-sep{display:flex;align-items:center;gap:16px;width:360px;max-width:100%}
 .pw-sep-line{flex:1;height:1px}
 .pw-sep-line.l{background:linear-gradient(to right,transparent,rgba(69,216,2,0.25))}
