@@ -33,10 +33,10 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 @keyframes fadeup{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
 .pw-logo-wrap{display:flex;flex-direction:column;align-items:center;gap:16px}
 .logo-slot{display:flex;align-items:center;justify-content:center;overflow:hidden}
-.logo-slot--pw{inline-size:min(52vw,286px);block-size:clamp(56px,12vh,102px)}
-.logo-slot--unlock{inline-size:min(36vw,156px);block-size:clamp(46px,8.5vh,78px)}
-.logo-slot--sidebar{inline-size:clamp(50px,6vw,68px);block-size:clamp(22px,4vh,32px);justify-content:flex-start}
-.app-logo{display:block;inline-size:100%;block-size:100%;max-inline-size:none;max-block-size:none;object-fit:contain;object-position:center center}
+.logo-slot--pw{inline-size:min(68vw,520px);block-size:clamp(86px,16vh,146px)}
+.logo-slot--unlock{inline-size:min(48vw,300px);block-size:clamp(66px,11vh,104px)}
+.logo-slot--sidebar{inline-size:clamp(110px,13vw,164px);block-size:clamp(28px,4.8vh,44px);justify-content:flex-start}
+.app-logo{display:block;inline-size:100%;block-size:100%;max-inline-size:none;max-block-size:none;object-fit:contain;object-position:center center;padding:4px 6px;box-sizing:border-box}
 .app-logo--pw{filter:none;opacity:1}
 .app-logo--unlock{opacity:1;filter:none}
 .app-logo--sidebar{opacity:1}
@@ -268,7 +268,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 @media(max-width:480px){
   .bv-title{font-size:20px}.bv-stat-n{font-size:20px}.brief-body{padding:14px 12px 52px}.b-grid{grid-template-columns:1fr}
   .actor-panel{height:90vh}.ap-name{font-size:18px}
-  .logo-slot--pw{inline-size:min(50vw,172px);block-size:clamp(48px,9vh,70px)}.pw-vline,.pw-hline{display:none}.pw-tick,.pw-meta{display:none}
+  .logo-slot--pw{inline-size:min(82vw,340px);block-size:clamp(74px,13vh,112px)}.pw-vline,.pw-hline{display:none}.pw-tick,.pw-meta{display:none}
   .pw-field input{font-size:14px;letter-spacing:0.28em}
   .sb-item{padding:10px 18px}.net-cb{width:44px;height:44px}
   .tb-badge{display:none}.tb-search{max-width:140px}
