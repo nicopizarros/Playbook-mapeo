@@ -1,4 +1,4 @@
-// state.js — estado global compartido, constantes de verticales, logo.
+// state.js — estado global compartido, constantes de verticales.
 // No depende de otros modulos. Es la primera importacion en la cadena.
 
 export const APP = {
@@ -61,9 +61,6 @@ export const VX = {
   V8: { code:'V8', label:'Sports Tech',       color:'var(--v8)', q:'¿Qué tecnología transforma el deporte en México?', note:'Data, analytics, wearables, VAR y plataformas de fan engagement.' },
   V9: { code:'V9', label:'Capital',           color:'var(--v9)', q:'¿Quién financia y adquiere activos deportivos en México?', note:'Fondos de inversión, family offices y corporativos con exposición al deporte.' },
 };
-
-// Logo oficial Playbook: forzar PNG en toda la app.
-export const LOGO = 'logo.png';
 
 export const RIESGO_DEFAULT = 'Sin riesgo identificado';
 
