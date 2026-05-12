@@ -69,9 +69,8 @@
   <div class="pw-meta bl">© 2026 PLAYBOOK SPORTS INTELLIGENCE<br>DISTRIBUCION RESTRINGIDA · USO INTERNO</div>
   <div class="pw-meta br">v1.00.31 // BUILD 11MAY26<br>149 ACTORES · 9 VERTICALES</div>
   <div class="pw-center">
-    <div class="pw-logo-wrap">
-      <img class="pw-logo" src="logo.png" alt="Playbook Intelligence">
-      <div class="pw-logo-sub">Sports Intelligence · Ecosistema Deportivo MX · 2026</div>
+    <div class="pw-logo-wrap logo-slot logo-slot--pw">
+      <img class="pw-logo app-logo app-logo--pw" src="logo.svg" alt="Playbook Intelligence">
     </div>
     <div class="pw-sep">
       <div class="pw-sep-line l"></div><div class="pw-sep-dot"></div>
@@ -100,7 +99,9 @@
 </div>
 
 <div id="screen-unlock">
-  <img class="ul-logo" src="logo.png" alt="Playbook Intelligence">
+  <div class="logo-slot logo-slot--unlock">
+    <img class="ul-logo app-logo app-logo--unlock" src="logo.svg" alt="Playbook Intelligence">
+  </div>
   <div class="ul-wrap">
     <div class="ul-lbl" id="ul-lbl">Iniciando sesion</div>
     <div class="ul-track"><div class="ul-fill" id="ul-fill"></div></div>
@@ -119,7 +120,9 @@
 <div id="screen-main">
   <nav class="sidebar">
     <div class="sb-head">
-      <img class="sb-logo" src="logo.png" alt="Playbook Intelligence">
+      <div class="logo-slot logo-slot--sidebar">
+        <img class="sb-logo app-logo app-logo--sidebar" src="logo.svg" alt="Playbook Intelligence">
+      </div>
       <div class="sb-tagline">Ecosistema Deportivo · MX · 2026</div>
       <button class="sb-close" onclick="closeSidebar()" aria-label="Cerrar menu">✕</button>
     </div>
@@ -178,6 +181,7 @@
           <button class="net-lb active" id="nlb-red" onclick="setNetLayout('red')">Red</button>
           <button class="net-lb" id="nlb-verticales" onclick="setNetLayout('verticales')">Verticales</button>
           <button class="net-lb" id="nlb-matriz" onclick="setNetLayout('matriz')">Matriz</button>
+          <button class="net-lb active" id="nlb-clean" onclick="toggleNetClean()">Limpio</button>
         </div>
         <div class="net-ctrl-grp">
           <button class="net-cb" onclick="netZoom(1.25)" title="Acercar">+</button>

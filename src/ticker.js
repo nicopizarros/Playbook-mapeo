@@ -1,4 +1,5 @@
 import { APP, VX } from './state.js';
+import { openPanel } from './panel.js';
 
 function esc(s) {
   return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -30,13 +31,27 @@ export function renderTicker() {
       ? `<span style="color:rgba(255,255,255,0.42)">${esc(it.signal.length > 72 ? it.signal.slice(0,70)+'…' : it.signal)}</span>`
       : '';
     const sep   = `<span class="ticker-sep">·</span>`;
-    const parts = [vcode, name, score, sig].filter(Boolean).join(sep);
-    return `<span class="ticker-item">${parts}</span>`;
+    const trend = it.score != null ? (it.score >= 0.5 ? '▲' : '▼') : '•';
+    const trendCol = it.score != null ? (it.score >= 0.5 ? '#45d802' : '#ff6b6b') : 'rgba(255,255,255,0.45)';
+    const marker = `<span style="color:${trendCol};font-weight:700">${trend}</span>`;
+    const badge = it.watchlist ? '<span style="color:#ffd60a">WL</span>' : (it.flag ? '<span style="color:#ff6b6b">FLAG</span>' : '');
+    const parts = [marker, vcode, name, score, badge, sig].filter(Boolean).join(sep);
+    const idAttr = it.id ? ` data-actor-id="${esc(it.id)}"` : '';
+    const cls = it.id ? 'ticker-item is-clickable' : 'ticker-item';
+    return `<span class="${cls}"${idAttr}>${parts}</span>`;
   }).join('');
 
   // Double the content for seamless infinite loop
   track.innerHTML = html + html;
   wrap.classList.add('on');
+
+  track.onclick = e => {
+    const item = e.target.closest('.ticker-item[data-actor-id]');
+    if (!item) return;
+    const actorId = item.getAttribute('data-actor-id');
+    const actor = APP.actorMap && APP.actorMap.get(actorId);
+    if (actor) openPanel(actor, 'net-panel');
+  };
 }
 
 export function initTicker() {

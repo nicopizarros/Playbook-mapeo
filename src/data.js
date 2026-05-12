@@ -120,11 +120,14 @@ export function buildPoiMap(rawMap) {
 export function buildTicker(actors) {
   const items = actors.filter(a => a.tier === 1 || a.flag || a.watchlist).slice(0, 36);
   return items.map(a => ({
+    id:       a.id,
     label:    a.label,
     vertical: a.vertical,
     signal:   a.signal || a.role || '',
     score:    a.score_compuesto,
     tier:     a.tier,
+    flag:     !!a.flag,
+    watchlist: !!a.watchlist,
   }));
 }
 

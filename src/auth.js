@@ -6,6 +6,7 @@ import { ACCESS_KEY } from './state.js';
 import { startUnlock } from './unlock.js';
 
 let canvas, ctx, particles = [], rafId = null;
+const SESSION_KEY = 'pb.auth.ok.v1';
 
 function resizeCanvas() {
   if (!canvas) return;
@@ -99,6 +100,7 @@ export function doLogin() {
     showError('CLAVE INCORRECTA — ACCESO DENEGADO');
     return;
   }
+  try { localStorage.setItem(SESSION_KEY, '1'); } catch (_) {}
   const status = document.getElementById('pw-status');
   if (status) {
     status.textContent = 'Autenticado';
@@ -134,5 +136,16 @@ export function initAuth() {
     });
     setTimeout(() => input.focus(), 100);
   }
+  // Persistencia temporal de sesión para evitar re-autenticación en refresh.
+  // Si el usuario ya ingresó clave en esta máquina/navegador, saltamos login.
+  try {
+    if (localStorage.getItem(SESSION_KEY) === '1') {
+      const screen = document.getElementById('screen-pw');
+      if (screen) screen.style.display = 'none';
+      stopCanvas();
+      startUnlock();
+      return;
+    }
+  } catch (_) {}
   console.log('[auth] inicializado, ACCESS_KEY length:', ACCESS_KEY.length);
 }

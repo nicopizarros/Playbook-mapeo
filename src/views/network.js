@@ -3,6 +3,7 @@ import { openPanel } from '../panel.js';
 import { buildMatrix } from './matrix.js';
 
 let minimapCtx, minimapW = 120, minimapH = 80;
+let zoomBadgeTimer = null;
 
 // Thresholds for red-mode dimming based on score_compuesto (0–1)
 const SCORE_DIM_FULL    = 0.35;  // >= full opacity
@@ -57,9 +58,15 @@ export function initNet() {
       APP.gMain.attr('transform', e.transform);
       currentScale = e.transform.k;
       const badge = document.getElementById('zoom-badge');
-      if (badge) badge.textContent = Math.round(currentScale * 100) + '%';
+      if (badge) {
+        badge.textContent = Math.round(currentScale * 100) + '%';
+        badge.classList.add('on');
+        if (zoomBadgeTimer) clearTimeout(zoomBadgeTimer);
+        zoomBadgeTimer = setTimeout(() => badge.classList.remove('on'), 850);
+      }
       updateLOD(currentScale);
       updateMinimap(e.transform);
+      if (APP.netClean) updateNetCleanUI(currentScale);
     });
     APP.svgSel.call(APP.zoomBehavior);
     APP.gMain = APP.svgSel.append('g');
@@ -231,6 +238,7 @@ export function initNet() {
     });
 
     initMinimap();
+    updateNetCleanUI(1);
     initNetResizeObserver();
   } catch(err) {
     console.error('initNet error:', err);
@@ -238,6 +246,21 @@ export function initNet() {
     const ov = document.getElementById('net-loading-overlay');
     if (ov) { ov.classList.remove('hidden'); ov.style.pointerEvents = 'auto'; ov.innerHTML = '<div class="net-error-state"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--text-dim);text-align:center;text-transform:uppercase">RED NO DISPONIBLE — RECARGAR</div><button class="net-error-retry" onclick="location.reload()">↺ REINTENTAR</button></div>'; }
   }
+}
+
+export function toggleNetClean() {
+  APP.netClean = !APP.netClean;
+  const btn = document.getElementById('nlb-clean');
+  if (btn) btn.classList.toggle('active', APP.netClean);
+  updateNetCleanUI(1);
+}
+
+function updateNetCleanUI(scale) {
+  const view = document.getElementById('view-network');
+  if (!view) return;
+  view.classList.toggle('net-clean', !!APP.netClean);
+  const mini = document.getElementById('minimap');
+  if (mini) mini.style.display = (APP.netClean && scale <= 1.2) ? 'none' : '';
 }
 
 export function updateLOD(scale) {
