@@ -34,9 +34,9 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 .logo-pw,.logo-unlock{display:flex;align-items:center;justify-content:center}
 .logo-sidebar{display:block}
 .logo-img{display:block;height:auto}
-.logo-img--pw{width:80px!important}
-.logo-img--unlock{width:65px!important}
-.logo-img--sidebar{width:50px!important}
+.logo-img--pw{width:min(60vw,280px)}
+.logo-img--unlock{width:min(45vw,220px)}
+.logo-img--sidebar{width:clamp(80px,70%,140px)}
 .pw-sep{display:flex;align-items:center;gap:16px;width:360px;max-width:100%}
 .pw-sep-line{flex:1;height:1px}
 .pw-sep-line.l{background:linear-gradient(to right,transparent,rgba(69,216,2,0.25))}
@@ -262,7 +262,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;background:repeating-
 @media(max-width:480px){
   .bv-title{font-size:20px}.bv-stat-n{font-size:20px}.brief-body{padding:14px 12px 52px}.b-grid{grid-template-columns:1fr}
   .actor-panel{height:90vh}.ap-name{font-size:18px}
-  .logo-img--pw{width:min(82vw,80px)!important}
+  .logo-img--pw{width:min(78vw,240px)}
 .pw-vline,.pw-hline{display:none}.pw-tick,.pw-meta{display:none}
   .pw-field input{font-size:14px;letter-spacing:0.28em}
   .sb-item{padding:10px 18px}.net-cb{width:44px;height:44px}
